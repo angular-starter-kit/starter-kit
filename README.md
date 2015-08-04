@@ -19,3 +19,8 @@ Web project start kit including tooling, best practices and template seed.
     |- translations/        translations files
     e2e/                    tests end-to-end
     dist/                   compiled version (www for mobile)
+
+# Documentation
+- [installation](docs/installation.md)
+- [commands](docs/commands.md)
+- [structure](docs/structure.md)
