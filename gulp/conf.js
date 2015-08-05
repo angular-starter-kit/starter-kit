@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  *  This file contains the variables used in other gulp files
  *  which defines tasks
@@ -12,11 +14,33 @@ var gutil = require('gulp-util');
  *  The main paths of your project handle these with care
  */
 exports.paths = {
+
+  // -----------------------------------------------------
+  // Global
+  // -----------------------------------------------------
+
   src: 'sources',
   dist: 'dist',
   tmp: '.tmp',
   e2e: 'e2e',
-  bower: 'sources/librairies'
+  bower: 'sources/librairies',
+
+  // -----------------------------------------------------
+  // Translations
+  // -----------------------------------------------------
+
+  translations: 'translations', // translations folder in tmp
+  translationsFiles: [
+    'sources/translations/*.po', /// all .po from src
+  ],
+  translatableFiles: [
+    'sources/main/*!(.test).js', // .js from main
+    'sources/modules/*!(.test).js', // .js from modules
+    'sources/**/*.view.html', // all views
+    'sources/index.html' // main html
+  ],
+  translationsBase: 'sources/translations' // folder containing translations from src
+
 };
 
 /**
@@ -33,8 +57,6 @@ exports.wiredep = {
  *  Common implementation for an error handler of a Gulp plugin
  */
 exports.errorHandler = function(title) {
-  'use strict';
-
   return function(err) {
     gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
     this.emit('end');

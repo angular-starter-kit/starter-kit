@@ -44,6 +44,6 @@ gulp.task('styles', function () {
     .pipe($.less(lessOptions)).on('error', conf.errorHandler('Less'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/main/')))
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')))
     .pipe(browserSync.reload({ stream: true }));
 });
