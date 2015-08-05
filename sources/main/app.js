@@ -15,9 +15,26 @@
     $log.debug('runBlock end');
   }
 
-  function config($logProvider, $stateProvider, $urlRouterProvider) {
-    // Enable log
-    $logProvider.debugEnabled(true);
+  function configBlock($stateProvider, $urlRouterProvider, $provide, config) {
+
+    // Extend the $exceptionHandler service to output logs.
+    $provide.decorator('$exceptionHandler', function ($delegate, $injector) {
+        return function (exception, cause) {
+          $delegate(exception, cause);
+
+          var logger = $injector.get('logger').getLogger('exceptionHandler');
+          logger.error(exception + (cause ? ' (' + cause + ')' : ''));
+        };
+    });
+
+    // Disable debug logs in production version
+    $provide.decorator('$log', function($delegate) {
+      if (!config.debug) {
+        $delegate.log = function() {};
+        $delegate.debug = function() {};
+      }
+      return $delegate;
+    });
 
     // default redirect
     $urlRouterProvider.otherwise('/');
@@ -35,9 +52,29 @@
     });
   }
 
-  angular
-    .module('app', ['ngAnimate', 'ngSanitize', 'ui.router', 'toastr', 'homepage'])
+  angular.module('app', [
+    // base
+    'ngAnimate',
+    'ngSanitize',
+    'ui.router',
+
+    // generated modules
+    //'translations',
+
+    // helpers
+    'logger',
+
+    // plugins
+    'toastr',
+    'gettext',
+
+    // screens
+    'homepage',
+
+    // settings
+    'config'
+    ])
     .run(runBlock)
-    .config(config);
+    .config(configBlock);
 
 })();
