@@ -12,10 +12,11 @@ var gutil = require('gulp-util');
  *  The main paths of your project handle these with care
  */
 exports.paths = {
-  src: 'src',
+  src: 'sources',
   dist: 'dist',
   tmp: '.tmp',
-  e2e: 'e2e'
+  e2e: 'e2e',
+  bower: 'sources/librairies'
 };
 
 /**
@@ -25,7 +26,7 @@ exports.paths = {
  */
 exports.wiredep = {
   exclude: [/jquery/, /bootstrap.js$/, /bootstrap\.css/],
-  directory: 'bower_components'
+  directory: exports.paths.bower
 };
 
 /**

@@ -8,10 +8,10 @@ var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
-gulp.task('partials', ['markups'], function () {
+gulp.task('partials', function () {
   return gulp.src([
-    path.join(conf.paths.src, '/app/**/*.html'),
-    path.join(conf.paths.tmp, '/serve/app/**/*.html')
+    path.join(conf.paths.src, '/**/*.html'),
+    path.join(conf.paths.tmp, '/serve/**/*.html')
   ])
     .pipe($.minifyHtml({
       empty: true,
@@ -20,7 +20,7 @@ gulp.task('partials', ['markups'], function () {
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
       module: 'app',
-      root: 'app'
+      root: ''
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
 });
@@ -47,7 +47,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
-    .pipe($.replace('../../bower_components/bootstrap/fonts/', '../fonts/'))
+    //.pipe($.replace('../../' + conf.paths.bower + '/bootstrap/fonts/', '../fonts/'))
     .pipe($.csso())
     .pipe(cssFilter.restore())
     .pipe(assets.restore())
@@ -81,13 +81,13 @@ gulp.task('other', function () {
 
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,less,ts,jade}')
+    path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}')
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
-gulp.task('clean', ['tsd:purge'], function (done) {
+gulp.task('clean', function (done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 

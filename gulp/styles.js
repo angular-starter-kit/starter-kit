@@ -14,19 +14,19 @@ var _ = require('lodash');
 gulp.task('styles', function () {
   var lessOptions = {
     options: [
-      'bower_components',
+      conf.paths.bower,
       path.join(conf.paths.src, '/app')
     ]
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/app/**/*.less'),
-    path.join('!' + conf.paths.src, '/app/index.less')
+    path.join(conf.paths.src, '/**/*.less'),
+    path.join('!' + conf.paths.src, '/main/app.less')
   ], { read: false });
 
   var injectOptions = {
     transform: function(filePath) {
-      filePath = filePath.replace(conf.paths.src + '/app/', '');
+      filePath = filePath.replace(conf.paths.src + '/main/', '');
       return '@import "' + filePath + '";';
     },
     starttag: '// injector',
@@ -36,7 +36,7 @@ gulp.task('styles', function () {
 
 
   return gulp.src([
-    path.join(conf.paths.src, '/app/index.less')
+    path.join(conf.paths.src, '/main/app.less')
   ])
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
@@ -44,6 +44,6 @@ gulp.task('styles', function () {
     .pipe($.less(lessOptions)).on('error', conf.errorHandler('Less'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')))
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/main/')))
     .pipe(browserSync.reload({ stream: true }));
 });

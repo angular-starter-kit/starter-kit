@@ -1,0 +1,24 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: Facility Insights\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en-US\n"
+
+# --------------------------------------------------
+# APP
+# --------------------------------------------------
+
+#. Application name. Do not translate.
+msgid "T_APP_NAME"
+msgstr "Application"
+
+#. Company name. Do not translate.
+msgid "T_APP_COMPANY"
+msgstr "Company"
