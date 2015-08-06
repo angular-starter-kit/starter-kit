@@ -1,7 +1,7 @@
 # Starter Kit
 Web project start kit including tooling, best practices and template seed.
 
-It is based on our experience in large web projects, with architecture choices
+It is based on our experience with large web projects, with architecture choices
 aiming for a clean, no-brainer development experience even for beginner teams.
 
 # Getting Started
