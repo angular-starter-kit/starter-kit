@@ -59,6 +59,7 @@ gulp.task('other', function () {
     path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}'),
     path.join('!' + conf.paths.bower, '/**/*'),
     path.join('!' + conf.paths.src, '/translations/*'),
+    path.join('!' + conf.paths.src, '/images/*')
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
@@ -68,4 +69,4 @@ gulp.task('clean', function (done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('build', ['html', 'fonts', 'other', 'images']);
