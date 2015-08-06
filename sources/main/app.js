@@ -63,6 +63,7 @@
 
     // generated modules
     'translations',
+    'views',
 
     // helpers
     'logger',
