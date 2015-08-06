@@ -1,6 +1,59 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+## Web
 node_modules/
-bower_components/
-.sass-cache/
-.idea/
 .tmp/
 dist/
+.sass-cache
+.idea/
+
+## Karma
+/reporters/
+
+## Mobile
+/www/
+/release/*.*
+/sign/**/*.*
+
+## Cordova
+/plugins/*.json
+platforms/**/build/
+platforms/**/www
+ant-build/
+ant-gen/
+platforms/android/assets/www
+platforms/android/bin/
+platforms/android/gen/
+platforms/android/res/xml/config.xml
+platforms/android/.gradle/
+platforms/ios/*/config.xml
+platforms/ios/.staging
+platforms/ios/cordova/console.log
+
+## Crosswalk
+/engine/
+/plugins/org.crosswalk.engine/
+/plugins/cordova-plugin-crosswalk-webview/
+
+## Mac
+.DS_Store
+
+## IntelliJ / Webstorm
+*.iml
+*.iws
+*.idea/*
+!.idea/runConfigurations/
+!.idea/codeStyleSettings.xml
+
+## Xcode
+xcuserdata/
+
+## Eclipse
+.classpath
+.project
+.settings/
+
+## Maven
+target/
+log/
