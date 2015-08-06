@@ -31,6 +31,7 @@ gulp.task('styles', function () {
     },
     starttag: '// inject:styles',
     endtag: '// endinject',
+    relative: true,
     addRootSlash: false
   };
 

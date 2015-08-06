@@ -19,7 +19,7 @@ function acmeMalarkey(malarkey) {
 
   return directive;
 
-  function linkFunc(scope, el, attr, vm) {
+  function linkFunc(scope, el) {
     var watcher;
     var typist = malarkey(el[0], {
       typeSpeed: 40,
@@ -41,7 +41,7 @@ function acmeMalarkey(malarkey) {
   }
 
   /** @ngInject */
-  function MalarkeyController($log) {
+  function MalarkeyController() {
     var vm = this;
 
     vm.contributors = [];
