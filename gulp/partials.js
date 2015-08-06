@@ -1,12 +1,9 @@
 'use strict';
 
-// -----------------------------------------------------
-// Partials
-// -----------------------------------------------------
-
 var path = require('path');
 var gulp = require('gulp');
-var conf = require('./conf');
+var conf = require('../gulpfile.config');
+
 var $ = require('gulp-load-plugins')();
 
 gulp.task('partials', function () {

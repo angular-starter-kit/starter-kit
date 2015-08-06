@@ -1,26 +1,27 @@
 'use strict';
 
-// -----------------------------------------------------
-// Translations
-// -----------------------------------------------------
-
 var path = require('path');
 var gulp = require('gulp');
-var conf = require('./conf');
+var conf = require('../gulpfile.config');
 
 var $ = require('gulp-load-plugins')();
 
 gulp.task('translations', function () {
-  return gulp.src(conf.paths.translationsFiles)
+  return gulp.src(path.join(conf.paths.src, 'translations/*.po'))
     .pipe($.angularGettext.compile({
       module: 'translations'
     }))
     .pipe($.concat('translations.js'))
-    .pipe(gulp.dest(path.join(conf.paths.tmp, conf.paths.translations)));
+    .pipe(gulp.dest(path.join(conf.paths.tmp, 'translations')));
 });
 
 gulp.task('translations:extract', function () {
-  return gulp.src(conf.paths.translatableFiles)
+  return gulp.src([
+    'main/*!(.test).js',    // .js from main
+    'modules/*!(.test).js', // .js from modules
+    '**/*.view.html',       // all views
+    'index.html'            // main html
+  ], { base: conf.path.src } )
     .pipe($.angularGettext.extract('template.pot', {}))
-    .pipe(gulp.dest(conf.paths.translationsBase));
+    .pipe(gulp.dest(path.join(conf.paths.src, 'translations')));
 });

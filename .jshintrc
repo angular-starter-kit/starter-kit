@@ -1,19 +1,49 @@
 {
   "globalstrict": true,
-  "strict": true,
+  "node": true,
+  "browser": true,
+  "esnext": true,
   "bitwise": true,
+  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
-  "latedef": false,
+  "immed": true,
+  "indent": 2,
+  "latedef": true,
+  "newcap": true,
   "noarg": true,
+  "quotmark": "single",
   "undef": true,
   "unused": true,
-  "validthis": true,
-  "jasmine": true,
+  "strict": true,
+  "trailing": true,
+  "smarttabs": true,
+  "devel": true,
+
   "globals": {
-    "angular": false,
-    "inject": false,
-    "module": false,
-    "console": false
+    // App (AngularJS, Cordova...)
+    "angular": true,
+    "module": true,
+    "cordova": false,
+    "$": true,
+
+    // Jasmine
+    "jasmine": true,
+    "inject": true,
+    "describe": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "expect": true,
+    "it": true,
+    "spyOn": true,
+
+    // Protractor
+    "browser": true,
+    "element": true,
+    "by": true,
+    "protractor": true,
+
+    // Bower
+    "bower": true
   }
 }
