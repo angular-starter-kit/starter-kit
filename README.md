@@ -7,41 +7,42 @@ aiming for a clean, no-brainer development experience even for beginner teams.
 # Getting Started
 
 1. Install required tools `gulp` and `bower`:
-
-    npm install -g gulp bower
-
+```
+npm install -g gulp bower
+```
 2. Install project tools, go to project folder:
-
-    npm install
-
+```
+npm install
+```
 3. Launch development server:
-
-    gulp serve
-
+```
+gulp serve
+```
 
 # Project Structure
-
-    gulp/                   individual gulp tasks
-    sources/                project source code
-    |- data/                other project data, will be copied as-is
-    |- fonts/               project fonts
-    |- images/              project images
-    |- libraries/           bower libraries
-    |- main/                main module, for entry points and global style
-    |  |- main.js           js entry point
-    |  +- main.less         style entry point
-    |- modules/             project components and modules, organized by features
-    |  |- helpers/          helper services
-    |  |- screens/          application screens
-    |  |- shell/            application shell
-    |  |- ui-components/    shared UI components
-    |  |- web-services/     web services
-    |  |- wrappers/         AngularJS module wrappers for external librairies
-    |  +- ...               additional project modules
-    |- translations/        translations files
-    +- index.html           
-    e2e/                    end-to-end tests
-    dist/                   compiled version
+```
+gulp/                   individual gulp tasks
+sources/                project source code
+|- data/                other project data, will be copied as-is
+|- fonts/               project fonts
+|- images/              project images
+|- libraries/           bower libraries
+|- main/                main module, for entry points and global style
+|  |- main.js           js entry point
+|  +- main.less         style entry point
+|- modules/             project components and modules, organized by features
+|  |- helpers/          helper services
+|  |- screens/          application screens
+|  |- shell/            application shell
+|  |- ui-components/    shared UI components
+|  |- web-services/     web services
+|  |- wrappers/         AngularJS module wrappers for external librairies
+|  +- ...               additional project modules
+|- translations/        translations files
++- index.html           
+e2e/                    end-to-end tests
+dist/                   compiled version
+```
 
 # Main Tasks
 
