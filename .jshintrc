@@ -13,6 +13,7 @@
   "globals": {
     "angular": false,
     "inject": false,
-    "module": false
+    "module": false,
+    "console": false
   }
 }
