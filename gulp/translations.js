@@ -13,7 +13,7 @@ var $ = require('gulp-load-plugins')();
 gulp.task('translations', function () {
   return gulp.src(conf.paths.translationsFiles)
     .pipe($.angularGettext.compile({
-      module: 'app'
+      module: 'translations'
     }))
     .pipe($.concat('translations.js'))
     .pipe(gulp.dest(path.join(conf.paths.tmp, conf.paths.translations)));
