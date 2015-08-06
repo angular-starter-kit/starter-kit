@@ -52,6 +52,9 @@
     });
   }
 
+  // Declare the translations module because angular-gettext does not create it.
+  angular.module('translations', ['gettext']);
+
   angular.module('app', [
     // base
     'ngAnimate',
@@ -59,7 +62,7 @@
     'ui.router',
 
     // generated modules
-    //'translations',
+    'translations',
 
     // helpers
     'logger',
