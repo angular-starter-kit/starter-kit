@@ -15,13 +15,13 @@ gulp.task('styles', function () {
   var lessOptions = {
     options: [
       conf.paths.bower,
-      path.join(conf.paths.src, '/app')
+      path.join(conf.paths.src, '/main'),
+      conf.paths.src
     ]
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/**/*.less'),
-    path.join('!' + conf.paths.src, '/main/app.less')
+    path.join(conf.paths.src, '/modules/**/*.less'),
   ], { read: false });
 
   var injectOptions = {
@@ -29,11 +29,17 @@ gulp.task('styles', function () {
       filePath = filePath.replace(conf.paths.src + '/main/', '');
       return '@import "' + filePath + '";';
     },
-    starttag: '// injector',
-    endtag: '// endinjector',
+    starttag: '// inject:styles',
+    endtag: '// endinject',
     addRootSlash: false
   };
 
+  gulp.src([
+    path.join(conf.paths.src, '/main/app.less')
+  ])
+    .pipe($.inject(injectFiles, injectOptions))
+    .pipe(wiredep(_.extend({}, conf.wiredep)))
+    .pipe(gulp.dest(path.join(conf.paths.src, '/main/')));
 
   return gulp.src([
     path.join(conf.paths.src, '/main/app.less')
