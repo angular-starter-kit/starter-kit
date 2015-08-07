@@ -50,6 +50,7 @@
     "main-bower-files": "~2.8.0",
     "merge-stream": "~0.1.7",
     "phantomjs": "~1.9.17",
+    "protractor-html-screenshot-reporter": "0.0.21",
     "require-dir": "~0.3.0",
     "uglify-save-license": "~0.4.1",
     "wiredep": "~2.2.2",
