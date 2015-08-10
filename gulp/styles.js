@@ -54,5 +54,5 @@ gulp.task('fonts', function () {
   return gulp.src(path.join(conf.paths.bower, '/**/*'))
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
-    .pipe(gulp.dest(path.join(conf.paths.src, '/fonts/')));
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/fonts/')));
 });
