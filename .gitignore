@@ -3,8 +3,8 @@
 
 ## Web
 node_modules/
-.tmp/
-dist/
+/.tmp/
+/dist/
 .sass-cache
 .idea/
 

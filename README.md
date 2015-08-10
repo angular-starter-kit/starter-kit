@@ -59,25 +59,28 @@ TODO: naming conventions, code style, best pratices, pitfalls
 
 # Additional Documentation
 - [Proxy configuration](docs/proxy.md)
-- [commands](docs/commands.md)
+- [All gulp tasks](docs/tasks.md)
 
 # Features
 
 ## Languages
-- TypeScript, JavaScript
-- Less, CSS
-- Jade, HTML
-- Gettext (for translations)
+- [TypeScript](http://www.typescriptlang.org), JavaScript
+- [Less](http://lesscss.org), CSS
+- [Jade](http://jade-lang.com), HTML
+- [Gettext](https://angular-gettext.rocketeer.be) (for translations)
 
 ## Quality
-- TSLint, JSHint, JSCS
-- Unit tests (Jasmine)
-- End-to-end tests (Protractor)
+- [TSLint](https://github.com/palantir/tslint)
+- [JSHint](http://jshint.com)
+- [JSCS](http://jscs.info)
+- Unit tests ([Jasmine](http://jasmine.github.io))
+- End-to-end tests ([Protractor](https://github.com/angular/protractor))
 
 ## Development
-- Automation with gulp
-- Development server with API proxy and live reload (BrowserSync)
-- JSDoc generation
+- Automation with [gulp](http://gulpjs.com)
+- Development server with API proxy and live reload
+  ([BrowserSync](http://www.browsersync.io))
+- [JSDoc](http://usejsdoc.org) generation with angular support
 
 ## Build
 - JS+CSS+HTML bundling and minification (useref, uglify, minify-html, csso) 
@@ -85,6 +88,15 @@ TODO: naming conventions, code style, best pratices, pitfalls
 - Images optimization (imagemin)
 - Automatic angular module annotation (ngAnnotate)
 - Asset revisionning (rev)
+
+## Libraries
+- [AngularJS](https://angularjs.org)
+- [Angular-gettext](https://angular-gettext.rocketeer.be)
+- [AngularUI Router](https://github.com/angular-ui/ui-router)
+- [UI Bootsrap](https://angular-ui.github.io/bootstrap)
+- [Bootstrap](http://getbootstrap.com)
+- [Font Awesome](http://fortawesome.github.io/Font-Awesome)
+- [Lodash](https://lodash.com)
 
 # Roadmap
 
