@@ -75,6 +75,7 @@
 
     // screens
     'homepage',
+    'about',
 
     // settings
     'config'
