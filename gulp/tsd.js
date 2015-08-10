@@ -1,4 +1,3 @@
-/**
 'use strict';
 
 var gulp = require('gulp');
@@ -59,5 +58,3 @@ gulp.task('tsd:purge', function () {
 });
 
 gulp.task('tsd', ['tsd:install']);
-
-**/

@@ -19,11 +19,12 @@ gulp.task('inject', ['scripts', 'styles', 'partials', 'translations'], function 
 
   // Scripts
   var injectScripts = gulp.src([
-    path.join(conf.paths.src, '/main/app.js'),
+    path.join(conf.paths.src, '/' + conf.paths.main + '/*.js'),
     path.join(conf.paths.src, '/modules/**/*.js'),
     path.join(conf.paths.tmp, '/**/*.js'),
-    path.join('!' + conf.paths.src, '/modules/**/*.test.js'),
-    path.join('!' + conf.paths.src, '/modules/**/*.mock.js')
+    path.join('!' + conf.paths.tmp, '/librairies/**/*.js'),
+    path.join('!' + conf.paths.src, '/**/*.test.js'),
+    path.join('!' + conf.paths.src, '/**/*.mock.js')
   ])
   .pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'));
 
@@ -36,5 +37,6 @@ gulp.task('inject', ['scripts', 'styles', 'partials', 'translations'], function 
     .pipe($.inject(injectStyles, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
-    .pipe(gulp.dest(path.join(conf.paths.tmp)));
+    .pipe(gulp.dest(path.join(conf.paths.tmp)))
+    .pipe(gulp.dest(path.join(conf.paths.src)));
 });

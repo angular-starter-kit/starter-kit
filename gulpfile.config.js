@@ -18,7 +18,9 @@ exports.paths = {
   src: 'sources',
   dist: 'dist',
   tmp: '.tmp',
-  e2e: 'e2e'
+  e2e: 'e2e',
+  main: 'main',
+  bower: bower.directory
 };
 
 /**
