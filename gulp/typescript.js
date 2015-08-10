@@ -11,7 +11,7 @@ var tsProject = $.typescript.createProject({
     sortOutput: true
 });
 
-gulp.task('typescripts', function () {
+gulp.task('typescript', function () {
   return gulp.src([
     path.join(conf.paths.src, '/modules/**/*.ts'),
     path.join(conf.paths.src, '/main/app.ts')
