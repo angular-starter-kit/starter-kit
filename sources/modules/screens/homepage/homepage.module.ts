@@ -4,7 +4,7 @@
  * home controller.
  */
 
-module homepage{
+module homepage {
   'use strict';
 
    angular

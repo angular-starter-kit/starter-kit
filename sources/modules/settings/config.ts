@@ -1,11 +1,9 @@
-'use strict';
-
 /**
  * defines app constants.
  */
 
 module config {
-  'use strict ';
+  'use strict';
 
   export class Config {
 
