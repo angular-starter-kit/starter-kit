@@ -43,7 +43,7 @@
     .state('app', {
         url: '/',
         templateUrl: 'modules/screens/homepage/homepage.view.html',
-        controller: 'homepageController'
+        controller: 'HomeController'
     })
     .state('about', {
         url: '/about',
