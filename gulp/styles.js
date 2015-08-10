@@ -10,12 +10,13 @@ var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
+var mainFolder = path.join(conf.paths.src, '/main/');
 
-gulp.task('styles', function () {
+gulp.task('styles', ['fonts'], function () {
   var lessOptions = {
     options: [
       conf.paths.bower,
-      path.join(conf.paths.src, '/main'),
+      mainFolder,
       conf.paths.src
     ]
   };
@@ -26,7 +27,7 @@ gulp.task('styles', function () {
 
   var injectOptions = {
     transform: function(filePath) {
-      filePath = filePath.replace(conf.paths.src + '/main/', '');
+      filePath = filePath.replace(mainFolder, '');
       return '@import "' + filePath + '";';
     },
     starttag: '// inject:styles',
@@ -35,22 +36,23 @@ gulp.task('styles', function () {
     addRootSlash: false
   };
 
-  gulp.src([
-    path.join(conf.paths.src, '/main/app.less')
-  ])
+  return gulp.src(path.join(mainFolder, 'app.less'))
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
-    .pipe(gulp.dest(path.join(conf.paths.src, '/main/')));
-
-  return gulp.src([
-    path.join(conf.paths.src, '/main/app.less')
-  ])
-    .pipe($.inject(injectFiles, injectOptions))
-    .pipe(wiredep(_.extend({}, conf.wiredep)))
+    .pipe(gulp.dest(mainFolder))
     .pipe($.sourcemaps.init())
     .pipe($.less(lessOptions)).on('error', conf.errorHandler('Less'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')))
     .pipe(browserSync.reload({ stream: true }));
+});
+
+// Only applies for fonts from bower dependencies
+// Custom fonts are handled by the "other" task
+gulp.task('fonts', function () {
+  return gulp.src(path.join(conf.paths.bower, '/**/*'))
+    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+    .pipe($.flatten())
+    .pipe(gulp.dest(path.join(conf.paths.src, '/fonts/')));
 });
