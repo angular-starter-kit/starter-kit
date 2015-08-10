@@ -14,7 +14,7 @@ gulp.task('html', ['inject'], function () {
   var cssFilter = $.filter('**/*.css');
   var assets;
 
-  return gulp.src(path.join(conf.paths.tmp, '/*.html'))
+  return gulp.src(path.join(conf.paths.src, 'index.html'))
     .pipe(assets = $.useref.assets())
     .pipe($.rev())
     .pipe(jsFilter)
@@ -46,6 +46,7 @@ gulp.task('other', function () {
 
   return gulp.src([
     path.join(conf.paths.src, '/**/*'),
+    path.join(conf.paths.tmp, '/**/*.{eot,svg,ttf,woff,woff2}'),
     path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}'),
     path.join('!' + conf.paths.bower, '/**/*'),
     path.join('!' + conf.paths.src, '/translations/*'),
