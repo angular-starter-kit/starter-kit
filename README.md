@@ -18,7 +18,6 @@ aiming for a clean, no-brainer development experience even for beginner teams.
 
     gulp serve
 
-
 # Project Structure
 
     gulp/                   individual gulp tasks
@@ -30,7 +29,7 @@ aiming for a clean, no-brainer development experience even for beginner teams.
     |- main/                main module, for entry points and global style
     |  |- main.js           js entry point
     |  +- main.less         style entry point
-    |- modules/             project components and modules, organized by features
+    |- modules/             project components and modules
     |  |- helpers/          helper services
     |  |- screens/          application screens
     |  |- shell/            application shell
@@ -39,7 +38,7 @@ aiming for a clean, no-brainer development experience even for beginner teams.
     |  |- wrappers/         AngularJS module wrappers for external librairies
     |  +- ...               additional project modules
     |- translations/        translations files
-    +- index.html           
+    +- index.html           html entry point
     e2e/                    end-to-end tests
     dist/                   compiled version
 
@@ -57,9 +56,9 @@ TODO: naming conventions, code style, best pratices, pitfalls
 
 
 # Additional Documentation
+- [Proxy configuration](docs/proxy.md)
 - [installation](docs/installation.md)
 - [commands](docs/commands.md)
-- [structure](docs/structure.md)
 
 # Roadmap
 
