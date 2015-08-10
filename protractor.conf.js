@@ -1,6 +1,8 @@
 'use strict';
 
 var conf = require('./gulpfile.config');
+// reporter
+var HtmlReporter = require('protractor-html-screenshot-reporter');
 
 // An example configuration file.
 exports.config = {
@@ -22,6 +24,17 @@ exports.config = {
   // Options to be passed to Jasmine-node.
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000
+    defaultTimeoutInterval: 30000,
+    isVerbose: true, // log tests in console
+    realtimeFailure: true,
+    includeStackTrace: true,
+  },
+
+  onPrepare: function() {
+    // reporter in html with a screenshot for each test.
+    jasmine.getEnv().addReporter(new HtmlReporter({
+       baseDirectory: 'reports/e2e/html',
+       //takeScreenShotsOnlyForFailedSpecs: true,
+    }));
   }
 };

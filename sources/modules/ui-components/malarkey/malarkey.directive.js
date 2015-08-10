@@ -1,23 +1,14 @@
 'use strict';
 
-angular
-  .module('app')
-  .directive('acmeMalarkey', acmeMalarkey);
+/** @ngInject */
+function MalarkeyController() {
+  var vm = this;
+
+  vm.contributors = [];
+}
 
 /** @ngInject */
 function acmeMalarkey(malarkey) {
-  var directive = {
-    restrict: 'E',
-    scope: {
-      extraValues: '=',
-    },
-    template: '&nbsp;',
-    link: linkFunc,
-    controller: MalarkeyController,
-    controllerAs: 'vm'
-  };
-
-  return directive;
 
   function linkFunc(scope, el) {
     var watcher;
@@ -40,11 +31,20 @@ function acmeMalarkey(malarkey) {
     });
   }
 
-  /** @ngInject */
-  function MalarkeyController() {
-    var vm = this;
+  var directive = {
+    restrict: 'E',
+    scope: {
+      extraValues: '=',
+    },
+    template: '&nbsp;',
+    link: linkFunc,
+    controller: MalarkeyController,
+    controllerAs: 'vm'
+  };
 
-    vm.contributors = [];
-  }
-
+  return directive;
 }
+
+angular
+  .module('app')
+  .directive('acmeMalarkey', acmeMalarkey);

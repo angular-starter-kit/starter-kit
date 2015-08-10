@@ -3,6 +3,7 @@
 /**
  * Tests for user service.
  */
+/**
 describe('userService', function() {
   var restService, userService;
 
@@ -78,3 +79,4 @@ describe('userService', function() {
   });
 
 });
+**/
