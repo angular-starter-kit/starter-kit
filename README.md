@@ -59,12 +59,51 @@ TODO: naming conventions, code style, best pratices, pitfalls
 
 # Additional Documentation
 - [Proxy configuration](docs/proxy.md)
-- [installation](docs/installation.md)
 - [commands](docs/commands.md)
+
+# Features
+
+## Languages
+- TypeScript, JavaScript
+- Less, CSS
+- Jade, HTML
+- Gettext (for translations)
+
+## Quality
+- TSLint, JSHint, JSCS
+- Unit tests (Jasmine)
+- End-to-end tests (Protractor)
+
+## Development
+- Automation with gulp
+- Development server with API proxy and live reload (BrowserSync)
+- JSDoc generation
+
+## Build
+- JS+CSS+HTML bundling and minification (useref, uglify, minify-html, csso) 
+- CSS browser support (autoprefixer)
+- Images optimization (imagemin)
+- Automatic angular module annotation (ngAnnotate)
+- Asset revisionning (rev)
 
 # Roadmap
 
-TODO
+## v1
+- Add coding guides with best practices
+- Improve project template
+- Add default components (for logging, REST, data dependencies...)
+
+## v2
+- Mobile version (Cordova + ngCordova, Ionic, Crosswalk...)
+- Add Sass support
+- Custom icons management (font icons or SVG->CSS icons)
+
+## v3
+- Improve documentation (micro training, cheat sheets, posters...)
+- Add bower package [cleaning](https://github.com/braddenver/preen)
+- Npm dependencies flattening to ease usage on Windows platforms
+- Repository for common base components?
+- Consider integration with yeoman?
 
 # Credits
 
