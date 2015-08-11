@@ -11,7 +11,7 @@ var $ = require('gulp-load-plugins')();
 var noop = function () {};
 //var mainFile = path.join(conf.paths.src, conf.paths.main, conf.paths.main + '.js');
 
-gulp.task('scripts', ['typescripts'], function () {
+gulp.task('scripts', ['typescript'], function () {
   return gulp.src([
     path.join(conf.paths.src, '/**/*.js'),
     path.join('!' + conf.paths.src, '/librairies/**/*.js')
