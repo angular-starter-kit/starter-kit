@@ -63,33 +63,33 @@ TODO: naming conventions, code style, best pratices, pitfalls
 
 # Features
 
-## Languages
+#### Languages
 - [TypeScript](http://www.typescriptlang.org), JavaScript
 - [Less](http://lesscss.org), CSS
 - [Jade](http://jade-lang.com), HTML
 - [Gettext](https://angular-gettext.rocketeer.be) (for translations)
 
-## Quality
+#### Quality
 - [TSLint](https://github.com/palantir/tslint)
 - [JSHint](http://jshint.com)
 - [JSCS](http://jscs.info)
 - Unit tests ([Jasmine](http://jasmine.github.io))
 - End-to-end tests ([Protractor](https://github.com/angular/protractor))
 
-## Development
+#### Development
 - Automation with [gulp](http://gulpjs.com)
 - Development server with API proxy and live reload
   ([BrowserSync](http://www.browsersync.io))
 - [JSDoc](http://usejsdoc.org) generation with angular support
 
-## Build
+#### Build
 - JS+CSS+HTML bundling and minification (useref, uglify, minify-html, csso) 
 - CSS browser support (autoprefixer)
 - Images optimization (imagemin)
 - Automatic angular module annotation (ngAnnotate)
 - Asset revisionning (rev)
 
-## Libraries
+#### Libraries
 - [AngularJS](https://angularjs.org)
 - [Angular-gettext](https://angular-gettext.rocketeer.be)
 - [AngularUI Router](https://github.com/angular-ui/ui-router)
@@ -100,17 +100,17 @@ TODO: naming conventions, code style, best pratices, pitfalls
 
 # Roadmap
 
-## v1
+#### v1
 - Add coding guides with best practices
 - Improve project template
 - Add default components (for logging, REST, data dependencies...)
 
-## v2
+#### v2
 - Mobile version (Cordova + ngCordova, Ionic, Crosswalk...)
 - Add Sass support
 - Custom icons management (font icons or SVG->CSS icons)
 
-## v3
+#### v3
 - Improve documentation (micro training, cheat sheets, posters...)
 - Add bower package [cleaning](https://github.com/braddenver/preen)
 - Npm dependencies flattening to ease usage on Windows platforms
