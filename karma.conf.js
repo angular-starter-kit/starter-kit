@@ -15,6 +15,7 @@ function listFiles() {
   });
   return wiredep(wiredepOptions).js
     .concat([
+      path.join(conf.paths.tmp, 'app.ts.js'),
       path.join('!' + conf.paths.src, '/librairies/*.js'),
       path.join(conf.paths.src, '/main/*.js'),
       path.join(conf.paths.src, '/modules/**/*.js'),
