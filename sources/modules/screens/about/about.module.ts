@@ -7,6 +7,6 @@ module about {
 
    angular
     .module('about', ['ui.router', 'logger'])
-    .controller('aboutController', AboutController);
+    .controller('AboutController', AboutController);
 
 }
