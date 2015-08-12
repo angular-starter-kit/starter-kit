@@ -71,7 +71,6 @@
     // plugins
     'toastr',
     'gettext',
-    'malarkey',
 
     // screens
     'homepage',
