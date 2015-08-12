@@ -5,12 +5,14 @@
 (function() {
   'use strict';
 
-  function runBlock($log, toastr) {
+  function runBlock($log, toastr, gettextCatalog) {
     // Set options third-party lib
     toastr.options.timeOut = 3000;
     toastr.options.positionClass = 'toast-top-right';
     toastr.options.preventDuplicates = true;
     toastr.options.progressBar = true;
+
+    gettextCatalog.setCurrentLanguage('en-US');
 
     $log.debug('runBlock end');
   }
