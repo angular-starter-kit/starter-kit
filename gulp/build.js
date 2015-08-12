@@ -39,7 +39,7 @@ gulp.task('html', ['inject'], function () {
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
 });
 
-gulp.task('other', function () {
+gulp.task('other', ['fonts'], function () {
   var fileFilter = $.filter(function (file) {
     return file.stat.isFile();
   });
@@ -60,4 +60,4 @@ gulp.task('clean', function (done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('build', ['fonts', 'html', 'other', 'images']);
+gulp.task('build', ['html', 'other', 'images']);
