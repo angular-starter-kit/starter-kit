@@ -43,14 +43,18 @@
 
     $stateProvider
     .state('app', {
+        templateUrl: 'modules/shell/shell.html',
+        controller: 'ShellController'
+    })
+    .state('app.home', {
         url: '/',
-        templateUrl: 'modules/screens/homepage/homepage.view.html',
+        templateUrl: 'modules/screens/homepage/homepage.html',
         controller: 'HomeController'
     })
-    .state('about', {
+    .state('app.about', {
         url: '/about',
-        templateUrl: 'modules/screens/about/about.view.html',
-        controller: 'aboutController'
+        templateUrl: 'modules/screens/about/about.html',
+        controller: 'AboutController'
     });
   }
 
@@ -77,6 +81,7 @@
     // screens
     'homepage',
     'about',
+    'shell',
 
     // settings
     'config'
