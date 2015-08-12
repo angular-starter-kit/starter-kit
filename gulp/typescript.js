@@ -11,7 +11,7 @@ var tsProject = $.typescript.createProject({
     sortOutput: true
 });
 
-gulp.task('typescript', function () {
+gulp.task('typescript', ['tsd:install'], function () {
   return gulp.src([
     path.join(conf.paths.src, '/modules/**/*.ts'),
     path.join(conf.paths.src, '/main/app.ts')
