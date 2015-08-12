@@ -7,6 +7,7 @@ module homepage {
     /* @ngInject */
     constructor ($rootScope: ng.IRootScopeService, $scope: ng.IScope, $stateParams: ng.ui.IStateParamsService, logger: any) {
       this.logger = logger.getLogger('homepage');
+      this.logger.info('homepage begin');
     }
   }
 }
