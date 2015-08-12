@@ -17,7 +17,7 @@ msgstr ""
 
 #. Application name. Do not translate.
 msgid "T_APP_NAME"
-msgstr "Application"
+msgstr "Starterkit"
 
 #. Company name. Do not translate.
 msgid "T_APP_COMPANY"
