@@ -9,7 +9,7 @@
 
 var gutil = require('gulp-util');
 var fs = require('fs');
-var bower = JSON.parse(fs.readFileSync('.bowerrc', "utf8"));
+var bower = JSON.parse(fs.readFileSync('.bowerrc', 'utf8'));
 
 /**
  *  The main paths of your project, handle these with care.
@@ -22,6 +22,22 @@ exports.paths = {
   main: 'main',
   bower: bower.directory
 };
+
+/**
+ * You can add a proxy to your backend by uncommenting the line bellow.
+ * You just have to configure a context which will we redirected and the target url.
+ * Example: $http.get('/api') requests will be automatically proxified.
+ *
+ * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
+ */
+
+/**
+exports.proxy = {
+  context: '/api',
+  options: {
+     target: 'http://jsonplaceholder.typicode.com'
+  }
+};**/
 
 /**
  *  Wiredep is the lib which inject bower dependencies in your project
