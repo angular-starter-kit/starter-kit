@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Tests for logger.
  */
 describe('logger', function () {

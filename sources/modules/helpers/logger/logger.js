@@ -30,8 +30,8 @@
  *
  * If you want additional tasks to be performed on log entry (show toast, for example), you can register observers using the addObserver() method.
  */
-angular.module('logger', [])
-
+angular
+  .module('logger', [])
   .factory('logger', function($log) {
 
     /*
@@ -131,3 +131,4 @@ angular.module('logger', [])
 
     return service;
   });
+  

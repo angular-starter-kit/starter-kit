@@ -1,23 +1,44 @@
-/**
+'use strict';
+
+// Declare the translations module because angular-gettext does not create it.
+angular.module('translations', ['gettext']);
+
+/*
  * Entry point of the application.
+ * Only declare here global modules needed for the application to start.
+ * These modules should be kept to minimum.
  */
+angular.module('app', [
+  // Dependencies
+  'gettext',
+  'ngAnimate',
+  'ngSanitize',
+  'ui.router',
 
-(function() {
-  'use strict';
+  // Generated modules
+  'translations',
+  'views',
 
-  function runBlock($log, toastr, gettextCatalog) {
-    // Set options third-party lib
-    toastr.options.timeOut = 3000;
-    toastr.options.positionClass = 'toast-top-right';
-    toastr.options.preventDuplicates = true;
-    toastr.options.progressBar = true;
+  // Base modules (needed for root controller)
+  'logger',
 
-    gettextCatalog.setCurrentLanguage('en-US');
+  // Screens
+  'homepage',
+  'about',
+  'shell',
+  'cacheService',
+  'restService',
+]);
 
-    $log.debug('runBlock end');
-  }
-
-  function configBlock($stateProvider, $urlRouterProvider, $provide, config) {
+/*
+ * Configures the application (before running).
+ */
+angular
+  .module('app')
+  .config(function ($stateProvider, 
+                    $urlRouterProvider,
+                    $provide,
+                    config) {
 
     // Extend the $exceptionHandler service to output logs.
     $provide.decorator('$exceptionHandler', function ($delegate, $injector) {
@@ -38,58 +59,32 @@
       return $delegate;
     });
 
-    // default redirect
+    // Default redirection
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-    .state('app', {
-        templateUrl: 'modules/shell/shell.html',
-        controller: 'ShellController',
-        controllerAs: 'shell'
-    })
-    .state('app.home', {
-        url: '/',
-        templateUrl: 'modules/screens/homepage/homepage.html',
-        controller: 'HomeController'
-    })
-    .state('app.about', {
-        url: '/about',
-        templateUrl: 'modules/screens/about/about.html',
-        controller: 'AboutController'
-    });
-  }
-
-  // Declare the translations module because angular-gettext does not create it.
-  angular.module('translations', ['gettext']);
-
-  angular.module('app', [
-    // base
-    'ngAnimate',
-    'ngSanitize',
-    'ui.router',
-
-    // generated modules
-    'translations',
-    'views',
-
-    // helpers
-    'logger',
-
-    // plugins
-    'toastr',
-    'gettext',
-
-    // screens
-    'homepage',
-    'about',
-    'shell',
-    'cacheService',
-    'restService',
-
-    // settings
-    'config'
-    ])
-    .run(runBlock)
-    .config(configBlock);
-
-})();
+      .state('app', {
+          templateUrl: 'modules/shell/shell.html',
+          controller: 'shellController',
+          controllerAs: 'shell'
+      })
+      .state('app.home', {
+          url: '/',
+          templateUrl: 'modules/screens/homepage/homepage.html',
+          controller: 'homeController'
+      })
+      .state('app.about', {
+          url: '/about',
+          templateUrl: 'modules/screens/about/about.html',
+          controller: 'aboutController'
+      });
+  });
+  
+/*
+ * Initializes the application and root controller.
+ */
+angular
+  .module('app')
+  .run(function (gettextCatalog) {
+    gettextCatalog.setCurrentLanguage('en-US');
+  });

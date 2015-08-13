@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Tests for loading directive.
  */
 describe('loading directive', function () {
@@ -11,15 +11,18 @@ describe('loading directive', function () {
     module('htmlTemplates');
   });
 
-  it('should be visible only when loading is in progress', inject(function ($httpBackend, $rootScope, $compile) {
-    $rootScope.hasLoaded = false;
-    element = $('<div se-loading="hasLoaded"></div>');
+  it('should be visible only when loading is in progress', inject(function ($httpBackend, 
+                                                                            $rootScope,
+                                                                            $compile) {
+                                                                              
+    $rootScope.isLoading = true;
+    element = $('<div se-loading="isLoading"></div>');
     element = $compile(element)($rootScope);
     $rootScope.$digest();
 
     expect(element).not.toHaveClass('ng-hide');
 
-    $rootScope.hasLoaded = true;
+    $rootScope.isLoading = false;
     $rootScope.$digest();
     expect(element).toBeHidden();
   }));

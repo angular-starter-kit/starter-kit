@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Tests for rest service.
  */
 describe('restService', function() {
@@ -11,7 +11,11 @@ describe('restService', function() {
   beforeEach(function() {
     module('restService');
 
-    inject(function(_$q_, _$httpBackend_, _restService_, _cacheService_, config) {
+    inject(function(_$q_,
+                    _$httpBackend_,
+                    _restService_,
+                    _cacheService_,
+                    config) {
       $q = _$q_;
       $httpBackend = _$httpBackend_;
       restService = _restService_;

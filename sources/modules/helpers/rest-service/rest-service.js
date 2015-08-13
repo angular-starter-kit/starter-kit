@@ -3,83 +3,20 @@
 /**
  * REST service: provides methods to perform REST requests.
  */
-angular.module('restService', ['logger', 'config', 'cacheService'])
-
-  .factory('restService', function($rootScope, $q, $http,
-                                   logger, config, cacheService) {
+angular
+  .module('restService', [
+    'logger',
+    'config',
+    'cacheService'
+  ])
+  .factory('restService', function($rootScope, 
+                                   $q,
+                                   $http,
+                                   logger,
+                                   config,
+                                   cacheService) {
 
     logger = logger.getLogger('restService');
-
-    /*
-     * Service internals
-     */
-
-    var baseServer = '';
-    var baseUri = '';
-    var defaultConfig = {
-      headers: {
-        'content-type': 'application/json',
-        'Access-Control-Allow-Headers': 'content-type'
-      }
-    };
-
-    /**
-     * Default request handler, that just builds the promise.
-     * @param {!function} requestBuilder A function that return the request's promise.
-     * @return {Object} The promise.
-     * @type {function}
-     */
-    var requestHandler = function(requestBuilder) {
-      // Default request handler just builds the request
-      return requestBuilder();
-    };
-
-    /**
-     * Default error handler.
-     * This handler tries to extract a description of the error and logs and error with it.
-     * @param {!Object} promise The promise to handle errors.
-     * @param {?Object=} options Additional options: if 'skipErrors' property is set to true, errors will not be handled.
-     * @type {function}
-     */
-    var errorHandler = function(promise, options) {
-      if (!options || !options.skipErrors) {
-        promise.catch(function(response) {
-          var error;
-
-          if (response.status === 404) {
-            error = 'Server unavailable or URL does not exist';
-          } else if (response.data) {
-            var message = response.data.message ? response.data.message : null;
-            var code = response.data.error ? response.data.error : null;
-            error = message || code || angular.toJson(response.data);
-          }
-
-          if (error) {
-            logger.error(error);
-          }
-
-          return $q.reject(response);
-        });
-      }
-      return promise;
-    };
-
-    /**
-     * Defaults cache handler.
-     * This handler just return the specified cache data and does nothing.
-     * @type {Function}
-     */
-    var cacheHandler = angular.identity;
-
-    /**
-     * Creates the request.
-     * @param {!function} requestBuilder A function that return the request's promise.
-     * @param {?Object=} options Additional options for request/error handlers.
-     * @return {Object} The promise.
-     */
-    function createRequest(requestBuilder, options) {
-      return errorHandler(requestHandler(requestBuilder, options), options);
-    }
 
     /*
      * Service public interface
@@ -277,5 +214,76 @@ angular.module('restService', ['logger', 'config', 'cacheService'])
     };
 
     return service;
+    
+    /*
+     * Service internals
+     */
+
+    var baseServer = '';
+    var baseUri = '';
+    var defaultConfig = {
+      headers: {
+        'content-type': 'application/json',
+        'Access-Control-Allow-Headers': 'content-type'
+      }
+    };
+
+    /**
+     * Default request handler, that just builds the promise.
+     * @param {!function} requestBuilder A function that return the request's promise.
+     * @return {Object} The promise.
+     * @type {function}
+     */
+    var requestHandler = function(requestBuilder) {
+      // Default request handler just builds the request
+      return requestBuilder();
+    };
+
+    /**
+     * Default error handler.
+     * This handler tries to extract a description of the error and logs and error with it.
+     * @param {!Object} promise The promise to handle errors.
+     * @param {?Object=} options Additional options: if 'skipErrors' property is set to true, errors will not be handled.
+     * @type {function}
+     */
+    var errorHandler = function(promise, options) {
+      if (!options || !options.skipErrors) {
+        promise.catch(function(response) {
+          var error;
+
+          if (response.status === 404) {
+            error = 'Server unavailable or URL does not exist';
+          } else if (response.data) {
+            var message = response.data.message ? response.data.message : null;
+            var code = response.data.error ? response.data.error : null;
+            error = message || code || angular.toJson(response.data);
+          }
+
+          if (error) {
+            logger.error(error);
+          }
+
+          return $q.reject(response);
+        });
+      }
+      return promise;
+    };
+
+    /**
+     * Defaults cache handler.
+     * This handler just return the specified cache data and does nothing.
+     * @type {Function}
+     */
+    var cacheHandler = angular.identity;
+
+    /**
+     * Creates the request.
+     * @param {!function} requestBuilder A function that return the request's promise.
+     * @param {?Object=} options Additional options for request/error handlers.
+     * @return {Object} The promise.
+     */
+    function createRequest(requestBuilder, options) {
+      return errorHandler(requestHandler(requestBuilder, options), options);
+    }
 
   });
