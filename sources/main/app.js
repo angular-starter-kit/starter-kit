@@ -84,6 +84,7 @@
     'about',
     'shell',
     'cacheService',
+    'restService',
 
     // settings
     'config'
