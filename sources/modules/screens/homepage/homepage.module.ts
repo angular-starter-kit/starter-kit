@@ -8,7 +8,7 @@ module homepage {
   'use strict';
 
    angular
-    .module('homepage', ['ui.router', 'logger'])
+    .module('homepage', ['ui.router', 'logger', 'cacheService'])
     .controller('HomeController', HomeController);
 
 }
