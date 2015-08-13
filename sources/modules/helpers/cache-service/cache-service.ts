@@ -4,52 +4,7 @@
 module cacheService {
   'use strict';
 
-  interface ICacheService {
-
-    /**
-     * Sets the cache data for the specified request.
-     * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
-     * @param {Object} data The received data.
-     * @param {Date=} date The cache date, now date is used if not specified.
-     */
-    setCacheData(url: string, params: any, data: any, date: Date);
-
-    /**
-     * Gets the cached data (if possible) for the specified request.
-     * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
-     * @return {?Object} The cached data or null if no cached data exists for this request.
-     */
-    getCacheData(url: string, params: any);
-
-    /**
-     * Gets the cached data date (if possible) for the specified request.
-     * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
-     * @return {?Object} The cached data date or null if no cached data exists for this request.
-     */
-    getCacheDate(url: string, params: any);
-
-    /**
-     * Clears the cached data (if exists) for the specified request.
-     * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
-     */
-    clearCacheData(url: string, params: any);
-
-    /**
-     * Cleans cache entries older than the specified date.
-     * @param {date=} expirationDate The cache expiration date. If no date is specified, all cache is cleared.
-     */
-    cleanCache(expirationDate: Date);
-  }
-
-  export class CacheService implements ICacheService {
+  export class cacheService {
     private logger: any;
     private $window: any;
     private cachedData: any = {};
@@ -61,9 +16,17 @@ module cacheService {
       /**
        * Initializes service.
        */
-      //this.loadCacheData();
+      this.loadCacheData();
     }
 
+    /**
+     * Sets the cache data for the specified request.
+     * @param {!string} url URL of the REST service call.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
+     *                       JSONified.
+     * @param {Object} data The received data.
+     * @param {Date=} date The cache date, now date is used if not specified.
+     */
     setCacheData(url: string, params: any, data: any, date: any) {
       var cacheKey = this.getCacheKey(url, params);
 
@@ -77,6 +40,13 @@ module cacheService {
       this.saveCacheData();
     };
 
+    /**
+     * Gets the cached data (if possible) for the specified request.
+     * @param {!string} url URL of the REST service call.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
+     *                       JSONified.
+     * @return {?Object} The cached data or null if no cached data exists for this request.
+     */
     getCacheData(url: string, params: any) {
       var cacheKey = this.getCacheKey(url, params);
       var cacheEntry = this.cachedData[cacheKey];
@@ -89,12 +59,25 @@ module cacheService {
       return null;
     };
 
+    /**
+     * Gets the cached data date (if possible) for the specified request.
+     * @param {!string} url URL of the REST service call.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
+     *                       JSONified.
+     * @return {?Object} The cached data date or null if no cached data exists for this request.
+     */
     getCacheDate(url: string, params: any) {
       var cacheKey = this.getCacheKey(url, params);
       var cacheEntry = this.cachedData[cacheKey];
       return cacheEntry ? cacheEntry.date : null;
     };
 
+    /**
+     * Clears the cached data (if exists) for the specified request.
+     * @param {!string} url URL of the REST service call.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
+     *                       JSONified.
+     */
     clearCacheData(url: string, params: any) {
       var cacheKey = this.getCacheKey(url, params);
       this.cachedData[cacheKey] = undefined;
@@ -102,6 +85,10 @@ module cacheService {
       this.saveCacheData();
     };
 
+    /**
+     * Cleans cache entries older than the specified date.
+     * @param {date=} expirationDate The cache expiration date. If no date is specified, all cache is cleared.
+     */
     cleanCache(expirationDate: Date) {
       var self = this;
       if (expirationDate) {
@@ -148,5 +135,5 @@ module cacheService {
    */
   angular.module('cacheService', ['logger', 'config'])
 
-    .service('cacheService', CacheService);
+    .service('cacheService', cacheService);
 };

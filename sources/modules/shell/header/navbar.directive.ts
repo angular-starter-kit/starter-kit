@@ -1,5 +1,5 @@
-'use strict';
 module navbar {
+  'use strict';
 
   /** @ngInject */
   function acmeNavbar($location: ng.ILocationService): ng.IDirective {
@@ -10,24 +10,24 @@ module navbar {
         creationDate: '='
       },
       templateUrl: 'modules/ui-components/navbar/navbar.html',
-      controller: NavbarController,
+      controller: navbarController,
       controllerAs: 'vm',
       // bindToController: true,
       link: linkFunc
     };
   }
 
-  function linkFunc(scope: ng.IScope, elem: JQuery, args: any, vm: NavbarController) {
+  function linkFunc(scope: ng.IScope, elem: JQuery, args: any, vm: navbarController) {
 
-      scope.$on("$stateChangeSuccess", activate);
+      scope.$on('$stateChangeSuccess', activate);
       activate();
 
-      function activate(){
+      function activate() {
           var hrefs = ['/#' + vm.$location.path(),
                        '#' + vm.$location.path(), // html5: false
                        vm.$location.path()]; // html5: true
 
-          angular.forEach(elem.find('.navbar-nav a'), function (a) {
+          angular.forEach(elem.find('.navbar-nav a'), function (a: JQuery) {
               a = angular.element(a);
               if (-1 !== hrefs.indexOf(a.attr('href'))) {
                   a.parent().addClass('active');
@@ -40,12 +40,12 @@ module navbar {
   }
 
   /** @ngInject */
-  class NavbarController {
+  class navbarController {
     'use strict';
 
     public $location: any;
 
-    constructor($location:any) {
+    constructor($location: any) {
       this.$location = $location;
     }
   }

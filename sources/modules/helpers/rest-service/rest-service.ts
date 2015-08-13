@@ -1,130 +1,9 @@
 'use strict';
 
 module restService {
-    'use strict';
+  'use strict';
 
-    /*
-     * restService interface
-     */
-    interface IRestService {
-      /**
-       * Executes a GET request.
-       * @param {!String} url URL of the REST service call.
-       * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-       *                       JSONified.
-       * @param {?boolean|'force'} cache If set to true, the first request will be cached, and next request with cache set to true will use the cached response.
-       *                                If set to 'force', the request will always be made and cache will be updated.
-       *                                If set to false or omitted, no cache will be set or used.
-       * @param {?Object=} options Additional options for request/error handlers.
-       * @return {Object} The promise.
-       */
-      get(url: string, params: any, cache: any, options: any): any;
-
-      /**
-       * Executes a POST request.
-       * @param {!String} url URL of the REST service call.
-       * @param {String|Object} data Data to be sent as the request message data.
-       * @param {?Object=} options Additional options for request/error handlers.
-       * @return {Object} The promise.
-       */
-      post(url: string, data: any, options: any): any;
-
-      /**
-       * Executes a PUT request.
-       * @param {!String} url URL of the REST service call.
-       * @param {String|Object} data Data to be sent as the request message data.
-       * @param {?Object=} options Additional options for request/error handlers.
-       * @return {Object} The promise.
-       */
-      put(url: string, data: any, options: any): any;
-
-      /**
-       * Executes a DELETE request.
-       * @param {!String} url URL of the REST service call.
-       * @param {?Object=} options Additional options for request/error handlers.
-       * @return {Object} The promise.
-       */
-      delete(url: string, options: any): any;
-
-      /**
-       * Sets the current server configuration.
-       * A server parameter must contains at least these two strings:
-       * - restServerUrl: The base URL of the server
-       * - restUri: The REST URI access point
-       * @param {!Object} server The server configuration.
-       */
-      setServer(server: string): void;
-
-      /**
-       * Returns the current server configuration.
-       * @return {String} The server base URL.
-       */
-      getServer(): string;
-
-      /**
-       * Returns the base URI.
-       * @return {String} The computed base URI.
-       */
-      getBaseUri(): string;
-
-      /**
-       * Sets a customized request handler function for all requests.
-       * The function should have the following signature, and return a promise:
-       * function requestHandler(requestBuilder, options) {
-       *   return requestBuilder();
-       * }
-       * The requestBuilder parameter is a function that returns the request promise.
-       * The options parameter is an optional object containing whatever options your handler may needs.
-       * @param {!function} requestHandlerFunc The request handler.
-       */
-      setRequestHandler(requestHandlerFunc: any): void;
-
-      /**
-       * Gets the current request handler function.
-       * @return {function} The request handler.
-       */
-      getRequestHandler(): void;
-
-      /**
-       * Sets a customized default error handler function for all requests.
-       * The function should have the following signature, and return a promise:
-       * function errorHandler(promise, options) {
-       *   return promise.catch(response, function() {
-       *      ...
-       *      return $q.reject(response);
-       *   });
-       * }
-       * The promise parameter is the request promise.
-       * The options parameter is an optional object containing whatever options your handler may needs.
-       * @param {!function} errorHandlerFunc The error handler.
-       */
-      setErrorHandler(errorHandlerFunc: any): void;
-
-      /**
-       * Gets the current error handler function.
-       * @return {function} The error handler.
-       */
-      getErrorHandler(): void;
-
-      /**
-       * Sets a customized default cache handler function for all cached requests.
-       * The function should have the following signature, and return an object:
-       * function cacheHandler(cachedData) {
-       *    return isValid(cachedData) ? cachedData : null;
-       * }
-       * This handler is only called before for requests that would return cached data otherwise.
-       * @param {!function} cacheHandlerFunc The cache handler.
-       */
-      setCacheHandler(cacheHandlerFunc: any): void;
-
-      /**
-       * Gets the current cache handler function.
-       * @return {function} The cache handler.
-       */
-      getCacheHandler(): void;
-    }
-
-  export class RestService implements IRestService {
+  export class restService {
 
       private baseServer: string = '';
       private baseUri: string = '';
@@ -153,6 +32,17 @@ module restService {
         this.logger = logger.getLogger('restService');
       }
 
+      /**
+       * Executes a GET request.
+       * @param {!String} url URL of the REST service call.
+       * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
+       *                       JSONified.
+       * @param {?boolean|'force'} cache If set to true, the first request will be cached, and next request with cache set to true will use the cached response.
+       *                                If set to 'force', the request will always be made and cache will be updated.
+       *                                If set to false or omitted, no cache will be set or used.
+       * @param {?Object=} options Additional options for request/error handlers.
+       * @return {Object} The promise.
+       */
       get(url: string, params: any, cache: any, options: any): any {
         var apiUrl = this.baseUri + url;
         var self = this;
@@ -174,7 +64,7 @@ module restService {
             this.logger.log('GET request: ' + url);
 
             // update cache entry
-            return this.createRequest(promiseBuilder, options).then(function(response) {
+            return this.createRequest(promiseBuilder, options).then(function(response: any) {
               self.cacheService.setCacheData(url, params, response);
               return angular.copy(response);
             });
@@ -188,6 +78,13 @@ module restService {
         }
       }
 
+      /**
+       * Executes a PUT request.
+       * @param {!String} url URL of the REST service call.
+       * @param {String|Object} data Data to be sent as the request message data.
+       * @param {?Object=} options Additional options for request/error handlers.
+       * @return {Object} The promise.
+       */
       put(url: string, data: any, options: any): any {
         var self = this;
         this.logger.log('PUT request: ' + url);
@@ -197,6 +94,13 @@ module restService {
         return this.createRequest(promise, options);
       }
 
+      /**
+       * Executes a POST request.
+       * @param {!String} url URL of the REST service call.
+       * @param {String|Object} data Data to be sent as the request message data.
+       * @param {?Object=} options Additional options for request/error handlers.
+       * @return {Object} The promise.
+       */
       post(url: string, data: any, options: any): any {
         this.logger.log('POST request: ' + url);
         var self = this;
@@ -207,6 +111,12 @@ module restService {
         return this.createRequest(promiseBuilder, options);
       }
 
+      /**
+       * Executes a DELETE request.
+       * @param {!String} url URL of the REST service call.
+       * @param {?Object=} options Additional options for request/error handlers.
+       * @return {Object} The promise.
+       */
       delete(url: string, options: any): any {
         this.logger.log('DELETE request: ' + url);
         var self = this;
@@ -216,35 +126,98 @@ module restService {
         return this.createRequest(promise, options);
       }
 
+      /**
+       * Sets the current server configuration.
+       * A server parameter must contains at least these two strings:
+       * - restServerUrl: The base URL of the server
+       * - restUri: The REST URI access point
+       * @param {!Object} server The server configuration.
+       */
       setServer(server: any) {
         this.baseServer = server;
         this.baseUri = server.restServerUrl + server.restUri;
       }
+
+      /**
+       * Returns the current server configuration.
+       * @return {String} The server base URL.
+       */
       getServer() {
         return this.baseServer;
       }
 
+      /**
+       * Returns the base URI.
+       * @return {String} The computed base URI.
+       */
       getBaseUri() {
         return this.baseUri;
       }
 
+      /**
+       * Sets a customized request handler function for all requests.
+       * The function should have the following signature, and return a promise:
+       * function requestHandler(requestBuilder, options) {
+       *   return requestBuilder();
+       * }
+       * The requestBuilder parameter is a function that returns the request promise.
+       * The options parameter is an optional object containing whatever options your handler may needs.
+       * @param {!function} requestHandlerFunc The request handler.
+       */
       setRequestHandler(requestHandlerFunc: any) {
         this.requestHandler = requestHandlerFunc;
       }
+
+      /**
+       * Gets the current request handler function.
+       * @return {function} The request handler.
+       */
       getRequestHandler() {
         return this.requestHandler;
       }
 
+      /**
+       * Sets a customized default error handler function for all requests.
+       * The function should have the following signature, and return a promise:
+       * function errorHandler(promise, options) {
+       *   return promise.catch(response, function() {
+       *      ...
+       *      return $q.reject(response);
+       *   });
+       * }
+       * The promise parameter is the request promise.
+       * The options parameter is an optional object containing whatever options your handler may needs.
+       * @param {!function} errorHandlerFunc The error handler.
+       */
       setErrorHandler(errorHandlerFunc: any) {
         this.errorHandler = errorHandlerFunc;
       }
+
+      /**
+       * Gets the current error handler function.
+       * @return {function} The error handler.
+       */
       getErrorHandler() {
         return this.errorHandler;
       }
 
+      /**
+       * Sets a customized default cache handler function for all cached requests.
+       * The function should have the following signature, and return an object:
+       * function cacheHandler(cachedData) {
+       *    return isValid(cachedData) ? cachedData : null;
+       * }
+       * This handler is only called before for requests that would return cached data otherwise.
+       * @param {!function} cacheHandlerFunc The cache handler.
+       */
       setCacheHandler(cacheHandlerFunc: any) {
         this.cacheHandler = cacheHandlerFunc;
       }
+
+      /**
+       * Gets the current cache handler function.
+       * @return {function} The cache handler.
+       */
       getCacheHandler() {
         return this.cacheHandler;
       };
@@ -259,6 +232,7 @@ module restService {
         // default request handler just builds the request
         return requestBuilder(options);
       };
+
       /**
        * Default error handler.
        * This handler tries to extract a description of the error and logs and error with it.
@@ -300,11 +274,12 @@ module restService {
         return this.errorHandler(this.requestHandler(requestBuilder, options), options);
       };
   }
-   /**
+
+  /**
    * REST service: provides methods to perform REST requests.
    */
   angular.module('restService', ['logger', 'config', 'cacheService'])
 
-    .service('restService', RestService);
+    .service('restService', restService);
 }
 
