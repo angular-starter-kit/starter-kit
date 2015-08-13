@@ -30,3 +30,15 @@ msgstr "ABOUT"
 #: home section
 msgid "T_HOME"
 msgstr "HOME"
+
+#: version
+msgid "T_VERSION"
+msgstr "Version"
+
+#: modules\screens\homepage\homepage.html:7
+msgid "T_WELCOME"
+msgstr "Welcome to the starterkit"
+
+#: modules\screens\homepage\homepage.html:7
+msgid "T_HELLO"
+msgstr "Hello !"

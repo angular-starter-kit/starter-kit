@@ -31,4 +31,14 @@ msgstr "A PROPOS"
 msgid "T_HOME"
 msgstr "ACCUEIL"
 
-#: home section
+#: version
+msgid "T_VERSION"
+msgstr "Version"
+
+#: modules\screens\homepage\homepage.html:7
+msgid "T_WELCOME"
+msgstr "Bienvenu sur le starterkit"
+
+#: modules\screens\homepage\homepage.html:7
+msgid "T_HELLO"
+msgstr "Bonjour !"

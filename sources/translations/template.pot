@@ -4,14 +4,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: modules\shell\shell.html:13
+#: modules\shell\shell.html:15
 msgid "T_ABOUT"
 msgstr ""
 
-#: modules\shell\shell.html:6
+#: modules\shell\shell.html:8
 msgid "T_APP_NAME"
 msgstr ""
 
-#: modules\shell\shell.html:12
+#: modules\screens\homepage\homepage.html:5
+msgid "T_HELLO"
+msgstr ""
+
+#: modules\shell\shell.html:14
 msgid "T_HOME"
+msgstr ""
+
+#: modules\screens\about\about.html:5
+msgid "T_VERSION"
+msgstr ""
+
+#: modules\screens\homepage\homepage.html:7
+msgid "T_WELCOME"
 msgstr ""
