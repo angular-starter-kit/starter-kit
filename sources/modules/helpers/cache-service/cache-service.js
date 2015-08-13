@@ -8,7 +8,7 @@ angular
     'logger',
     'config'
   ])
-  .factory('cacheService', function($window, 
+  .factory('cacheService', function($window,
                                     logger) {
 
     logger = logger.getLogger('cacheService');
@@ -22,8 +22,8 @@ angular
     /**
      * Sets the cache data for the specified request.
      * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url.
+     *                       If the value is not a string, it will be JSONified.
      * @param {Object} data The received data.
      * @param {Date=} date The cache date, now date is used if not specified.
      */
@@ -43,8 +43,8 @@ angular
     /**
      * Gets the cached data (if possible) for the specified request.
      * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url.
+     *                       If the value is not a string, it will be JSONified.
      * @return {?Object} The cached data or null if no cached data exists for this request.
      */
     service.getCacheData = function(url, params) {
@@ -62,8 +62,8 @@ angular
     /**
      * Gets the cached data date (if possible) for the specified request.
      * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url.
+     *                       If the value is not a string, it will be JSONified.
      * @return {?Object} The cached data date or null if no cached data exists for this request.
      */
     service.getCacheDate = function(url, params) {
@@ -75,8 +75,8 @@ angular
     /**
      * Clears the cached data (if exists) for the specified request.
      * @param {!string} url URL of the REST service call.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url.
+     *                       If the value is not a string, it will be JSONified.
      */
     service.clearCacheData = function(url, params) {
       var cacheKey = getCacheKey(url, params);
@@ -109,8 +109,6 @@ angular
       loadCacheData();
     }());
 
-    return service;
-    
     /*
      * Service internals
      */
@@ -120,8 +118,8 @@ angular
     /**
      * Gets the cache key for the specified url and parameters.
      * @param {!string} url The request URL.
-     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url. If the value is not a string, it will be
-     *                       JSONified.
+     * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url.
+     *                       If the value is not a string, it will be JSONified.
      * @return {string} The corresponding cache key.
      */
     function getCacheKey(url, params) {
@@ -142,5 +140,7 @@ angular
       var data = $window.localStorage.cachedData;
       cachedData = data ? angular.fromJson(data) : {};
     }
-    
+
+    return service;
+
   });
