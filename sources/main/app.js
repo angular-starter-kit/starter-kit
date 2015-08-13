@@ -44,7 +44,8 @@
     $stateProvider
     .state('app', {
         templateUrl: 'modules/shell/shell.html',
-        controller: 'ShellController'
+        controller: 'ShellController',
+        controllerAs: 'shell'
     })
     .state('app.home', {
         url: '/',
@@ -82,6 +83,7 @@
     'homepage',
     'about',
     'shell',
+    'cacheService',
 
     // settings
     'config'
