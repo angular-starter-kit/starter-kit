@@ -4,6 +4,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: modules\ui-components\navbar\navbar.html:5
+#: modules/shell/header/navbar.html:5
 msgid "T_APP_NAME"
-msgstr "Starterkit"
+msgstr ""

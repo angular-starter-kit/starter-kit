@@ -16,7 +16,7 @@ gulp.task('partials', ['jade'], function () {
       spare: true,
       quotes: true
     }))
-    .pipe($.angularTemplatecache('templateCacheHtml.js', {
+    .pipe($.angularTemplatecache('templateCache.js', {
       module: 'views',
       standalone: true,
     }))

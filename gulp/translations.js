@@ -16,10 +16,10 @@ gulp.task('translations', function () {
 
 gulp.task('translations:extract', function () {
   return gulp.src([
-    path.join(conf.paths.src, 'main/*!(.test).js'),    // .js from main
-    path.join(conf.paths.src, 'modules/*!(.test).js'), // .js from modules
-    path.join(conf.paths.src, '**/*.html')          // all html
-  ], { base: conf.paths.src } )
+    'main/*!(.test).js',    // .js from main
+    'modules/*!(.test).js', // .js from modules
+    '**/*.html'             // all html
+  ], { cwd: conf.paths.src } )
     .pipe($.angularGettext.extract('template.pot', {}))
     .pipe(gulp.dest(path.join(conf.paths.src, 'translations')));
 });

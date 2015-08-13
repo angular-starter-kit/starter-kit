@@ -72,6 +72,7 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-jasmine',
       'karma-coverage',
+      'karma-junit-reporter',
       'karma-angular-filesort',
       'karma-ng-html2js-preprocessor'
     ],
@@ -86,15 +87,22 @@ module.exports = function(config) {
     },
 
     // List of reporters
-    reporters: ['coverage', 'progress'],
+    reporters: ['coverage', 'junit', 'progress'],
 
     // Coverage configuration
     coverageReporter: {
-      type : 'html',
-      dir : 'reports/coverage/'
+      type: 'lcov',
+      dir : 'reports/',
+      subdir: 'coverage'
+    },
+    
+    junitReporter: {
+      outputDir: 'reports/junit/', 
+      outputFile: 'TESTS-xunit.xml',
+      suite: '' // suite will become the package name attribute in xml testsuite element
     },
 
-    //Enable or disable colors in the output (reporters and logs).
+    // Enable or disable colors in the output (reporters and logs).
     color: true
   };
 
@@ -102,7 +110,7 @@ module.exports = function(config) {
   // If you ever plan to use Chrome and Travis, you can keep it
   // If not, you can safely remove it
   // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
-  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
+  if (configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
     configuration.customLaunchers = {
       'chrome-travis-ci': {
         base: 'Chrome',

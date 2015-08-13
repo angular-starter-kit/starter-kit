@@ -3,11 +3,10 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
-
-var $ = require('gulp-load-plugins')();
-
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
+
+var $ = require('gulp-load-plugins')();
 
 gulp.task('inject', ['scripts', 'styles', 'partials', 'translations'], function () {
 

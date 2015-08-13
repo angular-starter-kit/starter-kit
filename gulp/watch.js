@@ -18,7 +18,7 @@ gulp.task('watch', ['inject'], function () {
     path.join(conf.paths.src, '/**/*.css'),
     path.join(conf.paths.src, '/**/*.less')
   ], function(event) {
-    if(isOnlyChange(event)) {
+    if (isOnlyChange(event)) {
       gulp.start('styles');
     } else {
       gulp.start('inject');
@@ -26,17 +26,14 @@ gulp.task('watch', ['inject'], function () {
   });
 
   gulp.watch(path.join(conf.paths.src, '/**/*.js'), function(event) {
-    if(isOnlyChange(event)) {
+    if (isOnlyChange(event)) {
       gulp.start('scripts');
     } else {
       gulp.start('inject');
     }
   });
 
-  gulp.watch(path.join(conf.paths.src, '/**/*.html'), function() {
-    gulp.start('partials');
-    //browserSync.reload(event.path);
-  });
+  gulp.watch(path.join(conf.paths.src, '/**/*.html'), ['partials']);
 
   gulp.watch(path.join(conf.paths.tmp, '/**/*.js'), function(event) {
     browserSync.reload(event.path);

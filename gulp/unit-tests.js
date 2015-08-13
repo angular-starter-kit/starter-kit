@@ -3,7 +3,6 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
-
 var karma = require('karma');
 
 function runTests (singleRun, done) {

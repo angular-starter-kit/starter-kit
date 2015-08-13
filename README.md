@@ -1,10 +1,10 @@
-# Starter Kit
+# Starter kit
 Web project start kit including tooling, best practices and template seed.
 
 It is based on our experience in large web projects, with architecture choices
 aiming for a clean, no-brainer development experience even for beginner teams.
 
-# Getting Started
+# Getting started
 
 1. Install required tools `gulp` and `bower`:
 ```
@@ -19,7 +19,7 @@ npm install
 gulp serve
 ```
 
-# Project Structure
+# Project structure
 ```
 gulp/                   individual gulp tasks
 sources/                project source code
@@ -42,24 +42,35 @@ sources/                project source code
 +- index.html           html entry point
 e2e/                    end-to-end tests
 dist/                   compiled version
+reports/                test and coverage reports
 ```
 
-# Main Tasks
+# Main gulp tasks
 
-TODO
+Task        | Description
+------------|-------------------------------------------------------------------------------
+serve       | Launch a web server with live reload and API proxy, then open app in browser.
+serve:dist  | Launch a web server using dist files.
+build       | Build and optimize the current project, ready for deployment. This includes linting as well as image, script, stylesheet and HTML optimization and minification.
+clean       | Delete temporary files and dist files.
+test        | Launch unit tests using karma and jasmine.
+test:auto   | Launch karma server and launch unit tests after each change in project files.
+protractor  | Launch e2e tests using protractor.
+docs        | Generate jsdoc documentation from sources.
 
-# Coding Guide
+# Coding guide
 
-TODO: naming conventions, code style, best pratices, pitfalls
+> TODO: naming conventions, code style, best pratices, pitfalls
 
 - [JavaScript](docs/js-guide.md)
 - [CSS](docs/css-guide.md)
 - [HTML](docs/html-guide.md)
 
 
-# Additional Documentation
+# Additional documentation
 - [Proxy configuration](docs/proxy.md)
 - [All gulp tasks](docs/tasks.md)
+- [Updating dependencies](docs/updating.md)
 
 # Features
 
@@ -103,6 +114,8 @@ TODO: naming conventions, code style, best pratices, pitfalls
 #### v1
 - Add coding guides with best practices
 - Improve project template
+- Improve doc generation (use [dgeni](https://github.com/angular/dgeni))
+- Improve e2e reporting
 - Add default components (for logging, REST, data dependencies...)
 
 #### v2

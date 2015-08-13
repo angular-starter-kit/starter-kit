@@ -8,25 +8,16 @@ var browserSyncSpa = require('browser-sync-spa');
 
 var util = require('util');
 
-
 function browserSyncInit(baseDir, browser) {
   browser = browser === undefined ? 'default' : browser;
 
-  var routes = null;
-  // TODO
-  if(baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
-    routes = {
-      '/bower_components': 'bower_components'
-    };
-  }
-
   var server = {
     baseDir: baseDir,
-    routes: routes
+    routes: null
   };
 
   // We activate a proxy if we found a configuration for it.
-  if(conf.proxy && conf.proxy.context){
+  if (conf.proxy && conf.proxy.context){
     var proxyMiddleware = require('http-proxy-middleware');
     server.middleware = proxyMiddleware(conf.proxy.context, conf.proxy.options);
   }
