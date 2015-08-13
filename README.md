@@ -112,6 +112,8 @@ docs        | Generate jsdoc documentation from sources.
 # Roadmap
 
 #### v1
+- Migrate base template to TypeScript, instead of JavaScript
+- Add support for TypeScript unit tests
 - Add coding guides with best practices
 - Improve project template
 - Improve doc generation (use [dgeni](https://github.com/angular/dgeni))
