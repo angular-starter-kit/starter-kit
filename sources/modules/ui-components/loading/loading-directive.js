@@ -4,7 +4,7 @@
  * Loading directive: displays a loading indicator while data is being loaded.
  *
  * Example usage: <div ui-loading="isLoading"></div>
- * The expected value of the directive attribute is a boolean indicating whether the content 
+ * The expected value of the directive attribute is a boolean indicating whether the content
  * is still loading or not.
  *
  * Additional parameter attributes:

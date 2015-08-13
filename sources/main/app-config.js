@@ -10,7 +10,7 @@ angular
     'debug': true,
     'version': '0.9',
     'supportedLanguages': [
-      'en-US', 
+      'en-US',
       'fr-FR'
     ],
   });

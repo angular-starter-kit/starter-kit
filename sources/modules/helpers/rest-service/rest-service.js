@@ -6,7 +6,6 @@
 angular
   .module('restService', [
     'logger',
-    'config',
     'cacheService'
   ])
   .factory('restService', function($rootScope,

@@ -6,7 +6,6 @@
 angular
   .module('cacheService', [
     'logger',
-    'config'
   ])
   .factory('cacheService', function($window,
                                     logger) {

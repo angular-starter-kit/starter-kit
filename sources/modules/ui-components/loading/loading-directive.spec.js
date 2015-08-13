@@ -11,10 +11,10 @@ describe('loading directive', function () {
     module('htmlTemplates');
   });
 
-  it('should be visible only when loading is in progress', inject(function ($httpBackend, 
+  it('should be visible only when loading is in progress', inject(function ($httpBackend,
                                                                             $rootScope,
                                                                             $compile) {
-                                                                              
+
     $rootScope.isLoading = true;
     element = $('<div se-loading="isLoading"></div>');
     element = $compile(element)($rootScope);
