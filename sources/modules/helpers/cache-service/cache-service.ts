@@ -4,7 +4,7 @@
 module cacheService {
   'use strict';
 
-  export class CacheService {
+  export class cacheService {
     private logger: any;
     private $window: any;
     private cachedData: any = {};
@@ -135,5 +135,5 @@ module cacheService {
    */
   angular.module('cacheService', ['logger', 'config'])
 
-    .service('cacheService', CacheService);
+    .service('cacheService', cacheService);
 };

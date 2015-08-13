@@ -3,7 +3,7 @@
 module restService {
   'use strict';
 
-  export class RestService {
+  export class restService {
 
       private baseServer: string = '';
       private baseUri: string = '';
@@ -64,7 +64,7 @@ module restService {
             this.logger.log('GET request: ' + url);
 
             // update cache entry
-            return this.createRequest(promiseBuilder, options).then(function(response) {
+            return this.createRequest(promiseBuilder, options).then(function(response: any) {
               self.cacheService.setCacheData(url, params, response);
               return angular.copy(response);
             });
@@ -274,11 +274,12 @@ module restService {
         return this.errorHandler(this.requestHandler(requestBuilder, options), options);
       };
   }
-   /**
+
+  /**
    * REST service: provides methods to perform REST requests.
    */
   angular.module('restService', ['logger', 'config', 'cacheService'])
 
-    .service('restService', RestService);
+    .service('restService', restService);
 }
 
