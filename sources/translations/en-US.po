@@ -22,3 +22,11 @@ msgstr "Starterkit"
 #. Company name. Do not translate.
 msgid "T_APP_COMPANY"
 msgstr "Company"
+
+#: about section
+msgid "T_ABOUT"
+msgstr "ABOUT"
+
+#: home section
+msgid "T_HOME"
+msgstr "HOME"

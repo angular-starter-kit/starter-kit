@@ -22,3 +22,13 @@ msgstr "Application"
 #. Company name. Do not translate.
 msgid "T_APP_COMPANY"
 msgstr "Entreprise"
+
+#: about section
+msgid "T_ABOUT"
+msgstr "A PROPOS"
+
+#: home section
+msgid "T_HOME"
+msgstr "ACCUEIL"
+
+#: home section

@@ -28,6 +28,9 @@ angular.module('app', [
   'shell',
   'cacheService',
   'restService',
+
+  // wrappers
+  'underscore'
 ]);
 
 /*
@@ -35,7 +38,7 @@ angular.module('app', [
  */
 angular
   .module('app')
-  .config(function ($stateProvider, 
+  .config(function ($stateProvider,
                     $urlRouterProvider,
                     $provide,
                     config) {
@@ -79,12 +82,31 @@ angular
           controller: 'aboutController'
       });
   });
-  
+
 /*
  * Initializes the application and root controller.
  */
 angular
   .module('app')
-  .run(function (gettextCatalog) {
-    gettextCatalog.setCurrentLanguage('en-US');
+  .run(function (gettextCatalog, _, config, $locale) {
+
+    /**
+     * Utility method to set the language in the tools requiring it.
+     * @param {String} language The IETF language tag.
+     */
+    function setLanguage(language) {
+      var isSupportedLanguage = _.contains(config.supportedLanguages, language);
+
+      // Fallback if language is not supported
+      if (!isSupportedLanguage) {
+        language = 'en-US';
+      }
+
+      // Configure translation with gettext
+      gettextCatalog.setCurrentLanguage(language);
+      $locale.id = language;
+    }
+
+    setLanguage();
+
   });
