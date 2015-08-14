@@ -7,6 +7,7 @@ var conf = require('../gulpfile.config');
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
+var gulpif = require('gulp-if');
 
 gulp.task('html', ['inject'], function () {
   var htmlFilter = $.filter('*.html');
@@ -16,6 +17,7 @@ gulp.task('html', ['inject'], function () {
 
   return gulp.src(path.join(conf.paths.src, 'index.html'))
     .pipe(assets = $.useref.assets())
+    .pipe(gulpif('**/app.js', $.replace(/\'debug\': true/g, '\'debug\': false')))
     .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
