@@ -8,7 +8,14 @@ var _ = require('lodash');
 
 var $ = require('gulp-load-plugins')();
 
-gulp.task('inject', ['scripts', 'styles', 'partials', 'translations'], function () {
+var injectCommonOptions = {
+  ignorePath: [conf.paths.src, path.join(conf.paths.tmp)],
+  addRootSlash: false
+};
+
+gulp.task('inject', ['inject:style', 'inject:script', 'bower:script']);
+
+gulp.task('inject:style', ['styles'], function(){
 
   // Styles
   var injectStyles = gulp.src([
@@ -16,9 +23,16 @@ gulp.task('inject', ['scripts', 'styles', 'partials', 'translations'], function 
     path.join('!' + conf.paths.tmp, '/vendor.css')
   ], { read: false });
 
+ return gulp.src(path.join(conf.paths.src, 'index.html'))
+    .pipe($.inject(injectStyles, injectCommonOptions))
+    .pipe(gulp.dest(path.join(conf.paths.src)));
+});
+
+gulp.task('inject:script', ['scripts', 'partials'], function(){
+
   // Scripts
   var injectScripts = gulp.src([
-    path.join(conf.paths.src, '/' + conf.paths.main + '/*.js'),
+    path.join(conf.paths.src, conf.paths.main , '/**/*.js'),
     path.join(conf.paths.src, '/modules/**/*.js'),
     path.join(conf.paths.tmp, '/**/*.js'),
     path.join('!' + conf.paths.tmp, '/libraries/**/*.js'),
@@ -28,14 +42,14 @@ gulp.task('inject', ['scripts', 'styles', 'partials', 'translations'], function 
   ])
   .pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'));
 
-  var injectOptions = {
-    ignorePath: [conf.paths.src, path.join(conf.paths.tmp)],
-    addRootSlash: false
-  };
+  return gulp.src(path.join(conf.paths.src, 'index.html'))
+    .pipe($.inject(injectScripts, injectCommonOptions))
+    .pipe(gulp.dest(path.join(conf.paths.src)));
+});
 
-  return gulp.src(path.join(conf.paths.src, '/*.html'))
-    .pipe($.inject(injectStyles, injectOptions))
-    .pipe($.inject(injectScripts, injectOptions))
+gulp.task('bower:script', function(){
+
+  return gulp.src(path.join(conf.paths.src, 'index.html'))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
     .pipe(gulp.dest(path.join(conf.paths.src)));
 });

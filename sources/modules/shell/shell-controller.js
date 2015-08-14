@@ -22,7 +22,7 @@ angular
                                           quoteService) {
 
     logger = logger.getLogger('shell');
-  
+
     $scope.currentLanguage = $locale.id;
     $scope.languages = config.supportedLanguages;
     $scope.isLoading = true;
@@ -42,9 +42,9 @@ angular
 	quoteService
 	  .getQuoteOfTheDay()
 	  .then(function(data) {
-		 
-		 
-	    logger.info('quote of day received');	  
+
+
+	    logger.info('quote of day received');
 	  });
   })();
 });
