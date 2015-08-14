@@ -33,10 +33,6 @@ msgstr "A propos"
 msgid "T_HELLO"
 msgstr "Bonjour !"
 
-#. Welcome message
-msgid "T_WELCOME"
-msgstr "Bienvenue sur le starter kit"
-
 # --------------------------------------------------
 # About
 # --------------------------------------------------

@@ -122,6 +122,7 @@ docs        | Generate jsdoc documentation from sources.
 - Improve project template
 - Improve doc generation (use [dgeni](https://github.com/angular/dgeni))
 - Improve e2e reporting
+- Inject also global (main) js/css
 - More base components (for REST, storage, data dependencies...)
 
 #### v2

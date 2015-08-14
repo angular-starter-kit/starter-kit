@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('homepage', [
-    'ui.router',
-    'logger',
-    'cacheService',
-    'saidnoService'
+  'logger',
+  'quoteService',
+  'loadingDirective'
 ]);

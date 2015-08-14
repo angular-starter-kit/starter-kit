@@ -6,5 +6,4 @@ angular
                                           config) {
 
     $scope.version = config.version;
-
   });

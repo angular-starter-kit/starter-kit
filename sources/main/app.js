@@ -1,8 +1,5 @@
 'use strict';
 
-// Declare the translations module because angular-gettext does not create it.
-angular.module('translations', ['gettext']);
-
 /*
  * Entry point of the application.
  * Only declare here global modules needed for the application to start.

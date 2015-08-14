@@ -13,11 +13,11 @@
  * Example: <div ui-loading="isLoading" message="Loading..."></div>
  */
 angular
-  .module('loading', [])
+  .module('loadingDirective', [])
   .directive('uiLoading', function () {
     return {
       restrict: 'A',
-      templateUrl: 'modules/ui-components/loading/loading-directive.html',
+      templateUrl: 'modules/ui-components/loading-directive/loading-directive.html',
       scope: {
         message: '=',
         isLoading: '=uiLoading'

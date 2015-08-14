@@ -5,7 +5,7 @@
  */
 angular
   .module('quoteService', [
-  'restService'
+    'restService'
   ])
   .factory('quoteService', function(restService) {
 
@@ -20,15 +20,19 @@ angular
      * @return {Object} The promise.
      */
     service.getQuoteOfTheDay = function() {
-      return restService.get(routes.quoteOfTheDay);
+      return restService
+        .get(routes.quoteOfTheDay, null, true)
+        .then(function(response) {
+          return response.data.quotes[0];
+        });
     };
-    
+
     /*
      * Service internals
      */
 
     var routes = {
-      quoteOfTheDay: 'http://api.theysaidso.com/qod.json',
+      quoteOfTheDay: 'http://api.theysaidso.com/qod.json'
     };
 
     return service;
