@@ -16,9 +16,6 @@
     "angular-mocks": "~1.4.0",
     "jquery": "~2.1.4"
   },
-  "resolutions": {
-    "angular": "~1.4.0"
-  },
   "overrides": {
     "font-awesome": {
       "main": [

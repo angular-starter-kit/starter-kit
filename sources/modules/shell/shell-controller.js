@@ -13,36 +13,38 @@
  */
 
 angular
-	.module('shell')
-	.controller('shellController', function(logger, 
-											$scope,
-											$timeout,
-											config,
-											$locale,
-											gettextCatalog) {
+  .module('shell')
+  .controller('shellController', function($locale,
+                                          $scope,
+                                          config,
+                                          logger,
+                                          gettextCatalog,
+                                          quoteService) {
 
-      	logger = logger.getLogger('shell');
-		  
-      	$scope.currentLanguage = $locale.id;
-      	$scope.languages = config.supportedLanguages;
-      	$scope.isLoading = true;
-      	$scope.message = 'wait';
+    logger = logger.getLogger('shell');
+  
+    $scope.currentLanguage = $locale.id;
+    $scope.languages = config.supportedLanguages;
+    $scope.isLoading = true;
+    $scope.message = 'wait';
 
-		/*
-		 * Watches
-		 */
-      	$scope.$watch('currentLanguage', function() {
-      		gettextCatalog.setCurrentLanguage($scope.currentLanguage);
-      	});
+  /*
+   * Watches
+   */
+  $scope.$watch('currentLanguage', function() {
+    gettextCatalog.setCurrentLanguage($scope.currentLanguage);
+  });
 
-		/**
-		 * Init controller.
-		 */
-		 (function() {
-	      	logger.info('begin');
-			 
-			$timeout(function(){
-				$scope.isLoading = false;
-			}, 1000);
-		 })();
-	});
+  /**
+   * Init controller.
+   */
+  (function() {
+	quoteService
+	  .getQuoteOfTheDay()
+	  .then(function(data) {
+		 
+		 
+	    logger.info('quote of day received');	  
+	  });
+  })();
+});

@@ -3,6 +3,7 @@
 angular.module('shell', [
   'ui.router',
   'logger',
-  'loading'
+  'loadingDirective',
+  'quoteService'
 ])
 	

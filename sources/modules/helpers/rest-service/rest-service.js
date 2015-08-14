@@ -286,5 +286,4 @@ angular
     }
 
     return service;
-
   });

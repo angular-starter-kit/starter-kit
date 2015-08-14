@@ -1,6 +1,10 @@
 {
-  "name": "app",
-  "version": "0.0.0",
+  "name": "starter-kit",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/thales-poles-ra/starter-kit.git"
+  },
+  "version": "0.0.9",
   "scripts": {
     "test": "gulp test"
   },

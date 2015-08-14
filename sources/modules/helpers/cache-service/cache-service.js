@@ -141,5 +141,4 @@ angular
     }
 
     return service;
-
   });
