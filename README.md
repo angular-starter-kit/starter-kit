@@ -43,12 +43,14 @@ sources/                project source code
 e2e/                    end-to-end tests
 dist/                   compiled version
 reports/                test and coverage reports
+gulpfile.config.js      gulp tasks configuration
 ```
 
 # Main gulp tasks
 
-Task        | Description
+Gulp task   | Description
 ------------|-------------------------------------------------------------------------------
+default     | run `clean`, then `build`
 serve       | Launch a web server with live reload and API proxy, then open app in browser.
 serve:dist  | Launch a web server using dist files.
 build       | Build and optimize the current project, ready for deployment. This includes linting as well as image, script, stylesheet and HTML optimization and minification.
@@ -60,7 +62,7 @@ docs        | Generate jsdoc documentation from sources.
 
 # Coding guide
 
-> TODO: naming conventions, code style, best pratices, pitfalls
+> TO COMPLETE: naming conventions, code style, best pratices, pitfalls
 
 - [JavaScript](docs/js-guide.md)
 - [CSS](docs/css-guide.md)
@@ -89,16 +91,18 @@ docs        | Generate jsdoc documentation from sources.
 
 #### Development
 - Automation with [gulp](http://gulpjs.com)
-- Development server with API proxy and live reload
-  ([BrowserSync](http://www.browsersync.io))
+- Development server with API proxy and live reload ([BrowserSync](http://www.browsersync.io))
 - [JSDoc](http://usejsdoc.org) generation with angular support
 
 #### Build
-- JS+CSS+HTML bundling and minification (useref, uglify, minify-html, csso) 
-- CSS browser support (autoprefixer)
-- Images optimization (imagemin)
-- Automatic angular module annotation (ngAnnotate)
-- Asset revisionning (rev)
+- JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
+  [uglify](https://github.com/terinjokes/gulp-uglify), 
+  [minify-html](https://github.com/murphydanger/gulp-minify-html), 
+  [csso](https://github.com/ben-eb/gulp-csso)) 
+- CSS browser support ([autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
+- Images optimization ([imagemin](https://github.com/sindresorhus/gulp-imagemin))
+- Automatic angular module annotation ([ngAnnotate](https://github.com/Kagami/gulp-ng-annotate))
+- Asset revisionning ([rev](https://github.com/sindresorhus/gulp-rev))
 
 #### Libraries
 - [AngularJS](https://angularjs.org)
@@ -118,7 +122,7 @@ docs        | Generate jsdoc documentation from sources.
 - Improve project template
 - Improve doc generation (use [dgeni](https://github.com/angular/dgeni))
 - Improve e2e reporting
-- Add default components (for logging, REST, data dependencies...)
+- More base components (for REST, storage, data dependencies...)
 
 #### v2
 - Mobile version (Cordova + ngCordova, Ionic, Crosswalk...)

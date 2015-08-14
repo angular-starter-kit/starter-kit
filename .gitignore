@@ -7,9 +7,10 @@ node_modules/
 /dist/
 .sass-cache
 .idea/
+.npm-debug.log
 
 ## Karma
-/reporters/
+/reports/
 
 ## Mobile
 /www/

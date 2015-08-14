@@ -4,7 +4,6 @@
  * Tests for loading directive.
  */
 describe('loading directive', function () {
-  
   var element;
 
   beforeEach(function () {
