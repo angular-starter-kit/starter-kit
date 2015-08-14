@@ -15,9 +15,9 @@ function listFiles() {
   });
   return wiredep(wiredepOptions).js
     .concat([
-      path.join(conf.paths.tmp, 'app.ts.js'),
-      path.join('!' + conf.paths.src, '/libraries/*.js'),
-      path.join(conf.paths.src, '/main/*.js'),
+      path.join(conf.paths.tmp, '**/*.js'),
+      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+      path.join(conf.paths.src, '/main/**/*.js'),
       path.join(conf.paths.src, '/modules/**/*.js'),
       path.join(conf.paths.src, '/**/*.mock.js'),
       path.join(conf.paths.src, '/**/*.html')
