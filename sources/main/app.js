@@ -30,7 +30,7 @@ angular.module('app', [
   'restService',
 
   // wrappers
-  'underscore'
+  'lodash'
 ]);
 
 /*

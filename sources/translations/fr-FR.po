@@ -2,13 +2,7 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: Facility Insights\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator:  <>\n"
-"Language-Team:  <>\n"
-"MIME-Version: 1.0\n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: fr-FR\n"
 
 # --------------------------------------------------
@@ -17,28 +11,36 @@ msgstr ""
 
 #. Application name. Do not translate.
 msgid "T_APP_NAME"
-msgstr "Application"
+msgstr "Starter Kit"
 
 #. Company name. Do not translate.
 msgid "T_APP_COMPANY"
-msgstr "Entreprise"
+msgstr "Company"
 
-#: about section
-msgid "T_ABOUT"
-msgstr "A PROPOS"
-
-#: home section
+#. Home section
 msgid "T_HOME"
-msgstr "ACCUEIL"
+msgstr "Home"
 
-#: version
-msgid "T_VERSION"
-msgstr "Version"
+#. About section
+msgid "T_ABOUT"
+msgstr "A propos"
 
-#: modules\screens\homepage\homepage.html:7
-msgid "T_WELCOME"
-msgstr "Bienvenu sur le starterkit"
+# --------------------------------------------------
+# Homepage
+# --------------------------------------------------
 
-#: modules\screens\homepage\homepage.html:7
+#. Say hello to our users
 msgid "T_HELLO"
 msgstr "Bonjour !"
+
+#. Welcome message
+msgid "T_WELCOME"
+msgstr "Bienvenue sur le starter kit"
+
+# --------------------------------------------------
+# About
+# --------------------------------------------------
+
+#. Application version
+msgid "T_VERSION"
+msgstr "Version"

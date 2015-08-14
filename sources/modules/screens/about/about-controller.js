@@ -2,10 +2,9 @@
 
 angular
   .module('about')
-  .controller('aboutController', function($scope, logger, config) {
+  .controller('aboutController', function($scope, 
+                                          config) {
 
-    logger = logger.getLogger('about');
-    logger.info('about');
     $scope.version = config.version;
 
   });

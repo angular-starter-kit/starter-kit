@@ -1,4 +1,7 @@
 'use strict';
 
-angular
-    .module('homepage', ['ui.router', 'logger', 'cacheService']);
+angular.module('homepage', [
+    'ui.router', 
+    'logger', 
+    'cacheService'
+]);

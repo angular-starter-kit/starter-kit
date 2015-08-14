@@ -2,24 +2,29 @@
  * Entry point of application style.
  */
 
-@import "theme/bootstrap-variables.less";
+// Our own Bootstrap inclusion, should be included before bower dependencies
+// as other libraries may provide additional Bootstrap styling
 @import "theme/bootstrap.less";
-
-@import "theme/theme.less";
-@import "theme/variables.less";
-
-@import "hacks.less";
-@import "helpers.less";
 
 // Do not remove this comments bellow. It's the markers used by wiredep to inject
 // style dependencies when defined in the bower.json of your dependencies.
 // bower:less
-@import "../librairies/font-awesome/less/font-awesome.less";
+@import "../libraries/font-awesome/less/font-awesome.less";
 // endbower
+
+// Bootstrap and theme customization
+@import "theme/variables.less";
+@import "theme/bootstrap-variables.less";
+@import "theme/theme.less";
+
+// Global styling
+@import "hacks.less";
+@import "helpers.less";
 
 // Do not remove this comments bellow. It's the markers used by gulp-inject to inject
 // all your style files automatically.
 // inject:styles
-@import "../modules/screens/about/about.less";
+@import "../modules/shell/shell.less";
 @import "../modules/screens/homepage/homepage.less";
+@import "../modules/ui-components/loading/loading-directive.less";
 // endinject

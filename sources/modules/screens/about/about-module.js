@@ -1,4 +1,6 @@
 'use strict';
 
-angular
-	.module('about', ['ui.router', 'logger']);
+angular.module('about', [
+    'ui.router', 
+    'logger'
+  ]);

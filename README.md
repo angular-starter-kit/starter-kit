@@ -26,7 +26,7 @@ sources/                project source code
 |- data/                other project data, will be copied as-is
 |- fonts/               project fonts
 |- images/              project images
-|- libraries/           bower libraries
+|- libraries/           bower dependencies
 |- main/                main module, for entry points and global style
 |  |- main.js           js entry point
 |  +- main.less         style entry point
@@ -36,7 +36,7 @@ sources/                project source code
 |  |- shell/            application shell
 |  |- ui-components/    shared UI components
 |  |- web-services/     web services
-|  |- wrappers/         AngularJS module wrappers for external librairies
+|  |- wrappers/         AngularJS module wrappers for external libraries
 |  +- ...               additional project modules
 |- translations/        translations files
 +- index.html           html entry point

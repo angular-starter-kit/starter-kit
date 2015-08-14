@@ -5,5 +5,8 @@
   "maximumLineLength": 120,
   "requireCapitalizedConstructors": true,
   "requireDotNotation": true,
-  "excludeFiles": ["node_modules/**", "sources/librairies/**"]
+  "excludeFiles": [
+    "node_modules/**",
+    "sources/libraries/**"
+  ]
 }

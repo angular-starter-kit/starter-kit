@@ -4,6 +4,7 @@
  * Tests for loading directive.
  */
 describe('loading directive', function () {
+  
   var element;
 
   beforeEach(function () {
@@ -16,15 +17,16 @@ describe('loading directive', function () {
                                                                             $compile) {
 
     $rootScope.isLoading = true;
-    element = $('<div se-loading="isLoading"></div>');
+    element = $('<div ui-loading="isLoading"></div>');
     element = $compile(element)($rootScope);
     $rootScope.$digest();
-
+    
     expect(element).not.toHaveClass('ng-hide');
 
     $rootScope.isLoading = false;
     $rootScope.$digest();
-    expect(element).toBeHidden();
+    
+    expect(element).toHaveClass('ng-hide');
   }));
 
 });

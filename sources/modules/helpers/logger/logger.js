@@ -2,8 +2,8 @@
 
 /**
  * Provides a simple logging system with the possibility of registering log observers.
- * In order to track the source module of message logs, a customized logger should be instanciated using
- *  the getLogger() method just after its injection.
+ * In order to track the source module of message logs, a customized logger should be instanciated using the 
+ * getLogger() method just after its injection.
  *
  * 4 different log levels are provided, via corresponding methods:
  * - log: for debug information
@@ -29,8 +29,8 @@
  *   }]);
  * });
  *
- * If you want additional tasks to be performed on log entry (show toast, for example),
- *  you can register observers using the addObserver() method.
+ * If you want additional tasks to be performed on log entry (show toast, for example), you can register observers 
+ * using the addObserver() method.
  */
 angular
   .module('logger', [])

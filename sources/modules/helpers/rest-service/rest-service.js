@@ -27,11 +27,11 @@ angular
      * Executes a GET request.
      * @param {!String} url URL of the REST service call.
      * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url.
-     *                       If the value is not a string, it will be JSONified.
-     * @param {?boolean|'force'} cache If set to true, the first request will be cached, and
-     *                                 next request with cache set to true will use the cached response.
-     *                                 If set to 'force', the request will always be made and cache will be updated.
-     *                                 If set to false or omitted, no cache will be set or used.
+     *   If the value is not a string, it will be JSONified.
+     * @param {?boolean|'force'} cache If set to true, the first request will be cached, and next request with cache 
+     *   set to true will use the cached response.
+     *   If set to 'force', the request will always be made and cache will be updated.
+     *   If set to false or omitted, no cache will be set or used.
      * @param {?Object=} options Additional options for request/error handlers.
      * @return {Object} The promise.
      */
@@ -213,7 +213,6 @@ angular
       return cacheHandler;
     };
 
-
     /*
      * Service internals
      */
@@ -242,8 +241,8 @@ angular
      * Default error handler.
      * This handler tries to extract a description of the error and logs and error with it.
      * @param {!Object} promise The promise to handle errors.
-     * @param {?Object=} options Additional options:
-     *                           if 'skipErrors' property is set to true, errors will not be handled.
+     * @param {?Object=} options Additional options: if 'skipErrors' property is set to true, errors will not be 
+     *   handled.
      * @type {function}
      */
     var errorHandler = function(promise, options) {
