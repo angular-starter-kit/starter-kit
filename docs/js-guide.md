@@ -16,6 +16,9 @@ described there.
 
 ## Coding rules
 
+- Dependency injection order: start with the most generic (framework, external libs) to the most 
+  specific (project modules)
+- Use 1 line per dependency inject/import, to ease merges and improve readability
 - Use the `_` prefix for internal variable names
 - Only expose properties / methods publicly when it's needed, do not put everything in
   the `$scope`
