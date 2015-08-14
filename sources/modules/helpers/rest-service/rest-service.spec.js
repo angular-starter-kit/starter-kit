@@ -456,7 +456,7 @@ describe('restService', function() {
 
       // Assert
       expect(counterSpy).toHaveBeenCalled();
-      expect(counterSpy.calls.length).toBe(4);
+      expect(counterSpy.calls.count()).toBe(4);
     });
 
   });
@@ -504,9 +504,9 @@ describe('restService', function() {
 
       // Assert
       expect(counterSpy).toHaveBeenCalled();
-      expect(counterSpy.calls.length).toBe(4);
+      expect(counterSpy.calls.count()).toBe(4);
       expect(errorSpy).toHaveBeenCalled();
-      expect(errorSpy.calls.length).toBe(1);
+      expect(errorSpy.calls.count()).toBe(1);
     });
 
   });
@@ -544,9 +544,9 @@ describe('restService', function() {
 
       // Assert
       expect(counterSpy).toHaveBeenCalled();
-      expect(counterSpy.calls.length).toBe(1);
+      expect(counterSpy.calls.count()).toBe(1);
       expect(callbacks.onSuccess).toHaveBeenCalled();
-      expect(callbacks.onSuccess.calls[0].args[0].data).toEqual({ value: 'tata' });
+      expect(callbacks.onSuccess.calls.mostRecent().args[0].data).toEqual({ value: 'tata' });
     });
 
     it('should ignore cache data from the custom handler', function() {
@@ -570,9 +570,9 @@ describe('restService', function() {
 
       // Assert
       expect(counterSpy).toHaveBeenCalled();
-      expect(counterSpy.calls.length).toBe(1);
+      expect(counterSpy.calls.count()).toBe(1);
       expect(callbacks.onSuccess).toHaveBeenCalled();
-      expect(callbacks.onSuccess.calls[0].args[0].data).toEqual({ value: 'toto2' });
+      expect(callbacks.onSuccess.calls.mostRecent().args[0].data).toEqual({ value: 'toto2' });
     });
 
   });

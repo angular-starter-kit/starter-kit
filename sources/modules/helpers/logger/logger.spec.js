@@ -30,7 +30,7 @@ describe('logger', function () {
 
       // Assert
       expect(observerSpy).toHaveBeenCalled();
-      expect(observerSpy.calls.length).toBe(4);
+      expect(observerSpy.calls.count()).toBe(4);
       expect(observerSpy).toHaveBeenCalledWith('hoho', 'unit test', 'log', undefined);
       expect(observerSpy).toHaveBeenCalledWith('toto', 'unit test', 'info', undefined);
       expect(observerSpy).toHaveBeenCalledWith('popo', 'unit test', 'warning', undefined);
@@ -51,7 +51,7 @@ describe('logger', function () {
 
       // Assert
       expect(observerSpy).toHaveBeenCalled();
-      expect(observerSpy.calls.length).toBe(4);
+      expect(observerSpy.calls.count()).toBe(4);
       expect(observerSpy).toHaveBeenCalledWith('hoho', undefined, 'log', undefined);
       expect(observerSpy).toHaveBeenCalledWith('toto', undefined, 'info', undefined);
       expect(observerSpy).toHaveBeenCalledWith('popo', undefined, 'warning', undefined);

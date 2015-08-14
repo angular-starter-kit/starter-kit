@@ -21,6 +21,7 @@ angular.module('app', [
 
   // Base modules (needed for root controller)
   'logger',
+  'config',
 
   // Screens
   'homepage',
