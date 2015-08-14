@@ -1,11 +1,9 @@
 'use strict';
 
 angular
-	.module('homepage')
-	.controller('homeController', function($scope, 
-										  logger) {
+  .module('homepage')
+  .controller('homeController', function($scope,
+                      logger) {
 
-		logger = logger.getLogger('homepage');
-
-
-	});
+      logger = logger.getLogger('homepage');
+  });
