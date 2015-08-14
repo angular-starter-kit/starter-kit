@@ -6,5 +6,8 @@
       <span translate>T_HELLO</span>
     </h1>
     <p translate>T_WELCOME</p>
-  </div>
+    <p ng-repeat='quote in data.contents.quotes'>
+      {{ quote }}
+    </p>
+  <div>
 </div>
