@@ -16,7 +16,7 @@ environment variable, with these values:
 ### Unix
 
 Add these lines to your `~/.bash_profile` or `~/.profile`:
-```
+```sh
 export HTTP_PROXY="http://<username>:<password>@<proxy_server>:<proxy_port>"
 export HTTPS_PROXY="$HTTP_PROXY"
 ```
@@ -39,6 +39,11 @@ Add this line to the `bower.json` file:
 ## Npm
 
 Run this command in your project directory:
-```
+```sh
 npm set strict-ssl false
 ```
+
+# Limitations
+
+As for now, it seems there is an issue with the `gulp-imagemin` module, it will
+not install properly behind a proxy.
