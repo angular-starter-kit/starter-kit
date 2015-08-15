@@ -13,8 +13,6 @@
    */
   function ShellController($locale,
                            $state,
-                           $rootScope,
-                           $scope,
                            logger,
                            config) {
 
@@ -26,19 +24,19 @@
 
     var vm = this;
 
-    vm.state = $state.current.name;
-    vm.currentLanguage = $locale.id;
+    vm.currentLocale = $locale;
     vm.languages = config.supportedLanguages;
 
-    init();
-
-    /*
-     * Watches
+    /**
+     * Checks if the specified state name is the current.
+     * @param {string} name The state name to check.
+     * @return {boolean} True if the specified state name is the current.
      */
+    vm.isCurrentState = function(name) {
+      return $state.current.name === name;
+    };
 
-    $scope.$watch('currentLanguage', function() {
-      $rootScope.setLanguage($scope.currentLanguage);
-    });
+    init();
 
     /*
      * Internal
@@ -49,7 +47,6 @@
      */
     function init() {
       logger.log('init');
-      logger.log($state.current.name);
     }
 
   }

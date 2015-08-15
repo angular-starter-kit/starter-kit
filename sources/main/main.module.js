@@ -10,6 +10,7 @@
     'ngAnimate',
     'ngSanitize',
     'ui.router',
+    'ui.bootstrap',
 
     // Screens
     'home',

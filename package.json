@@ -1,10 +1,10 @@
 {
   "name": "starter-kit",
+  "version": "0.0.9",
   "repository": {
     "type": "git",
     "url": "git@github.com/thales-poles-ra/starter-kit.git"
   },
-  "version": "0.0.9",
   "scripts": {
     "test": "gulp test"
   },
@@ -53,7 +53,6 @@
     "gulp-util": "~3.0.5",
     "http-proxy-middleware": "~0.5.0",
     "jade": "~1.11.0",
-    "jasmine-jquery": "^2.1.0",
     "jsdoc": "~3.3.2",
     "jshint-stylish": "~2.0.0",
     "karma": "~0.12.36",

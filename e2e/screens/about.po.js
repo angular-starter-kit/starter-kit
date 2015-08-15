@@ -5,8 +5,8 @@
 
 'use strict';
 
-var Main = function() {
-  // put shared selectors here
+var About = function() {
+  this.jumbotron = element(by.css('.jumbotron'));
 };
 
-module.exports = new Main();
+module.exports = new About();

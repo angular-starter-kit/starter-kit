@@ -28,14 +28,12 @@ describe('restService', function() {
 
       config.debug = false;
 
-      baseUri = '';
+      baseUri = '/api';
     });
 
     callbacks = {
-      'onSuccess': function() {
-      },
-      'onError': function() {
-      }
+      'onSuccess': function() {},
+      'onError': function() {}
     };
 
     spyOn(callbacks, 'onSuccess');

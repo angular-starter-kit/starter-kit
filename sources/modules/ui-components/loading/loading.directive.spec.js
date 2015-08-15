@@ -5,27 +5,40 @@
  */
 describe('loading directive', function() {
 
+  var $rootScope;
+  var $compile;
   var element;
 
   beforeEach(function() {
-    module('main');
+    module('templateCache');
     module('uiComponents');
-  });
 
-  it('should be visible only when loading is in progress', inject(function($rootScope,
-                                                                           $compile) {
+    inject(function(_$rootScope_,
+                    _$compile_) {
 
-    $rootScope.isLoading = true;
+      $rootScope = _$rootScope_;
+      $compile = _$compile_;
+    });
+
     element = $('<div ui-loading="isLoading"></div>');
     element = $compile(element)($rootScope);
     $rootScope.$digest();
+  });
 
-    expect(element).not.toHaveClass('ng-hide');
+  it('should be visible only when loading is in progress', function() {
+
+    var div = element.children().eq(0);
+
+    $rootScope.isLoading = true;
+    $rootScope.$digest();
+
+    expect(div).not.toHaveClass('ng-hide');
 
     $rootScope.isLoading = false;
     $rootScope.$digest();
 
-    expect(element).toHaveClass('ng-hide');
-  }));
+    expect(div).toHaveClass('ng-hide');
+
+  });
 
 });

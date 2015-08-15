@@ -19,7 +19,7 @@ msgstr "Company"
 
 #. Home section
 msgid "T_HOME"
-msgstr "Home"
+msgstr "Accueil"
 
 #. About section
 msgid "T_ABOUT"

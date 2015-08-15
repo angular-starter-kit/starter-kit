@@ -5,7 +5,7 @@ var conf = require('./gulpfile.config');
 var _ = require('lodash');
 var wiredep = require('wiredep');
 
-/**
+/*
  * list all files that we want to load in the browser
  */
 function listFiles() {
@@ -16,7 +16,6 @@ function listFiles() {
   return wiredep(wiredepOptions).js
     .concat([
       path.join(conf.paths.tmp, '**/*.js'),
-      'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
       path.join(conf.paths.src, '/main/**/*.js'),
       path.join(conf.paths.src, '/modules/**/*.js'),
       path.join(conf.paths.src, '/**/*.mock.js'),
@@ -32,28 +31,33 @@ module.exports = function(config) {
     files: listFiles(),
 
     // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
+    // If true, it capture browsers, run tests and exit
     singleRun: true,
 
     // Enable or disable watching files and executing the tests whenever one of these files changes.
     autoWatch: false,
 
-    // level of logging
-    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+    // Level of logging, can be: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-    // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine', 'angular-filesort'],
+    // Testing framework to use (jasmine/mocha/qunit/...)
+    frameworks: [
+      'jasmine', 'angular-filesort'
+    ],
 
     angularFilesort: {
-      // the whitelist config option allows you to further narrow the subset of files
+      // The whitelist config option allows you to further narrow the subset of files
       // karma-angular-filesort will sort for you
-      whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock|*.test).js')]
+      whitelist: [
+        path.join(conf.paths.tmp, '/**/!(*.html|*.spec|*.mock).js'),
+        path.join(conf.paths.src, '/main/**/!(*.html|*.spec|*.mock).js'),
+        path.join(conf.paths.src, '/modules/**/!(*.html|*.spec|*.mock).js')
+      ]
     },
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'sources/',
-      moduleName: 'app'
+      moduleName: 'templateCache'
     },
 
     // Start these browsers, currently available:
@@ -64,10 +68,10 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers : ['PhantomJS'],
+    browsers: ['PhantomJS'],
 
     // List of plugins to load
-    plugins : [
+    plugins: [
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-jasmine',
@@ -80,8 +84,8 @@ module.exports = function(config) {
     // A map of preprocessors to use
     preprocessors: {
       'sources/**/*.html': ['ng-html2js'],
-      // source files, that you wanna generate coverage for
-      // do not include tests or libraries
+      // Source files, that you wanna generate coverage for.
+      // Do not include tests or libraries.
       'sources/modules/**/*.js': ['coverage'],
       'sources/main/*.js': ['coverage']
     },
@@ -92,12 +96,12 @@ module.exports = function(config) {
     // Coverage configuration
     coverageReporter: {
       type: 'lcov',
-      dir : 'reports/',
+      dir: 'reports/',
       subdir: 'coverage'
     },
-    
+
     junitReporter: {
-      outputDir: 'reports/junit/', 
+      outputDir: 'reports/junit/',
       outputFile: 'TESTS-xunit.xml',
       suite: '' // suite will become the package name attribute in xml testsuite element
     },
@@ -121,4 +125,5 @@ module.exports = function(config) {
   }
 
   config.set(configuration);
+
 };

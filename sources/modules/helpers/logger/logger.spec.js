@@ -3,21 +3,21 @@
 /*
  * Tests for logger.
  */
-describe('logger', function () {
+describe('logger', function() {
 
   var logger;
 
-  beforeEach(function () {
+  beforeEach(function() {
     module('helpers');
   });
 
-  beforeEach(inject(function (_logger_) {
+  beforeEach(inject(function(_logger_) {
     logger = _logger_;
   }));
 
-  describe('addObserver', function () {
+  describe('addObserver', function() {
 
-    it('should add a new observer to be notified of log entry', function () {
+    it('should add a new observer to be notified of log entry', function() {
       // Arrange
       var observerSpy = jasmine.createSpy('observerSpy');
 
@@ -38,7 +38,7 @@ describe('logger', function () {
       expect(observerSpy).toHaveBeenCalledWith('lolo', 'unit test', 'error', undefined);
     });
 
-    it('should add a new observer to be notified of log entry with no source', function () {
+    it('should add a new observer to be notified of log entry with no source', function() {
       // Arrange
       var observerSpy = jasmine.createSpy('observerSpy');
 

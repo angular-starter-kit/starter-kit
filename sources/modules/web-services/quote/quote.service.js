@@ -17,7 +17,7 @@
      */
 
     var ROUTES = {
-      randomJoke: 'jokes/random?limitTo=[nerdy]'
+      randomJoke: '/jokes/random?limitTo=[nerdy]'
     };
 
     /*
@@ -35,7 +35,7 @@
         .get(ROUTES.randomJoke, null, true)
         .then(function(response) {
           if (response.data && response.data.value) {
-            return response.data.value.joke;
+            return response.data.value.joke.replace('&quot;', '"');
           }
           return $q.reject();
         })

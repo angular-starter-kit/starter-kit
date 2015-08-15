@@ -44,7 +44,7 @@ describe('cacheService', function() {
 
   describe('setCacheData', function() {
 
-    it('should set cache data', function () {
+    it('should set cache data', function() {
       // Act
       cacheService.setCacheData('/popo', null, 'data');
 
@@ -52,7 +52,7 @@ describe('cacheService', function() {
       expect(cacheService.getCacheData('/popo')).toBe('data');
     });
 
-    it('should replace existing data', function () {
+    it('should replace existing data', function() {
       // Act
       cacheService.setCacheData('/popo', null, 'data');
       cacheService.setCacheData('/popo', null, 'newdata');
@@ -61,7 +61,7 @@ describe('cacheService', function() {
       expect(cacheService.getCacheData('/popo')).toBe('newdata');
     });
 
-    it('should set cache date correctly', function () {
+    it('should set cache date correctly', function() {
       // Act
       var date = new Date(123);
       cacheService.setCacheData('/popo', null, 'data', date);
@@ -76,11 +76,11 @@ describe('cacheService', function() {
 
   describe('getCacheData', function() {
 
-    it('should return null if no cache', function () {
+    it('should return null if no cache', function() {
       expect(cacheService.getCacheData('/hoho', null)).toBe(null);
     });
 
-    it('should return cached data if exists', function () {
+    it('should return cached data if exists', function() {
       // Act
       cacheService.setCacheData('/hoho', null, 'data');
 
@@ -88,23 +88,23 @@ describe('cacheService', function() {
       expect(cacheService.getCacheData('/hoho')).toBe('data');
     });
 
-    it('should return cached data with url parameters if exists', function () {
+    it('should return cached data with url parameters if exists', function() {
       // Act
-      cacheService.setCacheData('/hoho', { pif: 'paf' }, 'data');
+      cacheService.setCacheData('/hoho', {pif: 'paf'}, 'data');
 
       // Assert
-      expect(cacheService.getCacheData('/hoho', { pif: 'paf' })).toBe('data');
+      expect(cacheService.getCacheData('/hoho', {pif: 'paf'})).toBe('data');
     });
 
   });
 
   describe('getCacheDate', function() {
 
-    it('should return null if no cache', function () {
+    it('should return null if no cache', function() {
       expect(cacheService.getCacheDate('/hoho', null)).toBe(null);
     });
 
-    it('should return cached data date  if exists', function () {
+    it('should return cached data date  if exists', function() {
       // Act
       var date = new Date(123);
       cacheService.setCacheData('/hoho', null, 'data', date);
@@ -117,7 +117,7 @@ describe('cacheService', function() {
 
   describe('clearCacheData', function() {
 
-    it('should clear existing cache data', function () {
+    it('should clear existing cache data', function() {
       // Set cache
       cacheService.setCacheData('/hoho', null, 'data');
       expect(cacheService.getCacheData('/hoho')).toBe('data');
@@ -127,7 +127,7 @@ describe('cacheService', function() {
       expect(cacheService.getCacheData('/hoho', null)).toBe(null);
     });
 
-    it('should do nothing if no cache exists', function () {
+    it('should do nothing if no cache exists', function() {
       expect(cacheService.getCacheData('/lolo', null)).toBe(null);
       cacheService.clearCacheData('/hoho', null);
       expect(cacheService.getCacheData('/lolo', null)).toBe(null);
@@ -137,7 +137,7 @@ describe('cacheService', function() {
 
   describe('cleanCache', function() {
 
-    it('should clear all cache if no date is specified', function () {
+    it('should clear all cache if no date is specified', function() {
       // Set cache
       cacheService.setCacheData('/hoho', null, 'data');
       cacheService.setCacheData('/popo', null, 'data');
@@ -150,7 +150,7 @@ describe('cacheService', function() {
       expect(cacheService.getCacheData('/popo', null)).toBe(null);
     });
 
-    it('should clear existing since specified date', function () {
+    it('should clear existing since specified date', function() {
       // Set cache
       cacheService.setCacheData('/hoho', null, 'data');
       expect(cacheService.getCacheData('/hoho')).toBe('data');
@@ -160,7 +160,7 @@ describe('cacheService', function() {
       expect(cacheService.getCacheData('/hoho', null)).toBe(null);
     });
 
-    it('should not affect cache entries newer than specified date', function () {
+    it('should not affect cache entries newer than specified date', function() {
       // Set cache
       cacheService.setCacheData('/hoho', null, 'data');
       expect(cacheService.getCacheData('/hoho')).toBe('data');
