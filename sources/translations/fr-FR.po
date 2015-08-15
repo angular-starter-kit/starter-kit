@@ -31,7 +31,7 @@ msgstr "A propos"
 
 #. Say hello to our users
 msgid "T_HELLO"
-msgstr "Bonjour !"
+msgstr "Bonjour le monde !"
 
 # --------------------------------------------------
 # About

@@ -1,24 +1,23 @@
-'use strict';
+(function() {
 
-/**
- * REST service: provides methods to perform REST requests.
- */
-angular
-  .module('restService', [
-    'logger',
-    'cacheService'
-  ])
-  .factory('restService', function($rootScope,
-                                   $q,
-                                   $http,
-                                   logger,
-                                   config,
-                                   cacheService) {
+  'use strict';
+
+  angular
+    .module('helpers')
+    .factory('restService', restService);
+
+  /**
+   * REST service: provides methods to perform REST requests.
+   */
+  function restService($q,
+                       $http,
+                       logger,
+                       cacheService) {
 
     logger = logger.getLogger('restService');
 
     /*
-     * Service public interface
+     * Public interface
      */
 
     var service = {};
@@ -28,7 +27,7 @@ angular
      * @param {!String} url URL of the REST service call.
      * @param {?map=} params Map of strings or objects which will be turned to ?key1=value1&key2=value2 after the url.
      *   If the value is not a string, it will be JSONified.
-     * @param {?boolean|'force'} cache If set to true, the first request will be cached, and next request with cache 
+     * @param {?boolean|'force'} cache If set to true, the first request will be cached, and next request with cache
      *   set to true will use the cached response.
      *   If set to 'force', the request will always be made and cache will be updated.
      *   If set to false or omitted, no cache will be set or used.
@@ -38,7 +37,7 @@ angular
     service.get = function(url, params, cache, options) {
       var apiUrl = baseUri + url;
       var promiseBuilder = function() {
-        return $http.get(apiUrl, { params: params });
+        return $http.get(apiUrl, {params: params});
       };
 
       if (!cache) {
@@ -214,7 +213,7 @@ angular
     };
 
     /*
-     * Service internals
+     * Internal
      */
 
     var baseServer = '';
@@ -241,7 +240,7 @@ angular
      * Default error handler.
      * This handler tries to extract a description of the error and logs and error with it.
      * @param {!Object} promise The promise to handle errors.
-     * @param {?Object=} options Additional options: if 'skipErrors' property is set to true, errors will not be 
+     * @param {?Object=} options Additional options: if 'skipErrors' property is set to true, errors will not be
      *   handled.
      * @type {function}
      */
@@ -286,4 +285,6 @@ angular
     }
 
     return service;
-  });
+  }
+
+})();

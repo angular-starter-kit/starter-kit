@@ -1,9 +1,7 @@
-// ==========================================================================
-// GULP TASKS CONFIGURATION
-// ==========================================================================
-// This file contains the variables used in other gulp files which defines
-// tasks.
-// ==========================================================================
+/*
+ * GULP TASKS CONFIGURATION
+ * This file contains the variables used in gulp tasks.
+ */
 
 'use strict';
 
@@ -24,25 +22,25 @@ exports.paths = {
 };
 
 /**
- * You can add a proxy to your backend by uncommenting the line bellow.
- * You just have to configure a context which will we redirected and the target url.
- * Example: $http.get('/api') requests will be automatically proxified.
+ * Backend proxy configuration.
+ * With the given example, HTTP request to like $http.get('/api/stuff') will be automatically proxified
+ * to the specified server.
  *
- * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
+ * For more details and option, see https://github.com/chimurai/http-proxy-middleware/
  */
-
-/**
-exports.proxy = {
+exports.backendProxy = {
   context: '/api',
   options: {
-     target: 'http://jsonplaceholder.typicode.com'
+    pathRewrite: { '^/api' : '' },
+    target: 'http://api.icndb.com',
+    changeOrigin: true
   }
-};**/
+};
 
 /**
- *  Wiredep is the lib which inject bower dependencies in your project
- *  Mainly used to inject script tags in the index.html but also used
- *  to inject css preprocessor deps and js files in karma
+ *  Wiredep is the lib which inject bower dependencies in your project.
+ *  Mainly used to inject script tags in the index.html but also used to inject css preprocessor
+ *  deps and js files in karma.
  */
 exports.wiredep = {
   exclude: [],
@@ -50,7 +48,7 @@ exports.wiredep = {
 };
 
 /**
- *  Common implementation for an error handler of a Gulp plugin
+ *  Common implementation for an error handler of a gulp plugin.
  */
 exports.errorHandler = function(title) {
   return function(err) {

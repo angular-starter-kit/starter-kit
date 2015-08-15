@@ -1,12 +1,12 @@
-<div class="homepage container-fluid">
+<section id="home-screen" class="home-screen container-fluid">
   <div class="jumbotron text-center">
     <h1>
       <img class="logo" src="images/angularjs-logo.png" alt="angularjs logo"/>
       <span translate>T_HELLO</span>
     </h1>
+    <div ui-loading="vm.isLoading"></div>
     <p>
-      <div ui-loading="isLoading"></div>
-      <em ng-if="!!quote">{{quote.quote}} - {{quote.author}}</em>
+      <em class="quote">{{vm.quote}}</em>
     </p>
   </div>
-</div>
+</section>

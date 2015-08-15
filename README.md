@@ -28,7 +28,11 @@ sources/                project source code
 |- images/              project images
 |- libraries/           bower dependencies
 |- main/                main module, for entry points and global style
-|  |- main.js           js entry point
+|  |- main.config.js    app configuration code
+|  |- main.constants.js app configuration constants
+|  |- main.modules.js   app main modules
+|  |- main.run.js       js entry point
+|  |- main.wrappers.js  AngularJS module wrappers for external libraries
 |  +- main.less         style entry point
 |- modules/             project components and modules
 |  |- helpers/          helper services
@@ -36,7 +40,6 @@ sources/                project source code
 |  |- shell/            application shell
 |  |- ui-components/    shared UI components
 |  |- web-services/     web services
-|  |- wrappers/         AngularJS module wrappers for external libraries
 |  +- ...               additional project modules
 |- translations/        translations files
 +- index.html           html entry point
@@ -48,7 +51,7 @@ gulpfile.config.js      gulp tasks configuration
 
 # Main gulp tasks
 
-Gulp task   | Description
+Tasks       | Description
 ------------|-------------------------------------------------------------------------------
 default     | run `clean`, then `build`
 serve       | Launch a web server with live reload and API proxy, then open app in browser.
@@ -67,7 +70,6 @@ docs        | Generate jsdoc documentation from sources.
 - [JavaScript](docs/js-guide.md)
 - [CSS](docs/css-guide.md)
 - [HTML](docs/html-guide.md)
-
 
 # Additional documentation
 - [Proxy configuration](docs/proxy.md)

@@ -12,7 +12,7 @@ var $ = require('gulp-load-plugins')({
 
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
-var mainFolder = path.join(conf.paths.src, '/main/');
+var mainFolder = path.join(conf.paths.src, conf.paths.main);
 
 gulp.task('styles', ['fonts'], function () {
   var lessOptions = {
@@ -38,7 +38,7 @@ gulp.task('styles', ['fonts'], function () {
     addRootSlash: false
   };
 
-  return gulp.src(path.join(mainFolder, 'app.less'))
+  return gulp.src(path.join(mainFolder, 'main.less'))
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
     .pipe(gulp.dest(mainFolder))

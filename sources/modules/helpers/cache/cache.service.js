@@ -1,19 +1,21 @@
-'use strict';
+(function() {
 
-/**
- * Cache service: manages cached data for GET requests.
- */
-angular
-  .module('cacheService', [
-    'logger',
-  ])
-  .factory('cacheService', function($window,
-                                    logger) {
+  'use strict';
+
+  angular
+    .module('helpers')
+    .factory('cacheService', cacheService);
+
+  /**
+   * Cache service: manages cached data for GET requests.
+   */
+  function cacheService($window,
+                        logger) {
 
     logger = logger.getLogger('cacheService');
 
     /*
-     * Service public interface
+     * Public interface
      */
 
     var service = {};
@@ -109,7 +111,7 @@ angular
     }());
 
     /*
-     * Service internals
+     * Internal
      */
 
     var cachedData = {};
@@ -141,4 +143,6 @@ angular
     }
 
     return service;
-  });
+  }
+
+})();

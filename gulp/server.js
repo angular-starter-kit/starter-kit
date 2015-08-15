@@ -16,10 +16,10 @@ function browserSyncInit(baseDir, browser) {
     routes: null
   };
 
-  // We activate a proxy if we found a configuration for it.
-  if (conf.proxy && conf.proxy.context){
+  // We activate a server proxy if we found a configuration for it.
+  if (conf.backendProxy) {
     var proxyMiddleware = require('http-proxy-middleware');
-    server.middleware = proxyMiddleware(conf.proxy.context, conf.proxy.options);
+    server.middleware = proxyMiddleware(conf.backendProxy.context, conf.backendProxy.options);
   }
 
   browserSync.instance = browserSync.init({

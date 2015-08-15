@@ -4,6 +4,7 @@
  * Tests for cache service.
  */
 describe('cacheService', function() {
+
   var cacheService;
 
   beforeEach(function() {

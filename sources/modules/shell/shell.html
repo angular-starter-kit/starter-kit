@@ -1,31 +1,40 @@
-<!-- Header -->
-<header>
-  <nav class="navbar navbar-static-top navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/thales-poles-ra/starter-kit/">
-        <span class="fa fa-wrench"></span>
-        <span translate>T_APP_NAME</span>
-      </a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a class="nav-item" ui-sref="app.home" translate>T_HOME</a>
-        </li>
-        <li>
-          <a class="nav-item" ui-sref="app.about" translate>T_ABOUT</a>
-        </li>
-      </ul>
-      <p class="navbar-text navbar-right">
-        <select class="ui-languages" ng-model="currentLanguage">
-          <option ng-repeat="lang in ::languages" value="{{lang}}">{{lang}}</option>
-        </select>
-      </p>
-    </div>
-  </div>
-</nav>
-</header>
+<section id="shell" class="shell">
 
-<!-- View content -->
-<div ui-view></div>
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-static-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="https://github.com/thales-poles-ra/starter-kit/">
+            <span translate>T_APP_NAME</span>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="{ active: vm.state.name === 'app.home' }">
+              <a class="nav-item text-uppercase" ui-sref="app.home">
+                <i class="fa fa-home"></i>
+                <span translate>T_HOME</span>
+              </a>
+            </li>
+            <li ng-class="{ active: vm.state.name === 'app.about' }">
+              <a class="nav-item text-uppercase" ui-sref="app.about">
+                <i class="fa fa-question"></i>
+                <span translate>T_ABOUT</span>
+              </a>
+            </li>
+          </ul>
+          <p class="navbar-text navbar-right">
+            <select class="ui-languages" ng-model="vm.currentLanguage">
+              <option ng-repeat="language in ::vm.languages" value="{{language}}">{{language}}</option>
+            </select>
+          </p>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- View content -->
+  <div ui-view></div>
+
+</section>

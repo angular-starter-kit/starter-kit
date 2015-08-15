@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="app">
+<html ng-app="main">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,15 +13,16 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css(.tmp) styles/app.css -->
+    <!-- build:css(.tmp) styles/main.css -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/main.css">
     <!-- endinject -->
     <!-- endbuild -->
   </head>
   <body>
     <!--[if lt IE 9]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your
+      experience.</p>
     <![endif]-->
 
     <div ui-view></div>
@@ -40,24 +41,27 @@
 
     <!-- build:js({.tmp/partials,sources,.tmp}) scripts/app.js -->
     <!-- inject:js -->
-    <script src="main/app-modules.js"></script>
+    <script src="main/main.modules.js"></script>
     <script src="translations/translations.js"></script>
     <script src="partials/templateCache.js"></script>
-    <script src="modules/wrappers/lodash.js"></script>
-    <script src="modules/shell/shell-module.js"></script>
-    <script src="modules/shell/shell-controller.js"></script>
-    <script src="modules/web-services/saidno-service/saidno-service.js"></script>
-    <script src="modules/web-services/quote-service/quote-service.js"></script>
-    <script src="modules/ui-components/loading-directive/loading-directive.js"></script>
-    <script src="modules/screens/homepage/homepage-module.js"></script>
-    <script src="modules/screens/homepage/homepage-controller.js"></script>
-    <script src="modules/screens/about/about-module.js"></script>
-    <script src="modules/screens/about/about-controller.js"></script>
-    <script src="modules/helpers/rest-service/rest-service.js"></script>
-    <script src="modules/helpers/cache-service/cache-service.js"></script>
+    <script src="modules/web-services/web-services.module.js"></script>
+    <script src="modules/ui-components/ui-components.module.js"></script>
+    <script src="modules/shell/shell.module.js"></script>
+    <script src="modules/shell/shell.controller.js"></script>
+    <script src="modules/helpers/helpers.modules.js"></script>
+    <script src="modules/web-services/quote/quote.service.js"></script>
+    <script src="modules/ui-components/loading/loading.directive.js"></script>
+    <script src="modules/screens/home/home.module.js"></script>
+    <script src="modules/screens/home/home.controller.js"></script>
+    <script src="modules/screens/about/about.module.js"></script>
+    <script src="modules/screens/about/about.controller.js"></script>
+    <script src="modules/helpers/rest/rest.service.js"></script>
     <script src="modules/helpers/logger/logger.js"></script>
-    <script src="main/app.js"></script>
-    <script src="main/app-config.js"></script>
+    <script src="modules/helpers/cache/cache.service.js"></script>
+    <script src="main/main.wrappers.js"></script>
+    <script src="main/main.run.js"></script>
+    <script src="main/main.constants.js"></script>
+    <script src="main/main.config.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
   </body>

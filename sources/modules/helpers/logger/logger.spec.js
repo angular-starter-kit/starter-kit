@@ -4,6 +4,7 @@
  * Tests for logger.
  */
 describe('logger', function () {
+
   var logger;
 
   beforeEach(function () {
