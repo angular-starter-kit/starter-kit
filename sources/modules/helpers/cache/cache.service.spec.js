@@ -8,7 +8,7 @@ describe('cacheService', function() {
   var cacheService;
 
   beforeEach(function() {
-    module('cacheService');
+    module('helpers');
 
     // Start fresh :-)
     window.localStorage.removeItem('cachedData');

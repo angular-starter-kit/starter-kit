@@ -8,6 +8,7 @@ describe('loading directive', function() {
   var element;
 
   beforeEach(function() {
+    module('main');
     module('uiComponents');
   });
 

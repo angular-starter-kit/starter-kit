@@ -8,7 +8,7 @@ describe('logger', function () {
   var logger;
 
   beforeEach(function () {
-    module('logger');
+    module('helpers');
   });
 
   beforeEach(inject(function (_logger_) {

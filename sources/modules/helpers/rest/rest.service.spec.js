@@ -13,7 +13,8 @@ describe('restService', function() {
   var callbacks;
 
   beforeEach(function() {
-    module('restService');
+    module('main');
+    module('helpers');
 
     inject(function(_$q_,
                     _$httpBackend_,
