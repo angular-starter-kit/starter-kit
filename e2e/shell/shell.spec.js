@@ -1,6 +1,7 @@
 'use strict';
 
 describe('shell', function() {
+
   var page;
 
   beforeEach(function() {

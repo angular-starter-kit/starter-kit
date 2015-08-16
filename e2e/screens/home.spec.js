@@ -1,6 +1,7 @@
 'use strict';
 
 describe('home screen', function() {
+
   var page;
 
   beforeEach(function() {
@@ -12,4 +13,5 @@ describe('home screen', function() {
     expect(page.title.getText()).toMatch('Hello');
     expect(page.image.getAttribute('src')).toMatch('angularjs');
   });
+
 });

@@ -1,6 +1,7 @@
 'use strict';
 
 describe('about', function() {
+
   var page;
 
   beforeEach(function() {

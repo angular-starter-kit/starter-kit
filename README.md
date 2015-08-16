@@ -45,7 +45,7 @@ sources/                project source code
 +- index.html           html entry point
 e2e/                    end-to-end tests
 dist/                   compiled version
-reports/                test and coverage reports
+reports/                test and coverage reports + generated documentation
 gulpfile.config.js      gulp tasks configuration
 ```
 
@@ -120,24 +120,24 @@ docs        | Generate jsdoc documentation from sources.
 #### v1
 - Migrate base template to TypeScript, instead of JavaScript
 - Add support for TypeScript unit tests
-- Add coding guides with best practices
+- Improve coding guides
 - Improve project template
-- Improve doc generation (use [dgeni](https://github.com/angular/dgeni))
-- Improve e2e reporting
-- Inject also global (main) js/css
-- More base components (for REST, storage, data dependencies...)
+- Improve doc generation (use [dgeni](https://github.com/angular/dgeni)?)
+- Fix base template self-documentation (jsdoc)
+- Improve e2e reporting (coverage)
+- More base components (storage, data dependencies...)
 
 #### v2
 - Mobile version (Cordova + ngCordova, Ionic, Crosswalk...)
 - Add Sass support
 - Custom icons management (font icons or SVG->CSS icons)
+- Consider integration with yeoman?
 
 #### v3
 - Improve documentation (micro training, cheat sheets, posters...)
-- Add bower package [cleaning](https://github.com/braddenver/preen)
-- Npm dependencies flattening to ease usage on Windows platforms
+- Add bower packages [cleaning](https://github.com/braddenver/preen)
+- Npm dependencies flattening to ease usage on Windows platforms?
 - Repository for common base components?
-- Consider integration with yeoman?
 
 # Credits
 

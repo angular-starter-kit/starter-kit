@@ -35,9 +35,9 @@
         .get(ROUTES.randomJoke, null, true)
         .then(function(response) {
           if (response.data && response.data.value) {
-            return response.data.value.joke.replace('&quot;', '"');
+            return response.data.value.joke.replace(/&quot;/g, '"');
           }
-          return $q.reject();
+          return $q.reject({});
         })
         .catch(function() {
           return 'Error, could not load joke :-(';

@@ -10,8 +10,7 @@
    * Displays the home screen.
    * @constructor
    */
-  function HomeController($scope,
-                          logger,
+  function HomeController(logger,
                           quoteService) {
 
     logger = logger.getLogger('home');
