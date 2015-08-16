@@ -16,10 +16,7 @@ gulp.task('watch', ['inject'], function () {
     debounceDelay: 500
   };
 
-  gulp.watch([
-    path.join(conf.paths.src, '/*.html'),
-    'bower.json'
-  ], options, ['inject']);
+  gulp.watch('bower.json', options, ['inject']);
 
   gulp.watch([
     path.join(conf.paths.src, '/**/*.css'),
@@ -28,7 +25,7 @@ gulp.task('watch', ['inject'], function () {
     if (isOnlyChange(event)) {
       gulp.start('styles');
     } else {
-      gulp.start('inject');
+      gulp.start('inject:style');
     }
   });
 
@@ -36,7 +33,7 @@ gulp.task('watch', ['inject'], function () {
     if (isOnlyChange(event)) {
       gulp.start('scripts');
     } else {
-      gulp.start('inject');
+      gulp.start('inject:script');
     }
   });
 
@@ -44,7 +41,10 @@ gulp.task('watch', ['inject'], function () {
 
   gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations']);
 
-  gulp.watch(path.join(conf.paths.tmp, '/**/*.js'), options, function(event) {
+  gulp.watch([
+    path.join(conf.paths.tmp, '/**/*.js'),
+    path.join(conf.paths.src, '/*.html')
+  ], options, function(event) {
     browserSync.reload(event.path);
   });
 });
