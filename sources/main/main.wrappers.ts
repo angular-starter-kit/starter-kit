@@ -1,6 +1,8 @@
-(function() {
+module main {
 
   'use strict';
+
+  declare var _: any;
 
   /**
    * Wraps external global libraries into AngularJS injection system.
@@ -8,6 +10,6 @@
    */
   angular
     .module('main')
-    .constant('_', window._); // lodash
+    .constant('_', _); // lodash
 
-})();
+};

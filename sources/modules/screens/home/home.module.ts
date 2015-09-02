@@ -1,4 +1,4 @@
-(function() {
+module home {
 
   'use strict';
 
@@ -6,6 +6,6 @@
     'helpers',
     'webServices',
     'uiComponents'
-  ]);
+  ]).controller('homeController', home.HomeController);
 
-})();
+}

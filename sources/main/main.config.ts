@@ -1,4 +1,4 @@
-(function() {
+module main {
 
   'use strict';
 
@@ -9,14 +9,14 @@
   /**
    * Configures the application (before running).
    */
-  function mainConfig($stateProvider,
-                      $urlRouterProvider,
-                      $provide,
-                      config) {
+  function mainConfig($stateProvider: any,
+                      $urlRouterProvider: any,
+                      $provide: any,
+                      config: any) {
 
     // Extend the $exceptionHandler service to output logs.
-    $provide.decorator('$exceptionHandler', function($delegate, $injector) {
-      return function(exception, cause) {
+    $provide.decorator('$exceptionHandler', function($delegate: any, $injector: any) {
+      return function(exception: any, cause: any) {
         $delegate(exception, cause);
 
         var logger = $injector.get('logger').getLogger('exceptionHandler');
@@ -25,10 +25,14 @@
     });
 
     // Disable debug logs in production version
-    $provide.decorator('$log', function($delegate) {
+    $provide.decorator('$log', function($delegate: any) {
       if (!config.debug) {
-        $delegate.log = function() {};
-        $delegate.debug = function() {};
+        $delegate.log = function() {
+          //
+        };
+        $delegate.debug = function() {
+          //
+        };
       }
       return $delegate;
     });
@@ -53,5 +57,5 @@
       });
   }
 
-})();
+}
 

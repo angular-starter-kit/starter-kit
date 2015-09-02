@@ -1,4 +1,4 @@
-(function() {
+module main {
 
   'use strict';
 
@@ -29,5 +29,5 @@
 
     });
 
-})();
+}
 

@@ -1,4 +1,6 @@
-(function() {
+/// <reference path="../../.tmp/typings/tsd.d.ts" />
+
+module main {
 
   'use strict';
 
@@ -21,4 +23,4 @@
     'helpers'
   ]);
 
-})();
+};

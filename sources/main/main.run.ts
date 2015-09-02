@@ -1,4 +1,6 @@
-(function() {
+'use strict';
+
+module main {
 
   'use strict';
 
@@ -10,12 +12,12 @@
    * Entry point of the application.
    * Initializes application and root controller.
    */
-  function main($locale,
-                $rootScope,
-                gettextCatalog,
-                _,
-                config,
-                restService) {
+  function main($locale: any,
+                $rootScope: any,
+                gettextCatalog: any,
+                _: any,
+                config: any,
+                restService: any) {
 
     /*
      * Root view model
@@ -25,7 +27,7 @@
      * Utility method to set the language in the tools requiring it.
      * @param {String} language The IETF language tag.
      */
-    $rootScope.setLanguage = function(language) {
+    $rootScope.setLanguage = function(language: string) {
       var isSupportedLanguage = _.contains(config.supportedLanguages, language);
 
       // Fallback if language is not supported
@@ -56,4 +58,4 @@
 
   }
 
-})();
+};

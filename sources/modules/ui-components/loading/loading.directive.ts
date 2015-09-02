@@ -1,10 +1,7 @@
-(function() {
+'use strict';
 
+module uiComponents {
   'use strict';
-
-  angular
-    .module('uiComponents')
-    .directive('uiLoading', loadingDirective);
 
   /**
    * Loading directive: displays a loading indicator while data is being loaded.
@@ -18,15 +15,19 @@
    *
    * Example: <div ui-loading="isLoading" message="Loading..."></div>
    */
-  function loadingDirective() {
-    return {
-      restrict: 'A',
-      templateUrl: 'modules/ui-components/loading/loading.html',
-      scope: {
+
+  export class LoadingDirective implements ng.IDirective {
+      restrict = 'A';
+      templateUrl = 'modules/ui-components/loading/loading.html';
+      scope = {
         message: '=',
         isLoading: '=uiLoading'
-      }
-    };
+      };
   }
 
-})();
+  angular
+    .module('uiComponents')
+    .directive('uiLoading', () =>
+      new uiComponents.LoadingDirective());
+
+}
