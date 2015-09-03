@@ -22,7 +22,7 @@ gulp.task('typescript', ['tsd:install'], function () {
     .pipe($.tslint.report('prose', { emitError: false }))
     .pipe($.typescript(tsProject)).on('error', conf.errorHandler('TypeScript'))
     .pipe($.concat('app.ts.js'))
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write({includeContent: true, sourceRoot: '../'}))
     .pipe(gulp.dest(path.join(conf.paths.tmp)))
     .pipe(browserSync.reload({ stream: true }))
     .pipe($.size());
