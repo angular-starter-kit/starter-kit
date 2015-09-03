@@ -3,23 +3,29 @@
 module quoteService {
   'use strict';
 
+  interface IRoutes {
+    randomJoke: string;
+  }
+
   export class QuoteService {
 
-      private ROUTES: any = {
+
+
+      private ROUTES: IRoutes = {
         randomJoke: '/jokes/random?limitTo=[nerdy]'
       };
 
       private $q: ng.IQService;
-      private restService: any;
+      private restService: restService.RestService;
 
-      constructor($q: ng.IQService, restService: any) {
+      constructor($q: ng.IQService, restService: restService.RestService) {
         this.$q = $q;
         this.restService = restService;
       }
 
       public getRandomJoke(): any {
         return this.restService
-          .get(this.ROUTES.randomJoke, null, true)
+          .get(this.ROUTES.randomJoke, null, true, null )
           .then(function(response: any) {
             if (response.data && response.data.value) {
               return response.data.value.joke.replace(/&quot;/g, '"');
@@ -34,6 +40,6 @@ module quoteService {
 
   angular
     .module('webServices')
-    .factory('quoteService', ['$q', 'restService', ($q: ng.IQService, restService: any) =>
+    .factory('quoteService', ['$q', 'restService', ($q: ng.IQService, restService: restService.RestService) =>
       new quoteService.QuoteService($q, restService)]);
 };

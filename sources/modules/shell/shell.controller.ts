@@ -4,13 +4,13 @@ module shell {
   export class ShellController {
 
     public languages: any;
-    public currentLocale: any;
+    public currentLocale: ng.ILocaleService;
 
-    private logger: any;
-    private $state: any;
+    private logger: logger.Logger;
+    private $state: ng.ui.IStateService;
 
     /* @ngInject */
-    constructor ($locale: any, logger: any, config: any, $state : ng.ui.IStateService) {
+    constructor ($locale: ng.ILocaleService, logger: logger.LoggerService, config: any, $state : ng.ui.IStateService) {
       this.logger = logger.getLogger('shell');
       this.$state = $state;
       this.currentLocale = $locale;
@@ -25,7 +25,7 @@ module shell {
      */
     public isCurrentState(name: string): boolean {
       return this.$state.current.name === name;
-    };
+    }
 
     /*
      * Internal
@@ -35,7 +35,7 @@ module shell {
      * Init controller.
      */
     private init() {
-      this.logger.log('init');
+      this.logger.log('init', null);
     }
   }
 

@@ -6,11 +6,11 @@ module about {
 
     public version: string;
 
-    private logger: any;
+    private logger: logger.Logger;
     private config: any;
 
     /* @ngInject */
-    constructor (logger: any, config: any) {
+    constructor (logger: logger.LoggerService, config: any) {
       this.logger = logger.getLogger('about');
       this.config = config;
 
@@ -26,7 +26,7 @@ module about {
      */
     private init() {
       this.version = this.config.version;
-      this.logger.log('init');
+      this.logger.log('init', null);
     }
   }
 

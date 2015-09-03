@@ -7,11 +7,11 @@ module home {
     public isLoading: boolean= true;
     public quote: any = null;
 
-    private logger: any;
-    private quoteService: any;
+    private logger: logger.Logger;
+    private quoteService: quoteService.QuoteService;
 
     /* @ngInject */
-    constructor (quoteService: any, logger: any) {
+    constructor (quoteService: quoteService.QuoteService, logger: logger.LoggerService) {
       this.logger = logger.getLogger('home');
       this.quoteService = quoteService;
       this.init();
@@ -25,7 +25,7 @@ module home {
      * Init controller.
      */
     private init() {
-      this.logger.log('init');
+      this.logger.log('init', null);
 
       var vm = this;
 

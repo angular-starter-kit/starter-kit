@@ -5,11 +5,11 @@ module cacheService {
   angular
     .module('helpers')
     .factory('cacheService', ['logger', '$window',
-      (logger: any, $window: any) => new cacheService.CacheService(logger, $window)]);
+      (logger: logger.LoggerService, $window: any) => new cacheService.CacheService(logger, $window)]);
 
   export class CacheService {
 
-    private logger: any;
+    private logger: logger.Logger;
     private $window: any;
     private cachedData: any = {};
 
@@ -39,7 +39,7 @@ module cacheService {
         data: data
       };
 
-      this.logger.log('Cache set for key: "' + cacheKey + '"');
+      this.logger.log('Cache set for key: "' + cacheKey + '"', null);
 
       this.saveCacheData();
     };
@@ -56,7 +56,7 @@ module cacheService {
       var cacheEntry = this.cachedData[cacheKey];
 
       if (cacheEntry) {
-        this.logger.log('Cache hit for key: "' + cacheKey + '"');
+        this.logger.log('Cache hit for key: "' + cacheKey + '"', null);
         return cacheEntry.data;
       }
 
@@ -85,7 +85,7 @@ module cacheService {
     clearCacheData(url: string, params: any) {
       var cacheKey = this.getCacheKey(url, params);
       this.cachedData[cacheKey] = undefined;
-      this.logger.log('Cache cleared for key: "' + cacheKey + '"');
+      this.logger.log('Cache cleared for key: "' + cacheKey + '"', null);
       this.saveCacheData();
     };
 

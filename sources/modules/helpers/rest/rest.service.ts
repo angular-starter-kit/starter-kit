@@ -27,12 +27,12 @@ module restService {
        * @type {Function}
        */
       private cacheHandler: any = angular.identity;
-      private $q: any;
-      private logger: any;
-      private $http: any;
-      private cacheService: any;
+      private $q: ng.IQService ;
+      private logger: logger.Logger;
+      private $http: ng.IHttpService;
+      private cacheService: cacheService.CacheService;
 
-      constructor($q: any, logger: any, $http: any, cacheService: any) {
+      constructor($q: ng.IQService, logger: logger.LoggerService, $http: ng.IHttpService, cacheService: cacheService.CacheService) {
         this.$q = $q;
         this.$http = $http;
         this.cacheService = cacheService;
@@ -68,11 +68,11 @@ module restService {
           }
 
           if (cachedData === null) {
-            this.logger.log('GET request: ' + url);
+            this.logger.log('GET request: ' + url, null);
 
             // update cache entry
             return this.createRequest(promiseBuilder, options).then(function(response: any) {
-              self.cacheService.setCacheData(url, params, response);
+              self.cacheService.setCacheData(url, params, response, null);
               return angular.copy(response);
             });
           } else {
@@ -94,7 +94,7 @@ module restService {
        */
       put(url: string, data: any, options: any): any {
         var self = this;
-        this.logger.log('PUT request: ' + url);
+        this.logger.log('PUT request: ' + url, null);
         var promise = function() {
           return self.$http.put(self.baseUri + url, data, self.defaultConfig);
         };
@@ -109,7 +109,7 @@ module restService {
        * @return {Object} The promise.
        */
       post(url: string, data: any, options: any): any {
-        this.logger.log('POST request: ' + url);
+        this.logger.log('POST request: ' + url, null);
         var self = this;
         var promiseBuilder = function() {
           return self.$http.post(self.baseUri + url, data, self.defaultConfig);
@@ -125,7 +125,7 @@ module restService {
        * @return {Object} The promise.
        */
       delete(url: string, options: any): any {
-        this.logger.log('DELETE request: ' + url);
+        this.logger.log('DELETE request: ' + url, null);
         var self = this;
         var promise = function() {
           return self.$http.delete(self.baseUri + url, self.defaultConfig);
@@ -262,7 +262,7 @@ module restService {
             }
 
             if (error) {
-              self.logger.error(error);
+              self.logger.error(error, null);
             }
 
             return self.$q.reject(response);

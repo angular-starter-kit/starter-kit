@@ -39,7 +39,7 @@ module logger {
      * declare logger angular module
      */
     angular.module('helpers')
-        .factory('logger', ['$log', ($log: ng.ILogService) => new logger.LoggerService($log)])
+        .factory('logger', ['$log', ($log: ng.ILogService) => new logger.LoggerService($log)]);
 
     let observers = [];
 
