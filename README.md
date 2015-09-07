@@ -1,6 +1,7 @@
 # Starter kit
 
 [![Join the chat at https://gitter.im/thales-poles-ra/starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/thales-poles-ra/starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Web project start kit including tooling, best practices and template seed.
 
 It is based on our experience in large web projects, with architecture choices
