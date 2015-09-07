@@ -5,6 +5,7 @@
 
 'use strict';
 
+var path = require('path');
 var gutil = require('gulp-util');
 var fs = require('fs');
 var bower = JSON.parse(fs.readFileSync('.bowerrc', 'utf8'));
@@ -44,7 +45,8 @@ exports.backendProxy = {
  */
 exports.wiredep = {
   exclude: [],
-  directory: bower.directory
+  directory: path.join(exports.paths.src, bower.directory),
+  bowerJson: require('./' + path.join(exports.paths.src, 'bower.json'))
 };
 
 /**

@@ -1,3 +1,4 @@
 {
-  "directory": "sources/libraries"
+  "directory": "libraries",
+  "cwd": "sources/"
 }
