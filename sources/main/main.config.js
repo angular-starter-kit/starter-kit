@@ -27,8 +27,8 @@
     // Disable debug logs in production version
     $provide.decorator('$log', function($delegate) {
       if (!config.debug) {
-        $delegate.log = function() {};
-        $delegate.debug = function() {};
+        $delegate.log = angular.noop;
+        $delegate.debug = angular.noop;
       }
       return $delegate;
     });
