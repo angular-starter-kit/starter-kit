@@ -40,6 +40,5 @@ module quoteService {
 
   angular
     .module('webServices')
-    .factory('quoteService', ['$q', 'restService', ($q: ng.IQService, restService: restService.RestService) =>
-      new quoteService.QuoteService($q, restService)]);
+    .service('quoteService', QuoteService);
 };

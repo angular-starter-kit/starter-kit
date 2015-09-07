@@ -2,17 +2,13 @@ module cacheService {
 
   'use strict';
 
-  angular
-    .module('helpers')
-    .factory('cacheService', ['logger', '$window',
-      (logger: logger.LoggerService, $window: any) => new cacheService.CacheService(logger, $window)]);
-
   export class CacheService {
 
     private logger: logger.Logger;
     private $window: any;
     private cachedData: any = {};
 
+    /* @ngInject */
     constructor(logger: any, $window: any) {
       this.logger = logger.getLogger('cacheService');
       this.$window = $window;
@@ -133,4 +129,8 @@ module cacheService {
       this.cachedData = data ? angular.fromJson(data) : {};
     };
   };
+
+  angular
+    .module('helpers')
+    .service('cacheService', CacheService);
 }

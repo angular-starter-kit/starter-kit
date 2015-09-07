@@ -35,13 +35,7 @@ module logger {
 
     'use strict';
 
-    /**
-     * declare logger angular module
-     */
-    angular.module('helpers')
-        .factory('logger', ['$log', ($log: ng.ILogService) => new logger.LoggerService($log)]);
-
-    let observers = [];
+       let observers = [];
 
     /**
      * Logs a message from the specified source.
@@ -127,6 +121,7 @@ module logger {
 
         private $log: ng.ILogService;
 
+      /* @ngInject */
         constructor($log: ng.ILogService) {
             this.$log = $log;
         }
@@ -153,4 +148,10 @@ module logger {
             observers.push(observerFunc);
         };
     }
+
+  /**
+   * declare logger angular module
+   */
+  angular.module('helpers')
+    .service('logger', LoggerService);
 }

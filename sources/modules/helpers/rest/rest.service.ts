@@ -6,10 +6,6 @@ module restService {
   /**
    * REST service: provides methods to perform REST requests.
    */
-  angular.module('helpers')
-    .factory('restService', ['$q', 'logger', '$http', 'cacheService',
-      ($q: any, logger: any, $http: any, cacheService: any) => new restService.RestService($q, logger, $http, cacheService)]);
-
   export class RestService {
 
       private baseServer: string = '';
@@ -32,7 +28,8 @@ module restService {
       private $http: ng.IHttpService;
       private cacheService: cacheService.CacheService;
 
-      constructor($q: ng.IQService, logger: logger.LoggerService, $http: ng.IHttpService, cacheService: cacheService.CacheService) {
+    /* @ngInject */
+    constructor($q: ng.IQService, logger: logger.LoggerService, $http: ng.IHttpService, cacheService: cacheService.CacheService) {
         this.$q = $q;
         this.$http = $http;
         this.cacheService = cacheService;
@@ -281,6 +278,9 @@ module restService {
         return this.errorHandler(this.requestHandler(requestBuilder, options), options);
       };
   }
+
+  angular.module('helpers')
+    .service('restService', RestService);
 
 }
 
