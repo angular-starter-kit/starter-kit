@@ -1,5 +1,5 @@
 # Starter kit
-Web project start kit including tooling, best practices and template seed.
+Web project starter kit including tooling, best practices and project seed.
 
 It is based on our experience in large web projects, with architecture choices
 aiming for a clean, no-brainer development experience even for beginner teams.
