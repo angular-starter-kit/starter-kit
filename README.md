@@ -63,13 +63,14 @@ test:auto   | Launch karma server and launch unit tests after each change in pro
 protractor  | Launch e2e tests using protractor.
 docs        | Generate jsdoc documentation from sources.
 
-# Coding guide
+# Coding guides
 
-> TO COMPLETE: naming conventions, code style, best pratices, pitfalls
+> TO COMPLETE: naming conventions, code style, best pratices, pitfalls...
 
 - [JavaScript](docs/js-guide.md)
 - [CSS](docs/css-guide.md)
 - [HTML](docs/html-guide.md)
+- [End-to-end tests](docs/e2e-guide.md)
 
 # Additional documentation
 - [Proxy configuration](docs/proxy.md)
