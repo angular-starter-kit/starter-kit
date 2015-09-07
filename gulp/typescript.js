@@ -11,6 +11,10 @@ var tsProject = $.typescript.createProject({
     sortOutput: true
 });
 
+var options = {
+  debounceDelay: 500
+};
+
 gulp.task('typescript', ['tsd:install'], function () {
   return gulp.src([
     path.join(conf.paths.src, '/main/main.module.ts'),
@@ -27,3 +31,5 @@ gulp.task('typescript', ['tsd:install'], function () {
     .pipe(browserSync.reload({ stream: true }))
     .pipe($.size());
 });
+
+gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['typescript']);
