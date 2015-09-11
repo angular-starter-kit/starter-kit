@@ -5,4 +5,3 @@
   angular.module('helpers', []);
 
 })();
-

@@ -7,21 +7,25 @@ var browserSync = require('browser-sync');
 var $ = require('gulp-load-plugins')();
 
 var tsProject = $.typescript.createProject({
-    target: 'es5',
-    sortOutput: true
+  target: 'es5',
+  sortOutput: true
 });
 
-gulp.task('typescript', ['tsd:install'], function () {
+gulp.task('typescript', ['tsd:install'], function() {
   return gulp.src([
-    path.join(conf.paths.src, '/modules/**/*.ts'),
-    path.join(conf.paths.src, '/main/app.ts')
+      path.join(conf.paths.src, '/main/main.module.ts'),
+      path.join(conf.paths.src, '/modules/**/*.ts'),
+      path.join(conf.paths.src, '/main/*.ts')
     ])
     .pipe($.sourcemaps.init())
     .pipe($.tslint())
     .pipe($.tslint.report('prose', { emitError: false }))
     .pipe($.typescript(tsProject)).on('error', conf.errorHandler('TypeScript'))
     .pipe($.concat('app.ts.js'))
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write({
+      includeContent: true,
+      sourceRoot: '../'
+    }))
     .pipe(gulp.dest(path.join(conf.paths.tmp)))
     .pipe(browserSync.reload({ stream: true }))
     .pipe($.size());

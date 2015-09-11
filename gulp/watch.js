@@ -37,6 +37,8 @@ gulp.task('watch', ['inject'], function () {
     }
   });
 
+  gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['typescript']);
+
   gulp.watch(path.join(conf.paths.src, '/**/*.html'), options, ['partials']);
 
   gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations']);

@@ -18,8 +18,8 @@ gulp.task('html', ['inject'], function () {
 
   return gulp.src(path.join(conf.paths.src, 'index.html'))
     .pipe(assets = $.useref.assets())
-    .pipe($.if('**/app.js', $.replace(/\'debug\': true/g, '\'debug\': false')))
-    .pipe($.if('**/app.js', $.replace(/\'version\': 'dev'/g, '\'version\': \'' + packageConfig.version + '\'')))
+    .pipe($.if('**/app*.js', $.replace(/\'debug\': true/g, '\'debug\': false')))
+    .pipe($.if('**/app*.js', $.replace(/\'version\': 'dev'/g, '\'version\': \'' + packageConfig.version + '\'')))
     .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
