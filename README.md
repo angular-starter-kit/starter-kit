@@ -65,12 +65,13 @@ docs        | Generate jsdoc documentation from sources.
 
 # Coding guides
 
-> TO COMPLETE: naming conventions, code style, best pratices, pitfalls...
+> TO COMPLETE: unit testing guide, typescript section in JS guide
 
-- [JavaScript](docs/js-guide.md)
-- [CSS](docs/css-guide.md)
-- [HTML](docs/html-guide.md)
-- [End-to-end tests](docs/e2e-guide.md)
+- [JavaScript](docs/coding-guides/js.md)
+- [CSS](docs/coding-guides/css.md)
+- [HTML](docs/coding-guides/html.md)
+- [Unit tests](docs/coding-guides/unit-tests.md)
+- [End-to-end tests](docs/coding-guides/e2e-tests.md)
 
 # Additional documentation
 - [Proxy configuration](docs/proxy.md)

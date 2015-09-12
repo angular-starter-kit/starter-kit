@@ -1,6 +1,6 @@
 /*
  * This file uses the Page Object pattern to define the main page for tests.
- * See docs/e2e-guide.md for more info.
+ * See docs/coding-guide/e2e-tests.md for more info.
  */
 
 'use strict';

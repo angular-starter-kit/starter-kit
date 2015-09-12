@@ -2,13 +2,20 @@
 
 End-to-end (E2E for short) tests are meant to test the behavior of your application, from start to finish.
 
-While unit tests are the first choice for catching bugs and regression on individual components, it is a good
-idea to complement them with test cases covering the integration between the individual components, hence the
-need for E2E tests.
+While unit tests are the first choice for catching bugs and regression on individual components, it is a good idea to
+complement them with test cases covering the integration between the individual components, hence the need for E2E
+tests.
 
 These tests use [Protractor](https://github.com/angular/protractor), which is a framework built for AngularJS
-on top of [WebDriver](https://code.google.com/p/selenium/wiki/GettingStarted) to control browsers and simulate
-user inputs. It uses the [Jasmine](http://jasmine.github.io) syntax.
+on top of [WebDriver](https://code.google.com/p/selenium/wiki/GettingStarted) to control browsers and simulate user
+inputs. It uses the [Jasmine](http://jasmine.github.io) syntax.
+
+## Good practices
+
+- If you develop using an Agile methodology, ideally each user story should be covered by an E2E test verifying all
+  acceptance factors
+- If possible, avoid inter-dependencies between your E2E tests
+- Run E2E tests on your integration server using different browsers, if possible
 
 ## Page objects
 
@@ -74,5 +81,5 @@ describe('Login', function () {
 
 ## Credits
 
-This guide was freely inspired by this 
+This page object part of this guide was freely inspired by this 
 [presentation](https://docs.google.com/presentation/d/1B6manhG0zEXkC-H-tPo2vwU06JhL8w9-XCF9oehXzAQ).
