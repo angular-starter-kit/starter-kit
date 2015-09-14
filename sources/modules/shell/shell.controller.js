@@ -26,6 +26,14 @@
 
     vm.currentLocale = $locale;
     vm.languages = config.supportedLanguages;
+    vm.menuHidden = true;
+
+    /**
+     * Toggles navigation menu visibility on mobile platforms.
+     */
+    vm.toggleMenu = function() {
+      vm.menuHidden = !vm.menuHidden;
+    };
 
     /**
      * Checks if the specified state name is the current.
