@@ -122,27 +122,7 @@ docs        | Generate jsdoc documentation from sources.
 
 # Roadmap
 
-#### v1
-- Migrate base template to TypeScript, instead of JavaScript
-- Add support for TypeScript unit tests
-- Improve coding guides
-- Improve project template
-- Improve doc generation (use [dgeni](https://github.com/angular/dgeni)?)
-- Fix base template self-documentation (jsdoc)
-- Improve e2e reporting (coverage)
-- More base components (storage, data dependencies...)
-
-#### v2
-- Mobile version (Cordova + ngCordova, Ionic, Crosswalk...)
-- Add Sass support
-- Custom icons management (font icons or SVG->CSS icons)
-- Consider integration with yeoman?
-
-#### v3
-- Improve documentation (micro training, cheat sheets, posters...)
-- Add bower packages [cleaning](https://github.com/braddenver/preen)
-- Npm dependencies flattening to ease usage on Windows platforms?
-- Repository for common base components?
+See the [wiki](https://github.com/thales-poles-ra/starter-kit/wiki).
 
 # Credits
 
