@@ -26,7 +26,6 @@ described there.
 - Always use strict equality checks: `===` and `!==` instead of `==` or `!=` to avoid comparison 
   pitfalls (see [JavaScipt equality table](https://dorey.github.io/JavaScript-Equality-Table/))
 - Use `[]` instead of `Array`
-- Use simple quote for strings
 
 ## Enforcement
 

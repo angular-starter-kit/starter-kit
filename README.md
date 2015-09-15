@@ -68,8 +68,6 @@ docs        | Generate jsdoc documentation from sources.
 
 # Coding guides
 
-> TO COMPLETE: unit testing guide, typescript section in JS guide
-
 - [JavaScript](docs/coding-guides/js.md)
 - [CSS](docs/coding-guides/css.md)
 - [HTML](docs/coding-guides/html.md)
