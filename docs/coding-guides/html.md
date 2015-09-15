@@ -21,7 +21,7 @@
 
 ## Pitfalls
 
-- **Block**-type tags cannot be nested inside **inline**-type tags: a `div` tag cannot be nested in a <span>
+- **Block**-type tags cannot be nested inside **inline**-type tags: a `<div>` tag cannot be nested in a `<span>`
 - HTML is **not** XML: empty tags cannot be self-closing and will result in improper results
   * `<div/>` will be interpreted as a simple `<div>` without closing tag!
   * The only tags that allows self-closing are the one that does not require a closing tag in first place:
