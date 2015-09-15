@@ -77,6 +77,7 @@ docs        | Generate jsdoc documentation from sources.
 - [End-to-end tests](docs/coding-guides/e2e-tests.md)
 
 # Additional documentation
+
 - [Proxy configuration](docs/proxy.md)
 - [All gulp tasks](docs/tasks.md)
 - [Updating dependencies](docs/updating.md)
