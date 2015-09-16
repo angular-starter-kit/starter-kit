@@ -31,7 +31,7 @@ A page object:
 - Simplifies the test scripts
 - Reduces the amount of duplicated code
 
-If the UI changes, the fix need only be applied in one place.
+If the UI changes, the fix only needs to be applied in one place.
 
 #### How to define a page object
 
