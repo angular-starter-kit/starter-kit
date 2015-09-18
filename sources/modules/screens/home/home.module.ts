@@ -8,6 +8,6 @@ module home {
       'webServices',
       'uiComponents'
     ])
-    .controller(home.HomeController);
+    .controller('homeController', home.HomeController);
 
 }

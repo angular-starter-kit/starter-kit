@@ -6,6 +6,6 @@ module about {
     .module('about', [
       'helpers'
     ])
-    .controller(AboutController);
+    .controller('aboutController', about.AboutController);
 
 }
