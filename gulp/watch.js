@@ -16,7 +16,7 @@ gulp.task('watch', ['inject'], function () {
     debounceDelay: 500
   };
 
-  gulp.watch('bower.json', options, ['inject']);
+  gulp.watch(path.join(conf.paths.src, 'bower.json'), options, ['inject']);
 
   gulp.watch([
     path.join(conf.paths.src, '/**/*.css'),
@@ -36,6 +36,8 @@ gulp.task('watch', ['inject'], function () {
       gulp.start('inject:script');
     }
   });
+
+  gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['typescript']);
 
   gulp.watch(path.join(conf.paths.src, '/**/*.html'), options, ['partials']);
 

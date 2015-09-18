@@ -1,5 +1,8 @@
 # Starter kit
-Web project start kit including tooling, best practices and template seed.
+
+[![Join the chat at https://gitter.im/thales-poles-ra/starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/thales-poles-ra/starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+Web project starter kit including tooling, best practices and project seed.
 
 It is based on our experience in large web projects, with architecture choices
 aiming for a clean, no-brainer development experience even for beginner teams.
@@ -63,15 +66,16 @@ test:auto   | Launch karma server and launch unit tests after each change in pro
 protractor  | Launch e2e tests using protractor.
 docs        | Generate jsdoc documentation from sources.
 
-# Coding guide
+# Coding guides
 
-> TO COMPLETE: naming conventions, code style, best pratices, pitfalls
-
-- [JavaScript](docs/js-guide.md)
-- [CSS](docs/css-guide.md)
-- [HTML](docs/html-guide.md)
+- [JavaScript](docs/coding-guides/js.md)
+- [CSS](docs/coding-guides/css.md)
+- [HTML](docs/coding-guides/html.md)
+- [Unit tests](docs/coding-guides/unit-tests.md)
+- [End-to-end tests](docs/coding-guides/e2e-tests.md)
 
 # Additional documentation
+
 - [Proxy configuration](docs/proxy.md)
 - [All gulp tasks](docs/tasks.md)
 - [Updating dependencies](docs/updating.md)
@@ -117,27 +121,7 @@ docs        | Generate jsdoc documentation from sources.
 
 # Roadmap
 
-#### v1
-- Migrate base template to TypeScript, instead of JavaScript
-- Add support for TypeScript unit tests
-- Improve coding guides
-- Improve project template
-- Improve doc generation (use [dgeni](https://github.com/angular/dgeni)?)
-- Fix base template self-documentation (jsdoc)
-- Improve e2e reporting (coverage)
-- More base components (storage, data dependencies...)
-
-#### v2
-- Mobile version (Cordova + ngCordova, Ionic, Crosswalk...)
-- Add Sass support
-- Custom icons management (font icons or SVG->CSS icons)
-- Consider integration with yeoman?
-
-#### v3
-- Improve documentation (micro training, cheat sheets, posters...)
-- Add bower packages [cleaning](https://github.com/braddenver/preen)
-- Npm dependencies flattening to ease usage on Windows platforms?
-- Repository for common base components?
+See the [wiki](https://github.com/thales-poles-ra/starter-kit/wiki).
 
 # Credits
 
