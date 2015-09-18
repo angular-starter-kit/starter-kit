@@ -8,5 +8,4 @@ module about {
     ])
     .controller(AboutController);
 
-
 }
