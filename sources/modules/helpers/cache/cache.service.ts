@@ -2,6 +2,9 @@ module cacheService {
 
   'use strict';
 
+  /**
+   * Cache service: manages cached data for GET requests.
+   */
   export class CacheService {
 
     private logger: logger.Logger;
@@ -38,7 +41,7 @@ module cacheService {
       this.logger.log('Cache set for key: "' + cacheKey + '"', null);
 
       this.saveCacheData();
-    };
+    }
 
     /**
      * Gets the cached data (if possible) for the specified request.
@@ -57,7 +60,7 @@ module cacheService {
       }
 
       return null;
-    };
+    }
 
     /**
      * Gets the cached data date (if possible) for the specified request.
@@ -70,7 +73,7 @@ module cacheService {
       var cacheKey = this.getCacheKey(url, params);
       var cacheEntry = this.cachedData[cacheKey];
       return cacheEntry ? cacheEntry.date : null;
-    };
+    }
 
     /**
      * Clears the cached data (if exists) for the specified request.
@@ -83,7 +86,7 @@ module cacheService {
       this.cachedData[cacheKey] = undefined;
       this.logger.log('Cache cleared for key: "' + cacheKey + '"', null);
       this.saveCacheData();
-    };
+    }
 
     /**
      * Cleans cache entries older than the specified date.
@@ -101,7 +104,7 @@ module cacheService {
         self.cachedData = {};
       }
       self.saveCacheData();
-    };
+    }
 
     /**
      * Gets the cache key for the specified url and parameters.
@@ -112,14 +115,14 @@ module cacheService {
      */
     private getCacheKey(url: string, params: any) {
       return url + (params ? angular.toJson(params) : '');
-    };
+    }
 
     /**
      * Saves the current cached data into persisted storage.
      */
     private saveCacheData() {
       this.$window.localStorage.cachedData = angular.toJson(this.cachedData);
-    };
+    }
 
     /**
      * Loads cached data from persisted storage.
@@ -127,8 +130,9 @@ module cacheService {
     private loadCacheData() {
       var data = this.$window.localStorage.cachedData;
       this.cachedData = data ? angular.fromJson(data) : {};
-    };
-  };
+    }
+
+  }
 
   angular
     .module('helpers')

@@ -1,21 +1,40 @@
 module shell {
+
   'use strict';
 
+  /**
+   * Displays the SPA shell.
+   * The shell contains the shared parts of the application: header, footer, navigation...
+   */
   export class ShellController {
 
-    public languages: any;
-    public currentLocale: ng.ILocaleService;
+    languages: any;
+    currentLocale: ng.ILocaleService;
+    menuHidden: boolean;
 
     private logger: logger.Logger;
     private $state: ng.ui.IStateService;
 
     /* @ngInject */
-    constructor ($locale: ng.ILocaleService, logger: logger.LoggerService, config: any, $state : ng.ui.IStateService) {
-      this.logger = logger.getLogger('shell');
+    constructor($locale: ng.ILocaleService,
+                $state: ng.ui.IStateService,
+                logger: logger.LoggerService,
+                config: any) {
+
       this.$state = $state;
       this.currentLocale = $locale;
+      this.logger = logger.getLogger('shell');
       this.languages = config.supportedLanguages;
+      this.menuHidden = true;
+
       this.init();
+    }
+
+    /**
+     * Toggles navigation menu visibility on mobile platforms.
+     */
+    toggleMenu() {
+      this.menuHidden = !this.menuHidden;
     }
 
     /**
@@ -23,7 +42,7 @@ module shell {
      * @param {string} name The state name to check.
      * @return {boolean} True if the specified state name is the current.
      */
-    public isCurrentState(name: string): boolean {
+    isCurrentState(name: string): boolean {
       return this.$state.current.name === name;
     }
 
@@ -37,6 +56,7 @@ module shell {
     private init() {
       this.logger.log('init', null);
     }
+
   }
 
 }

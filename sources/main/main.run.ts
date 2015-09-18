@@ -27,7 +27,7 @@ module main {
      * Utility method to set the language in the tools requiring it.
      * @param {String} language The IETF language tag.
      */
-    $rootScope.setLanguage = function(language: string) {
+    $rootScope.setLanguage = function (language?: string) {
       var isSupportedLanguage = _.contains(config.supportedLanguages, language);
 
       // Fallback if language is not supported
@@ -58,4 +58,4 @@ module main {
 
   }
 
-};
+}

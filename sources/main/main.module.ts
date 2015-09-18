@@ -23,4 +23,4 @@ module main {
     'helpers'
   ]);
 
-};
+}

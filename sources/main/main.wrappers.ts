@@ -10,6 +10,6 @@ module main {
    */
   angular
     .module('main')
-    .constant('_', _); // lodash
+    .constant('_', _); // Lodash
 
-};
+}

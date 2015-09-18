@@ -1,6 +1,5 @@
-'use strict';
-
 module uiComponents {
+
   'use strict';
 
   /**
@@ -15,19 +14,17 @@ module uiComponents {
    *
    * Example: <div ui-loading="isLoading" message="Loading..."></div>
    */
-
   export class LoadingDirective implements ng.IDirective {
-      restrict = 'A';
-      templateUrl = 'modules/ui-components/loading/loading.html';
-      scope = {
-        message: '=',
-        isLoading: '=uiLoading'
-      };
+    restrict = 'A';
+    templateUrl = 'modules/ui-components/loading/loading.html';
+    scope = {
+      message: '=',
+      isLoading: '=uiLoading'
+    };
   }
 
   angular
     .module('uiComponents')
-    .directive('uiLoading', () =>
-      new uiComponents.LoadingDirective());
+    .directive('uiLoading', () => new uiComponents.LoadingDirective());
 
 }

@@ -2,10 +2,12 @@ module home {
 
   'use strict';
 
-  angular.module('home', [
-    'helpers',
-    'webServices',
-    'uiComponents'
-  ]).controller('homeController', home.HomeController);
+  angular
+    .module('home', [
+      'helpers',
+      'webServices',
+      'uiComponents'
+    ])
+    .controller(home.HomeController);
 
 }

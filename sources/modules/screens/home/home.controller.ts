@@ -2,18 +2,22 @@ module home {
 
   'use strict';
 
+  /**
+   * Displays the home screen.
+   */
   export class HomeController {
 
-    public isLoading: boolean= true;
-    public quote: any = null;
+    isLoading: boolean = true;
+    quote: any = null;
 
     private logger: logger.Logger;
     private quoteService: quoteService.QuoteService;
 
     /* @ngInject */
-    constructor (quoteService: quoteService.QuoteService, logger: logger.LoggerService) {
+    constructor(quoteService: quoteService.QuoteService, logger: logger.LoggerService) {
       this.logger = logger.getLogger('home');
       this.quoteService = quoteService;
+
       this.init();
     }
 
@@ -31,11 +35,12 @@ module home {
 
       this.quoteService
         .getRandomJoke()
-        .then(function(quote: any) {
+        .then(function (quote: any) {
           vm.quote = quote;
           vm.isLoading = false;
         });
     }
+
   }
 
 }

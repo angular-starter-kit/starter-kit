@@ -5,4 +5,3 @@ module helpers {
   angular.module('helpers', []);
 
 }
-

@@ -1,6 +1,5 @@
-'use strict';
-
 module restService {
+
   'use strict';
 
   /**
@@ -55,7 +54,7 @@ module restService {
         };
 
         if (!cache) {
-          // do not use cache
+          // Do not use cache
           return this.createRequest(promiseBuilder, options);
         } else {
           var cachedData = cache === 'force' ? null : this.cacheService.getCacheData(url, params);
@@ -67,13 +66,13 @@ module restService {
           if (cachedData === null) {
             this.logger.log('GET request: ' + url, null);
 
-            // update cache entry
+            // Update cache entry
             return this.createRequest(promiseBuilder, options).then(function(response: any) {
               self.cacheService.setCacheData(url, params, response, null);
               return angular.copy(response);
             });
           } else {
-            // use cached version
+            // Use cached version
             var deferred = this.$q.defer();
             deferred.resolve(angular.copy(cachedData));
 
@@ -224,7 +223,7 @@ module restService {
        */
       getCacheHandler() {
         return this.cacheHandler;
-      };
+      }
 
       /**
        * Default request handler, that just builds the promise.
@@ -233,9 +232,9 @@ module restService {
        * @type {function}
        */
       private requestHandler(requestBuilder: any, options: any) {
-        // default request handler just builds the request
+        // Default request handler just builds the request
         return requestBuilder(options);
-      };
+      }
 
       /**
        * Default error handler.
@@ -266,7 +265,7 @@ module restService {
           });
         }
         return promise;
-      };
+      }
 
       /**
        * Creates the request.
@@ -276,7 +275,7 @@ module restService {
        */
       private createRequest(requestBuilder: any, options: any) {
         return this.errorHandler(this.requestHandler(requestBuilder, options), options);
-      };
+      }
   }
 
   angular.module('helpers')
