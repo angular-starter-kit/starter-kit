@@ -14,7 +14,12 @@ gulp.task('jade', function() {
   }
 
   return gulp.src(path.join(conf.paths.src, '/**/*.jade'))
-    .pipe($.consolidate('jade', { basedir: conf.paths.src, doctype: 'html', pretty: '  ' })).on('error', conf.errorHandler('Jade'))
+    .pipe($.consolidate('jade', {
+      basedir: conf.paths.src,
+      doctype: 'html',
+      pretty: '  ' })
+    )
+    .on('error', conf.errorHandler('Jade'))
     .pipe($.rename(renameToHtml))
     .pipe(gulp.dest(path.join(conf.paths.tmp)))
     .pipe(browserSync.reload({ stream: true }));

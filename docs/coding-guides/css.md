@@ -50,8 +50,8 @@ And keep in mind this general rules:
 - Keep your style scoped
   * Clearly separate **global** (think *framework*) and **modules** (*components*) style
   * Global style should only go in `main/theme/*` or `main/helpers.less` (never in modules)
-  * Avoid interactions between modules, if some style may need to be shared, refactor it as a
-    framework component in put it in your global theme.
+  * Avoid interactions between modules, if some style may need to be shared, refactor it as a framework component in
+    put it in your global theme.
   * Avoid using wider selectors than needed (always use classes!)
   
 - Avoid rules multiplication
@@ -61,14 +61,13 @@ And keep in mind this general rules:
 - When ugly hacks cannot be avoided, put it in `main/hacks.less`:
   * These ugly hacks should only be **temporary**
   * Each hack should be documented with the author name, the problem and hack reason
-  * Limit this file to a reasonable length (~100 lines) and refactor hacks with proper solutions 
-    when the limit is reached.
+  * Limit this file to a reasonable length (~100 lines) and refactor hacks with proper solutions when the limit is 
+    reached.
 
 ## Pitfalls
 
 - Never use the `!important` keyword. Ever.
-- Never use **inline** style in html, even *just for debugging* (because we KNOW it will
-  end up in your commit)
+- Never use **inline** style in html, even *just for debugging* (because we KNOW it will end up in your commit)
 - Do not use browser-specific prefixes: there is tools taking care of that part 
   ([autoprefixer](https://github.com/postcss/autoprefixer))
 

@@ -2,13 +2,12 @@
 
 ## Environment
 
-Most tools (including npm, bower and git) use the `HTTP_PROXY` and 
-`HTTPS_PROXY` environment variables to work with a corporate proxy.
+Most tools (including npm, bower and git) use the `HTTP_PROXY` and `HTTPS_PROXY` environment variables to work with a
+corporate proxy.
 
 ### Windows
 
-In Windows environments, add the `HTTP_PROXY` and `HTTPS_PROXY` system
-environment variable, with these values:
+In Windows environments, add the `HTTP_PROXY` and `HTTPS_PROXY` system environment variable, with these values:
 
 - HTTP_PROXY: `http://<username>:<password>@<proxy_server>:<proxy_port>`
 - HTTPS_PROXY: `%HTTP_PROXY%`
@@ -23,11 +22,25 @@ export HTTPS_PROXY="$HTTP_PROXY"
 
 ## Proxy with SSL self-signed certificate
 
-Some proxy like **zscaler** use a SSL self-signed certificato to inspect
-request, which may cause npm/bower commands to fail.
+Some proxy like **zscaler** use a SSL self-signed certificato to inspect request, which may cause npm/bower commands
+to fail.
 
-To solve this problem, you can disable the `strict-ssl` option in both npm
-and bower.
+To solve this problem, you can disable the `strict-ssl` option in both npm and bower.
+
+## Proxy exceptions
+
+If you need to access repositories on your local network that should bypass proxy, set the `NO_PROXY` environment
+variable, in the same way as `HTTP_PROXY`:
+
+### Windows
+
+- NO_PROXY: `127.0.0.1, localhost, <your_local_server_ip_or_hostname>`
+
+### Unix
+
+```sh
+export NO_PROXT="127.0.0.1, localhost, <your_local_server_ip_or_hostname>"
+```
 
 ### Bower
 
@@ -45,5 +58,4 @@ npm set strict-ssl false
 
 # Limitations
 
-As for now, it seems there is an issue with the `gulp-imagemin` module, it will
-not install properly behind a proxy.
+As for now, it seems there is an issue with the `gulp-imagemin` module, it will not install properly behind a proxy.

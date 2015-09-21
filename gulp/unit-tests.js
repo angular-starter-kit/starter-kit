@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var conf = require('../gulpfile.config');
 var karma = require('karma');
 
-function runTests (singleRun, done) {
+function runTests(singleRun, done) {
   karma.server.start({
     configFile: path.join(__dirname, '/../karma.conf.js'),
     singleRun: singleRun,

@@ -10,8 +10,7 @@ function isOnlyChange(event) {
   return event.type === 'changed';
 }
 
-gulp.task('watch', ['inject'], function () {
-
+gulp.task('watch', ['inject'], function() {
   var options = {
     debounceDelay: 500
   };

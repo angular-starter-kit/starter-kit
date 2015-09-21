@@ -10,7 +10,7 @@ var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
-gulp.task('html', ['inject'], function () {
+gulp.task('build:sources', ['inject'], function() {
   var htmlFilter = $.filter('*.html');
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
@@ -43,25 +43,35 @@ gulp.task('html', ['inject'], function () {
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
 });
 
-gulp.task('other', ['fonts'], function () {
-  var fileFilter = $.filter(function (file) {
+// Only applies for fonts from bower dependencies
+// Custom fonts are handled by the "other" task
+gulp.task('fonts', function() {
+  return gulp.src($.mainBowerFiles())
+    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+    .pipe($.flatten())
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/fonts/')));
+});
+
+gulp.task('other', ['fonts'], function() {
+  var fileFilter = $.filter(function(file) {
     return file.stat.isFile();
   });
 
   return gulp.src([
-    path.join(conf.paths.src, '/**/*'),
-    path.join(conf.paths.tmp, '/**/*.{eot,svg,ttf,woff,woff2}'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}'),
-    path.join('!' + conf.paths.bower, '/**/*'),
-    path.join('!' + conf.paths.src, '/translations/*'),
-    path.join('!' + conf.paths.src, '/images/*')
-  ])
+      path.join(conf.paths.src, '/**/*'),
+      path.join(conf.paths.tmp, '/**/*.{eot,svg,ttf,woff,woff2}'),
+      path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}'),
+      path.join('!' + conf.paths.bower, '/**/*'),
+      path.join('!' + conf.paths.src, '/translations/*'),
+      path.join('!' + conf.paths.src, '/images/*'),
+      path.join('!' + conf.paths.src, '/bower.json')
+    ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
-gulp.task('clean', function (done) {
+gulp.task('clean', function(done) {
   $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
 
-gulp.task('build', ['html', 'other', 'images']);
+gulp.task('build', ['build:sources', 'other', 'images']);
