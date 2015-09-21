@@ -14,7 +14,7 @@ var wiredep = require('wiredep').stream;
 var _ = require('lodash');
 var mainFolder = path.join(conf.paths.src, conf.paths.main);
 
-gulp.task('styles', ['fonts'], function () {
+gulp.task('styles', ['fonts'], function() {
   var lessOptions = {
     options: [
       conf.paths.bower,
@@ -48,13 +48,4 @@ gulp.task('styles', ['fonts'], function () {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')))
     .pipe(browserSync.reload({ stream: true }));
-});
-
-// Only applies for fonts from bower dependencies
-// Custom fonts are handled by the "other" task
-gulp.task('fonts', function () {
-  return gulp.src($.mainBowerFiles())
-    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
-    .pipe($.flatten())
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/fonts/')));
 });

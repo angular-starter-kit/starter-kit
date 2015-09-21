@@ -12,59 +12,58 @@ This includes linting as well as image, script, stylesheet and HTML optimization
 
 ## Main commands
 
-Task    | Description
---------|-------------------------------------------------------------------------
-serve     | Launch a web server with live reload and open app in browser.
+Task       | Description
+-----------|----------------------------------------------------------------------------------------------------------
+serve      | Launch a web server with live reload and open app in browser.
 serve:dist | Launch a web server using dist files with live reload and open app in browser.
-build | Build and optimize the current project, ready for deployment. This includes linting as well as image, script, stylesheet and HTML optimization and minification.
-clean | Delete temporary files and dist files.
+build      | Build and optimize the current project, ready for deployment. This includes linting as well as image, script, stylesheet and HTML optimization and minification.
+clean      | Delete temporary files and dist files.
 
 ## Tests
 
-Task    | Description
---------|--------------------------------------------------------------------------
-test     | Launch unit tests using karma and jasmine.
-test:auto  | Launch karma server and launch unit tests after each change in project files.
-protractor | Launch e2e tests using protractor.
-protractor:src | Launch e2e tests using protractor (dev).
-protractor:dist | Launch e2e tests using protractor (dist).
-webdriver-update | Download/Update selenium standalone and chromedriver.
-webdriver-standalone | Launch a standalone selenium server.
+Task                 | Description
+---------------------|------------------------------------------------------------------------------------------------
+test                 | Launch unit tests using karma and jasmine.
+test:auto            | Launch karma server and trigger unit tests after each change in project file.
+protractor           | Launch e2e tests using protractor.
+protractor:dist      | Launch e2e tests using protractor, using dist files.
+webdriver:update     | Download/Update selenium standalone and chromedriver.
+webdriver:standalone | Launch a standalone selenium server.
 
 ## Translations
 
-Task    | Description
---------|---------------------------------------------------------------------------
-translations     | Generate translations file in .tmp that will be used by server.
+Task                 | Description
+---------------------|------------------------------------------------------------------------------------------------
+translations         | Generate translations file in .tmp that will be used by server.
 translations:extract | Extract Messages from Code and Templates to template.pot.
 
-## Typescript
+## TypeScript
 
-Task    | Description
---------|---------------------------------------------------------------------------
-typescript     | Convert all *.ts found in project to js in the temporary folder.
-tsd:install | Get all ts definitions from an external url.
-tsd:purge | Delete definition files.
+Task        | Description
+------------|---------------------------------------------------------------------------------------------------------
+typescript  | Convert all *.ts found in project to js in the temporary folder.
+tsd:install | Download all TypeScript definitions from an external url.
+tsd:clean   | Delete downloaded TypeScript definitions.
 
-## Html / Jade
+## HTML / Jade
 
-Task    | Description
---------|---------------------------------------------------------------------------
-html     | Convert all .ts found in project to a .js in the temporary folder.
-jade | Convert all .jade found in project to html in the temporary folder.
+Task     | Description
+---------|------------------------------------------------------------------------------------------------------------
 partials | Put all .html found in project folder + in temporary folder in a template cache file.
+jade     | Convert all .jade found in project to HTML in the temporary folder.
 
-## Assets
+## Build and assets
 
-Task    | Description
---------|---------------------------------------------------------------------------
-styles  | Generate main css file using main less file.
-fonts   | Copy project fonts in dist folder.
-images  | Compress images (using imagemin) then copy them in dist folder.
-other   | Copy other specified files in dist folder.
+Task         | Description
+-------------|--------------------------------------------------------------------------------------------------------
+build:source | Build and optimize all source files, excluding assets.
+styles       | Generate main CSS file using project main style file.
+fonts        | Copy fonts from bower dependencies in dist folder.
+images       | Compress images (using imagemin) then copy them in dist folder.
+other        | Copy project fonts and other misc files in dist folder.
 
 ## Documentation
 
 Task    | Description
---------|---------------------------------------------------------------------------
-docs     | Generate jsdoc documentation from sources.
+--------|-------------------------------------------------------------------------------------------------------------
+docs    | Generate jsdoc documentation from sources.

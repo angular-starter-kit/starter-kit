@@ -54,7 +54,7 @@ gulp.task('tsd:install', function () {
     });
 });
 
-gulp.task('tsd:purge', function () {
+gulp.task('tsd:clean', function () {
   return tsdApi.purge(true, true);
 });
 

@@ -8,12 +8,12 @@ var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
 
-var noop = function () {};
+var noop = function() {};
 
-gulp.task('scripts', ['typescript'], function () {
+gulp.task('scripts', ['typescript'], function() {
   return gulp.src([
-    path.join(conf.paths.src, '/**/*.js'),
-    path.join('!' + conf.paths.src, '/libraries/**/*.js')
+      path.join(conf.paths.src, '/**/*.js'),
+      path.join('!' + conf.paths.src, '/libraries/**/*.js')
   	])
     .pipe($.jshint()) // jshint, it follows .jshintrc
     .pipe($.jscs()) // jscs, it follows .jscsrc

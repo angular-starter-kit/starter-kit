@@ -48,6 +48,9 @@
      * Initializes the root controller.
      */
     function init() {
+      // Enable debug mode for translations
+      gettextCatalog.debug = config.debug;
+
       $rootScope.setLanguage();
 
       // Set REST server configuration
