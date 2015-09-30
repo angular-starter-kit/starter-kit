@@ -43,4 +43,8 @@ module home {
 
   }
 
+  angular
+    .module('home')
+    .controller('homeController', home.HomeController);
+
 }

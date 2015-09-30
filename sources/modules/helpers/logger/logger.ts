@@ -159,6 +159,7 @@ module logger {
   /**
    * declare logger angular module
    */
-  angular.module('helpers')
+  angular
+    .module('helpers')
     .service('logger', LoggerService);
 }

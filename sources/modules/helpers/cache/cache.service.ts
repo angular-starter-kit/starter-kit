@@ -12,7 +12,9 @@ module cacheService {
     private cachedData: any = {};
 
     /* @ngInject */
-    constructor(logger: any, $window: any) {
+    constructor(logger: any,
+                $window: any) {
+
       this.logger = logger.getLogger('cacheService');
       this.$window = $window;
 
@@ -95,7 +97,7 @@ module cacheService {
     cleanCache(expirationDate: Date) {
       var self = this;
       if (expirationDate) {
-        angular.forEach(self.cachedData, function(value: any, key: string) {
+        angular.forEach(self.cachedData, function (value: any, key: string) {
           if (expirationDate >= value.date) {
             self.cachedData[key] = undefined;
           }
@@ -137,4 +139,5 @@ module cacheService {
   angular
     .module('helpers')
     .service('cacheService', CacheService);
+
 }

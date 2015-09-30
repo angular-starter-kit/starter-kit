@@ -278,7 +278,8 @@ module restService {
       }
   }
 
-  angular.module('helpers')
+  angular
+    .module('helpers')
     .service('restService', RestService);
 
 }

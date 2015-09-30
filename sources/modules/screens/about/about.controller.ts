@@ -13,7 +13,9 @@ module about {
     private config: any;
 
     /* @ngInject */
-    constructor(logger: logger.LoggerService, config: any) {
+    constructor(logger: logger.LoggerService,
+                config: any) {
+
       this.logger = logger.getLogger('about');
       this.config = config;
 
@@ -33,5 +35,9 @@ module about {
     }
 
   }
+
+  angular
+    .module('about')
+    .controller('aboutController', AboutController);
 
 }
