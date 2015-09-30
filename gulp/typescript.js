@@ -21,6 +21,7 @@ gulp.task('typescript', ['tsd:install'], function() {
     .pipe($.tslint())
     .pipe($.tslint.report('prose', { emitError: false }))
     .pipe($.typescript(tsProject)).on('error', conf.errorHandler('TypeScript'))
+    .pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'))
     .pipe($.concat('app.ts.js'))
     .pipe($.sourcemaps.write({
       includeContent: true,
