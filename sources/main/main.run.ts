@@ -1,12 +1,6 @@
-'use strict';
-
 module main {
 
   'use strict';
-
-  angular
-    .module('main')
-    .run(main);
 
   /**
    * Entry point of the application.
@@ -60,5 +54,9 @@ module main {
     }
 
   }
+
+  angular
+    .module('main')
+    .run(main);
 
 }
