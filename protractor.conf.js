@@ -32,7 +32,7 @@ exports.config = {
   onPrepare: function() {
     // reporter in html with a screenshot for each test.
     jasmine.getEnv().addReporter(new HtmlReporter({
-       baseDirectory: 'reports/e2e/html'
+      baseDirectory: 'reports/e2e/html'
     }));
   }
 };
