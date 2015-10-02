@@ -10,7 +10,7 @@ var tsd = require('tsd');
 var tsdJson = 'tsd.json';
 var tsdApi = new tsd.getAPI(tsdJson);
 
-gulp.task('tsd:install', function () {
+gulp.task('tsd:install', function() {
   var bower = require(path.join(process.cwd(), conf.paths.src, 'bower.json'));
 
   var dependencies = [].concat(
@@ -19,7 +19,7 @@ gulp.task('tsd:install', function () {
   );
 
   var query = new tsd.Query();
-  dependencies.forEach(function (dependency) {
+  dependencies.forEach(function(dependency) {
     query.addNamePattern(dependency);
   });
 
@@ -29,32 +29,32 @@ gulp.task('tsd:install', function () {
   options.saveBundle = true;
 
   return tsdApi.readConfig()
-    .then(function () {
+    .then(function() {
       return tsdApi.select(query, options);
     })
-    .then(function (selection) {
+    .then(function(selection) {
       return tsdApi.install(selection, options);
     })
-    .then(function (installResult) {
+    .then(function(installResult) {
       var written = Object.keys(installResult.written.dict);
       var removed = Object.keys(installResult.removed.dict);
       var skipped = Object.keys(installResult.skipped.dict);
 
-      written.forEach(function (dts) {
+      written.forEach(function(dts) {
         gutil.log('Definition file written: ' + dts);
       });
 
-      removed.forEach(function (dts) {
+      removed.forEach(function(dts) {
         gutil.log('Definition file removed: ' + dts);
       });
 
-      skipped.forEach(function (dts) {
+      skipped.forEach(function(dts) {
         gutil.log('Definition file skipped: ' + dts);
       });
     });
 });
 
-gulp.task('tsd:clean', function () {
+gulp.task('tsd:clean', function() {
   return tsdApi.purge(true, true);
 });
 
