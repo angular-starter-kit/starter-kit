@@ -1,4 +1,4 @@
-module about {
+module app {
 
   'use strict';
 
@@ -9,11 +9,11 @@ module about {
 
     version: string;
 
-    private logger: logger.Logger;
+    private logger: ILogger;
     private config: any;
 
     /* @ngInject */
-    constructor(logger: logger.LoggerService,
+    constructor(logger: LoggerService,
                 config: any) {
 
       this.logger = logger.getLogger('about');
@@ -22,12 +22,8 @@ module about {
       this.init();
     }
 
-    /*
-     * Internal
-     */
-
     /**
-     * Init controller.
+     * Initializes controller.
      */
     private init() {
       this.version = this.config.version;
@@ -37,7 +33,7 @@ module about {
   }
 
   angular
-    .module('about')
+    .module('app')
     .controller('aboutController', AboutController);
 
 }

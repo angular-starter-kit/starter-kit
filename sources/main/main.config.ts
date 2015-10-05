@@ -1,13 +1,13 @@
-module main {
+module app {
 
   'use strict';
 
   /**
    * Configures the application (before running).
    */
-  function mainConfig($stateProvider: any,
-                      $urlRouterProvider: any,
-                      $provide: any,
+  function mainConfig($provide: ng.auto.IProvideService,
+                      $stateProvider: angular.ui.IStateProvider,
+                      $urlRouterProvider: angular.ui.IUrlRouterProvider,
                       config: any) {
 
     // Extend the $exceptionHandler service to output logs.
@@ -50,7 +50,7 @@ module main {
   }
 
   angular
-    .module('main')
+    .module('app')
     .config(mainConfig);
 
 }

@@ -1,4 +1,4 @@
-module main {
+module app {
 
   'use strict';
 
@@ -6,12 +6,12 @@ module main {
    * Entry point of the application.
    * Initializes application and root controller.
    */
-  function main($locale: any,
+  function main($locale: ng.ILocaleService,
                 $rootScope: any,
-                gettextCatalog: any,
-                _: any,
+                gettextCatalog: angular.gettext.gettextCatalog,
+                _: _.LoDashStatic,
                 config: any,
-                restService: any) {
+                restService: RestService) {
 
     /*
      * Root view model
@@ -56,7 +56,7 @@ module main {
   }
 
   angular
-    .module('main')
+    .module('app')
     .run(main);
 
 }

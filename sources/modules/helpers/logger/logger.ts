@@ -30,11 +30,11 @@
  * If you want additional tasks to be performed on log entry (show toast, for example),
  * you can register observers using the addObserver() method.
  */
-module logger {
+module app {
 
   'use strict';
 
-  let observers: Array<Function> = [];
+  var observers: Array<Function> = [];
 
   /**
    * Logs a message from the specified source.
@@ -44,7 +44,7 @@ module logger {
    * @param {'log'|'info'|'warning'|'error'} level The log level.
    * @param {Object?} options Additional log options.
    */
-  function log(message: string, source: string, logFunc: any, level: string, options: any): void {
+  function log(message: string, source: string, logFunc: Function, level: string, options: any): void {
     logFunc(source ? '[' + source + ']' : '', message, '');
     angular.forEach(observers, function (observerFunc: any) {
       observerFunc(message, source, level, options);
@@ -54,14 +54,14 @@ module logger {
   /*
    * ILogger interface
    */
-  interface ILogger {
+  export interface ILogger {
 
     /**
      * Logs a message with the log level.
      * @param {string} message The message to be logged.
      * @param {Object?} options Additional log options.
      */
-    log(message: string, options?: any): void;
+    log(message: string, options?: Object): void;
 
     /**
      * Logs a message with the info level.
@@ -69,34 +69,41 @@ module logger {
      * @param {Object?} options Additional log options.
      */
 
-    info(message: string, options?: any): void;
+    info(message: string, options?: Object): void;
 
     /**
      * Logs a message with the warning level.
      * @param {string} message The message to be logged.
      * @param {Object?} options Additional log options.
      */
-    warning(message: string, options?: any): void;
+    warning(message: string, options?: Object): void;
 
     /**
      * Logs a message with the error level.
      * @param {string} message The message to be logged.
      * @param {Object?} options Additional log options.
      */
-    error(message: string, options?: any): void;
+    error(message: string, options?: Object): void;
 
+  }
+
+  /*
+   * IObserverFunction interface
+   */
+  export interface IObserverFunction {
+    (message: string, source: string, level: string, options?: any): void;
   }
 
   /*
    * Logger class
    */
-  export class Logger implements ILogger {
+  class Logger implements ILogger {
 
+    private $log: ng.ILogService;
     private moduleName: string;
     private logFunc: any;
-    private $log: ng.ILogService;
 
-    constructor(moduleName: string, logFunc: any, $log: ng.ILogService) {
+    constructor($log: ng.ILogService, moduleName: string, logFunc: any) {
       this.moduleName = moduleName;
       this.logFunc = logFunc;
       this.$log = $log;
@@ -137,8 +144,8 @@ module logger {
      * @param {string} moduleName The module name.
      * @return {Logger} A logger object.
      */
-    getLogger(moduleName: string) {
-      return new Logger(moduleName, log, this.$log);
+    getLogger(moduleName: string): ILogger {
+      return new Logger(this.$log, moduleName, log);
     }
 
     /**
@@ -150,7 +157,7 @@ module logger {
      * - options {Object?} options Additional log options.
      * @param {!function} observerFunc The observer function.
      */
-    addObserver(observerFunc: Function) {
+    addObserver(observerFunc: IObserverFunction) {
       observers.push(observerFunc);
     }
 
@@ -160,6 +167,7 @@ module logger {
    * declare logger angular module
    */
   angular
-    .module('helpers')
+    .module('app')
     .service('logger', LoggerService);
+
 }

@@ -1,4 +1,4 @@
-module home {
+module app {
 
   'use strict';
 
@@ -10,23 +10,21 @@ module home {
     isLoading: boolean = true;
     quote: any = null;
 
-    private logger: logger.Logger;
-    private quoteService: quoteService.QuoteService;
+    private logger: ILogger;
+    private quoteService: QuoteService;
 
     /* @ngInject */
-    constructor(quoteService: quoteService.QuoteService, logger: logger.LoggerService) {
+    constructor(logger: LoggerService,
+                quoteService: QuoteService) {
+
       this.logger = logger.getLogger('home');
       this.quoteService = quoteService;
 
       this.init();
     }
 
-    /*
-     * Internal
-     */
-
     /**
-     * Init controller.
+     * Initializes controller.
      */
     private init() {
       this.logger.log('init', null);
@@ -44,7 +42,7 @@ module home {
   }
 
   angular
-    .module('home')
-    .controller('homeController', home.HomeController);
+    .module('app')
+    .controller('homeController', HomeController);
 
 }

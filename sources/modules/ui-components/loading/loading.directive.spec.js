@@ -11,7 +11,7 @@ describe('loading directive', function() {
 
   beforeEach(function() {
     module('templateCache');
-    module('uiComponents');
+    module('app');
 
     inject(function(_$rootScope_,
                     _$compile_) {

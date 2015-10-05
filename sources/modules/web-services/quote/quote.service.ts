@@ -1,25 +1,22 @@
-module quoteService {
+module app {
 
   'use strict';
-
-  interface IRoutes {
-    randomJoke: string;
-  }
 
   /**
    * Quote service: allows to get quote of the day.
    */
   export class QuoteService {
 
-    private ROUTES: IRoutes = {
+    private ROUTES = {
       randomJoke: '/jokes/random?limitTo=[nerdy]'
     };
 
     private $q: ng.IQService;
-    private restService: restService.RestService;
+    private restService: RestService;
 
+    /* @ngInject */
     constructor($q: ng.IQService,
-                restService: restService.RestService) {
+                restService: RestService) {
 
       this.$q = $q;
       this.restService = restService;
@@ -29,9 +26,9 @@ module quoteService {
      * Get a random Chuck Norris joke.
      * @return {Object} The promise.
      */
-    getRandomJoke(): any {
+    getRandomJoke(): ng.IPromise<string> {
       return this.restService
-        .get(this.ROUTES.randomJoke, null, true, null)
+        .get(this.ROUTES.randomJoke, null, true)
         .then(function (response: any) {
           if (response.data && response.data.value) {
             return response.data.value.joke.replace(/&quot;/g, '"');
@@ -46,7 +43,7 @@ module quoteService {
   }
 
   angular
-    .module('webServices')
+    .module('app')
     .service('quoteService', QuoteService);
 
 }

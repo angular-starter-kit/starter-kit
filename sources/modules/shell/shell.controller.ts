@@ -1,4 +1,4 @@
-module shell {
+module app {
 
   'use strict';
 
@@ -12,13 +12,13 @@ module shell {
     currentLocale: ng.ILocaleService;
     menuHidden: boolean;
 
-    private logger: logger.Logger;
     private $state: ng.ui.IStateService;
+    private logger: ILogger;
 
     /* @ngInject */
     constructor($locale: ng.ILocaleService,
                 $state: ng.ui.IStateService,
-                logger: logger.LoggerService,
+                logger: LoggerService,
                 config: any) {
 
       this.$state = $state;
@@ -46,12 +46,8 @@ module shell {
       return this.$state.current.name === name;
     }
 
-    /*
-     * Internal
-     */
-
     /**
-     * Init controller.
+     * Initializes controller.
      */
     private init() {
       this.logger.log('init', null);
@@ -60,7 +56,7 @@ module shell {
   }
 
   angular
-    .module('shell')
-    .controller('shellController', shell.ShellController);
+    .module('app')
+    .controller('shellController', ShellController);
 
 }

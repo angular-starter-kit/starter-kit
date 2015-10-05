@@ -10,7 +10,7 @@ describe('quoteService', function() {
   var quoteService;
 
   beforeEach(function() {
-    module('webServices');
+    module('app');
 
     inject(function(_$q_,
                     _quoteService_,

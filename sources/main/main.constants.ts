@@ -1,4 +1,4 @@
-module main {
+module app {
 
   'use strict';
 
@@ -6,7 +6,7 @@ module main {
    * Defines app-level configuration.
    */
   angular
-    .module('main')
+    .module('app')
     .constant('config', {
 
       // DO NOT CHANGE: debug mode is automatically switched to false on gulp build
@@ -30,4 +30,3 @@ module main {
     });
 
 }
-

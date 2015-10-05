@@ -1,4 +1,4 @@
-module uiComponents {
+module app {
 
   'use strict';
 
@@ -24,7 +24,7 @@ module uiComponents {
   }
 
   angular
-    .module('uiComponents')
-    .directive('uiLoading', () => new uiComponents.LoadingDirective());
+    .module('app')
+    .directive('uiLoading', () => new LoadingDirective());
 
 }
