@@ -7,7 +7,7 @@
    * global window: false
    */
   angular
-    .module('main')
+    .module('app')
     .constant('_', window._); // lodash
 
 })();

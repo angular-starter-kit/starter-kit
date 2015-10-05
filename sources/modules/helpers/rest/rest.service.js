@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('helpers')
+    .module('app')
     .factory('restService', restService);
 
   /**

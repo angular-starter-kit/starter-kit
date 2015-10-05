@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('main')
+    .module('app')
     .run(main);
 
   /**

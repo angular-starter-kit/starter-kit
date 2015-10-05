@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('about')
+    .module('app')
     .controller('aboutController', AboutController);
 
   /**

@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('shell')
+    .module('app')
     .controller('shellController', ShellController);
 
   /**

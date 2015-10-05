@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('uiComponents')
+    .module('app')
     .directive('uiLoading', loadingDirective);
 
   /**

@@ -8,12 +8,12 @@ describe('logger', function() {
   var logger;
 
   beforeEach(function() {
-    module('helpers');
-  });
+    module('app');
 
-  beforeEach(inject(function(_logger_) {
-    logger = _logger_;
-  }));
+    inject(function(_logger_) {
+      logger = _logger_;
+    });
+  });
 
   describe('addObserver', function() {
 

@@ -17,7 +17,7 @@ gulp.task('partials', ['jade'], function() {
       quotes: true
     }))
     .pipe($.angularTemplatecache('templateCache.js', {
-      module: 'main'
+      module: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
 });

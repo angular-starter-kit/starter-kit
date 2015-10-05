@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('home')
+    .module('app')
     .controller('homeController', HomeController);
 
   /**

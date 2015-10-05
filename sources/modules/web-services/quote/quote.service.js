@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('webServices')
+    .module('app')
     .factory('quoteService', quoteService);
 
   /**
