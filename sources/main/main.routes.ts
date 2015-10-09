@@ -1,16 +1,12 @@
-(function() {
+module app {
 
   'use strict';
-
-  angular
-    .module('app')
-    .config(routeConfig);
 
   /**
    * Configures the application routes.
    */
-  function routeConfig($stateProvider,
-                       $urlRouterProvider) {
+  function routeConfig($stateProvider: angular.ui.IStateProvider,
+                       $urlRouterProvider: angular.ui.IUrlRouterProvider) {
 
     // Routes configuration
     $urlRouterProvider.otherwise('/');
@@ -33,5 +29,9 @@
 
   }
 
-})();
+  angular
+    .module('app')
+    .config(routeConfig);
+
+}
 

@@ -2,10 +2,6 @@ module app {
 
   'use strict';
 
-  angular
-    .module('uiComponents')
-    .directive('uiLoading', loadingDirective);
-
   /**
    * Loading directive: displays a loading indicator while data is being loaded.
    *
