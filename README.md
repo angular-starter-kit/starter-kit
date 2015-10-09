@@ -33,7 +33,8 @@ sources/                project source code
 |- main/                main module, for entry points and global style
 |  |- main.config.js    app configuration code
 |  |- main.constants.js app configuration constants
-|  |- main.module.js    main module definition
+|  |- main.module.js    app module definition
+|  |- main.routes.js    app routes
 |  |- main.run.js       app entry point
 |  |- main.wrappers.js  AngularJS module wrappers for external libraries
 |  +- main.less         style entry point
