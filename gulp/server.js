@@ -17,7 +17,7 @@ function setupCorporateProxy(options) {
   return options;
 }
 
-function browserSyncInit(baseDir, browser) {
+function browserSyncInit(baseDir, browser, done) {
   browser = browser === undefined ? 'default' : browser;
 
   var server = {
@@ -36,25 +36,25 @@ function browserSyncInit(baseDir, browser) {
     startPath: '/',
     server: server,
     browser: browser
-  });
+  }, done);
 }
 
 browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
-gulp.task('serve', ['watch'], function() {
-  browserSyncInit([conf.paths.tmp, conf.paths.src]);
+gulp.task('serve', ['watch'], function(done) {
+  browserSyncInit([conf.paths.tmp, conf.paths.src], undefined, done);
 });
 
-gulp.task('serve:dist', ['build'], function() {
-  browserSyncInit(conf.paths.dist);
+gulp.task('serve:dist', ['build'], function(done) {
+  browserSyncInit(conf.paths.dist, undefined, done);
 });
 
-gulp.task('serve:e2e', ['inject'], function() {
-  browserSyncInit([conf.paths.tmp, conf.paths.src], []);
+gulp.task('serve:e2e', ['inject'], function(done) {
+  browserSyncInit([conf.paths.tmp, conf.paths.src], [], done);
 });
 
-gulp.task('serve:e2e-dist', ['build'], function() {
-  browserSyncInit(conf.paths.dist, []);
+gulp.task('serve:e2e-dist', ['build'], function(done) {
+  browserSyncInit(conf.paths.dist, [], done);
 });
