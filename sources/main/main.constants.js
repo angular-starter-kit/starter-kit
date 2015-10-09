@@ -21,7 +21,7 @@
         'fr-FR'
       ],
 
-      // REST backend configuration, used for all web services
+      // REST backend configuration, used for all web services using restService
       server: {
         restServerUrl: '/',
         restUri: 'api'
