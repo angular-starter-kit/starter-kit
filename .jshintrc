@@ -44,7 +44,7 @@
   "laxbreak": false,
   "laxcomma": false,
   "loopfunc": true,
-  "maxerr": false,
+  "maxerr": 50,
   "moz": false,
   "multistr": false,
   "notypeof": false,
@@ -57,13 +57,11 @@
   "noyield": false,
 
   "globals": {
-    // App (AngularJS, Cordova...)
     "angular": false,
     "module": true,
     "cordova": false,
     "$": false,
 
-    // Jasmine
     "jasmine": true,
     "inject": true,
     "describe": true,
@@ -73,13 +71,11 @@
     "it": true,
     "spyOn": true,
 
-    // Protractor
     "browser": true,
     "element": true,
     "by": true,
     "protractor": true,
 
-    // Bower
     "bower": true
   }
 }

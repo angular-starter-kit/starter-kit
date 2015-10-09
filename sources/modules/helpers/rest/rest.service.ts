@@ -2,10 +2,9 @@ module app {
 
   'use strict';
 
-  export interface IServerConfig {
-    restServerUrl: string;
-    restUri: string;
-  }
+  angular
+    .module('helpers')
+    .factory('restService', restService);
 
   export interface ICacheHandlerFunction {
     (cachedData: any): any;

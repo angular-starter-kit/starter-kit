@@ -6,8 +6,6 @@ module app {
    * Configures the application (before running).
    */
   function mainConfig($provide: ng.auto.IProvideService,
-                      $stateProvider: angular.ui.IStateProvider,
-                      $urlRouterProvider: angular.ui.IUrlRouterProvider,
                       config: any) {
 
     // Extend the $exceptionHandler service to output logs.
@@ -29,24 +27,6 @@ module app {
       return $delegate;
     });
 
-    // Routes configuration
-    $urlRouterProvider.otherwise('/');
-
-    $stateProvider
-      .state('app', {
-        templateUrl: 'modules/shell/shell.html',
-        controller: 'shellController as vm'
-      })
-      .state('app.home', {
-        url: '/',
-        templateUrl: 'modules/screens/home/home.html',
-        controller: 'homeController as vm'
-      })
-      .state('app.about', {
-        url: '/about',
-        templateUrl: 'modules/screens/about/about.html',
-        controller: 'aboutController as vm'
-      });
   }
 
   angular
