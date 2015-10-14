@@ -86,8 +86,8 @@ module.exports = function(config) {
       'sources/**/*.html': ['ng-html2js'],
       // Source files, that you wanna generate coverage for.
       // Do not include tests or libraries.
-      'sources/modules/**/*.js': ['coverage'],
-      'sources/main/*.js': ['coverage']
+      'sources/modules/**/!(*.spec).js': ['coverage'],
+      'sources/main/!(*.spec).js': ['coverage']
     },
 
     // List of reporters
