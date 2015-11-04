@@ -33,16 +33,16 @@ And keep in mind this general rules:
 
 - Use object-oriented CSS (OOCSS):
   * Factorize common code in base class, and extend it, for example:
-	```less
-	// Base button class
-	.btn { ... }
-	
-	// Color variation
-	.btn-warning { ... }
-	
-	// Size variation
-	.btn-small { ... }
-	```
+  ```less
+  // Base button class
+  .btn { ... }
+  
+  // Color variation
+  .btn-warning { ... }
+  
+  // Size variation
+  .btn-small { ... }
+  ```
   * Try to name class by function, not style nor semantics for better reusability:
     Use `.btn-warning`, not `btn-orange` nor `btn-cancel`
   * Avoid undoing style, refactor using common base classes and extensions
