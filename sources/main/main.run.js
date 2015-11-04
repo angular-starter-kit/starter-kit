@@ -21,11 +21,13 @@
      * Root view model
      */
 
+    var vm = $rootScope;
+
     /**
      * Utility method to set the language in the tools requiring it.
-     * @param {string} language The IETF language tag.
+     * @param {string=} language The IETF language tag.
      */
-    $rootScope.setLanguage = function(language) {
+    vm.setLanguage = function(language) {
       var isSupportedLanguage = _.contains(config.supportedLanguages, language);
 
       // Fallback if language is not supported
@@ -51,7 +53,8 @@
       // Enable debug mode for translations
       gettextCatalog.debug = config.debug;
 
-      $rootScope.setLanguage();
+      vm.setLanguage();
+      vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
 
       // Set REST server configuration
       restService.setServer(config.server);

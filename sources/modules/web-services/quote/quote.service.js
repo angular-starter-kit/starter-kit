@@ -10,6 +10,7 @@
    * Quote service: allows to get quote of the day.
    */
   function quoteService($q,
+                        contextService,
                         restService) {
 
     /*
@@ -17,7 +18,7 @@
      */
 
     var ROUTES = {
-      randomJoke: '/jokes/random?limitTo=[nerdy]'
+      randomJoke: 'jokes/random?escape=javascript&limitTo=[:category]'
     };
 
     /*
@@ -28,16 +29,19 @@
 
     /**
      * Get a random Chuck Norris joke.
+     * Used context properties:
+     * - category: the joke's category: 'nerdy', 'explicit'...
+     * @param {Object} context The context to use.
      * @return {Object} The promise.
      */
-    service.getRandomJoke = function() {
+    service.getRandomJoke = function(context) {
       return restService
-        .get(ROUTES.randomJoke, null, true)
+        .get(contextService.inject(ROUTES.randomJoke, context), null, true)
         .then(function(response) {
           if (response.data && response.data.value) {
-            return response.data.value.joke.replace(/&quot;/g, '"');
+            return response.data.value.joke;
           }
-          return $q.reject({});
+          return $q.reject();
         })
         .catch(function() {
           return 'Error, could not load joke :-(';

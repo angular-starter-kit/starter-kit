@@ -13,10 +13,6 @@ msgstr ""
 msgid "T_APP_NAME"
 msgstr "Starter Kit"
 
-#. Company name. Do not translate.
-msgid "T_APP_COMPANY"
-msgstr "Company"
-
 #. Home section
 msgid "T_HOME"
 msgstr "Home"
@@ -24,6 +20,10 @@ msgstr "Home"
 #. About section
 msgid "T_ABOUT"
 msgstr "About"
+
+#. Toggle navigation (for screen readers)
+msgid "T_TOGGLE_NAVIGATION"
+msgstr "Toggle navigation"
 
 # --------------------------------------------------
 # Homepage

@@ -37,9 +37,11 @@
       logger.log('init');
 
       quoteService
-        .getRandomJoke()
+        .getRandomJoke({category: 'nerdy'})
         .then(function(quote) {
           vm.quote = quote;
+        })
+        .finally(function() {
           vm.isLoading = false;
         });
     }
