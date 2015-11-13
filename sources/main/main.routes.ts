@@ -7,7 +7,7 @@ module app {
    */
   function routeConfig($stateProvider: angular.ui.IStateProvider,
                        $urlRouterProvider: angular.ui.IUrlRouterProvider,
-                       gettext) {
+                       gettext: angular.gettext.gettextFunction) {
 
     // Routes configuration
     $urlRouterProvider.otherwise('/');
