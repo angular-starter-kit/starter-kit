@@ -54,6 +54,7 @@
     "http-proxy-middleware": "^0.8.1",
     "https-proxy-agent": "^1.0.0",
     "jade": "~1.11.0",
+    "jasmine-spec-reporter": "^2.4.0",
     "jsdoc": "~3.3.2",
     "jshint-stylish": "~2.0.0",
     "karma": "~0.12.36",
