@@ -6,7 +6,8 @@ module app {
    * Configures the application routes.
    */
   function routeConfig($stateProvider: angular.ui.IStateProvider,
-                       $urlRouterProvider: angular.ui.IUrlRouterProvider) {
+                       $urlRouterProvider: angular.ui.IUrlRouterProvider,
+                       gettext) {
 
     // Routes configuration
     $urlRouterProvider.otherwise('/');
@@ -20,14 +21,13 @@ module app {
         url: '/',
         templateUrl: 'modules/screens/home/home.html',
         controller: 'homeController as vm',
-        data: {title: 'T_HOME'}
+        data: {title: gettext('T_HOME')}
       })
       .state('app.about', {
         url: '/about',
         templateUrl: 'modules/screens/about/about.html',
         controller: 'aboutController as vm',
-        data: {title: 'T_ABOUT'}
-
+        data: {title: gettext('T_ABOUT')}
       });
 
   }
