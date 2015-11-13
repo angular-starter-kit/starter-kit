@@ -15,7 +15,7 @@ function runTests(singleRun, done) {
   });
 }
 
-gulp.task('test', ['scripts'], function(done) {
+gulp.task('test', ['inject'], function(done) {
   runTests(true, done);
 });
 
