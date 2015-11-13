@@ -12,6 +12,7 @@
    */
   function main($locale,
                 $rootScope,
+                $state,
                 gettextCatalog,
                 _,
                 config,
@@ -22,6 +23,8 @@
      */
 
     var vm = $rootScope;
+
+    vm.pageTitle = '';
 
     /**
      * Utility method to set the language in the tools requiring it.
@@ -40,6 +43,20 @@
       $locale.id = language;
     };
 
+    /**
+     * Updates page title on view change.
+     */
+    vm.$on('$stateChangeSuccess', function(event, toState) {
+      updatePageTitle(toState.data ? toState.data.title : null);
+    });
+
+    /**
+     * Updates page title on language change.
+     */
+    vm.$on('gettextLanguageChanged', function() {
+      updatePageTitle($state.current.data ? $state.current.data.title : null);
+    });
+
     init();
 
     /*
@@ -54,10 +71,21 @@
       gettextCatalog.debug = config.debug;
 
       vm.setLanguage();
-      vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
 
       // Set REST server configuration
       restService.setServer(config.server);
+    }
+
+    /**
+     * Updates the page title.
+     * @param {?string=} stateTitle Title of current state, to be translated.
+     */
+    function updatePageTitle(stateTitle) {
+      vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
+
+      if (stateTitle) {
+        vm.pageTitle += ' | ' + gettextCatalog.getString(stateTitle);
+      }
     }
 
   }

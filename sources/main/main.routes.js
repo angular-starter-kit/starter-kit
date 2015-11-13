@@ -23,12 +23,14 @@
       .state('app.home', {
         url: '/',
         templateUrl: 'modules/screens/home/home.html',
-        controller: 'homeController as vm'
+        controller: 'homeController as vm',
+        data: {title: 'T_HOME'}
       })
       .state('app.about', {
         url: '/about',
         templateUrl: 'modules/screens/about/about.html',
-        controller: 'aboutController as vm'
+        controller: 'aboutController as vm',
+        data: {title: 'T_ABOUT'}
       });
 
   }
