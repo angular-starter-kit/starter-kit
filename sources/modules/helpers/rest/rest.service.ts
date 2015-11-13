@@ -43,7 +43,7 @@ module app {
      * @type {Function}
      */
     private cacheHandler: ICacheHandlerFunction = angular.identity;
-    private $q: ng.IQService ;
+    private $q: ng.IQService;
     private logger: ILogger;
     private $http: ng.IHttpService;
     private cacheService: CacheService;
@@ -74,7 +74,7 @@ module app {
     get(url: string, params?: any, cache?: boolean|string, options?: any): ng.IPromise<any> {
       var apiUrl = this.baseUri + url;
       var self = this;
-      var promiseBuilder = function () {
+      var promiseBuilder = function() {
         return self.$http.get(apiUrl, {params: params});
       };
 
@@ -92,7 +92,7 @@ module app {
           this.logger.log('GET request: ' + url, null);
 
           // Update cache entry
-          return this.createRequest(promiseBuilder, options).then(function (response: any) {
+          return this.createRequest(promiseBuilder, options).then(function(response: any) {
             self.cacheService.setCacheData(url, params, response, null);
             return angular.copy(response);
           });
@@ -116,7 +116,7 @@ module app {
     put(url: string, data: any, options?: any): ng.IPromise<any> {
       var self = this;
       this.logger.log('PUT request: ' + url, null);
-      var promise = function () {
+      var promise = function() {
         return self.$http.put(self.baseUri + url, data, self.defaultConfig);
       };
       return this.createRequest(promise, options);
@@ -132,7 +132,7 @@ module app {
     post(url: string, data: any, options?: any): ng.IPromise<any> {
       this.logger.log('POST request: ' + url, null);
       var self = this;
-      var promiseBuilder = function () {
+      var promiseBuilder = function() {
         return self.$http.post(self.baseUri + url, data, self.defaultConfig);
       };
 
@@ -148,7 +148,7 @@ module app {
     delete(url: string, options?: any): ng.IPromise<any> {
       this.logger.log('DELETE request: ' + url, null);
       var self = this;
-      var promise = function () {
+      var promise = function() {
         return self.$http.delete(self.baseUri + url, self.defaultConfig);
       };
       return this.createRequest(promise, options);
@@ -272,7 +272,7 @@ module app {
     private errorHandler(promise: ng.IPromise<any>, options?: any): ng.IPromise<any> {
       var self = this;
       if (!options || !options.skipErrors) {
-        promise.catch(function (response: any) {
+        promise.catch(function(response: any) {
           var error;
 
           if (response.status === 404) {

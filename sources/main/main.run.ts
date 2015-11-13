@@ -8,6 +8,7 @@ module app {
    */
   function main($locale: ng.ILocaleService,
                 $rootScope: any,
+                $state: angular.ui.IStateService,
                 gettextCatalog: angular.gettext.gettextCatalog,
                 _: _.LoDashStatic,
                 config: any,
@@ -18,6 +19,8 @@ module app {
      */
 
     var vm = $rootScope;
+
+    vm.pageTitle = '';
 
     /**
      * Utility method to set the language in the tools requiring it.
@@ -36,6 +39,20 @@ module app {
       $locale.id = language;
     };
 
+    /**
+     * Updates page title on view change.
+     */
+    vm.$on('$stateChangeSuccess', function(event: any, toState: angular.ui.IState) {
+      updatePageTitle(toState.data ? toState.data.title : null);
+    });
+
+    /**
+     * Updates page title on language change.
+     */
+    vm.$on('gettextLanguageChanged', function() {
+      updatePageTitle($state.current.data ? $state.current.data.title : null);
+    });
+
     init();
 
     /*
@@ -50,10 +67,21 @@ module app {
       gettextCatalog.debug = config.debug;
 
       vm.setLanguage();
-      vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
 
       // Set REST server configuration
       restService.setServer(config.server);
+    }
+
+    /**
+     * Updates the page title.
+     * @param {?string=} stateTitle Title of current state, to be translated.
+     */
+    function updatePageTitle(stateTitle?: string) {
+      vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
+
+      if (stateTitle) {
+        vm.pageTitle += ' | ' + gettextCatalog.getString(stateTitle);
+      }
     }
 
   }

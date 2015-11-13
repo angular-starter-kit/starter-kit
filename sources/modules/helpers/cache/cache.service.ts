@@ -107,7 +107,7 @@ module app {
     cleanCache(expirationDate: Date): void {
       var self = this;
       if (expirationDate) {
-        angular.forEach(self.cachedData, function (value: any, key: string) {
+        angular.forEach(self.cachedData, function(value: any, key: string) {
           if (expirationDate >= value.date) {
             self.cachedData[key] = undefined;
           }

@@ -8,7 +8,7 @@ module app {
   export class HomeController {
 
     isLoading: boolean = true;
-    quote: any = null;
+    quote: string = null;
 
     private logger: ILogger;
     private quoteService: QuoteService;
@@ -32,9 +32,11 @@ module app {
       var vm = this;
 
       this.quoteService
-        .getRandomJoke()
-        .then(function (quote: any) {
+        .getRandomJoke({category: 'nerdy'})
+        .then(function(quote: string) {
           vm.quote = quote;
+        })
+        .finally(function() {
           vm.isLoading = false;
         });
     }

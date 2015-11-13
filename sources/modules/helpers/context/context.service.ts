@@ -1,23 +1,18 @@
-(function() {
+module app {
 
   'use strict';
-
-  angular
-    .module('app')
-    .factory('contextService', contextService);
 
   /**
    * Context service: provides URL context injection based on specified context.
    */
-  function contextService(logger) {
+  export class ContextService {
 
-    logger = logger.getLogger('contextService');
+    private logger: ILogger;
 
-    /*
-     * Service public interface
-     */
-
-    var service = {};
+    /* @ngInject */
+    constructor(logger: LoggerService) {
+      this.logger = logger.getLogger('contextService');
+    }
 
     /**
      * Injects the specified context into the given REST API.
@@ -29,8 +24,8 @@
      * @param {Object} context The context to use.
      * @return {string} The ready-to-use REST API to call.
      */
-    service.inject = function(restApi, context) {
-      logger.log('Injecting context in: ' + restApi);
+    inject(restApi: string, context?: any): string {
+      this.logger.log('Injecting context in: ' + restApi);
 
       if (!context) {
         throw 'inject: context must be defined';
@@ -38,26 +33,29 @@
 
       // Search for context properties to inject
       var properties = restApi.match(/(:\w+)/g);
+      var self = this;
 
-      angular.forEach(properties, function(property) {
+      angular.forEach(properties, function(property: string) {
         var contextVar = property.substring(1);
         var contextValue = context[contextVar];
 
         if (contextValue !== undefined) {
           restApi = restApi.replace(property, contextValue);
-          logger.log('Injected ' + contextValue + ' for ' + property);
+          self.logger.log('Injected ' + contextValue + ' for ' + property);
         } else {
           throw 'inject: context.' + contextVar + ' expected but undefined';
         }
       });
 
-      logger.log('Resulting REST API: ' + restApi);
+      this.logger.log('Resulting REST API: ' + restApi);
 
       return restApi;
-    };
-
-    return service;
+    }
 
   }
 
-})();
+  angular
+    .module('app')
+    .service('contextService', ContextService);
+
+}

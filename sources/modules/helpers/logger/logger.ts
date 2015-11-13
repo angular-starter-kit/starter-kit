@@ -46,7 +46,7 @@ module app {
    */
   function log(message: string, source: string, logFunc: Function, level: string, options: any): void {
     logFunc(source ? '[' + source + ']' : '', message, '');
-    angular.forEach(observers, function (observerFunc: any) {
+    angular.forEach(observers, function(observerFunc: any) {
       observerFunc(message, source, level, options);
     });
   }

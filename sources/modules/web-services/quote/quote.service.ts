@@ -8,34 +8,41 @@ module app {
   export class QuoteService {
 
     private ROUTES = {
-      randomJoke: '/jokes/random?limitTo=[nerdy]'
+      randomJoke: 'jokes/random?escape=javascript&limitTo=[:category]'
     };
 
     private $q: ng.IQService;
     private restService: RestService;
+    private contextService: ContextService;
 
     /* @ngInject */
     constructor($q: ng.IQService,
-                restService: RestService) {
+                restService: RestService,
+                contextService: ContextService) {
 
       this.$q = $q;
       this.restService = restService;
+      this.contextService = contextService;
     }
 
     /**
      * Get a random Chuck Norris joke.
+     * Used context properties:
+     * - category: the joke's category: 'nerdy', 'explicit'...
+     * @param {!Object} context The context to use.
      * @return {Object} The promise.
      */
-    getRandomJoke(): ng.IPromise<string> {
+    getRandomJoke(context: any): ng.IPromise<string> {
+      var self = this;
       return this.restService
-        .get(this.ROUTES.randomJoke, null, true)
-        .then(function (response: any) {
+        .get(this.contextService.inject(this.ROUTES.randomJoke, context), null, true)
+        .then(function(response: any) {
           if (response.data && response.data.value) {
-            return response.data.value.joke.replace(/&quot;/g, '"');
+            return response.data.value.joke;
           }
-          return this.$q.reject({});
+          return self.$q.reject();
         })
-        .catch(function () {
+        .catch(function() {
           return 'Error, could not load joke :-(';
         });
     }
