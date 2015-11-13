@@ -1,6 +1,7 @@
 'use strict';
 
 var conf = require('./gulpfile.config');
+var SpecReporter = require('jasmine-spec-reporter');
 var HtmlReporter = require('protractor-html-screenshot-reporter');
 
 // An example configuration file.
@@ -14,6 +15,8 @@ exports.config = {
     'browserName': 'chrome'
   },
 
+  framework: 'jasmine2',
+
   baseUrl: 'http://localhost:3000',
 
   // Spec patterns are relative to the current working directly when
@@ -24,13 +27,14 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    isVerbose: true, // log tests in console
-    realtimeFailure: true,
-    includeStackTrace: true
+    print: function() {}
   },
 
   onPrepare: function() {
-    // reporter in html with a screenshot for each test.
+    // Add better console spec reporter
+    jasmine.getEnv().addReporter(new SpecReporter({}));
+
+    // Reporter in html with a screenshot for each test.
     jasmine.getEnv().addReporter(new HtmlReporter({
       baseDirectory: 'reports/e2e/html'
     }));
