@@ -76,6 +76,18 @@ module app {
      * Updates the page title.
      * @param {?string=} stateTitle Title of current state, to be translated.
      */
+    function updatePageTitle(stateTitle) {
+      vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
+
+      if (stateTitle) {
+        vm.pageTitle += ' | ' + gettextCatalog.getString(stateTitle);
+      }
+    }
+
+    /**
+     * Updates the page title.
+     * @param {?string=} stateTitle Title of current state, to be translated.
+     */
     function updatePageTitle(stateTitle?: string) {
       vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
 
