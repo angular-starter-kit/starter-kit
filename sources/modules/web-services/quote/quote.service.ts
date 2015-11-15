@@ -8,7 +8,7 @@ module app {
   export class QuoteService {
 
     private ROUTES = {
-      randomJoke: 'jokes/random?escape=javascript&limitTo=[:category]'
+      randomJoke: '/jokes/random?escape=javascript&limitTo=[:category]'
     };
 
     private $q: ng.IQService;
