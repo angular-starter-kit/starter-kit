@@ -23,7 +23,7 @@
 
       // REST backend configuration, used for all web services using restService
       server: {
-        restServerUrl: '/',
+        restServerUrl: '',
         restUri: 'api'
       }
 

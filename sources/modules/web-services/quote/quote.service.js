@@ -18,7 +18,7 @@
      */
 
     var ROUTES = {
-      randomJoke: 'jokes/random?escape=javascript&limitTo=[:category]'
+      randomJoke: '/jokes/random?escape=javascript&limitTo=[:category]'
     };
 
     /*
