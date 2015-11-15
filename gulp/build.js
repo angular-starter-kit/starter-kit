@@ -61,10 +61,10 @@ gulp.task('other', ['fonts'], function() {
       path.join(conf.paths.src, '/**/*'),
       path.join(conf.paths.tmp, '/**/*.{eot,svg,ttf,woff,woff2}'),
       path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}'),
-      path.join('!' + conf.paths.bower, '/**/*'),
+      path.join('!' + conf.paths.src, conf.paths.bower, '/**/*'),
       path.join('!' + conf.paths.src, '/translations/*'),
       path.join('!' + conf.paths.src, '/images/*'),
-      path.join('!' + conf.paths.src, '/bower.json')
+      path.join('!' + conf.paths.src, '/bower.json'),
     ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
