@@ -9,7 +9,7 @@ var _ = require('lodash');
 var $ = require('gulp-load-plugins')();
 
 var injectCommonOptions = {
-  ignorePath: [ conf.paths.src, conf.paths.tmp ],
+  ignorePath: [conf.paths.src, conf.paths.tmp],
   addRootSlash: false
 };
 
@@ -20,7 +20,7 @@ gulp.task('inject:style', ['styles'], function() {
   var injectStyles = gulp.src([
     path.join(conf.paths.tmp, '/**/*.css'),
     path.join('!' + conf.paths.tmp, '/vendor.css')
-  ], { read: false });
+  ], {read: false});
 
   return gulp.src(path.join(conf.paths.src, 'index.html'))
     .pipe($.inject(injectStyles, injectCommonOptions))
@@ -30,7 +30,7 @@ gulp.task('inject:style', ['styles'], function() {
 gulp.task('inject:script', ['scripts', 'partials', 'translations'], function() {
   // Scripts
   var injectScripts = gulp.src([
-      path.join(conf.paths.src, conf.paths.main , '/**/*.js'),
+      path.join(conf.paths.src, conf.paths.main, '/**/*.js'),
       path.join(conf.paths.src, '/modules/**/*.js'),
       path.join(conf.paths.tmp, '/**/*.js'),
       path.join('!' + conf.paths.tmp, '/libraries/**/*.js'),

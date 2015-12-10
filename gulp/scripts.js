@@ -14,12 +14,12 @@ gulp.task('scripts', ['typescript'], function() {
   return gulp.src([
       path.join(conf.paths.src, '/**/*.js'),
       path.join('!' + conf.paths.src, '/libraries/**/*.js')
-  	])
+    ])
     .pipe($.jshint()) // jshint, it follows .jshintrc
     .pipe($.jscs()) // jscs, it follows .jscsrc
     .on('error', noop) // don't stop on error
     .pipe(stylish.combineWithHintResults()) // combine results
     .pipe($.jshint.reporter('jshint-stylish')) // reporter
-    .pipe(browserSync.reload({ stream: true }))
+    .pipe(browserSync.reload({stream: true}))
     .pipe($.size()); // Display the size
 });

@@ -19,7 +19,7 @@ gulp.task('typescript', ['tsd:install'], function() {
     ])
     .pipe($.sourcemaps.init())
     .pipe($.tslint())
-    .pipe($.tslint.report('prose', { emitError: false }))
+    .pipe($.tslint.report('prose', {emitError: false}))
     .pipe($.typescript(tsProject)).on('error', conf.errorHandler('TypeScript'))
     .pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'))
     .pipe($.concat('app.ts.js'))
@@ -28,6 +28,6 @@ gulp.task('typescript', ['tsd:install'], function() {
       sourceRoot: '../'
     }))
     .pipe(gulp.dest(path.join(conf.paths.tmp)))
-    .pipe(browserSync.reload({ stream: true }))
+    .pipe(browserSync.reload({stream: true}))
     .pipe($.size());
 });

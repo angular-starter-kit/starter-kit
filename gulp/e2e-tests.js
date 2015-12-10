@@ -21,11 +21,11 @@ function runProtractor(done) {
       configFile: 'protractor.conf.js',
       args: args
     }))
-    .on('error', function (err) {
+    .on('error', function(err) {
       // Make sure failed tests cause gulp to exit non-zero
       throw err;
     })
-    .on('end', function () {
+    .on('end', function() {
       // Close browser sync server
       browserSync.exit();
       done();

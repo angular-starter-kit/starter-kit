@@ -15,7 +15,7 @@ module app {
     $stateProvider
       .state('app', {
         templateUrl: 'modules/shell/shell.html',
-        controller: 'shellController as vm'
+        controller: 'shellController as shell'
       })
       .state('app.home', {
         url: '/',
