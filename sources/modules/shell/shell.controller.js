@@ -36,15 +36,13 @@
     };
 
     /**
-     * Checks if the specified state name is the current.
+     * Checks if the current state contains the specified name.
      * @param {string} name The state name to check.
-     * @return {boolean} True if the specified state name is the current.
+     * @return {boolean} True if the current state contains the specified name.
      */
-    vm.isCurrentState = function(name) {
-      return $state.current.name === name;
+    vm.stateContains = function(name) {
+      return $state.current.name.indexOf(name) !== -1;
     };
-
-    init();
 
     /*
      * Internal
@@ -56,6 +54,8 @@
     function init() {
       logger.log('init');
     }
+
+    init();
 
   }
 
