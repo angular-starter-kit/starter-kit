@@ -103,13 +103,6 @@
       saveCacheData();
     };
 
-    /**
-     * Initializes service.
-     */
-    (function() {
-      loadCacheData();
-    }());
-
     /*
      * Internal
      */
@@ -141,6 +134,12 @@
       var data = $window.localStorage.cachedData;
       cachedData = data ? angular.fromJson(data) : {};
     }
+
+    /*
+     * Initializes service.
+     */
+
+    loadCacheData();
 
     return service;
   }

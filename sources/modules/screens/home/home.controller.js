@@ -24,8 +24,6 @@
     vm.isLoading = true;
     vm.quote = null;
 
-    init();
-
     /*
      * Internal
      */
@@ -45,6 +43,8 @@
           vm.isLoading = false;
         });
     }
+
+    init();
 
   }
 

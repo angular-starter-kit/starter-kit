@@ -27,7 +27,7 @@ describe('restService', function() {
 
       config.debug = false;
 
-      baseUri = '/api';
+      baseUri = 'api';
     });
 
     callbacks = {

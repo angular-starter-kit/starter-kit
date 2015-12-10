@@ -23,8 +23,6 @@
 
     vm.version = config.version;
 
-    init();
-
     /*
      * Internal
      */
@@ -35,6 +33,8 @@
     function init() {
       logger.log('init');
     }
+
+    init();
 
   }
 

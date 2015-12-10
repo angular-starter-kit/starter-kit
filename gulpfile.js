@@ -14,7 +14,7 @@ var wrench = require('wrench');
  *  in order to load all gulp tasks
  */
 wrench.readdirSyncRecursive('./gulp').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
+  return (/\.(js)$/i).test(file);
 }).map(function(file) {
   require('./gulp/' + file);
 });

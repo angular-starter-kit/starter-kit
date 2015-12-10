@@ -25,7 +25,7 @@ gulp.task('styles', ['fonts'], function() {
 
   var injectFiles = gulp.src([
     path.join(conf.paths.src, '/modules/**/*.less'),
-  ], { read: false });
+  ], {read: false});
 
   var injectOptions = {
     transform: function(filePath) {
@@ -47,5 +47,5 @@ gulp.task('styles', ['fonts'], function() {
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(browserSync.reload({stream: true}));
 });
