@@ -5,39 +5,30 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: en-US\n"
 
-# --------------------------------------------------
-# APP
-# --------------------------------------------------
-
-#. Application name. Do not translate.
-msgid "T_APP_NAME"
-msgstr "Starter Kit"
-
-#. Home section
-msgid "T_HOME"
-msgstr "Home"
-
-#. About section
-msgid "T_ABOUT"
+#: main.routes.js:34
+#: modules/shell/shell.html:29
+msgid "About"
 msgstr "About"
 
-#. Toggle navigation (for screen readers)
-msgid "T_TOGGLE_NAVIGATION"
-msgstr "Toggle navigation"
+#: main.run.js:84
+#: modules/screens/about/about.html:3
+#: modules/shell/shell.html:15
+msgid "APP_NAME"
+msgstr "Starter Kit"
 
-# --------------------------------------------------
-# Homepage
-# --------------------------------------------------
-
-#. Say hello to our users
-msgid "T_HELLO"
+#: modules/screens/home/home.html:5
+msgid "Hello world !"
 msgstr "Hello world !"
 
-# --------------------------------------------------
-# About
-# --------------------------------------------------
+#: main.routes.js:28
+#: modules/shell/shell.html:23
+msgid "Home"
+msgstr "Home"
 
-#. Application version
-msgid "T_VERSION"
+#: modules/shell/shell.html:9
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+#: modules/screens/about/about.html:5
+msgid "Version"
 msgstr "Version"
-

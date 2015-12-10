@@ -78,6 +78,7 @@ docs        | Generate jsdoc documentation from sources.
 
 # Additional documentation
 
+- [i18n](docs/i18n.md)
 - [Proxy configuration](docs/proxy.md)
 - [All gulp tasks](docs/tasks.md)
 - [Updating dependencies](docs/updating.md)
