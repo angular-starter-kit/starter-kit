@@ -81,7 +81,7 @@
      * @param {?string=} stateTitle Title of current state, to be translated.
      */
     function updatePageTitle(stateTitle) {
-      vm.pageTitle = gettextCatalog.getString('T_APP_NAME');
+      vm.pageTitle = gettextCatalog.getString('APP_NAME');
 
       if (stateTitle) {
         vm.pageTitle += ' | ' + gettextCatalog.getString(stateTitle);

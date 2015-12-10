@@ -25,13 +25,13 @@
         url: '/',
         templateUrl: 'modules/screens/home/home.html',
         controller: 'homeController as vm',
-        data: {title: gettext('T_HOME')}
+        data: {title: gettext('Home')}
       })
       .state('app.about', {
         url: '/about',
         templateUrl: 'modules/screens/about/about.html',
         controller: 'aboutController as vm',
-        data: {title: gettext('T_ABOUT')}
+        data: {title: gettext('About')}
       });
 
   }
