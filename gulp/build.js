@@ -26,7 +26,7 @@ gulp.task('build:sources', ['inject'], function() {
     .pipe($.uglify({preserveComments: $.uglifySaveLicense})).on('error', conf.errorHandler('Uglify'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
-    .pipe($.csso())
+    .pipe($.minifyCss({ processImport: false }))
     .pipe(cssFilter.restore)
     .pipe(assets.restore())
     .pipe($.useref())
