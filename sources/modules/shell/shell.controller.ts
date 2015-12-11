@@ -42,7 +42,7 @@ module app {
      * @param {string} name The state name to check.
      * @return {boolean} True if the specified state name is the current.
      */
-    isCurrentState(name: string): boolean {
+    stateContains(name: string): boolean {
       return this.$state.current.name === name;
     }
 
