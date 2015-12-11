@@ -106,7 +106,7 @@ docs        | Generate jsdoc documentation from sources.
 - JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
   [uglify](https://github.com/terinjokes/gulp-uglify), 
   [minify-html](https://github.com/murphydanger/gulp-minify-html), 
-  [csso](https://github.com/ben-eb/gulp-csso)) 
+  [clean-css](https://github.com/ben-eb/gulp-minify-css)) 
 - CSS browser support ([autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - Images optimization ([imagemin](https://github.com/sindresorhus/gulp-imagemin))
 - Automatic angular module annotation ([ngAnnotate](https://github.com/Kagami/gulp-ng-annotate))
