@@ -1,36 +1,33 @@
 'use strict';
 
 var gulp = require('gulp');
-var gutil = require('gulp-util');
 var conf = require('../gulpfile.config');
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
-var HttpsProxyAgent = require('https-proxy-agent');
-
-function setupCorporateProxy(options) {
-  var proxyServer = process.env.http_proxy || process.env.HTTP_PROXY;
-  if (proxyServer) {
-    options.agent = new HttpsProxyAgent(proxyServer);
-    gutil.log(gutil.colors.cyan('Using corporate proxy server: ' + proxyServer));
-  }
-  return options;
-}
+var proxyMiddleware = require('http-proxy-middleware');
 
 function browserSyncInit(baseDir, browser, done) {
   browser = browser === undefined ? 'default' : browser;
 
   var server = {
     baseDir: baseDir,
-    routes: null
+    routes: null,
+    middleware: []
   };
 
+  var agent = conf.corporateProxyAgent();
+
   // We activate a server proxy if we found a configuration for it.
-  if (conf.backendProxy) {
-    var proxyMiddleware = require('http-proxy-middleware');
-    var options = setupCorporateProxy(conf.backendProxy.options);
-    server.middleware = proxyMiddleware(conf.backendProxy.context, options);
-  }
+  conf.backendProxy.forEach(function(proxyRoute) {
+    var options = proxyRoute.options;
+
+    if (agent) {
+      options.agent = agent;
+    }
+
+    server.middleware.push(proxyMiddleware(proxyRoute.context, options));
+  });
 
   browserSync.instance = browserSync.init({
     startPath: '/',

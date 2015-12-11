@@ -11,6 +11,7 @@ describe('cacheService', function() {
     module('app');
 
     // Start fresh :-)
+    window.sessionStorage.removeItem('cachedData');
     window.localStorage.removeItem('cachedData');
 
     inject(function(_cacheService_) {
@@ -40,6 +41,10 @@ describe('cacheService', function() {
 
   it('should have a cleanCache method', function() {
     expect(typeof (cacheService.cleanCache)).toBe('function');
+  });
+
+  it('should have a setPersistence method', function() {
+    expect(typeof (cacheService.setPersistence)).toBe('function');
   });
 
   describe('setCacheData', function() {
@@ -173,6 +178,38 @@ describe('cacheService', function() {
       // Assert
       expect(cacheService.getCacheData('/hoho', null)).toBe(null);
       expect(cacheService.getCacheData('/lolo', null)).toBe('data');
+    });
+
+  });
+
+  describe('setPersistence', function() {
+
+    beforeEach(function() {
+      cacheService.setPersistence();
+      cacheService.cleanCache = jasmine.createSpy('cleanCache');
+    });
+
+    it('should clear previous cache data when persistence value change', function() {
+      cacheService.setPersistence('local');
+      expect(cacheService.cleanCache).toHaveBeenCalledWith();
+    });
+
+    it('should persist cache to local storage', function() {
+      expect(window.localStorage.cachedData).not.toBeDefined();
+
+      cacheService.setPersistence('local');
+      cacheService.setCacheData('/hoho', null, 'data');
+
+      expect(window.localStorage.cachedData).toBeDefined();
+    });
+
+    it('should persist cache to local storage', function() {
+      expect(window.sessionStorage.cachedData).not.toBeDefined();
+
+      cacheService.setPersistence('session');
+      cacheService.setCacheData('/hoho', null, 'data');
+
+      expect(window.sessionStorage.cachedData).toBeDefined();
     });
 
   });
