@@ -60,7 +60,7 @@ gulp.task('other', ['fonts'], function() {
   return gulp.src([
       path.join(conf.paths.src, '/**/*'),
       path.join(conf.paths.tmp, '/**/*.{eot,svg,ttf,woff,woff2}'),
-      path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}'),
+      path.join('!' + conf.paths.src, '/**/*.{html,css,js,ts,sass}'),
       path.join('!' + conf.paths.src, conf.paths.bower, '/**/*'),
       path.join('!' + conf.paths.src, '/translations/*'),
       path.join('!' + conf.paths.src, '/images/*'),

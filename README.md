@@ -38,7 +38,7 @@ sources/                project source code
 |  |- main.routes.js    app routes
 |  |- main.run.js       app entry point
 |  |- main.wrappers.js  AngularJS module wrappers for external libraries
-|  +- main.less         style entry point
+|  +- main.scss         style entry point
 |- modules/             project components and modules
 |  |- helpers/          helper services
 |  |- screens/          application screens
@@ -87,7 +87,7 @@ docs        | Generate jsdoc documentation from sources.
 
 #### Languages
 - [TypeScript](http://www.typescriptlang.org), JavaScript
-- [Less](http://lesscss.org), CSS
+- [Sass](http://sass-lang.com/), CSS
 - [Jade](http://jade-lang.com), HTML
 - [Gettext](https://angular-gettext.rocketeer.be) (for translations)
 
