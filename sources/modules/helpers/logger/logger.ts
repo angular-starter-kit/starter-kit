@@ -51,9 +51,6 @@ module app {
     });
   }
 
-  /*
-   * ILogger interface
-   */
   export interface ILogger {
 
     /**
@@ -87,16 +84,10 @@ module app {
 
   }
 
-  /*
-   * IObserverFunction interface
-   */
   export interface IObserverFunction {
     (message: string, source: string, level: string, options?: any): void;
   }
 
-  /*
-   * Logger class
-   */
   class Logger implements ILogger {
 
     private $log: ng.ILogService;
@@ -127,9 +118,6 @@ module app {
 
   }
 
-  /*
-   * Logger service
-   */
   export class LoggerService {
 
     private $log: ng.ILogService;
@@ -163,9 +151,6 @@ module app {
 
   }
 
-  /**
-   * declare logger angular module
-   */
   angular
     .module('app')
     .service('logger', LoggerService);
