@@ -8,6 +8,8 @@
 
   /**
    * Cache service: manages cached data for GET requests.
+   * By default, the cache is only persisted in memory, but you can change this behavior using the setPersistence()
+   * method.
    */
   function cacheService($window,
                         logger) {
@@ -103,11 +105,25 @@
       saveCacheData();
     };
 
+    /**
+     * Sets the cache persistence.
+     * Note that changing the cache persistence will also clear the cache from its previous storage.
+     * @param {'local'|'session'=} persistence How the cache should be persisted, it can be either
+     *   in the local or session storage, or if no parameters is provided it will be only in-memory (default).
+     */
+    service.setPersistence = function(persistence) {
+      service.cleanCache();
+      storage = persistence === 'local' || persistence === 'session' ? $window[persistence + 'Storage'] : null;
+
+      loadCacheData();
+    };
+
     /*
      * Internal
      */
 
     var cachedData = {};
+    var storage = null;
 
     /**
      * Gets the cache key for the specified url and parameters.
@@ -124,14 +140,16 @@
      * Saves the current cached data into persisted storage.
      */
     function saveCacheData() {
-      $window.localStorage.cachedData = angular.toJson(cachedData);
+      if (storage) {
+        storage.cachedData = angular.toJson(cachedData);
+      }
     }
 
     /**
      * Loads cached data from persisted storage.
      */
     function loadCacheData() {
-      var data = $window.localStorage.cachedData;
+      var data = storage ? storage.cachedData : null;
       cachedData = data ? angular.fromJson(data) : {};
     }
 
