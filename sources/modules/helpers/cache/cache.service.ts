@@ -13,13 +13,15 @@ module app {
 
   /**
    * Cache service: manages cached data for GET requests.
-   * The cached data is persisted using local storage.
+   * By default, the cache is only persisted in memory, but you can change this behavior using the setPersistence()
+   * method.
    */
   export class CacheService {
 
     private $window: any;
     private logger: ILogger;
     private cachedData: ICache = {};
+    private storage: any = null;
 
     /* @ngInject */
     constructor($window: ng.IWindowService,
@@ -104,7 +106,7 @@ module app {
      * Cleans cache entries older than the specified date.
      * @param {date=} expirationDate The cache expiration date. If no date is specified, all cache is cleared.
      */
-    cleanCache(expirationDate: Date): void {
+    cleanCache(expirationDate?: Date): void {
       var self = this;
       if (expirationDate) {
         angular.forEach(self.cachedData, function(value: any, key: string) {
@@ -117,6 +119,20 @@ module app {
       }
       self.saveCacheData();
     }
+
+    /**
+     * Sets the cache persistence.
+     * Note that changing the cache persistence will also clear the cache from its previous storage.
+     * @param {'local'|'session'=} persistence How the cache should be persisted, it can be either
+     *   in the local or session storage, or if no parameters is provided it will be only in-memory (default).
+     */
+    setPersistence(persistence: string) {
+      this.cleanCache();
+      this.storage = persistence === 'local' || persistence === 'session' ?
+        this.$window[persistence + 'Storage'] : null;
+
+      this.loadCacheData();
+    };
 
     /**
      * Gets the cache key for the specified url and parameters.
@@ -133,14 +149,16 @@ module app {
      * Saves the current cached data into persisted storage.
      */
     private saveCacheData(): void {
-      this.$window.localStorage.setItem('cachedData', angular.toJson(this.cachedData));
+      if (this.storage) {
+        this.storage.cachedData = angular.toJson(this.cachedData);
+      }
     }
 
     /**
      * Loads cached data from persisted storage.
      */
     private loadCacheData(): void {
-      var data = this.$window.localStorage.getItem('cachedData');
+      var data = this.storage ? this.storage.cachedData : null;
       this.cachedData = data ? angular.fromJson(data) : {};
     }
 
