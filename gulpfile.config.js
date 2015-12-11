@@ -12,7 +12,7 @@ var bower = JSON.parse(fs.readFileSync('.bowerrc', 'utf8'));
 var HttpsProxyAgent = require('https-proxy-agent');
 
 /**
- *  The main paths of your project, handle these with care.
+ * The main paths of your project, handle these with care.
  */
 exports.paths = {
   src: 'sources',
@@ -22,6 +22,16 @@ exports.paths = {
   main: 'main',
   bower: bower.directory
 };
+
+/**
+ * Sass include paths.
+ */
+exports.sassIncludePaths = [
+  bower.directory,
+  exports.paths.src,
+  path.join(exports.paths.src, exports.paths.main),
+  path.join(bower.directory, 'bootstrap-sass/assets/stylesheets/bootstrap')
+];
 
 /**
  * API proxy configuration.

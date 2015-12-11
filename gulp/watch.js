@@ -19,7 +19,7 @@ gulp.task('watch', ['inject'], function() {
 
   gulp.watch([
     path.join(conf.paths.src, '/**/*.css'),
-    path.join(conf.paths.src, '/**/*.less')
+    path.join(conf.paths.src, '/**/*.scss')
   ], options, function(event) {
     if (isOnlyChange(event)) {
       gulp.start('styles');

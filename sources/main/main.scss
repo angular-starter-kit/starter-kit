@@ -1,0 +1,28 @@
+/*
+ * Entry point of application style.
+ */
+
+// Our own Bootstrap inclusion, should be included before bower dependencies
+// as other libraries may provide additional Bootstrap styling
+@import "theme/variables";
+@import "theme/bootstrap-variables";
+@import "theme/bootstrap";
+
+// Do not remove this comments bellow. It's the markers used by wiredep to inject
+// style dependencies when defined in the bower.json of your dependencies.
+// bower:less
+// endbower
+
+// Bootstrap and theme customization
+@import "theme/theme";
+
+// Global styling
+@import "hacks";
+@import "helpers";
+
+// Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+// all your style files automatically.
+// inject:styles
+@import "../modules/shell/shell.scss";
+@import "../modules/screens/home/home.scss";
+// endinject

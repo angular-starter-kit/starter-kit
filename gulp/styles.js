@@ -15,16 +15,13 @@ var _ = require('lodash');
 var mainFolder = path.join(conf.paths.src, conf.paths.main);
 
 gulp.task('styles', ['fonts'], function() {
-  var lessOptions = {
-    options: [
-      conf.paths.bower,
-      mainFolder,
-      conf.paths.src
-    ]
+  var sassOptions = {
+    style: 'expanded',
+    includePaths: conf.sassIncludePaths
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/modules/**/*.less'),
+    path.join(conf.paths.src, '/modules/**/*.scss'),
   ], {read: false});
 
   var injectOptions = {
@@ -38,12 +35,12 @@ gulp.task('styles', ['fonts'], function() {
     addRootSlash: false
   };
 
-  return gulp.src(path.join(mainFolder, 'main.less'))
+  return gulp.src(path.join(mainFolder, 'main.scss'))
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
     .pipe(gulp.dest(mainFolder))
     .pipe($.sourcemaps.init())
-    .pipe($.less(lessOptions)).on('error', conf.errorHandler('Less'))
+    .pipe($.sass(sassOptions)).on('error', conf.errorHandler('Sass'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')))
