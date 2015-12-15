@@ -40,6 +40,7 @@ module app {
         var contextValue = context[contextVar];
 
         if (contextValue !== undefined) {
+          contextValue = encodeURIComponent(contextValue);
           restApi = restApi.replace(property, contextValue);
           self.logger.log('Injected ' + contextValue + ' for ' + property);
         } else {

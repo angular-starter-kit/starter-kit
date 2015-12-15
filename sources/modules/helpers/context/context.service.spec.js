@@ -45,6 +45,18 @@ describe('contextService', function() {
       expect(resultApi).toBe('/projects/123');
     });
 
+    it('should correctly escape injected input API parameters', function() {
+      // Arrange
+      var restApi = '/projects/:projectId';
+      var context = {projectId: '123+/@'};
+
+      // Act
+      var resultApi = contextService.inject(restApi, context);
+
+      // Assert
+      expect(resultApi).toBe('/projects/123%2B%2F%40');
+    });
+
     it('should throw an exception if an input API parameter is not present in the context', function() {
       // Arrange
       var restApi = '/projects/:projectId';
