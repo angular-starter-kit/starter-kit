@@ -1,4 +1,4 @@
-/// <reference path="../../.tmp/typings/tsd.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 
 module app {
 
