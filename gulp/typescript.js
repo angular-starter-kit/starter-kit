@@ -6,10 +6,7 @@ var conf = require('../gulpfile.config');
 var browserSync = require('browser-sync');
 var $ = require('gulp-load-plugins')();
 
-var tsProject = $.typescript.createProject({
-  target: 'es5',
-  sortOutput: true
-});
+var tsProject = $.typescript.createProject('tsconfig.json', {sortOutput: true});
 
 gulp.task('typescript', function() {
   return gulp.src([
