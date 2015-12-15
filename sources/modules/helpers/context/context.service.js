@@ -44,6 +44,7 @@
         var contextValue = context[contextVar];
 
         if (contextValue !== undefined) {
+          contextValue = encodeURIComponent(contextValue);
           restApi = restApi.replace(property, contextValue);
           logger.log('Injected ' + contextValue + ' for ' + property);
         } else {
