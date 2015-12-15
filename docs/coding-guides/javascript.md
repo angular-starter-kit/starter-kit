@@ -28,6 +28,6 @@ This starter kit architecture and base template tries to comply with most of the
 ## Enforcement
 
 Good practices and coding rules are already enforced in this project via [JSHint](http://jshint.com), 
-[JSCS](http://jscs.info) and [TSLint](https://github.com/palantir/tslint). 
+[JSCS](http://jscs.info). 
 If there is a warning/error, fix it. If you think the related rule is not justified or a must-have rule is missing,
 submit a pull request with a justification for the change, and we will consider it :-)
