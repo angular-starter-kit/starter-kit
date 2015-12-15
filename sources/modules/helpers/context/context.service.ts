@@ -9,7 +9,6 @@ module app {
 
     private logger: ILogger;
 
-    /* @ngInject */
     constructor(logger: LoggerService) {
       this.logger = logger.getLogger('contextService');
     }

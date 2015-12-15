@@ -12,7 +12,6 @@ module app {
     private logger: ILogger;
     private config: any;
 
-    /* @ngInject */
     constructor(logger: LoggerService,
                 config: any) {
 

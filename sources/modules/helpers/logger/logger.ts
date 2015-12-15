@@ -122,7 +122,6 @@ module app {
 
     private $log: ng.ILogService;
 
-    /* @ngInject */
     constructor($log: ng.ILogService) {
       this.$log = $log;
     }

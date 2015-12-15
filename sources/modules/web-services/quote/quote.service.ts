@@ -15,7 +15,6 @@ module app {
     private restService: RestService;
     private contextService: ContextService;
 
-    /* @ngInject */
     constructor($q: ng.IQService,
                 restService: RestService,
                 contextService: ContextService) {

@@ -15,7 +15,6 @@ module app {
     private $state: ng.ui.IStateService;
     private logger: ILogger;
 
-    /* @ngInject */
     constructor($locale: ng.ILocaleService,
                 $state: ng.ui.IStateService,
                 logger: LoggerService,

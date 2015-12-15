@@ -13,7 +13,6 @@ module app {
     private logger: ILogger;
     private quoteService: QuoteService;
 
-    /* @ngInject */
     constructor(logger: LoggerService,
                 quoteService: QuoteService) {
 

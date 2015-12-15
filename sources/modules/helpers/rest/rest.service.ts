@@ -48,7 +48,6 @@ module app {
     private $http: ng.IHttpService;
     private cacheService: CacheService;
 
-    /* @ngInject */
     constructor($q: ng.IQService,
                 $http: ng.IHttpService,
                 cacheService: CacheService,
