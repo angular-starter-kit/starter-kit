@@ -10,7 +10,7 @@ var tsd = require('tsd');
 var tsdJson = 'tsd.json';
 var tsdApi = new tsd.getAPI(tsdJson);
 
-gulp.task('tsd:install', function() {
+gulp.task('tsd', function() {
   var bower = require(path.join(process.cwd(), conf.paths.src, 'bower.json'));
 
   var dependencies = [].concat(
@@ -25,8 +25,9 @@ gulp.task('tsd:install', function() {
 
   var options = new tsd.Options();
   options.resolveDependencies = true;
-  options.overwriteFiles = false;
+  options.overwriteFiles = true;
   options.saveBundle = true;
+  options.saveToConfig = true;
 
   return tsdApi.readConfig()
     .then(function() {
@@ -57,5 +58,3 @@ gulp.task('tsd:install', function() {
 gulp.task('tsd:clean', function() {
   return tsdApi.purge(true, true);
 });
-
-gulp.task('tsd', ['tsd:install']);
