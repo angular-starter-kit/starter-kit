@@ -4,8 +4,8 @@
 
 Web project starter kit including tooling, best practices and project seed.
 
-It is based on our experience in large web projects, with architecture choices
-aiming for a clean, no-brainer development experience even for beginner teams.
+It is based on experience in large web projects, with architecture choices aiming for a clean, no-brainer development
+experience even for beginner teams.
 
 # Getting started
 
@@ -128,7 +128,32 @@ docs        | Generate jsdoc documentation from sources.
 
 See the [wiki](https://github.com/thales-poles-ra/starter-kit/wiki).
 
-# Credits
+# Licence
 
 This starter kit is based on tooling from the
 [gulp-angular](https://github.com/Swiip/generator-gulp-angular) Yeoman generator.
+Portions of project generator-gulp-angular are Copyright (c) 2014 Matthieu Lux & Mehdy Dara
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Yohan Lasorsa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+

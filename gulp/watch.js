@@ -15,7 +15,7 @@ gulp.task('watch', ['inject'], function() {
     debounceDelay: 500
   };
 
-  gulp.watch(path.join(conf.paths.src, 'bower.json'), options, ['inject']);
+  gulp.watch('bower.json', options, ['inject']);
 
   gulp.watch([
     path.join(conf.paths.src, '/**/*.css'),
