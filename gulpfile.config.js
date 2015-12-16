@@ -29,8 +29,7 @@ exports.paths = {
 exports.sassIncludePaths = [
   bower.directory,
   exports.paths.src,
-  path.join(exports.paths.src, exports.paths.main),
-  path.join(bower.directory, 'bootstrap-sass/assets/stylesheets/bootstrap')
+  path.join(exports.paths.src, exports.paths.main)
 ];
 
 /**

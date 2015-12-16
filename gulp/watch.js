@@ -24,7 +24,7 @@ gulp.task('watch', ['inject'], function() {
     if (isOnlyChange(event)) {
       gulp.start('styles');
     } else {
-      gulp.start('inject:style');
+      gulp.start('inject');
     }
   });
 
@@ -32,7 +32,7 @@ gulp.task('watch', ['inject'], function() {
     if (isOnlyChange(event)) {
       gulp.start('scripts');
     } else {
-      gulp.start('inject:script');
+      gulp.start('inject');
     }
   });
 

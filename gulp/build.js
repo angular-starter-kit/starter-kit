@@ -16,7 +16,7 @@ gulp.task('build:sources', ['inject'], function() {
   var cssFilter = $.filter('**/*.css', {restore: true});
   var assets;
 
-  return gulp.src(path.join(conf.paths.src, 'index.html'))
+  return gulp.src(path.join(conf.paths.tmp, 'index.html'))
     .pipe($.replace(/<html/g, '<html ng-strict-di'))
     .pipe(assets = $.useref.assets())
     .pipe($.if('**/app*.js', $.replace(/\'debug\': true/g, '\'debug\': false')))
