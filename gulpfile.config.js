@@ -58,8 +58,8 @@ exports.backendProxy = [
  */
 exports.wiredep = {
   exclude: [],
-  directory: path.join(exports.paths.src, bower.directory),
-  bowerJson: require('./' + path.join(exports.paths.src, 'bower.json'))
+  directory: bower.directory,
+  bowerJson: require('./bower.json')
 };
 
 /**

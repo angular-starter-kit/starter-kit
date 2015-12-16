@@ -11,7 +11,7 @@ var tsdJson = 'tsd.json';
 var tsdApi = new tsd.getAPI(tsdJson);
 
 gulp.task('tsd', function() {
-  var bower = require(path.join(process.cwd(), conf.paths.src, 'bower.json'));
+  var bower = require(path.join(process.cwd(), 'bower.json'));
 
   var dependencies = [].concat(
     Object.keys(bower.dependencies),
