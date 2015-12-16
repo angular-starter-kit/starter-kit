@@ -128,7 +128,7 @@ docs        | Generate jsdoc documentation from sources.
 
 See the [wiki](https://github.com/thales-poles-ra/starter-kit/wiki).
 
-# Licence
+# License
 
 This starter kit is based on tooling from the
 [gulp-angular](https://github.com/Swiip/generator-gulp-angular) Yeoman generator.
