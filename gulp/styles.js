@@ -38,7 +38,6 @@ gulp.task('styles', ['fonts'], function() {
   return gulp.src(path.join(mainFolder, 'main.scss'))
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
-    .pipe(gulp.dest(mainFolder))
     .pipe($.sourcemaps.init())
     .pipe($.sass(sassOptions)).on('error', conf.errorHandler('Sass'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
