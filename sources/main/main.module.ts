@@ -5,11 +5,12 @@ module app {
   'use strict';
 
   angular.module('app', [
+    'ionic',
     'gettext',
+    'ngCordova',
     'ngAnimate',
     'ngSanitize',
-    'ui.router',
-    'ui.bootstrap'
+    'ui.router'
   ]);
 
 }

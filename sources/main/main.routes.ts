@@ -19,14 +19,22 @@ module app {
       })
       .state('app.home', {
         url: '/',
-        templateUrl: 'modules/screens/home/home.html',
-        controller: 'homeController as vm',
+        views: {
+          'menuContent': {
+            templateUrl: 'modules/screens/home/home.html',
+            controller: 'homeController as vm',
+          }
+        },
         data: {title: gettext('Home')}
       })
       .state('app.about', {
         url: '/about',
-        templateUrl: 'modules/screens/about/about.html',
-        controller: 'aboutController as vm',
+        views: {
+          'menuContent': {
+            templateUrl: 'modules/screens/about/about.html',
+            controller: 'aboutController as vm',
+          }
+        },
         data: {title: gettext('About')}
       });
 

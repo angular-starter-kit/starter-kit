@@ -2,11 +2,9 @@
 <html ng-app="app">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title ng-bind="pageTitle"></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
     <!-- build:css(sources) styles/vendor.css -->
     <!-- bower:css -->
@@ -19,12 +17,19 @@
     <!-- endbuild -->
   </head>
   <body>
-    <!--[if lt IE 9]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your
-      experience.</p>
-    <![endif]-->
+    <ion-nav-view></ion-nav-view>
 
-    <div ui-view></div>
+    <!-- Include Cordova script only when needed -->
+    <script>
+      if (!/^http/.test(location.protocol)) {
+        document
+          .createElement('script')
+          .setAttribute('src', 'cordova.js')
+      }
+    </script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <!--<script src="cordova.js"></script>-->
 
     <!-- build:js(sources) scripts/vendor.js -->
     <!-- bower:js -->

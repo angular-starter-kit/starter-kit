@@ -1,53 +1,37 @@
-<section id="shell" class="shell">
+  <ion-side-menus id="shell" class="shell" enable-menu-with-back-views="true">
 
-  <!-- Header -->
-  <header>
-    <nav class="navbar navbar-static-top navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" ng-click="shell.toggleMenu()" aria-expanded="{{!shell.menuHidden}}">
-            <span class="sr-only" translate>Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="https://github.com/thales-poles-ra/starter-kit/">
-            <span translate>APP_NAME</span>
-          </a>
-        </div>
-        <div class="navbar-collapse" uib-collapse="shell.menuHidden">
-          <ul class="nav navbar-nav">
-            <li ng-class="{ active: shell.stateContains('app.home') }">
-              <a class="nav-item text-uppercase" ui-sref="app.home">
-                <i class="fa fa-home"></i>
-                <span translate>Home</span>
-              </a>
-            </li>
-            <li ng-class="{ active: shell.stateContains('app.about') }">
-              <a class="nav-item text-uppercase" ui-sref="app.about">
-                <i class="fa fa-question-circle"></i>
-                <span translate>About</span>
-              </a>
-            </li>
-          </ul>
-          <div class="navbar-form navbar-right">
-            <div class="form-group" uib-dropdown>
-              <button type="button" class="btn btn-default" uib-dropdown-toggle aria-haspopup="true" aria-expanded="false">
-                {{shell.currentLocale.id}} <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li ng-repeat="language in ::shell.languages">
-                  <a href="" ng-click="setLanguage(language)">{{language}}</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+    <!-- View content -->
+    <ion-side-menu-content>
+      <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-buttons side="left">
+          <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active"></button>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+      <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
 
-  <!-- View content -->
-  <div ui-view></div>
+    <!-- Side menu -->
+    <ion-side-menu side="left" expose-aside-when="(min-width:769px)">
+      <ion-header-bar class="bar-dark">
+        <h1 class="title" translate>APP_NAME</h1>
+      </ion-header-bar>
+      <ion-content class="dark-bg">
+        <ion-list>
+          <ion-item class="item-dark item-icon-left" menu-close href="#/" ng-class="{ active: shell.stateContains('app.home') }">
+            <span class="medium-dark">
+              <i class="icon ion-home icon-large"> </i>
+              <span translate>Home</span>
+            </span>
+          </ion-item>
+          <ion-item class="item-dark item-icon-left text-darker" menu-close href="#/about" ng-class="{ active: shell.stateContains('app.about') }">
+            <span class="medium-dark">
+              <i class="icon ion-information-circled icon-large"> </i>
+              <span translate>About</span>
+            </span>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-side-menu>
 
-</section>
+  </ion-side-menus>

@@ -8,32 +8,20 @@ module app {
    */
   export class ShellController {
 
-    languages: any;
     currentLocale: ng.ILocaleService;
-    menuHidden: boolean;
 
     private $state: ng.ui.IStateService;
     private logger: ILogger;
 
     constructor($locale: ng.ILocaleService,
                 $state: ng.ui.IStateService,
-                logger: LoggerService,
-                config: any) {
+                logger: LoggerService) {
 
       this.$state = $state;
       this.currentLocale = $locale;
       this.logger = logger.getLogger('shell');
-      this.languages = config.supportedLanguages;
-      this.menuHidden = true;
 
       this.init();
-    }
-
-    /**
-     * Toggles navigation menu visibility on mobile platforms.
-     */
-    toggleMenu() {
-      this.menuHidden = !this.menuHidden;
     }
 
     /**

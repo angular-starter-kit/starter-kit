@@ -6,12 +6,17 @@ module app {
    * Entry point of the application.
    * Initializes application and root controller.
    */
-  function main($locale: ng.ILocaleService,
-                $rootScope: any,
+  function main($window: any,
+                $timeout: ng.ITimeoutService,
+                $locale: ng.ILocaleService,
                 $state: angular.ui.IStateService,
+                $rootScope: any,
+                $ionicPlatform: ionic.platform.IonicPlatformService,
+                $cordovaKeyboard: any,
                 gettextCatalog: angular.gettext.gettextCatalog,
                 _: _.LoDashStatic,
                 config: any,
+                logger: LoggerService,
                 restService: RestService) {
 
     /*
@@ -21,6 +26,7 @@ module app {
     var vm = $rootScope;
 
     vm.pageTitle = '';
+    vm.viewTitle = '';
 
     /**
      * Utility method to set the language in the tools requiring it.
@@ -40,17 +46,17 @@ module app {
     };
 
     /**
-     * Updates page title on view change.
+     * Updates title on view change.
      */
     vm.$on('$stateChangeSuccess', function(event: any, toState: angular.ui.IState) {
-      updatePageTitle(toState.data ? toState.data.title : null);
+      updateTitle(toState.data ? toState.data.title : null);
     });
 
     /**
-     * Updates page title on language change.
+     * Updates title on language change.
      */
     vm.$on('gettextLanguageChanged', function() {
-      updatePageTitle($state.current.data ? $state.current.data.title : null);
+      updateTitle($state.current.data ? $state.current.data.title : null);
     });
 
     init();
@@ -63,24 +69,57 @@ module app {
      * Initializes the root controller.
      */
     function init() {
+      var _logger: ILogger = logger.getLogger('main');
+
       // Enable debug mode for translations
       gettextCatalog.debug = config.debug;
 
-      vm.setLanguage();
-
       // Set REST server configuration
       restService.setServer(config.server);
+
+      // Cordova platform and plugins init
+      $ionicPlatform.ready(function() {
+
+        // Hide splash screen
+        var splashScreen = $window.navigator.splashscreen;
+        if (splashScreen) {
+          $timeout(function() {
+            splashScreen.hide();
+          }, 1000);
+        }
+
+        // Detect and set default language
+        var globalization = $window.navigator.globalization;
+        if (globalization !== undefined) {
+          // Use cordova plugin to retrieve device's locale
+          globalization.getPreferredLanguage(function(language: string) {
+            _logger.log('Setting device locale "' + language + '" as default language');
+            vm.setLanguage(language);
+          }, null);
+        } else {
+          vm.setLanguage();
+        }
+
+        if ($window.cordova && $window.cordova.plugins.Keyboard) {
+          // Hide the accessory bar (remove this to show the accessory bar above the keyboard for form inputs)
+          $cordovaKeyboard.hideAccessoryBar(true);
+          $cordovaKeyboard.disableScroll(true);
+        }
+
+      });
+
     }
 
     /**
-     * Updates the page title.
+     * Updates the page and view title.
      * @param {?string=} stateTitle Title of current state, to be translated.
      */
-    function updatePageTitle(stateTitle?: string) {
+    function updateTitle(stateTitle?: string) {
       vm.pageTitle = gettextCatalog.getString('APP_NAME');
 
       if (stateTitle) {
-        vm.pageTitle += ' | ' + gettextCatalog.getString(stateTitle);
+        vm.viewTitle = gettextCatalog.getString(stateTitle);
+        vm.pageTitle += ' | ' + vm.viewTitle;
       }
     }
 

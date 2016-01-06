@@ -1,12 +1,17 @@
-<section id="home-screen" class="home-screen container-fluid">
-  <div class="jumbotron text-center">
-    <h1>
-      <img class="logo" src="images/angularjs-logo.png" alt="angularjs logo"/>
-      <span translate>Hello world !</span>
-    </h1>
-    <div ui-loading="vm.isLoading"></div>
-    <p>
-      <em class="quote">{{vm.quote}}</em>
-    </p>
-  </div>
-</section>
+<ion-view id="home-screen" class="home-screen">
+  <ion-nav-title>{{viewTitle}}</ion-nav-title>
+  <ion-content>
+    <ion-list type="card text-center">
+      <ion-item class="item-divider">
+        <img class="logo" src="images/angularjs-logo.png" alt="angularjs logo"/>
+        <h1 translate>Hello world !</h1>
+      </ion-item>
+      <ion-item class="item-body">
+        <p>
+          <div ui-loading="vm.isLoading"></div>
+          <em class="quote">{{vm.quote}}</em>
+        </p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
