@@ -8,9 +8,8 @@
     "angular": "~1.4.0",
     "lodash": "~3.10.1",
     "angular-gettext": "~2.1.0",
-    "font-awesome": "~4.5.0",
-    "angular-bootstrap": "~0.14.3",
-    "bootstrap-sass": "~3.3.6"
+    "ionic": "~1.2.4",
+    "ngCordova": "~0.1.23-alpha"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0",
@@ -18,15 +17,16 @@
     "jasmine-jquery": "~2.1.0"
   },
   "overrides": {
-    "font-awesome": {
+    "ionic": {
       "main": [
-        "./less/font-awesome.less",
-        "./fonts/*"
+        "release/fonts/*",
+        "release/js/ionic.js",
+        "release/js/ionic-angular.js"
       ]
-    },
-    "bootstrap-sass": {
-      "main": [],
-      "dependencies": []
     }
+  },
+  "resolutions": {
+    "angular": "~1.4.0",
+    "angular-ui-router": "~0.2.15"
   }
 }

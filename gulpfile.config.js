@@ -16,7 +16,7 @@ var HttpsProxyAgent = require('https-proxy-agent');
  */
 exports.paths = {
   src: 'sources',
-  dist: 'dist',
+  dist: 'www',
   tmp: '.tmp',
   e2e: 'e2e',
   main: 'main',
@@ -29,7 +29,8 @@ exports.paths = {
 exports.sassIncludePaths = [
   bower.directory,
   exports.paths.src,
-  path.join(exports.paths.src, exports.paths.main)
+  path.join(exports.paths.src, exports.paths.main),
+  path.join(bower.directory, 'ionic/scss')
 ];
 
 /**

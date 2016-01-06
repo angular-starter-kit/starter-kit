@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/thales-poles-ra/starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/thales-poles-ra/starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Web project starter kit including tooling, best practices and project seed.
+Hybrid mobile app starter kit including tooling, best practices and project seed.
 
 It is based on experience in large web projects, with architecture choices aiming for a clean, no-brainer development
 experience even for beginner teams.
@@ -116,12 +116,11 @@ docs        | Generate jsdoc documentation from sources.
 - Asset revisionning ([rev](https://github.com/sindresorhus/gulp-rev))
 
 #### Libraries
+- [Ionic](http://ionicframework.com/)
 - [AngularJS](https://angularjs.org)
 - [Angular-gettext](https://angular-gettext.rocketeer.be)
 - [AngularUI Router](https://github.com/angular-ui/ui-router)
-- [UI Bootsrap](https://angular-ui.github.io/bootstrap)
-- [Bootstrap](http://getbootstrap.com)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome)
+- [ngCordova](http://ngcordova.com/)
 - [Lodash](https://lodash.com)
 
 # Roadmap
