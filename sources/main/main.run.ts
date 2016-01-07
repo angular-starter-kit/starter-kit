@@ -79,7 +79,7 @@ module app {
       vm.setLanguage();
 
       // Set REST server configuration
-      restService.setServer(config.server);
+      restService.setServer(config.debug ? config.server.development : config.server.production);
 
       // Cordova platform and plugins init
       $ionicPlatform.ready(function() {

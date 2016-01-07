@@ -23,8 +23,14 @@ module app {
 
       // REST backend configuration, used for all web services using restService
       server: {
-        restServerUrl: '',
-        restUri: 'api'
+        development: {
+          restServerUrl: '',
+          restUri: 'api'
+        },
+        production: {
+          restServerUrl: 'http://api.icndb.com',
+          restUri: ''
+        }
       }
 
     });
