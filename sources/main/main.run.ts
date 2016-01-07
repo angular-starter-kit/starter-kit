@@ -40,9 +40,11 @@ module app {
         language = 'en-US';
       }
 
-      // Configure translation with gettext
-      gettextCatalog.setCurrentLanguage(language);
-      $locale.id = language;
+      vm.$apply(function() {
+        // Configure translation with gettext
+        gettextCatalog.setCurrentLanguage(language);
+        $locale.id = language;
+      });
     };
 
     /**
@@ -74,6 +76,8 @@ module app {
       // Enable debug mode for translations
       gettextCatalog.debug = config.debug;
 
+      vm.setLanguage();
+
       // Set REST server configuration
       restService.setServer(config.server);
 
@@ -96,8 +100,6 @@ module app {
             _logger.log('Setting device locale "' + language + '" as default language');
             vm.setLanguage(language);
           }, null);
-        } else {
-          vm.setLanguage();
         }
 
         if ($window.cordova && $window.cordova.plugins.Keyboard) {
