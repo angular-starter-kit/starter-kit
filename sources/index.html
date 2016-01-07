@@ -21,11 +21,13 @@
 
     <!-- Include Cordova script only when needed -->
     <script>
-      if (!/^http/.test(location.protocol)) {
-        document
-          .createElement('script')
-          .setAttribute('src', 'cordova.js')
-      }
+      (function() {
+        if (!/^http/.test(location.protocol)) {
+          var c = document.createElement('script');
+          c.setAttribute('src', 'cordova.js');
+          document.body.appendChild(c);
+        }
+      })();
     </script>
 
     <!-- cordova script (this will be a 404 during development) -->
