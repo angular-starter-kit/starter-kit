@@ -13,6 +13,7 @@ node_modules/
 /reports/
 
 ## Mobile
+/ionic.project
 /www/
 /plugins/
 /platforms/
