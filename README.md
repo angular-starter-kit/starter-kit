@@ -29,7 +29,7 @@ sources/                project source code
 |- data/                other project data, will be copied as-is
 |- fonts/               project fonts
 |- images/              project images
-|- libraries/           bower dependencies
+|- libraries/           Bower dependencies
 |- main/                main module, for entry points and global style
 |  |- main.config.js    app configuration code
 |  |- main.constants.js app configuration constants
