@@ -9,10 +9,15 @@ experience even for beginner teams.
 
 # Getting started
 
-1. Install required tools `gulp` and `bower`:
+1. Install required tools `gulp`, `bower`, `ionic` and `cordova`:
 ```
-npm install -g gulp bower
+npm install -g gulp bower ionic cordova
 ```
+
+- To build the iOS version, you need to install [XCode](https://itunes.apple.com/app/xcode/id497799835)
+- To build the Android version, you need to install the
+  [Android SDK](http://developer.android.com/sdk/installing/index.html)
+
 2. Install project tools, go to project folder:
 ```
 npm install
@@ -20,6 +25,10 @@ npm install
 3. Launch development server:
 ```
 gulp serve
+```
+4. Run on Android device
+```
+gulp build && cordova run android --device`
 ```
 
 # Project structure
@@ -29,7 +38,7 @@ sources/                project source code
 |- data/                other project data, will be copied as-is
 |- fonts/               project fonts
 |- images/              project images
-|- libraries/           bower dependencies
+|- libraries/           Bower dependencies
 |- main/                main module, for entry points and global style
 |  |- main.config.js    app configuration code
 |  |- main.constants.js app configuration constants
@@ -48,9 +57,13 @@ sources/                project source code
 |- translations/        translations files
 +- index.html           html entry point
 e2e/                    end-to-end tests
-dist/                   compiled version
+www/                    compiled version
 typings/                TypeScript definitions
 reports/                test and coverage reports + generated documentation
+hooks/                  Cordova build hooks
+platforms/              Cordova platform-specific projects
+plugins/                Cordova plugins
+resources/              icon and splash screen resources
 gulpfile.config.js      gulp tasks configuration
 ```
 
