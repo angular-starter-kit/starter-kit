@@ -32,6 +32,10 @@ TODO: gulp command
 
 TODO
 
+### Clean/refresh
+
+TODO: gulp command
+
 ## Icon and splash screen
 
 In order to simplify icon and splash screen creation for each device/OS, you can use the `ionic resources` command.
