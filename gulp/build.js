@@ -10,6 +10,12 @@ var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
+function replaceConstant(string, replacement) {
+  // Make sure we replace only the string located inside markers
+  var constantRegExp = new RegExp('(// replace:constant[\\s\\S]*?)' + string + '([\\s\\S]*?endreplace)', 'gm');
+  return $.replace(constantRegExp, '$1' + replacement + '$2')
+}
+
 gulp.task('build:sources', ['inject'], function() {
   var htmlFilter = $.filter('*.html', {restore: true});
   var jsFilter = $.filter('**/*.js', {restore: true});
@@ -19,8 +25,8 @@ gulp.task('build:sources', ['inject'], function() {
   return gulp.src(path.join(conf.paths.tmp, 'index.html'))
     .pipe($.replace(/<html/g, '<html ng-strict-di'))
     .pipe(assets = $.useref.assets())
-    .pipe($.if('**/app*.js', $.replace(/\'debug\': true/g, '\'debug\': false')))
-    .pipe($.if('**/app*.js', $.replace(/\'version\': 'dev'/g, '\'version\': \'' + packageConfig.version + '\'')))
+    .pipe($.if('**/app*.js', replaceConstant('debug: true', 'debug: false')))
+    .pipe($.if('**/app*.js', replaceConstant('version: \'dev\'', 'version: \'' + packageConfig.version + '\'')))
     .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
