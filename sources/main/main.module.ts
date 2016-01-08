@@ -5,6 +5,7 @@ module app {
   'use strict';
 
   angular.module('app', [
+    'app.additions',
     'ionic',
     'gettext',
     'ngCordova',

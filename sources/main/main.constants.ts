@@ -9,14 +9,15 @@ module app {
     .module('app')
     .constant('config', {
 
-      // DO NOT CHANGE: debug mode is automatically switched to false on gulp build
-      'debug': true,
-
-      // DO NOT CHANGE: app version is injected from package.json on gulp build
-      'version': 'dev',
+      // Do not remove the comments below, or change the values. It's the markers used by gulp build task to switch
+      // debug mode to false and inject app version is from package.json automatically on production builds.
+      // replace:constant
+      debug: true,
+      version: 'dev',
+      // endreplace
 
       // Supported languages
-      'supportedLanguages': [
+      supportedLanguages: [
         'en-US',
         'fr-FR'
       ],
