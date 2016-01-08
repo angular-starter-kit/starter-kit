@@ -28,7 +28,10 @@ gulp.task('watch', ['inject'], function() {
     }
   });
 
-  gulp.watch(path.join(conf.paths.src, '/**/*.js'), options, function(event) {
+  gulp.watch([
+    path.join(conf.paths.src, '/**/*.js'),
+    path.join(conf.paths.src, '/**/*.ts')
+  ], options, function(event) {
     if (isOnlyChange(event)) {
       gulp.start('scripts');
     } else {
