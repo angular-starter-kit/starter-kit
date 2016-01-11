@@ -40,11 +40,9 @@ module app {
         language = 'en-US';
       }
 
-      vm.$apply(function() {
-        // Configure translation with gettext
-        gettextCatalog.setCurrentLanguage(language);
-        $locale.id = language;
-      });
+      // Configure translation with gettext
+      gettextCatalog.setCurrentLanguage(language);
+      $locale.id = language;
     };
 
     /**
@@ -98,7 +96,9 @@ module app {
           // Use cordova plugin to retrieve device's locale
           globalization.getPreferredLanguage(function(language: string) {
             _logger.log('Setting device locale "' + language + '" as default language');
-            vm.setLanguage(language);
+            vm.$apply(function() {
+              vm.setLanguage(language);
+            });
           }, null);
         }
 
