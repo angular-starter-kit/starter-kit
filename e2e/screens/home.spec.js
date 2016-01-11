@@ -9,7 +9,7 @@ describe('home screen', function() {
     page = require('./home.po');
   });
 
-  it('should include jumbotron with correct data', function() {
+  it('should include card with correct data', function() {
     expect(page.title.getText()).toMatch('Hello');
     expect(page.image.getAttribute('src')).toMatch('angularjs');
   });

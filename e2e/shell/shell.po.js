@@ -6,10 +6,8 @@
 'use strict';
 
 var Shell = function() {
-  this.navbar = element(by.css('.navbar'));
-  this.navbarItems = this.navbar.element(by.css('.navbar-nav')).all(by.css('li'));
-  this.languageDropdown = this.navbar.element(by.css('.dropdown'));
-  this.languageDropdownItems = this.languageDropdown.all(by.css('li'));
+  this.sideMenu = element(by.css('.menu'));
+  this.sideMenuItems = this.sideMenu.element(by.css('.list')).all(by.css('.item'));
 };
 
 module.exports = new Shell();

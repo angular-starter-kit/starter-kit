@@ -10,7 +10,7 @@ describe('about', function() {
   });
 
   it('should contain version', function() {
-    expect(page.jumbotron.getText()).toMatch('Version');
+    expect(page.card.getText()).toMatch('Version');
   });
 
 });

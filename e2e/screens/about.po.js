@@ -6,7 +6,7 @@
 'use strict';
 
 var About = function() {
-  this.jumbotron = element(by.css('.jumbotron'));
+  this.card = element(by.css('.card'));
 };
 
 module.exports = new About();

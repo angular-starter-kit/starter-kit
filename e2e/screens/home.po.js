@@ -6,9 +6,9 @@
 'use strict';
 
 var Home = function() {
-  this.jumbotron = element(by.css('.jumbotron'));
-  this.title = this.jumbotron.element(by.css('h1'));
-  this.image = this.jumbotron.element(by.css('img'));
+  this.card = element(by.css('.card'));
+  this.title = this.card.element(by.css('h1'));
+  this.image = this.card.element(by.css('img'));
 };
 
 module.exports = new Home();
