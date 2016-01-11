@@ -9,9 +9,9 @@ experience even for beginner teams.
 
 # Getting started
 
-1. Install required tools `gulp`, `bower`, `ionic` and `cordova`:
+1. Install required tools `gulp`, `bower`, and `cordova`:
 ```
-npm install -g gulp bower ionic cordova
+npm install -g gulp bower cordova
 ```
 
 - To build the iOS version, you need to install [XCode](https://itunes.apple.com/app/xcode/id497799835)
@@ -93,6 +93,7 @@ docs        | Generate jsdoc documentation from sources.
 
 # Additional documentation
 
+- [Cordova](docs/cordova.md)
 - [i18n](docs/i18n.md)
 - [Proxy configuration](docs/proxy.md)
 - [All gulp tasks](docs/tasks.md)

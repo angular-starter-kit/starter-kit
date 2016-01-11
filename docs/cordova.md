@@ -38,7 +38,11 @@ TODO: gulp command
 
 ## Icon and splash screen
 
-In order to simplify icon and splash screen creation for each device/OS, you can use the `ionic resources` command.
+In order to simplify icon and splash screen creation for each device/OS, you can use this command (make sure the ionic
+tool is installed beforehand with `npm install -g ionic`):
+```
+ionic resources
+```
 
 It will generate iOS and Android assets based on the files `icon.png` (which should be 1024x1024) and `splash.png`
 (which should be 2208x2208), using the Ionic servers. It will also edit your `config.xml` file accordingly.
