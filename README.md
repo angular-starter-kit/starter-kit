@@ -26,9 +26,13 @@ npm install
 ```
 gulp serve
 ```
-4. Run on Android device
+4. Prepare Cordova
 ```
-gulp build && cordova run android --device`
+gulp build && cordova prepare`
+```
+5. Run on Android device
+```
+cordova run android --device`
 ```
 
 # Project structure
