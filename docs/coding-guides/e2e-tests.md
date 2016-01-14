@@ -81,5 +81,5 @@ describe('Login', function () {
 
 ## Credits
 
-This page object part of this guide was freely inspired by this 
+The page object part of this guide was freely inspired by this 
 [presentation](https://docs.google.com/presentation/d/1B6manhG0zEXkC-H-tPo2vwU06JhL8w9-XCF9oehXzAQ).
