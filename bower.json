@@ -20,7 +20,7 @@
   "overrides": {
     "font-awesome": {
       "main": [
-        "./less/font-awesome.less",
+        "./scss/font-awesome.scss",
         "./fonts/*"
       ]
     },
