@@ -10,6 +10,7 @@
    * Configures the application (before running).
    */
   function mainConfig($provide,
+                      $compileProvider,
                       config) {
 
     // Extend the $exceptionHandler service to output logs.
@@ -30,6 +31,9 @@
       }
       return $delegate;
     });
+
+    // Disable angular debug info in production version
+    $compileProvider.debugInfoEnabled(config.debug);
 
   }
 
