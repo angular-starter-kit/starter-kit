@@ -23,8 +23,8 @@
       restrict: 'A',
       templateUrl: 'modules/ui-components/loading/loading.html',
       scope: {
-        message: '=',
-        isLoading: '=uiLoading'
+        message: '<',
+        isLoading: '<uiLoading'
       }
     };
   }
