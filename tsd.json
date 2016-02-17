@@ -34,6 +34,9 @@
     },
     "lodash/lodash.d.ts": {
       "commit": "aefd8146158b9f17c9eb79bbf158e6d8d3c2a87b"
+    },
+    "ionic/ionic.d.ts": {
+      "commit": "aefd8146158b9f17c9eb79bbf158e6d8d3c2a87b"
     }
   }
 }

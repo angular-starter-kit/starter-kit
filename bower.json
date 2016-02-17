@@ -9,7 +9,7 @@
     "lodash": "~4.5.0",
     "angular-gettext": "~2.2.1",
     "ionic": "~1.2.4",
-    "ngCordova": "~0.1.23-alpha"
+    "ngCordova": "~0.1.24-alpha"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0",
@@ -24,5 +24,11 @@
         "release/js/ionic-angular.js"
       ]
     }
+  },
+  "resolutions": {
+    "angular-ui-router": "~0.2.15",
+    "angular-sanitize": "~1.5.0",
+    "angular": "~1.5.0",
+    "angular-animate": "~1.5.0"
   }
 }
