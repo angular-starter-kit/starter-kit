@@ -6,15 +6,15 @@
     "angular-sanitize": "~1.5.0",
     "angular-ui-router": "~0.2.15",
     "angular": "~1.5.0",
-    "lodash": "~3.10.1",
-    "angular-gettext": "~2.1.0",
+    "lodash": "~4.5.0",
+    "angular-gettext": "~2.2.1",
     "font-awesome": "~4.5.0",
-    "angular-bootstrap": "~0.14.3",
+    "angular-bootstrap": "~1.1.2",
     "bootstrap-sass": "~3.3.6"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.0",
-    "jquery": "~2.1.4",
+    "jquery": "~2.2.0",
     "jasmine-jquery": "~2.1.0"
   },
   "overrides": {
