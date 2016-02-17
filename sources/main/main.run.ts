@@ -33,7 +33,7 @@ module app {
      * @param {string=} language The IETF language tag.
      */
     vm.setLanguage = function(language?: string) {
-      var isSupportedLanguage = _.contains(config.supportedLanguages, language);
+      var isSupportedLanguage = _.includes(config.supportedLanguages, language);
 
       // Fallback if language is not supported
       if (!isSupportedLanguage) {

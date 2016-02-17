@@ -59,8 +59,7 @@
     "tag": "v1.2.4",
     "commit": "f30ee10e4120f38eab2220f244967bfe14a7818a"
   },
-  "_source": "git://github.com/driftyco/ionic.git",
+  "_source": "https://github.com/driftyco/ionic.git",
   "_target": "~1.2.4",
-  "_originalSource": "ionic",
-  "_direct": true
+  "_originalSource": "ionic"
 }
