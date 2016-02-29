@@ -2,8 +2,8 @@
 
 ## Naming conventions
 
-- In the CSS world, everything should be named in `snake-case` (lowercase words separated with a `-`).
-- File names should always be in `snake-case`
+- In the CSS world, everything should be named in `kebab-case` (lowercase words separated with a `-`).
+- File names should always be in `kebab-case`
 
 ## Coding rules
 
