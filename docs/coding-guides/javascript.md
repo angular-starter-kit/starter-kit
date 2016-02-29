@@ -10,7 +10,7 @@ This starter kit architecture and base template tries to comply with most of the
 - Use `camelCase` everywhere (properties and methods), except for:
   * Class names and constructors which should starts in uppercase.
   * Constants should be all in UPPERCASE, like `var MY_CONSTANT = 0;`
-- File names should always be in `snake-case`
+- File names should always be in `kebab-case`
 
 ## Coding rules
 
