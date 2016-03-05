@@ -16,3 +16,7 @@ gulp.task('images', function() {
     .pipe(gulp.dest(path.join(conf.paths.dist, 'images')))
     .pipe($.size());
 });
+
+gulp.task('images:clean-cache', function(done) {
+  return $.cache.clearAll(done);
+});

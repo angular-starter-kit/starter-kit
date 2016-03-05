@@ -23,7 +23,7 @@ module app {
      * Root view model
      */
 
-    var vm = $rootScope;
+    let vm = $rootScope;
 
     vm.pageTitle = '';
     vm.viewTitle = '';
@@ -33,7 +33,7 @@ module app {
      * @param {string=} language The IETF language tag.
      */
     vm.setLanguage = function(language?: string) {
-      var isSupportedLanguage = _.includes(config.supportedLanguages, language);
+      let isSupportedLanguage = _.includes(config.supportedLanguages, language);
 
       // Fallback if language is not supported
       if (!isSupportedLanguage) {
@@ -48,14 +48,14 @@ module app {
     /**
      * Updates title on view change.
      */
-    vm.$on('$stateChangeSuccess', function(event: any, toState: angular.ui.IState) {
+    vm.$on('$stateChangeSuccess', (event: any, toState: angular.ui.IState) => {
       updateTitle(toState.data ? toState.data.title : null);
     });
 
     /**
      * Updates title on language change.
      */
-    vm.$on('gettextLanguageChanged', function() {
+    vm.$on('gettextLanguageChanged', () => {
       updateTitle($state.current.data ? $state.current.data.title : null);
     });
 

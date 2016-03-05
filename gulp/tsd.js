@@ -55,6 +55,13 @@ gulp.task('tsd', function() {
     });
 });
 
+gulp.task('tsd:restore', function() {
+  return tsdApi.readConfig()
+    .then(function() {
+      return tsdApi.reinstall(new tsd.Options());
+    })
+});
+
 gulp.task('tsd:clean', function() {
   return tsdApi.purge(true, true);
 });
