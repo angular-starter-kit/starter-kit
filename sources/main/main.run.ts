@@ -69,7 +69,7 @@ module app {
      * Initializes the root controller.
      */
     function init() {
-      var _logger: ILogger = logger.getLogger('main');
+      let _logger: ILogger = logger.getLogger('main');
 
       // Enable debug mode for translations
       gettextCatalog.debug = config.debug;
@@ -80,23 +80,23 @@ module app {
       restService.setServer(config.debug ? config.server.development : config.server.production);
 
       // Cordova platform and plugins init
-      $ionicPlatform.ready(function() {
+      $ionicPlatform.ready(() => {
 
         // Hide splash screen
-        var splashScreen = $window.navigator.splashscreen;
+        let splashScreen = $window.navigator.splashscreen;
         if (splashScreen) {
-          $timeout(function() {
+          $timeout(() => {
             splashScreen.hide();
           }, 1000);
         }
 
         // Detect and set default language
-        var globalization = $window.navigator.globalization;
-        if (globalization !== undefined) {
+        let globalization = $window.navigator.globalization;
+        if (globalization) {
           // Use cordova plugin to retrieve device's locale
-          globalization.getPreferredLanguage(function(language: string) {
+          globalization.getPreferredLanguage((language: string) => {
             _logger.log('Setting device locale "' + language + '" as default language');
-            vm.$apply(function() {
+            vm.$apply(() => {
               vm.setLanguage(language);
             });
           }, null);
