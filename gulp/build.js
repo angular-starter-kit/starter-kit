@@ -79,5 +79,5 @@ gulp.task('other', ['fonts'], function() {
 gulp.task('build', ['build:sources', 'other', 'images']);
 
 gulp.task('clean', ['images:clean-cache'], function() {
-  return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
+  return $.del([conf.paths.dist, conf.paths.tmp]);
 });
