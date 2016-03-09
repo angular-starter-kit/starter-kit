@@ -9,9 +9,9 @@ experience even for beginner teams.
 
 # Getting started
 
-1. Install required tools `gulp`, `bower`, and `cordova`:
+1. Install required tools `gulp` and `bower`:
 ```
-npm install -g gulp bower cordova
+npm install -g gulp bower
 ```
 
 - To build the iOS version, you need to install [XCode](https://itunes.apple.com/app/xcode/id497799835)
@@ -140,6 +140,16 @@ docs        | Generate jsdoc documentation from sources.
 - [AngularUI Router](https://github.com/angular-ui/ui-router)
 - [ngCordova](http://ngcordova.com/)
 - [Lodash](https://lodash.com)
+
+#### Cordova plugins
+- [ionic-plugin-keyboard](https://github.com/driftyco/ionic-plugin-keyboard)
+- [cordova-plugin-statusbar](https://github.com/apache/cordova-plugin-statusbar)
+- [cordova-plugin-device](https://github.com/apache/cordova-plugin-device)
+- [cordova-plugin-splashscreen](https://github.com/apache/cordova-plugin-splashscreen)
+- [cordova-plugin-globalization](https://github.com/apache/cordova-plugin-globalization)
+- [cordova-plugin-whitelist](https://github.com/apache/cordova-plugin-whitelist)
+- [cordova-plugin-crosswalk-webview](https://github.com/crosswalk-project/cordova-plugin-crosswalk-webview)
+- [cordova-plugin-wkwebview-engine](https://github.com/apache/cordova-plugin-wkwebview-engine)
 
 # Roadmap
 

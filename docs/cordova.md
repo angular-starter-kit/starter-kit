@@ -1,40 +1,85 @@
 # Using Cordova
 
-TODO: introduction, explain how to specify cordova version and use commands pass-through
+[Cordova](https://cordova.apache.org/docs/en/latest/) is the platform bridge allowing you to build mobile applications
+using web technologies.
+
+It comes with its own [CLI](https://github.com/apache/cordova-cli) to manage compilation, platforms and plugins that
+is usually installed globally.
+
+However, we chose to use a gulp pass-through for Cordova CLI commands, to allow version locking in `package.json`.
+This way, you can use a different Cordova CLI version for each of your mobile projects, independently of the globally
+installed version. This is also necessary as new updates often break project compilation.
+
+You can manage Cordova CLI updates like any [NPM package](updating.md).
+
+If you do not want this behavior and prefer using your global Cordova install, simply run:
+```
+npm remove cordova --save-dev
+npm install -g cordova
+```
+The gulp tasks will then use the global version instead of a local one.
+
+## Platform notes
+
+Each Cordova platform may require specific tools to be installed for the command to work properly.
+You can check anytime if your system meets the requirements for a given platform with:
+```
+gulp cordova --command="requirements <ios|android>"
+```
+
+### iOS
+
+To build the iOS version, you need to install [XCode](https://itunes.apple.com/app/xcode/id497799835).
+
+To allow launching your app in simulator or device from command line, you need also:
+```
+npm install -g ios-sim
+npm install -g ios-deploy
+```
+
+See [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html#requirements-and-support)
+for additional information.
+
+### Android
+
+To build the Android version, you need to install the
+[Android SDK](http://developer.android.com/sdk/installing/index.html).
+
+See [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#requirements-and-support)
+for additional information.
 
 ## Common tasks
 
 ### Restoring platforms and plugins after a checkout
 
-`cordova prepare`
+`gulp cordova:prepare`
 
-TODO: gulp command
+This will restore all your platforms and plugins according to your `config.xml` file.
 
 ### Adding a platform
 
-`cordova platform add [ios|android|windows] --save`
-
-TODO: gulp command
+`gulp cordova --command="platform add <ios|android> --save"`
 
 ### Adding a plugin
 
-`cordova plugin add [plugin-name] --save`
-
-TODO: gulp command
+`gulp cordova --command="plugin add <plugin-name> --save"`
 
 ### Running the application
 
-`gulp build && cordova run [ios|android|windows] [--device]`
+`gulp run:<ios|android> [--device]`
 
-TODO: gulp command
+Run your application in specified platform emulator or device if you add the `--device` option.
 
 ### Packaging and signing apps
 
-TODO
+To create properly signed application packages for store publication, you have to configure your app provisioning in
+the `build.json` file.
+ 
+This information will be used by the `gulp cordova:release` task to generate production packages.
 
-### Clean/refresh
-
-TODO: gulp command
+You can find more detailed documentation in the
+[iOS signing guide](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html#signing-an-app) or
+[Android signing guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#signing-an-app). 
 
 ## Icon and splash screen
 
@@ -64,15 +109,39 @@ images should be stretched.
 
 ## Using improved web views
 
-TODO: explain why
+To improve performance and/or compatibility of your app, it is possibly to customize the web view used by Cordova.
+This is especially useful for devices running Android 4.3 and older, as they use a slow, outdated web view.
+
+By default we enabled both Crosswalk and WKWebView.
 
 ### Using Crosswalk on Android
 
-TODO: benefits, how to, configuration
+The [Crosswalk plugin](https://github.com/crosswalk-project/cordova-plugin-crosswalk-webview) allows you to embed a 
+Chromium-based web view in your app instead of the Android system web view.
+ 
+This allows to greatly improve compatibility and performance on systems using older or customized web views, and use
+modern browser APIs, at the cost of increased app size and memory footprint.
+
+To add or remove Crosswalk:
+```
+gulp cordova --command="plugin <add|remove> cordova-plugin-crosswalk-webview --save"
+```
 
 ### Using WKWebView on iOS
 
-TODO: benefits, how to
+The [WKWebView plugin](https://github.com/apache/cordova-plugin-wkwebview-engine) makes use of the new `WKWebView`
+instead of `UIWebView`, enabling a huge increase in JavaScript performance.
+
+The new web view is only active on iOS 9+ (with a fallback for older version), and has some limitations (see the
+plugin doc on github for more details), the biggest one being:
+
+- **To perform any XHR request in your app,
+  [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) must be enabled on your server.**
+
+To add or remove WKWebView:
+```
+gulp cordova --command="plugin <add|remove> cordova-plugin-wkwebview-engine --save"
+```
 
 ## Security considerations
 
@@ -104,4 +173,4 @@ You can disable this behavior in development builds with this command:
 
 This will patch your `AppDelegate.m` file to allow untrusted HTTPS certificate in debug builds.
 
-**DO NOT USE THIS FOR PRODUCTION BUILDS!**  It may result in your app being rejected by Apple.
+**DO NOT USE THIS FOR PRODUCTION BUILDS!**  It will result in your app being rejected by Apple.
