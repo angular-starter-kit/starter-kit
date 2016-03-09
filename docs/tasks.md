@@ -42,7 +42,8 @@ translations:extract | Extract Messages from Code and Templates to template.pot.
 Task        | Description
 ------------|---------------------------------------------------------------------------------------------------------
 typescript  | Convert all *.ts found in project to js in the temporary folder.
-tsd         | Download all TypeScript definitions for Bower dependencies.
+tsd         | Download and update all TypeScript definitions for Bower dependencies.
+tsd:restore | Download TypeScript definitions according to tsd.json
 tsd:clean   | Delete downloaded TypeScript definitions.
 
 ## HTML / Jade
