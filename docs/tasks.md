@@ -45,18 +45,12 @@ tsd         | Download and update all TypeScript definitions for Bower dependenc
 tsd:restore | Download TypeScript definitions according to tsd.json
 tsd:clean   | Delete downloaded TypeScript definitions.
 
-## HTML / Jade
-
-Task     | Description
----------|------------------------------------------------------------------------------------------------------------
-partials | Put all .html found in project folder + in temporary folder in a template cache file.
-jade     | Convert all .jade found in project to HTML in the temporary folder.
-
 ## Build and assets
 
 Task         | Description
 -------------|--------------------------------------------------------------------------------------------------------
 build:source | Build and optimize all source files, excluding assets.
+partials     | Put all .html found in project folder + in temporary folder in a template cache file.
 styles       | Generate main CSS file using project main style file.
 fonts        | Copy fonts from bower dependencies in dist folder.
 images       | Compress images (using imagemin) then copy them in dist folder.
@@ -77,9 +71,3 @@ cordova --command="<command>" | Executes any cordova command (see [cordova-cli](
 
 Note that all the cordova tasks support a `--fast` option that allows to skip the rebuild of the source folder. Use it
 only when your know that the sources have not changed. 
-
-## Documentation
-
-Task    | Description
---------|-------------------------------------------------------------------------------------------------------------
-docs    | Generate jsdoc documentation from sources.

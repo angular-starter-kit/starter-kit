@@ -108,7 +108,6 @@ docs        | Generate jsdoc documentation from sources.
 #### Languages
 - [TypeScript](http://www.typescriptlang.org), JavaScript
 - [Sass](http://sass-lang.com/), CSS
-- [Jade](http://jade-lang.com), HTML
 - [Gettext](https://angular-gettext.rocketeer.be) (for translations)
 
 #### Quality
@@ -121,13 +120,12 @@ docs        | Generate jsdoc documentation from sources.
 #### Development
 - Automation with [gulp](http://gulpjs.com)
 - Development server with API proxy and live reload ([BrowserSync](http://www.browsersync.io))
-- [JSDoc](http://usejsdoc.org) generation with angular support
 
 #### Build
 - JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
   [uglify](https://github.com/terinjokes/gulp-uglify), 
-  [minify-html](https://github.com/murphydanger/gulp-minify-html), 
-  [clean-css](https://github.com/ben-eb/gulp-minify-css)) 
+  [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
+  [clean-css](https://www.npmjs.com/package/gulp-clean-css) 
 - CSS browser support ([autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - Images optimization ([imagemin](https://github.com/sindresorhus/gulp-imagemin))
 - Automatic angular module annotation ([ngAnnotate](https://github.com/Kagami/gulp-ng-annotate))
