@@ -90,7 +90,6 @@ docs        | Generate jsdoc documentation from sources.
 #### Languages
 - [TypeScript](http://www.typescriptlang.org), JavaScript
 - [Sass](http://sass-lang.com/), CSS
-- [Jade](http://jade-lang.com), HTML
 - [Gettext](https://angular-gettext.rocketeer.be) (for translations)
 
 #### Quality

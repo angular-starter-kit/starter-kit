@@ -6,7 +6,7 @@ var conf = require('../gulpfile.config');
 
 var $ = require('gulp-load-plugins')();
 
-gulp.task('partials', ['jade'], function() {
+gulp.task('partials', function() {
   return gulp.src([
       path.join(conf.paths.src, '**/*.html'),
       path.join('!' + conf.paths.bower, '**/*.html'),
