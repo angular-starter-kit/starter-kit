@@ -55,9 +55,3 @@ styles       | Generate main CSS file using project main style file.
 fonts        | Copy fonts from bower dependencies in dist folder.
 images       | Compress images (using imagemin) then copy them in dist folder.
 other        | Copy project fonts and other misc files in dist folder.
-
-## Documentation
-
-Task    | Description
---------|-------------------------------------------------------------------------------------------------------------
-docs    | Generate jsdoc documentation from sources.

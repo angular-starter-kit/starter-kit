@@ -102,7 +102,6 @@ docs        | Generate jsdoc documentation from sources.
 #### Development
 - Automation with [gulp](http://gulpjs.com)
 - Development server with API proxy and live reload ([BrowserSync](http://www.browsersync.io))
-- [JSDoc](http://usejsdoc.org) generation with angular support
 
 #### Build
 - JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
