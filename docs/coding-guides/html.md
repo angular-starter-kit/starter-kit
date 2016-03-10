@@ -27,8 +27,3 @@
   * The only tags that allows self-closing are the one that does not require a closing tag in first place:
     these are the void elements that do not not accept content `<br>`, `<hr>`, `<img>`, `<input>`, `<meta>`, `<link>`
     (and others).
-
-## Jade
-
-If you're ready for the switch, this starter kit supports [Jade](http://jade-lang.com/) partials in place of HTML.
-Jade has a cleaner, lighter and less error-prone syntax than HTML, you should try it to see if it fits your team.

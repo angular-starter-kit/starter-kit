@@ -9,7 +9,6 @@ $ gulp
 Build and optimize the current project, ready for deployment.
 This includes linting as well as image, script, stylesheet and HTML optimization and minification.
 
-
 ## Main commands
 
 Task       | Description
@@ -46,25 +45,13 @@ tsd         | Download and update all TypeScript definitions for Bower dependenc
 tsd:restore | Download TypeScript definitions according to tsd.json
 tsd:clean   | Delete downloaded TypeScript definitions.
 
-## HTML / Jade
-
-Task     | Description
----------|------------------------------------------------------------------------------------------------------------
-partials | Put all .html found in project folder + in temporary folder in a template cache file.
-jade     | Convert all .jade found in project to HTML in the temporary folder.
-
 ## Build and assets
 
 Task         | Description
 -------------|--------------------------------------------------------------------------------------------------------
 build:source | Build and optimize all source files, excluding assets.
+partials     | Put all .html found in project folder + in temporary folder in a template cache file.
 styles       | Generate main CSS file using project main style file.
 fonts        | Copy fonts from bower dependencies in dist folder.
 images       | Compress images (using imagemin) then copy them in dist folder.
 other        | Copy project fonts and other misc files in dist folder.
-
-## Documentation
-
-Task    | Description
---------|-------------------------------------------------------------------------------------------------------------
-docs    | Generate jsdoc documentation from sources.
