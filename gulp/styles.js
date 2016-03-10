@@ -6,9 +6,7 @@ var conf = require('../gulpfile.config');
 
 var browserSync = require('browser-sync');
 
-var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files']
-});
+var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
@@ -43,5 +41,5 @@ gulp.task('styles', ['fonts'], function() {
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(browserSync.stream());
 });
