@@ -11,13 +11,12 @@ gulp.task('partials', function() {
       path.join(conf.paths.src, '**/*.html'),
       path.join('!' + conf.paths.bower, '**/*.html'),
       path.join(conf.paths.tmp, '**/*.html'),
+      path.join('!' + conf.paths.src, 'index.html'),
       path.join('!' + conf.paths.tmp, 'index.html')
     ])
-    .pipe($.minifyHtml({
-      empty: true,
-      spare: true,
-      quotes: true,
-      loose: true
+    .pipe($.htmlmin({
+      removeComments: true,
+      collapseWhitespace: true
     }))
     .pipe($.angularTemplatecache('templateCache.js', {
       module: 'app.additions',
