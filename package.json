@@ -2,7 +2,7 @@
   "name": "starter-kit",
   "version": "1.0.1",
   "description": "Web project starter kit including tooling, best practices and project seed",
-  "keywords": "angular, bootstrap, gulp, ui-router, ui-bootstrap, sass, typescript, jade",
+  "keywords": "angular, bootstrap, gulp, ui-router, ui-bootstrap, sass, typescript",
   "license": "MIT",
   "author": "Yohan Lasorsa",
   "repository": {
