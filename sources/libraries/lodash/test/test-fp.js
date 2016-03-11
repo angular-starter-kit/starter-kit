@@ -21,6 +21,9 @@
       slice = arrayProto.slice,
       WeakMap = root.WeakMap;
 
+  // Leak to avoid sporadic `noglobals` fails on Edge in Sauce Labs.
+  root.msWDfn = undefined;
+
   /*--------------------------------------------------------------------------*/
 
   /** Use a single "load" function. */
@@ -560,7 +563,7 @@
         deepObject = { 'a': { 'b': 2, 'c': 3 } };
 
     QUnit.test('should not mutate values', function(assert) {
-      assert.expect(38);
+      assert.expect(42);
 
       function Foo() {}
       Foo.prototype = { 'b': 2 };
@@ -691,7 +694,19 @@
       actual = fp.unset('a.b')(value);
 
       assert.deepEqual(value, deepObject, 'fp.unset');
-      assert.deepEqual(actual, { 'a': { 'c': 3 } }, 'fp.set');
+      assert.deepEqual(actual, { 'a': { 'c': 3 } }, 'fp.unset');
+
+      value = _.cloneDeep(deepObject);
+      actual = fp.update('a.b')(function(n) { return n * n; })(value);
+
+      assert.deepEqual(value, deepObject, 'fp.update');
+      assert.deepEqual(actual, { 'a': { 'b': 4, 'c': 3 } }, 'fp.update');
+
+      value = _.cloneDeep(deepObject);
+      actual = fp.updateWith(Object)('d.e')(_.constant(4))(value);
+
+      assert.deepEqual(value, deepObject, 'fp.updateWith');
+      assert.deepEqual(actual, { 'a': { 'b': 2, 'c': 3 }, 'd': { 'e': 4 } }, 'fp.updateWith');
     });
   }());
 
@@ -700,7 +715,20 @@
   QUnit.module('placeholder methods');
 
   (function() {
-    QUnit.test('should support placeholders', function(assert) {
+    QUnit.test('should use `fp` as the default placeholder', function(assert) {
+      assert.expect(3);
+
+      var actual = fp.add(fp, 'b')('a');
+      assert.strictEqual(actual, 'ab');
+
+      actual = fp.slice(fp, 2)(1)(['a', 'b', 'c']);
+      assert.deepEqual(actual, ['b']);
+
+      actual = fp.fill(fp, 2)(1, '*')([1, 2, 3]);
+      assert.deepEqual(actual, [1, '*', 3]);
+    });
+
+    QUnit.test('should support `fp.placeholder`', function(assert) {
       assert.expect(6);
 
       _.each([[], fp.__], function(ph) {
@@ -731,6 +759,53 @@
 
   /*--------------------------------------------------------------------------*/
 
+  QUnit.module('set methods');
+
+  (function() {
+    var array = [1, 2, 3],
+        object = { 'a': 1 },
+        deepObject = { 'a': { 'b': 2, 'c': 3 } };
+
+    QUnit.test('should only clone objects in `path`', function(assert) {
+      assert.expect(11);
+
+      var object = { 'a': { 'b': { 'c': 1 }, 'd': { 'e': 1 } } },
+          value = _.cloneDeep(object),
+          actual = fp.set('a.b.c.d.e', 3, value);
+
+      assert.ok(_.isObject(actual.a.b.c), 'fp.set');
+      assert.ok(_.isNumber(actual.a.b.c), 'fp.set');
+
+      assert.strictEqual(actual.a.b.c.d.e, 3, 'fp.set');
+      assert.strictEqual(actual.d, value.d, 'fp.set');
+
+      value = _.cloneDeep(object);
+      actual = fp.setWith(Object)('[0][1]')('a')(value);
+
+      assert.deepEqual(actual[0], { '1': 'a' }, 'fp.setWith');
+
+      value = _.cloneDeep(object);
+      actual = fp.unset('a.b')(value);
+
+      assert.notOk('b' in actual, 'fp.unset');
+      assert.strictEqual(actual.d, value.d, 'fp.unset');
+
+      value = _.cloneDeep(deepObject);
+      actual = fp.update('a.b')(function(n) { return n * n; })(value);
+
+      assert.strictEqual(actual.a.b, 4, 'fp.update');
+      assert.strictEqual(actual.d, value.d, 'fp.update');
+
+      value = _.cloneDeep(deepObject);
+      actual = fp.updateWith(Object)('[0][1]')(_.constant('a'))(value);
+
+      assert.deepEqual(actual[0], { '1': 'a' }, 'fp.updateWith');
+      assert.strictEqual(actual.d, value.d, 'fp.updateWith');
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
   QUnit.module('with methods');
 
   (function() {
@@ -738,7 +813,7 @@
         object = { 'a': 1 };
 
     QUnit.test('should provide the correct `customizer` arguments', function(assert) {
-      assert.expect(4);
+      assert.expect(5);
 
       var args,
           value = _.clone(object);
@@ -779,6 +854,15 @@
       })('b.c')(2)(value);
 
       assert.deepEqual(args, [undefined, 'b', { 'a': 1 }], 'fp.setWith');
+
+      args = undefined;
+      value = _.clone(object);
+
+      fp.updateWith(function() {
+        args || (args = _.map(arguments, _.cloneDeep));
+      })('b.c')(_.constant(2))(value);
+
+      assert.deepEqual(args, [undefined, 'b', { 'a': 1 }], 'fp.updateWith');
     });
   }());
 
@@ -1037,6 +1121,25 @@
 
   /*--------------------------------------------------------------------------*/
 
+  QUnit.module('fp.mapKeys');
+
+  (function() {
+    QUnit.test('should only provide `key` to `iteratee`', function(assert) {
+      assert.expect(1);
+
+      var args,
+          object = { 'a': 1 };
+
+      var actual = fp.mapKeys(function() {
+        args || (args = slice.call(arguments));
+      }, object);
+
+      assert.deepEqual(args, ['a']);
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
   QUnit.module('fp.maxBy and fp.minBy');
 
   _.each(['maxBy', 'minBy'], function(methodName) {
@@ -1151,6 +1254,27 @@
       assert.strictEqual(typeof object.a, 'function');
     });
   }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('fp.omitBy and fp.pickBy');
+
+  _.each(['omitBy', 'pickBy'], function(methodName) {
+    var func = fp[methodName];
+
+    QUnit.test('`fp.' + methodName + '` should provide `value` and `key` to `iteratee`', function(assert) {
+      assert.expect(1);
+
+      var args,
+          object = { 'a': 1 };
+
+      func(function() {
+        args || (args = slice.call(arguments));
+      })(object);
+
+      assert.deepEqual(args, [1, 'a']);
+    });
+  });
 
   /*--------------------------------------------------------------------------*/
 
