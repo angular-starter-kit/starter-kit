@@ -6,10 +6,10 @@
     "angular-sanitize": "~1.5.0",
     "angular-ui-router": "~0.2.15",
     "angular": "~1.5.0",
-    "lodash": "~4.5.0",
+    "lodash": "~4.6.1",
     "angular-gettext": "~2.2.1",
     "font-awesome": "~4.5.0",
-    "angular-bootstrap": "~1.1.2",
+    "angular-bootstrap": "~1.2.4",
     "bootstrap-sass": "~3.3.6"
   },
   "devDependencies": {

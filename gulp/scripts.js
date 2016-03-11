@@ -20,6 +20,6 @@ gulp.task('scripts', ['typescript'], function() {
     .on('error', noop) // don't stop on error
     .pipe(stylish.combineWithHintResults()) // combine results
     .pipe($.jshint.reporter('jshint-stylish')) // reporter
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.stream())
     .pipe($.size()); // Display the size
 });
