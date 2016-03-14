@@ -20,7 +20,7 @@ var options = minimist(process.argv.slice(2), {
   }
 });
 
-var dependencies = options['fast'] ? [] : ['build'];
+var dependencies = options['fast'] ? [] : ['build', 'cordova:resources'];
 
 function cordova(command) {
   return $.shell.task('cordova ' + command, {verbose: true})
@@ -46,6 +46,17 @@ gulp.task('patch:ios-https', function() {
   return gulp.src(file)
     .pipe($.insert.append(patch))
     .pipe(gulp.dest(path.dirname(file)));
+});
+
+gulp.task('cordova:resources', function() {
+  return gulp.src('resources/**')
+    .pipe($.cache($.imagemin({
+      optimizationLevel: 3,
+      progressive: true,
+      interlaced: true
+    })))
+    .pipe(gulp.dest(path.join(conf.paths.tmp, 'resources')))
+    .pipe($.size());
 });
 
 gulp.task('release:ios', dependencies, cordova('build ios --release --device'));
