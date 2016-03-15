@@ -13,8 +13,7 @@ gulp.task('images', function() {
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest(path.join(conf.paths.dist, 'images')))
-    .pipe($.size());
+    .pipe(gulp.dest(path.join(conf.paths.dist, 'images')));
 });
 
 gulp.task('images:clean-cache', function(done) {
