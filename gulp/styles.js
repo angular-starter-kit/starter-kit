@@ -3,16 +3,15 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
-
+var wiredep = require('wiredep').stream;
+var _ = require('lodash');
 var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
 
-var wiredep = require('wiredep').stream;
-var _ = require('lodash');
 var mainFolder = path.join(conf.paths.src, conf.paths.main);
 
-gulp.task('styles', ['fonts'], function() {
+function buildStyles() {
   var sassOptions = {
     style: 'expanded',
     includePaths: conf.sassIncludePaths
@@ -40,6 +39,13 @@ gulp.task('styles', ['fonts'], function() {
     .pipe($.sass(sassOptions)).on('error', conf.errorHandler('Sass'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/css/')));
+}
+
+gulp.task('styles', ['fonts'], function() {
+  return buildStyles();
+});
+
+gulp.task('styles:reload', ['styles'], function() {
+  return buildStyles().pipe(browserSync.stream());
 });
