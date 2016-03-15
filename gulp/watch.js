@@ -4,8 +4,6 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
 
-var browserSync = require('browser-sync');
-
 function isOnlyChange(event) {
   return event.type === 'changed';
 }
@@ -15,40 +13,33 @@ gulp.task('watch', ['inject'], function() {
     debounceDelay: 500
   };
 
-  gulp.watch('bower.json', options, ['inject']);
+  gulp.watch(['bower.json', path.join(conf.paths.src, '/index.html')], options, ['inject:reload']);
 
   gulp.watch([
     path.join(conf.paths.src, '/**/*.css'),
     path.join(conf.paths.src, '/**/*.scss')
   ], options, function(event) {
     if (isOnlyChange(event)) {
-      gulp.start('styles');
+      gulp.start('styles:reload');
     } else {
-      gulp.start('inject');
+      gulp.start('inject:reload');
     }
   });
 
-  gulp.watch([
-    path.join(conf.paths.src, '/**/*.js'),
-    path.join(conf.paths.src, '/**/*.ts')
-  ], options, function(event) {
+  gulp.watch([path.join(conf.paths.src, '/**/*.js')], options, function(event) {
     if (isOnlyChange(event)) {
-      gulp.start('scripts');
+      gulp.start('scripts:reload');
     } else {
-      gulp.start('inject');
+      gulp.start('inject:reload');
     }
   });
 
-  gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['typescript']);
-
-  gulp.watch(path.join(conf.paths.src, '/**/*.html'), options, ['partials']);
-
-  gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations']);
+  gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['scripts:reload']);
 
   gulp.watch([
-    path.join(conf.paths.tmp, '/**/*.js'),
-    path.join(conf.paths.src, '/*.html')
-  ], options, function(event) {
-    browserSync.reload(event.path);
-  });
+    path.join(conf.paths.src, '/**/*.html'),
+    path.join('!' + conf.paths.src, '/index.html')
+  ], options, ['partials:reload']);
+
+  gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations:reload']);
 });
