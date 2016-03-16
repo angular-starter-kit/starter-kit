@@ -13,7 +13,7 @@ installed version. This is also necessary as new updates often break project com
 You can manage Cordova CLI updates like any [NPM package](updating.md).
 
 If you do not want this behavior and prefer using your global Cordova install, simply run:
-```
+```sh
 npm remove cordova --save-dev
 npm install -g cordova
 ```
@@ -23,7 +23,7 @@ The gulp tasks will then use the global version instead of a local one.
 
 Each Cordova platform may require specific tools to be installed for the command to work properly.
 You can check anytime if your system meets the requirements for a given platform with:
-```
+```sh
 gulp cordova --command="requirements <ios|android>"
 ```
 
@@ -32,7 +32,7 @@ gulp cordova --command="requirements <ios|android>"
 To build the iOS version, you need to install [XCode](https://itunes.apple.com/app/xcode/id497799835).
 
 To allow launching your app in simulator or device from command line, you need also:
-```
+```sh
 npm install -g ios-sim
 npm install -g ios-deploy
 ```
@@ -51,22 +51,26 @@ for additional information.
 ## Common tasks
 
 ### Restoring platforms and plugins after a checkout
-
-`gulp cordova:prepare`
+```sh
+gulp cordova:prepare
+```
 
 This will restore all your platforms and plugins according to your `config.xml` file.
 
 ### Adding a platform
-
-`gulp cordova --command="platform add <ios|android> --save"`
+```sh
+gulp cordova --command="platform add <ios|android> --save"
+```
 
 ### Adding a plugin
-
-`gulp cordova --command="plugin add <plugin-name> --save"`
+```sh
+gulp cordova --command="plugin add <plugin-name> --save"
+```
 
 ### Running the application
-
-`gulp run:<ios|android> [--device]`
+```sh
+gulp run:<ios|android> [--device]
+```
 
 Run your application in specified platform emulator or device if you add the `--device` option.
 
@@ -74,18 +78,62 @@ Run your application in specified platform emulator or device if you add the `--
 
 To create properly signed application packages for store publication, you have to configure your app provisioning in
 the `build.json` file.
+
+Here is an example configuration:
+```json
+{
+  "ios": {
+    "release": {
+      "codeSignIdentity": "iPhone Distribution",
+      "provisioningProfile": "your_profile_guid"
+    }
+  },
+  "android": {
+    "release": {
+      "keystore": "sign/your_android.keystore",
+      "storePassword": "",
+      "alias": "your_key",
+      "password" : "your_password",
+      "keystoreType": ""
+    }
+  }
+}
+```
  
 This information will be used by the `gulp cordova:release` task to generate production packages.
 
 You can find more detailed documentation in the
 [iOS signing guide](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html#signing-an-app) or
-[Android signing guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#signing-an-app). 
+[Android signing guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#signing-an-app).
+
+### Updating plugins
+
+To update a single plugin:
+```sh
+gulp cordova --command="plugin update <plugin_name> --save"
+```
+
+Cordova does not include a mass update mechanism for plugins, but you can use the `cordova-check-plugins` tool:
+```sh
+npm install -g cordova-check-plugins
+```
+
+Then run the following commands to perform an interactive update of outdated plugins and save the new versions:
+```sh
+cordova-check-plugins --update=interactive
+gulp cordova --command="plugin save"
+```
+
+### Updating platforms
+```sh
+gulp cordova --command="platform update <ios|android> --save"
+```
 
 ## Icon and splash screen
 
 In order to simplify icon and splash screen creation for each device/OS, you can use this command (make sure the ionic
 tool is installed beforehand with `npm install -g ionic`):
-```
+```sh
 ionic resources
 ```
 
@@ -123,7 +171,7 @@ This allows to greatly improve compatibility and performance on systems using ol
 modern browser APIs, at the cost of increased app size and memory footprint.
 
 To add or remove Crosswalk:
-```
+```sh
 gulp cordova --command="plugin <add|remove> cordova-plugin-crosswalk-webview --save"
 ```
 
@@ -139,7 +187,7 @@ plugin doc on github for more details), the biggest one being:
   [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) must be enabled on your server.**
 
 To add or remove WKWebView:
-```
+```sh
 gulp cordova --command="plugin <add|remove> cordova-plugin-wkwebview-engine --save"
 ```
 
@@ -168,9 +216,27 @@ For additional general security information, you can take a look at the
 
 On iOS, network request to server using a self-signed HTTPS certificate is not allowed, for security reason.
 You can disable this behavior in development builds with this command: 
-
-`gulp patch:ios-https`
+```sh
+gulp patch:ios-https
+```
 
 This will patch your `AppDelegate.m` file to allow untrusted HTTPS certificate in debug builds.
 
 **DO NOT USE THIS FOR PRODUCTION BUILDS!**  It will result in your app being rejected by Apple.
+
+### Android build behind corporate proxy with custom SSL certificate
+
+If you use a corporate proxy that intercepts HTTPS requests with a custom certificate, you may encounter issues like
+`peer not authenticated` errors. To fix this, you need to add this certificate to the Java trusted certificate store.
+
+Make sure you have write access to your JRE (you may need `sudo` on Linux and OS X), then use the `keytool` utility to
+import it:
+```sh
+keytool -importcert -alias <an_alias> -keystore <path_to_jre>/lib/security/cacerts -file <certificate_file>
+```
+
+On OS X >10.9, you can use this command to find your java home:
+```sh
+/usr/libexec/java_home
+```
+The `cacerts` file is then located under there in `jre/lib/security`
