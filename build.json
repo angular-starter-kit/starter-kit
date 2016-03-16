@@ -1,17 +1,1 @@
-{
-  "ios": {
-    "release": {
-      "codeSignIdentity": "iPhone Distribution",
-      "provisioningProfile": "your_profile_guid"
-    }
-  },
-  "android": {
-    "release": {
-      "keystore": "sign/android.keystore",
-      "storePassword": "",
-      "alias": "your_key",
-      "password" : "your_password",
-      "keystoreType": ""
-    }
-  }
-}
+{}
