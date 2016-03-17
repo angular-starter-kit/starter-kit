@@ -37,6 +37,14 @@ module app {
       language = language || $window.localStorage.getItem('language');
       let isSupportedLanguage = _.includes(config.supportedLanguages, language);
 
+      // If no exact match is found, search without the region
+      if (!isSupportedLanguage && language) {
+        let languagePart = language.split('-')[0];
+        language = _.find(config.supportedLanguages,
+          (supportedLanguage: string) => _.startsWith(supportedLanguage, languagePart));
+        isSupportedLanguage = !!language;
+      }
+
       // Fallback if language is not supported
       if (!isSupportedLanguage) {
         language = 'en-US';
@@ -97,17 +105,17 @@ module app {
         let globalization = $window.navigator.globalization;
         if (globalization) {
           // Use cordova plugin to retrieve device's locale
-          globalization.getPreferredLanguage((language: string) => {
-            _logger.log('Setting device locale "' + language + '" as default language');
+          globalization.getPreferredLanguage((language) => {
+            _logger.log('Setting device locale "' + language.value + '" as default language');
             vm.$apply(() => {
-              vm.setLanguage(language);
+              vm.setLanguage(language.value);
             });
           }, null);
         }
 
         if ($window.cordova && $window.cordova.plugins.Keyboard) {
           // Hide the accessory bar (remove this to show the accessory bar above the keyboard for form inputs)
-          $cordovaKeyboard.hideAccessoryBar(true);
+          $cordovaKeyboard.hideKeyboardAccessoryBar(true);
           $cordovaKeyboard.disableScroll(true);
         }
 
