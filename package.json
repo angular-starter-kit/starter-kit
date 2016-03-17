@@ -23,7 +23,7 @@
     "gulp-angular-gettext": "~2.1.0",
     "gulp-angular-templatecache": "~1.8.0",
     "gulp-autoprefixer": "~3.1.0",
-    "gulp-cache": "~0.4.2",
+    "gulp-cache": "^0.4.3",
     "gulp-clean-css": "^2.0.3",
     "gulp-concat": "~2.6.0",
     "gulp-filter": "^3.0.1",
