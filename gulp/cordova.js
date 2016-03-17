@@ -54,12 +54,7 @@ gulp.task('cordova:resources', function() {
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
-    }), {
-      key: function(file) {
-        // Needed to make sure file with same contents are not skipped
-        return file.path + file.contents.toString('base64');
-      }
-    }))
+    })))
     .pipe(gulp.dest(path.join(conf.paths.tmp, 'resources')))
     .pipe($.size());
 });
