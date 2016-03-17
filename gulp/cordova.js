@@ -49,12 +49,17 @@ gulp.task('patch:ios-https', function() {
 });
 
 gulp.task('cordova:resources', function() {
-  return gulp.src('resources/**')
+  return gulp.src('resources/**/*.{gif,jpg,png,svg}')
     .pipe($.cache($.imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
-    })))
+    }), {
+      key: function(file) {
+        // Needed to make sure file with same contents are not skipped
+        return file.path + file.contents.toString('base64');
+      }
+    }))
     .pipe(gulp.dest(path.join(conf.paths.tmp, 'resources')))
     .pipe($.size());
 });
