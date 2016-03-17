@@ -6,7 +6,7 @@ module app {
    * Entry point of the application.
    * Initializes application and root controller.
    */
-  function main($window: any,
+  function main($window: ng.IWindowService,
                 $timeout: ng.ITimeoutService,
                 $locale: ng.ILocaleService,
                 $state: angular.ui.IStateService,
@@ -30,9 +30,11 @@ module app {
 
     /**
      * Utility method to set the language in the tools requiring it.
+     * The current language is saved to the local storage.
      * @param {string=} language The IETF language tag.
      */
     vm.setLanguage = function(language?: string) {
+      language = language || $window.localStorage.getItem('language');
       let isSupportedLanguage = _.includes(config.supportedLanguages, language);
 
       // Fallback if language is not supported
@@ -43,6 +45,7 @@ module app {
       // Configure translation with gettext
       gettextCatalog.setCurrentLanguage(language);
       $locale.id = language;
+      $window.localStorage.setItem('language', language);
     };
 
     /**
