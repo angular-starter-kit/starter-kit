@@ -10,17 +10,19 @@ experience even for beginner teams.
 # Getting started
 
 1. Install required tools `gulp` and `bower`:
-```
-npm install -g gulp bower
-```
+ ```
+ npm install -g gulp bower
+ ```
+
 2. Install project tools, go to project folder:
-```
-npm install
-```
+ ```
+ npm install
+ ```
+
 3. Launch development server:
-```
-gulp serve
-```
+ ```
+ gulp serve
+ ```
 
 # Project structure
 ```
