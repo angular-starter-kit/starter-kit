@@ -52,7 +52,7 @@ sources/                project source code
 e2e/                    end-to-end tests
 dist/                   compiled version
 typings/                TypeScript definitions
-reports/                test and coverage reports + generated documentation
+reports/                test and coverage reports
 gulpfile.config.js      gulp tasks configuration
 ```
 
@@ -68,8 +68,7 @@ clean       | Delete temporary files and dist files.
 test        | Launch unit tests using karma and jasmine.
 test:auto   | Launch karma server and launch unit tests after each change in project files.
 protractor  | Launch e2e tests using protractor.
-tsd         | Download all TypeScript definitions for Bower dependencies.
-docs        | Generate jsdoc documentation from sources.
+tsd         | Download and update all TypeScript definitions for Bower dependencies.
 
 # Coding guides
 
