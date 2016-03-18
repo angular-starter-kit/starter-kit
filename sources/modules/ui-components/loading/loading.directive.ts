@@ -14,7 +14,7 @@ import 'main.module.ts';
  */
 export class LoadingDirective implements ng.IDirective {
   restrict = 'A';
-  templateUrl = 'modules/ui-components/loading/loading.html';
+  template = <string>require('loading.html');
   scope = {
     message: '<',
     isLoading: '<uiLoading'

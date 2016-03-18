@@ -35,9 +35,20 @@ function buildScripts(watch, test, done) {
         },
         {
           test: /\.html$/,
-          loader: 'raw'
+          loader: 'raw!html-minify'
         }
       ]
+    },
+    'html-minify-loader': {
+      empty: true,
+      cdata: true,
+      comments: true,
+      conditionals: true,
+      quotes: true,
+      dom: {
+        lowerCaseAttributeNames: false,
+        lowerCaseTags: false
+      }
     },
     output: {filename: 'app.ts.js'}
   };

@@ -22,11 +22,6 @@ gulp.task('watch', ['scripts:watch', 'inject'], function() {
     }
   });
 
-  gulp.watch([
-    path.join(conf.paths.src, '/**/*.html'),
-    path.join('!' + conf.paths.src, '/index.html')
-  ], options, ['partials:reload']);
-
   gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations:reload']);
 
 });

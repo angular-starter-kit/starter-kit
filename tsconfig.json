@@ -6,8 +6,5 @@
   "exclude": [
     "node_modules",
     "sources/libraries"
-  ],
-  "awesomeTypescriptLoaderOptions": {
-    "resolveGlobs": "false"
-  }
+  ]
 }

@@ -14,10 +14,7 @@ function listFiles() {
     devDependencies: true
   });
   return wiredep(wiredepOptions).js
-    .concat([
-      path.join(conf.paths.tmp, '**/*.js'),
-      path.join(conf.paths.src, '/**/*.html')
-    ]);
+    .concat([path.join(conf.paths.tmp, '**/*.js')]);
 }
 
 module.exports = function(config) {
@@ -38,12 +35,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // Testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: [ 'jasmine' ],
-
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'sources/',
-      moduleName: 'templateCache'
-    },
+    frameworks: ['jasmine'],
 
     // Start these browsers, currently available:
     // - Chrome
@@ -61,8 +53,7 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-jasmine',
       'karma-coverage',
-      'karma-junit-reporter',
-      'karma-ng-html2js-preprocessor'
+      'karma-junit-reporter'
     ],
 
     // A map of preprocessors to use

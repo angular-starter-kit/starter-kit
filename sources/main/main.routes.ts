@@ -12,18 +12,18 @@ function routeConfig($stateProvider: angular.ui.IStateProvider,
 
   $stateProvider
     .state('app', {
-      templateUrl: 'modules/shell/shell.html',
+      template: <string>require('shell/shell.html'),
       controller: 'shellController as shell'
     })
     .state('app.home', {
       url: '/',
-      templateUrl: 'modules/screens/home/home.html',
+      template: <string>require('screens/home/home.html'),
       controller: 'homeController as vm',
       data: {title: gettext('Home')}
     })
     .state('app.about', {
       url: '/about',
-      templateUrl: 'modules/screens/about/about.html',
+      template: <string>require('screens/about/about.html'),
       controller: 'aboutController as vm',
       data: {title: gettext('About')}
     });

@@ -9,19 +9,15 @@ var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
 
-gulp.task('inject', ['scripts', 'styles', 'partials', 'translations'], function() {
+gulp.task('inject', ['scripts', 'styles', 'translations'], function() {
   var injectStyles = gulp.src([
     path.join(conf.paths.tmp, '/**/*.css'),
     path.join('!' + conf.paths.tmp, '/vendor.css')
   ], {read: false});
 
   var injectScripts = gulp.src([
-      path.join(conf.paths.src, conf.paths.main, '/**/*.js'),
-      path.join(conf.paths.src, '/modules/**/*.js'),
       path.join(conf.paths.tmp, '/**/*.js'),
       path.join('!' + conf.paths.tmp, '/libraries/**/*.js'),
-      path.join('!' + conf.paths.src, '/**/*.spec.js'),
-      path.join('!' + conf.paths.src, '/**/*.mock.js')
     ]);
 
   var injectOptions = {
