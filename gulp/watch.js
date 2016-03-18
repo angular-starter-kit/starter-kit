@@ -4,10 +4,6 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
 
-function isOnlyChange(event) {
-  return event.type === 'changed';
-}
-
 gulp.task('watch', ['inject'], function() {
   var options = {
     debounceDelay: 500
@@ -19,22 +15,12 @@ gulp.task('watch', ['inject'], function() {
     path.join(conf.paths.src, '/**/*.css'),
     path.join(conf.paths.src, '/**/*.scss')
   ], options, function(event) {
-    if (isOnlyChange(event)) {
+    if (event.type === 'changed') {
       gulp.start('styles:reload');
     } else {
       gulp.start('inject:reload');
     }
   });
-
-  gulp.watch([path.join(conf.paths.src, '/**/*.js')], options, function(event) {
-    if (isOnlyChange(event)) {
-      gulp.start('scripts:reload');
-    } else {
-      gulp.start('inject:reload');
-    }
-  });
-
-  gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['scripts:reload']);
 
   gulp.watch([
     path.join(conf.paths.src, '/**/*.html'),
@@ -42,4 +28,7 @@ gulp.task('watch', ['inject'], function() {
   ], options, ['partials:reload']);
 
   gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations:reload']);
+
+  gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['scripts:reload']);
+
 });

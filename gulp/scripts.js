@@ -3,19 +3,16 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
-var stylish = require('gulp-jscs-stylish');
 var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
 
-function noop() {}
-
 var tsProject = $.typescript.createProject('tsconfig.json', {sortOutput: true});
 
-gulp.task('typescript', function() {
+gulp.task('scripts', function() {
   return gulp.src([
-      path.join(conf.paths.src, '/main/**/*.ts'),
-      path.join(conf.paths.src, '/modules/**/*.ts')
+      path.join(conf.paths.src, '/**/*.ts'),
+      path.join('!' + conf.paths.bower, '/**/*.ts'),
     ])
     .pipe($.sourcemaps.init())
     .pipe($.tslint())
@@ -28,18 +25,6 @@ gulp.task('typescript', function() {
       sourceRoot: '../'
     }))
     .pipe(gulp.dest(path.join(conf.paths.tmp)));
-});
-
-gulp.task('scripts', ['typescript'], function() {
-  return gulp.src([
-      path.join(conf.paths.src, '/**/*.js'),
-      path.join('!' + conf.paths.src, '/libraries/**/*.js')
-    ])
-    .pipe($.jshint())
-    .pipe($.jscs())
-    .on('error', noop) // don't stop on error
-    .pipe(stylish.combineWithHintResults())
-    .pipe($.jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('scripts:reload', ['scripts'], function() {

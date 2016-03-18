@@ -2,8 +2,8 @@
 
 ## Default command
 
-```sh
-$ gulp
+```
+gulp
 ```
 
 Build and optimize the current project, ready for deployment.
@@ -40,7 +40,7 @@ translations:extract | Extract Messages from Code and Templates to template.pot.
 
 Task        | Description
 ------------|---------------------------------------------------------------------------------------------------------
-typescript  | Convert all *.ts found in project to js in the temporary folder.
+scripts     | Convert all *.ts found in project to js in the temporary folder.
 tsd         | Download and update all TypeScript definitions for Bower dependencies.
 tsd:restore | Download TypeScript definitions according to tsd.json
 tsd:clean   | Delete downloaded TypeScript definitions.

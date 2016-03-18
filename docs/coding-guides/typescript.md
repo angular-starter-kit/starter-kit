@@ -1,6 +1,6 @@
 # TypeScript coding guide
 
-[TypeScript](http://www.typescriptlang.org) is a superset of JavaScript, therefore most
+[TypeScript](http://www.typescriptlang.org) is a superset of JavaScript, therefore all
 [JavaScript conventions and good practices](javascript.md) also applies here. Exceptions or changes to these rules
 are noted in this file.
 
