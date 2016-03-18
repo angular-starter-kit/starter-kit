@@ -13,29 +13,10 @@ npm-debug.log
 /reports/
 
 ## Mobile
+ionic.project
 /www/
-/release/*.*
-/sign/**/*.*
-
-## Cordova
-/plugins/*.json
-platforms/**/build/
-platforms/**/www
-ant-build/
-ant-gen/
-platforms/android/assets/www
-platforms/android/bin/
-platforms/android/gen/
-platforms/android/res/xml/config.xml
-platforms/android/.gradle/
-platforms/ios/*/config.xml
-platforms/ios/.staging
-platforms/ios/cordova/console.log
-
-## Crosswalk
-/engine/
-/plugins/org.crosswalk.engine/
-/plugins/cordova-plugin-crosswalk-webview/
+/plugins/
+/platforms/
 
 ## Mac
 .DS_Store
