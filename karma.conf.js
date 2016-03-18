@@ -16,9 +16,6 @@ function listFiles() {
   return wiredep(wiredepOptions).js
     .concat([
       path.join(conf.paths.tmp, '**/*.js'),
-      path.join(conf.paths.src, '/main/**/*.js'),
-      path.join(conf.paths.src, '/modules/**/*.js'),
-      path.join(conf.paths.src, '/**/*.mock.js'),
       path.join(conf.paths.src, '/**/*.html')
     ]);
 }

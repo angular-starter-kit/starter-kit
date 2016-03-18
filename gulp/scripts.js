@@ -27,11 +27,17 @@ function buildScripts(watch, test, done) {
         exclude: /node_modules/,
         loader: 'tslint-loader'
       }],
-      loaders: [{
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        loaders: ['ng-annotate', 'awesome-typescript-loader']
-      }]
+      loaders: [
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          loaders: ['ng-annotate', 'awesome-typescript-loader']
+        },
+        {
+          test: /\.html$/,
+          loader: 'raw'
+        }
+      ]
     },
     output: {filename: 'app.ts.js'}
   };
