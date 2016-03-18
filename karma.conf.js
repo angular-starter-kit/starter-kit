@@ -41,19 +41,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // Testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: [
-      'jasmine', 'angular-filesort'
-    ],
-
-    angularFilesort: {
-      // The whitelist config option allows you to further narrow the subset of files
-      // karma-angular-filesort will sort for you
-      whitelist: [
-        path.join(conf.paths.tmp, '/**/!(*.html|*.spec|*.mock).js'),
-        path.join(conf.paths.src, '/main/**/!(*.html|*.spec|*.mock).js'),
-        path.join(conf.paths.src, '/modules/**/!(*.html|*.spec|*.mock).js')
-      ]
-    },
+    frameworks: [ 'jasmine' ],
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'sources/',
@@ -77,7 +65,6 @@ module.exports = function(config) {
       'karma-jasmine',
       'karma-coverage',
       'karma-junit-reporter',
-      'karma-angular-filesort',
       'karma-ng-html2js-preprocessor'
     ],
 

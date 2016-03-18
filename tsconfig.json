@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5"
+    "target": "es5",
+    "module": "commonjs"
+  },
+  "exclude": [
+    "node_modules",
+    "sources/libraries"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "resolveGlobs": "false"
   }
 }

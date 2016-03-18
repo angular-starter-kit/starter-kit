@@ -1,16 +1,12 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-module app {
+'use strict';
 
-  'use strict';
-
-  angular.module('app', [
-    'app.additions',
-    'gettext',
-    'ngAnimate',
-    'ngSanitize',
-    'ui.router',
-    'ui.bootstrap'
-  ]);
-
-}
+angular.module('app', [
+  'app.additions',
+  'gettext',
+  'ngAnimate',
+  'ngSanitize',
+  'ui.router',
+  'ui.bootstrap'
+]);

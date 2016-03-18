@@ -1,29 +1,26 @@
-module app {
+import 'main.module.ts';
+import { ILogger, LoggerService } from 'helpers/logger/logger';
 
-  'use strict';
+/**
+ * Displays the about screen.
+ */
+export class AboutController {
 
-  /**
-   * Displays the about screen.
-   */
-  export class AboutController {
+  version: string;
 
-    version: string;
+  private logger: ILogger;
 
-    private logger: ILogger;
+  constructor(logger: LoggerService,
+              config: any) {
 
-    constructor(logger: LoggerService,
-                config: any) {
+    this.logger = logger.getLogger('about');
+    this.version = config.version;
 
-      this.logger = logger.getLogger('about');
-      this.version = config.version;
-
-      this.logger.log('init');
-    }
-
+    this.logger.log('init');
   }
 
-  angular
-    .module('app')
-    .controller('aboutController', AboutController);
-
 }
+
+angular
+  .module('app')
+  .controller('aboutController', AboutController);

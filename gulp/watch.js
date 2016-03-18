@@ -4,7 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
 
-gulp.task('watch', ['inject'], function() {
+gulp.task('watch', ['scripts:watch', 'inject'], function() {
   var options = {
     debounceDelay: 500
   };
@@ -28,7 +28,5 @@ gulp.task('watch', ['inject'], function() {
   ], options, ['partials:reload']);
 
   gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations:reload']);
-
-  gulp.watch(path.join(conf.paths.src, '/**/*.ts'), options, ['scripts:reload']);
 
 });

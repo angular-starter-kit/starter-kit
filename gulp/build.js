@@ -29,7 +29,6 @@ gulp.task('build:sources', ['inject'], function() {
     .pipe($.if('**/app*.js', replaceConstant('version: \'dev\'', 'version: \'' + packageConfig.version + '\'')))
     .pipe($.rev())
     .pipe(jsFilter)
-    .pipe($.ngAnnotate())
     .pipe($.uglify({preserveComments: $.uglifySaveLicense})).on('error', conf.errorHandler('Uglify'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
