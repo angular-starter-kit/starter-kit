@@ -1,9 +1,7 @@
-'use strict';
+import { RestService } from 'helpers/rest/rest.service';
+import { QuoteService } from 'quote.service';
 
-/*
- * Tests for quote service.
- */
-describe('quoteService', function() {
+describe('quoteService', () => {
 
   // Constants
   var ERROR_JOKE = 'Error, could not load joke :-(';
@@ -13,13 +11,13 @@ describe('quoteService', function() {
   var restService;
   var quoteService;
 
-  beforeEach(function() {
-    module('app');
+  beforeEach(() => {
+    angular.mock.module('app');
 
-    inject(function(_$q_,
-                    _$rootScope_,
-                    _quoteService_,
-                    _restService_) {
+    inject((_$q_: ng.IQService,
+            _$rootScope_: ng.IRootScopeService,
+            _quoteService_: QuoteService,
+            _restService_: RestService) => {
 
       $q = _$q_;
       $rootScope = _$rootScope_;
@@ -29,16 +27,16 @@ describe('quoteService', function() {
 
   });
 
-  it('should have a getRandomJoke method', function() {
+  it('should have a getRandomJoke method', () => {
     expect(typeof (quoteService.getRandomJoke)).toBe('function');
   });
 
-  describe('getRandomJoke', function() {
+  describe('getRandomJoke', () => {
 
-    it('should call rest service get method and return joke', function(done) {
+    it('should call rest service get method and return joke', (done) => {
       // Prepare
-      spyOn(restService, 'get').and.callFake(function() {
-        var deferred = $q.defer();
+      spyOn(restService, 'get').and.callFake(() => {
+        let deferred = $q.defer();
         deferred.resolve({
           data: {
             value: {
@@ -50,10 +48,10 @@ describe('quoteService', function() {
       });
 
       // Act
-      var promise = quoteService.getRandomJoke({category: 'nerdy'});
+      let promise = quoteService.getRandomJoke({category: 'nerdy'});
 
       // Assert
-      promise.then(function(joke) {
+      promise.then((joke) => {
         expect(restService.get).toHaveBeenCalled();
         expect(joke).toEqual('hello');
         done();
@@ -62,19 +60,19 @@ describe('quoteService', function() {
       $rootScope.$apply();
     });
 
-    it('should call rest service get method and fail when there is no joke in the response', function(done) {
+    it('should call rest service get method and fail when there is no joke in the response', (done) => {
       // Prepare
-      spyOn(restService, 'get').and.callFake(function() {
-        var deferred = $q.defer();
+      spyOn(restService, 'get').and.callFake(() => {
+        let deferred = $q.defer();
         deferred.resolve({});
         return deferred.promise;
       });
 
       // Act
-      var promise = quoteService.getRandomJoke({category: 'nerdy'});
+      let promise = quoteService.getRandomJoke({category: 'nerdy'});
 
       // Assert
-      promise.then(function(joke) {
+      promise.then((joke) => {
         expect(restService.get).toHaveBeenCalled();
         expect(joke).toEqual(ERROR_JOKE);
         done();
@@ -83,18 +81,18 @@ describe('quoteService', function() {
       $rootScope.$apply();
     });
 
-    it('should call rest service get method and fail to get a response', function(done) {
+    it('should call rest service get method and fail to get a response', (done) => {
       // Prepare
-      spyOn(restService, 'get').and.callFake(function() {
+      spyOn(restService, 'get').and.callFake(() => {
         return $q.reject({});
       });
 
       // Act
-      var promise = quoteService.getRandomJoke({category: 'nerdy'});
+      let promise = quoteService.getRandomJoke({category: 'nerdy'});
       $rootScope.$apply();
 
       // Assert
-      promise.then(function(joke) {
+      promise.then((joke) => {
         expect(restService.get).toHaveBeenCalled();
         expect(joke).toEqual(ERROR_JOKE);
         done();

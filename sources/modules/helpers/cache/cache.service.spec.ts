@@ -1,4 +1,4 @@
-import { CacheService } from 'helpers/cache/cache.service';
+import { CacheService } from 'cache.service';
 
 describe('cacheService', () => {
 
