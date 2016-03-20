@@ -13,7 +13,8 @@
     "test": "gulp test"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^0.16.0-rc.0",
+    "angular-gettext-loader": "^1.0.1",
+    "awesome-typescript-loader": "^0.16.2",
     "browser-sync": "^2.11.1",
     "browser-sync-spa": "~1.0.3",
     "chalk": "~1.1.1",

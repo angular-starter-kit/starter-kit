@@ -18,7 +18,7 @@ function buildScripts(watch, test, done) {
         'modules',
         'libraries'
       ],
-      extensions: ['', '.ts']
+      extensions: ['', '.ts', '.po']
     },
     watch: watch,
     module: {
@@ -36,7 +36,11 @@ function buildScripts(watch, test, done) {
         {
           test: /\.html$/,
           loader: 'raw!html-minify'
-        }
+        },
+        {
+          test: /\.po$/,
+          loader: 'angular-gettext?module=app.additions'
+        },
       ]
     },
     'html-minify-loader': {
@@ -79,6 +83,7 @@ function buildScripts(watch, test, done) {
 
   var sources = [
     path.join(conf.paths.src, '**/*.ts'),
+    path.join(conf.paths.src, 'translations/*.po'),
     path.join('!' + conf.paths.bower, '/**/*.ts')
   ];
 
