@@ -9,16 +9,16 @@ var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
 
-gulp.task('inject', ['scripts', 'styles'], function() {
+function inject() {
   var injectStyles = gulp.src([
     path.join(conf.paths.tmp, '/**/*.css'),
     path.join('!' + conf.paths.tmp, '/vendor.css')
   ], {read: false});
 
   var injectScripts = gulp.src([
-      path.join(conf.paths.tmp, '/**/*.js'),
-      path.join('!' + conf.paths.tmp, '/libraries/**/*.js'),
-    ]);
+    path.join(conf.paths.tmp, '/**/*.js'),
+    path.join('!' + conf.paths.tmp, '/libraries/**/*.js'),
+  ]);
 
   var injectOptions = {
     ignorePath: [conf.paths.src, conf.paths.tmp],
@@ -30,8 +30,16 @@ gulp.task('inject', ['scripts', 'styles'], function() {
     .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
     .pipe(gulp.dest(conf.paths.tmp));
+}
+
+gulp.task('inject', ['scripts', 'styles'], function() {
+  return inject();
 });
 
-gulp.task('inject:reload', ['inject'], function() {
+gulp.task('inject:watch', ['scripts:watch', 'styles'], function() {
+  return inject();
+});
+
+gulp.task('inject:reload', ['inject:watch'], function() {
   browserSync.reload();
 });

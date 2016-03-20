@@ -101,7 +101,7 @@ gulp.task('scripts', function() {
   return buildScripts(false, false);
 });
 
-gulp.task('scripts:watch', ['scripts'], function(done) {
+gulp.task('scripts:watch', function(done) {
   return buildScripts(true, false, done);
 });
 
@@ -109,6 +109,6 @@ gulp.task('scripts:test', function() {
   return buildScripts(false, true);
 });
 
-gulp.task('scripts:test-watch', ['scripts'], function(done) {
+gulp.task('scripts:test-watch', function(done) {
   return buildScripts(true, true, done);
 });

@@ -4,7 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('../gulpfile.config');
 
-gulp.task('watch', ['scripts:watch', 'inject'], function() {
+gulp.task('watch', ['inject:watch'], function() {
   var options = {
     debounceDelay: 500
   };
