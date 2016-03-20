@@ -58,7 +58,6 @@ module.exports = function(config) {
 
     // A map of preprocessors to use
     preprocessors: {
-      'sources/**/*.html': ['ng-html2js'],
       // Source files, that you wanna generate coverage for.
       // Do not include tests or libraries.
       '.tmp/app.ts.js': ['coverage']
