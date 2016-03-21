@@ -1,5 +1,5 @@
 import 'main.module.ts';
-import { RestService } from 'helpers/rest/rest.service';
+import { RestService } from 'modules/helpers/rest/rest.service';
 
 /**
  * Entry point of the application.
