@@ -1,4 +1,5 @@
 import 'main.module.ts';
+import { ILogger } from 'modules/helpers/logger/logger';
 
 /**
  * Configures the application (before running).
@@ -12,7 +13,7 @@ function mainConfig($provide: ng.auto.IProvideService,
     return (exception: any, cause: any) => {
       $delegate(exception, cause);
 
-      var logger = $injector.get('logger').getLogger('exceptionHandler');
+      let logger: ILogger = $injector.get('logger').getLogger('exceptionHandler');
       logger.error(exception + (cause ? ' (' + cause + ')' : ''));
     };
   });
