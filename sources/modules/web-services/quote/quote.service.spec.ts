@@ -4,12 +4,12 @@ import { QuoteService } from 'quote.service';
 describe('quoteService', () => {
 
   // Constants
-  var ERROR_JOKE = 'Error, could not load joke :-(';
+  let ERROR_JOKE = 'Error, could not load joke :-(';
 
-  var $q;
-  var $rootScope;
-  var restService;
-  var quoteService;
+  let $q;
+  let $rootScope;
+  let restService;
+  let quoteService;
 
   beforeEach(() => {
     angular.mock.module('app');
