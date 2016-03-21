@@ -15,10 +15,7 @@ function inject() {
     path.join('!' + conf.paths.tmp, '/vendor.css')
   ], {read: false});
 
-  var injectScripts = gulp.src([
-    path.join(conf.paths.tmp, '/**/*.js'),
-    path.join('!' + conf.paths.tmp, '/libraries/**/*.js'),
-  ]);
+  var injectScripts = gulp.src([path.join(conf.paths.tmp, '/**/*.js')]);
 
   var injectOptions = {
     ignorePath: [conf.paths.src, conf.paths.tmp],
