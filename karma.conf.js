@@ -17,6 +17,9 @@ function listFiles() {
     .concat([path.join(conf.paths.tmp, '**/*.js')]);
 }
 
+var preprocessors = {};
+preprocessors[path.join(conf.paths.tmp, '**/*.js')] = [/*'coverage',*/ 'sourcemap'];
+
 module.exports = function(config) {
 
   var configuration = {
@@ -53,24 +56,32 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-jasmine',
       'karma-coverage',
-      'karma-junit-reporter'
+      'karma-junit-reporter',
+      'karma-sourcemap-loader',
+      'karma-remap-istanbul'
     ],
 
     // A map of preprocessors to use
-    preprocessors: {
-      // Source files, that you wanna generate coverage for.
-      // Do not include tests or libraries.
-      '.tmp/app.ts.js': ['coverage']
-    },
+    preprocessors: preprocessors,
 
     // List of reporters
-    reporters: ['coverage', 'junit', 'progress'],
+    reporters: [/*'coverage', 'karma-remap-istanbul',*/ 'junit', 'progress'],
 
     // Coverage configuration
     coverageReporter: {
-      type: 'lcov',
+      type: 'json',
       dir: 'reports/',
-      subdir: 'coverage'
+      subdir: 'coverage',
+      file: 'unmapped.json'
+    },
+
+    // Remapped coverage
+    remapIstanbulReporter: {
+      src: 'reports/coverage/unmapped.json',
+      reports: {
+        lcovonly: 'reports/coverage/lcov.info',
+        html: 'reports/coverage/html'
+      }
     },
 
     junitReporter: {
