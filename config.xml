@@ -96,13 +96,13 @@
   <engine name="android" spec="~5.1.1" />
 
   <!-- Cordova plugin dependencies -->
-  <plugin name="ionic-plugin-keyboard" spec="~1.0.8" />
+  <plugin name="ionic-plugin-keyboard" spec="~2.0.1" />
   <plugin name="cordova-plugin-statusbar" spec="~2.0.0" />
-  <plugin name="cordova-plugin-device" spec="~1.1.0" />
+  <plugin name="cordova-plugin-device" spec="~1.1.1" />
   <plugin name="cordova-plugin-splashscreen" spec="~3.0.0" />
   <plugin name="cordova-plugin-globalization" spec="~1.0.3" />
   <plugin name="cordova-plugin-crosswalk-webview" spec="~1.4.0" />
-  <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
+  <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
   <plugin name="cordova-plugin-wkwebview-engine" spec="~1.0.1" />
 
 </widget>

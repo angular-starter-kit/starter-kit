@@ -114,8 +114,6 @@ module app {
         }
 
         if ($window.cordova && $window.cordova.plugins.Keyboard) {
-          // Hide the accessory bar (remove this to show the accessory bar above the keyboard for form inputs)
-          $cordovaKeyboard.hideKeyboardAccessoryBar(true);
           $cordovaKeyboard.disableScroll(true);
         }
 
