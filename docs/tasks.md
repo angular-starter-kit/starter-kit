@@ -33,7 +33,6 @@ webdriver:standalone | Launch a standalone selenium server.
 
 Task                 | Description
 ---------------------|------------------------------------------------------------------------------------------------
-translations         | Generate translations file in .tmp that will be used by server.
 translations:extract | Extract Messages from Code and Templates to template.pot.
 
 ## TypeScript
