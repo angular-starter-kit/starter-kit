@@ -1,6 +1,6 @@
 {
   "name": "starter-kit",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Web project starter kit including tooling, best practices and project seed",
   "keywords": "angular, bootstrap, gulp, ui-router, ui-bootstrap, sass, typescript",
   "license": "MIT",
