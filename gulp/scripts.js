@@ -11,27 +11,28 @@ var $ = require('gulp-load-plugins')();
 function buildScripts(watch, test, done) {
   var options = {
     resolve: {
-      root: conf.src,
       modulesDirectories: [
         '.',
         'main',
         'modules',
         'libraries'
       ],
-      extensions: ['', '.ts', '.po']
+      extensions: ['', '.ts']
     },
+    debug: watch || test,
     watch: watch,
+    devtool: watch || test ? 'inline-source-map' : undefined,
     module: {
       preLoaders: [{
         test: /\.ts$/,
         exclude: /node_modules/,
-        loader: 'tslint-loader'
+        loader: 'tslint'
       }],
       loaders: [
         {
           test: /\.ts$/,
           exclude: /node_modules/,
-          loaders: ['ng-annotate', 'awesome-typescript-loader']
+          loaders: ['ng-annotate', 'awesome-typescript']
         },
         {
           test: /\.html$/,
@@ -39,9 +40,14 @@ function buildScripts(watch, test, done) {
         },
         {
           test: /\.po$/,
-          loader: 'angular-gettext?module=app.additions'
-        },
+          loader: 'angular-gettext?module=translations'
+        }
       ]
+    },
+    output: {
+      filename: 'app.ts.js',
+      devtoolModuleFilenameTemplate: '[resource-path]',
+      devtoolFallbackModuleFilenameTemplate: '[resource-path]'
     },
     'html-minify-loader': {
       empty: true,
@@ -54,27 +60,32 @@ function buildScripts(watch, test, done) {
         lowerCaseTags: false
       }
     },
-    output: {filename: 'app.ts.js'}
+    tslint: {
+      emitErrors: true
+    }
   };
 
-  if (watch) {
-    options.devtool = 'inline-source-map';
-  }
-
-  var webpackChangeHandler = function(err, stats) {
+  var changeHandler = function(err, stats) {
     if (err) {
-      conf.errorHandler('Webpack')(err);
+      conf.errorHandler('Webpack', true)(err);
     }
 
-    $.util.log(stats.toString({
+    var info = stats.toString({
       colors: $.util.colors.supportsColor,
+      assets: false,
+      timings: false,
       chunks: false,
       hash: false,
       version: false
-    }));
+    });
+
+    if (info) {
+      $.util.log(info);
+    }
 
     browserSync.reload();
 
+    // Finish gulp task to avoid waiting indefinitely
     if (watch) {
       watch = false;
       done();
@@ -93,7 +104,7 @@ function buildScripts(watch, test, done) {
   }
 
   return gulp.src(sources)
-    .pipe(webpack(options, null, webpackChangeHandler))
+    .pipe(webpack(options, null, changeHandler)).on('error', conf.errorHandler('', watch))
     .pipe(gulp.dest(path.join(conf.paths.tmp)));
 }
 

@@ -81,9 +81,13 @@ exports.corporateProxyAgent = function() {
 /**
  * Common implementation for an error handler of a gulp plugin.
  */
-exports.errorHandler = function(title) {
+exports.errorHandler = function(title, skipEnd) {
   return function(err) {
-    gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
-    this.emit('end');
+    if (title) {
+      gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
+    }
+    if (!skipEnd) {
+      this.emit('end');
+    }
   };
 };

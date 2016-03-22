@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('app', [
-  'app.additions',
+  'translations',
   'gettext',
   'ngAnimate',
   'ngSanitize',
@@ -11,4 +11,5 @@ angular.module('app', [
   'ui.bootstrap'
 ]);
 
-angular.module('app.additions', []);
+// Translations are injected at build phase
+angular.module('translations', []);
