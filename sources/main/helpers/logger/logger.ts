@@ -31,7 +31,7 @@
  * you can register observers using the addObserver() method.
  */
 
-import 'main.module.ts';
+import app from 'main.module';
 
 let observers: Array<Function> = [];
 
@@ -141,7 +141,5 @@ export class LoggerService {
 
 }
 
-angular
-  .module('app')
-  .service('logger', LoggerService);
+app.service('logger', LoggerService);
 

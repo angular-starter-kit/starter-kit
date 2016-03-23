@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 import { ILogger, LoggerService } from 'helpers/logger/logger';
 import { QuoteService } from 'web-services/quote/quote.service';
 
@@ -33,6 +33,4 @@ export class HomeController {
 
 }
 
-angular
-  .module('app')
-  .controller('homeController', HomeController);
+app.controller('homeController', HomeController);

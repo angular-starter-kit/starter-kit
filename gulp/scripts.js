@@ -13,8 +13,7 @@ function buildScripts(watch, test, done) {
     resolve: {
       modulesDirectories: [
         '.',
-        'main',
-        'modules',
+        conf.paths.main,
         'libraries'
       ],
       extensions: ['', '.ts']

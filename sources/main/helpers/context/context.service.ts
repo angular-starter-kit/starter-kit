@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 import { ILogger, LoggerService } from 'helpers/logger/logger';
 
 /**
@@ -52,7 +52,5 @@ export class ContextService {
 
 }
 
-angular
-  .module('app')
-  .service('contextService', ContextService);
+app.service('contextService', ContextService);
 

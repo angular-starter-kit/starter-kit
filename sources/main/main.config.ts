@@ -1,5 +1,5 @@
-import 'main.module.ts';
-import { ILogger } from 'modules/helpers/logger/logger';
+import app from 'main.module';
+import { ILogger } from 'helpers/logger/logger';
 
 /**
  * Configures the application (before running).
@@ -32,6 +32,4 @@ function mainConfig($provide: ng.auto.IProvideService,
 
 }
 
-angular
-  .module('app')
-  .config(mainConfig);
+app.config(mainConfig);

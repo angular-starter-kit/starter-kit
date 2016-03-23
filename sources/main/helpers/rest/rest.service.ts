@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 import { ILogger, LoggerService } from 'helpers/logger/logger';
 import { CacheService } from 'helpers/cache/cache.service';
 
@@ -283,7 +283,5 @@ export class RestService {
   }
 }
 
-angular
-  .module('app')
-  .service('restService', RestService);
+app.service('restService', RestService);
 

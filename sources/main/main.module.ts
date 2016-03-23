@@ -2,7 +2,10 @@
 
 'use strict';
 
-angular.module('app', [
+// Translations are injected at build phase
+angular.module('translations', []);
+
+export default angular.module('app', [
   'translations',
   'gettext',
   'ngAnimate',
@@ -10,6 +13,3 @@ angular.module('app', [
   'ui.router',
   'ui.bootstrap'
 ]);
-
-// Translations are injected at build phase
-angular.module('translations', []);

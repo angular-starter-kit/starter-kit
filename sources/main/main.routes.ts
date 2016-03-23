@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 
 /**
  * Configures the application routes.
@@ -7,7 +7,6 @@ function routeConfig($stateProvider: angular.ui.IStateProvider,
                      $urlRouterProvider: angular.ui.IUrlRouterProvider,
                      gettext: angular.gettext.gettextFunction) {
 
-  // Routes configuration
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
@@ -30,6 +29,4 @@ function routeConfig($stateProvider: angular.ui.IStateProvider,
 
 }
 
-angular
-  .module('app')
-  .config(routeConfig);
+app.config(routeConfig);

@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 import { ILogger, LoggerService } from 'helpers/logger/logger';
 
 /**
@@ -44,6 +44,4 @@ export class ShellController {
 
 }
 
-angular
-  .module('app')
-  .controller('shellController', ShellController);
+app.controller('shellController', ShellController);

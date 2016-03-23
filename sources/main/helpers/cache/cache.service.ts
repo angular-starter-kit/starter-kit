@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 import { ILogger, LoggerService } from 'helpers/logger/logger';
 
 export interface ICacheData {
@@ -159,6 +159,4 @@ export class CacheService {
 
 }
 
-angular
-  .module('app')
-  .service('cacheService', CacheService);
+app.service('cacheService', CacheService);

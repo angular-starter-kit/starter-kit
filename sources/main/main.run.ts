@@ -1,5 +1,5 @@
-import 'main.module.ts';
-import { RestService } from 'modules/helpers/rest/rest.service';
+import app from 'main.module';
+import { RestService } from 'helpers/rest/rest.service';
 
 /**
  * Entry point of the application.
@@ -90,6 +90,4 @@ function main($window: ng.IWindowService,
 
 }
 
-angular
-  .module('app')
-  .run(main);
+app.run(main);

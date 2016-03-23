@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 
 /**
  * Loading directive: displays a loading indicator while data is being loaded.
@@ -21,7 +21,5 @@ export class LoadingDirective implements ng.IDirective {
   };
 }
 
-angular
-  .module('app')
-  .directive('uiLoading', () => new LoadingDirective());
+app.directive('uiLoading', () => new LoadingDirective());
 

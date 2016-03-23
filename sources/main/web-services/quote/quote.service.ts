@@ -1,4 +1,4 @@
-import 'main.module.ts';
+import app from 'main.module';
 import { RestService } from 'helpers/rest/rest.service';
 import { ContextService } from 'helpers/context/context.service';
 
@@ -39,7 +39,4 @@ export class QuoteService {
 
 }
 
-angular
-  .module('app')
-  .service('quoteService', QuoteService);
-
+app.service('quoteService', QuoteService);
