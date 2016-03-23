@@ -29,13 +29,9 @@ function inject() {
     .pipe(gulp.dest(conf.paths.tmp));
 }
 
-gulp.task('inject', ['scripts', 'styles'], function() {
-  return inject();
-});
+gulp.task('inject', ['scripts', 'styles'], inject);
 
-gulp.task('inject:watch', ['scripts:watch', 'styles'], function() {
-  return inject();
-});
+gulp.task('inject:watch', ['scripts:watch', 'styles'], inject);
 
 gulp.task('inject:reload', ['inject:watch'], function() {
   browserSync.reload();
