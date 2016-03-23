@@ -10,10 +10,8 @@ gulp.task('translations:extract', ['scripts'], function() {
   return gulp.src([
       path.join(conf.paths.tmp, '**/*.js'),
       path.join(conf.paths.src, '**/*.html'),
-      path.join(conf.paths.tmp, '**/*.html'),
       path.join('!' + conf.paths.bower, '**/*.js'),
-      path.join('!' + conf.paths.bower, '**/*.html'),
-      path.join('!' + conf.paths.src, 'index.html')
+      path.join('!' + conf.paths.bower, '**/*.html')
     ])
     .pipe($.angularGettext.extract('template.pot', {}))
     .pipe(gulp.dest(path.join(conf.paths.src, 'translations')));
