@@ -26,6 +26,7 @@ module app {
     /**
      * Utility method to set the language in the tools requiring it.
      * The current language is saved to the local storage.
+     * If no parameter is specified, the language is loaded from local storage (if possible).
      * @param {string=} language The IETF language tag.
      */
     vm.setLanguage = function(language?: string) {
