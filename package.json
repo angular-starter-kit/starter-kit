@@ -1,6 +1,6 @@
 {
   "name": "starter-kit",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Mobile hybrid project starter kit including tooling, best practices and project seed",
   "keywords": "angular, ionic, gulp, ui-router, cordova, sass, typescript",
   "license": "MIT",
