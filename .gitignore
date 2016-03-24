@@ -6,7 +6,6 @@ node_modules/
 /.tmp/
 /dist/
 .sass-cache
-.idea/
 npm-debug.log
 
 ## Karma
@@ -22,6 +21,7 @@ npm-debug.log
 .DS_Store
 
 ## IntelliJ / Webstorm
+.idea/
 *.iml
 *.iws
 *.idea/*

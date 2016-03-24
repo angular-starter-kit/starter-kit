@@ -45,4 +45,3 @@ module app {
     .config(routeConfig);
 
 }
-
