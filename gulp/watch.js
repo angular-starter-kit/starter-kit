@@ -22,6 +22,4 @@ gulp.task('watch', ['inject:watch'], function() {
     }
   });
 
-  gulp.watch(path.join(conf.paths.src, '/**/*.po'), options, ['translations:reload']);
-
 });
