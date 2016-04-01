@@ -15,8 +15,6 @@ function inject() {
     path.join('!' + conf.paths.tmp, '/vendor.css')
   ], {read: false});
 
-  var injectScripts = gulp.src([path.join(conf.paths.tmp, '/**/*.js')]);
-
   var injectOptions = {
     ignorePath: [conf.paths.src, conf.paths.tmp],
     addRootSlash: false
@@ -24,7 +22,6 @@ function inject() {
 
   return gulp.src(path.join(conf.paths.src, 'index.html'))
     .pipe($.inject(injectStyles, injectOptions))
-    .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
     .pipe(gulp.dest(conf.paths.tmp));
 }
