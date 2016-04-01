@@ -125,9 +125,8 @@ tsd         | Download and update all TypeScript definitions for Bower dependenc
 
 #### Build
 - JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
-  [uglify](https://github.com/terinjokes/gulp-uglify), 
-  [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
-  [clean-css](https://www.npmjs.com/package/gulp-clean-css) 
+  [uglify](https://github.com/terinjokes/gulp-uglify), [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
+  [clean-css](https://www.npmjs.com/package/gulp-clean-css))
 - CSS browser support ([autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - Images optimization ([imagemin](https://github.com/sindresorhus/gulp-imagemin))
 - Automatic angular module annotation ([ngAnnotate](https://github.com/Kagami/gulp-ng-annotate))
