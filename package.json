@@ -7,7 +7,7 @@
   "author": "Yohan Lasorsa",
   "repository": {
     "type": "git",
-    "url": "git@github.com/thales-poles-ra/starter-kit.git"
+    "url": "git@github.com/sinedied/starter-kit.git"
   },
   "scripts": {
     "test": "gulp test"
