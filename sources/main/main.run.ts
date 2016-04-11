@@ -69,12 +69,12 @@ module app {
      */
     function init() {
       // Enable debug mode for translations
-      gettextCatalog.debug = config.debug;
+      gettextCatalog.debug = config.environment.debug;
 
       vm.setLanguage();
 
       // Set REST server configuration
-      restService.setServer(config.server);
+      restService.setServer(config.environment.server);
     }
 
     /**
