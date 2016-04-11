@@ -84,12 +84,12 @@ module app {
       let _logger: ILogger = logger.getLogger('main');
 
       // Enable debug mode for translations
-      gettextCatalog.debug = config.debug;
+      gettextCatalog.debug = config.environment.debug;
 
       vm.setLanguage();
 
       // Set REST server configuration
-      restService.setServer(config.debug ? config.server.development : config.server.production);
+      restService.setServer(config.environment.server);
 
       // Cordova platform and plugins init
       $ionicPlatform.ready(() => {

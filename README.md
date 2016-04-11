@@ -88,6 +88,11 @@ test:auto   | Launch karma server and launch unit tests after each change in pro
 protractor  | Launch e2e tests using protractor.
 tsd         | Download and update all TypeScript definitions for Bower dependencies.
 
+When building the application, you can specify the target environment using the flag `--environment <name>`.
+
+The default build environment is `production`. See [this documentation](docs/build-environments.md) for more details
+about multiple build environments management.
+
 # Coding guides
 
 - [JavaScript](docs/coding-guides/javascript.md)
@@ -100,6 +105,7 @@ tsd         | Download and update all TypeScript definitions for Bower dependenc
 # Additional documentation
 
 - [Cordova](docs/cordova.md)
+- [Build environments](docs/build-environments.md)
 - [i18n](docs/i18n.md)
 - [Proxy configuration](docs/proxy.md)
 - [All gulp tasks](docs/tasks.md)
