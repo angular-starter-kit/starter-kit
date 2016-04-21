@@ -6,12 +6,12 @@ import { RestService } from 'rest.service';
  */
 describe('restService', () => {
 
-  let $q;
-  let $httpBackend;
-  let restService;
-  let cacheService;
-  let baseUri;
-  let callbacks;
+  var $q;
+  var $httpBackend;
+  var restService;
+  var cacheService;
+  var baseUrl;
+  var callbacks;
 
   beforeEach(() => {
     angular.mock.module('app');
@@ -25,7 +25,7 @@ describe('restService', () => {
       restService = _restService_;
       cacheService = _cacheService_;
 
-      baseUri = 'api';
+      baseUrl = 'api';
     });
 
     callbacks = {
@@ -75,8 +75,8 @@ describe('restService', () => {
     expect(typeof (restService.getServer)).toBe('function');
   });
 
-  it('should have a getBaseUri method', () => {
-    expect(typeof (restService.getBaseUri)).toBe('function');
+  it('should have a getBaseUrl method', () => {
+    expect(typeof (restService.getBaseUrl)).toBe('function');
   });
 
   it('should have a setRequestHandler method', () => {
@@ -107,7 +107,7 @@ describe('restService', () => {
 
     it('should succeed', () => {
       // Arrange
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
 
       // Act
       restService.get('/toto', null).then(callbacks.onSuccess, callbacks.onError);
@@ -119,7 +119,7 @@ describe('restService', () => {
 
     it('should succeed from cache', () => {
       // Arrange
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
 
       // Act
       restService.get('/toto', null, true).then(() => {
@@ -134,11 +134,11 @@ describe('restService', () => {
 
     it('should succeed with cache update forced', () => {
       // Arrange
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
 
       // Act
       restService.get('/toto', null, true).then(() => {
-        $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+        $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
 
         // This second call should not be resolved from cache
         return restService.get('/toto', null, 'force').then(callbacks.onSuccess, callbacks.onError);
@@ -151,11 +151,11 @@ describe('restService', () => {
 
     it('should succeed with cache ignored', () => {
       // Arrange
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
 
       // Act
       restService.get('/toto', null, true).then(() => {
-        $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+        $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
 
         // This second call should not be resolved from cache
         return restService.get('/toto', null, false).then(callbacks.onSuccess, callbacks.onError);
@@ -168,11 +168,11 @@ describe('restService', () => {
 
     it('should succeed after cache clear', () => {
       // Arrange
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
 
       // Act
       restService.get('/toto', null, true).then(() => {
-        $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+        $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
         cacheService.clearCacheData('/toto');
 
         // This second call should not be resolved from cache
@@ -186,7 +186,7 @@ describe('restService', () => {
 
     it('should fail', () => {
       // Arrange
-      $httpBackend.expectGET(baseUri + '/toto').respond(400, {data: 'fail'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond(400, {data: 'fail'});
 
       // Act
       restService.get('/toto', null).then(callbacks.onSuccess, callbacks.onError);
@@ -202,7 +202,7 @@ describe('restService', () => {
 
     it('should succeed', () => {
       // Arrange
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(200, '');
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(200, '');
 
       // Act
       restService.post('/toto', 'value').then(callbacks.onSuccess, callbacks.onError);
@@ -214,7 +214,7 @@ describe('restService', () => {
 
     it('should fail', () => {
       // Arrange
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(404, '');
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(404, '');
 
       // Act
       restService.post('/toto', 'value').then(callbacks.onSuccess, callbacks.onError);
@@ -233,7 +233,7 @@ describe('restService', () => {
       });
 
       spyOn($log, 'error');
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(404, '');
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(404, '');
 
       // Act
       restService.post('/toto', 'value', {skipErrors: true}).then(callbacks.onSuccess, callbacks.onError);
@@ -253,7 +253,7 @@ describe('restService', () => {
       });
 
       spyOn($log, 'error');
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(403, {message: 'toto'});
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(403, {message: 'toto'});
 
       // Act
       restService.post('/toto', 'value').then(callbacks.onSuccess, callbacks.onError);
@@ -273,7 +273,7 @@ describe('restService', () => {
       });
 
       spyOn($log, 'error');
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(403, {error: 'ZX42'});
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(403, {error: 'ZX42'});
 
       // Act
       restService.post('/toto', 'value').then(callbacks.onSuccess, callbacks.onError);
@@ -293,7 +293,7 @@ describe('restService', () => {
       });
 
       spyOn($log, 'error');
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(403, {prout: 'plouf'});
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(403, {prout: 'plouf'});
 
       // Act
       restService.post('/toto', 'value').then(callbacks.onSuccess, callbacks.onError);
@@ -310,7 +310,7 @@ describe('restService', () => {
 
     it('should succeed', () => {
       // Arrange
-      $httpBackend.expectPUT(baseUri + '/toto', 'value').respond(200, '');
+      $httpBackend.expectPUT(baseUrl + '/toto', 'value').respond(200, '');
 
       // Act
       restService.put('/toto', 'value').then(callbacks.onSuccess, callbacks.onError);
@@ -322,7 +322,7 @@ describe('restService', () => {
 
     it('should fail', () => {
       // Arrange
-      $httpBackend.expectPUT(baseUri + '/toto', 'value').respond(400, '');
+      $httpBackend.expectPUT(baseUrl + '/toto', 'value').respond(400, '');
 
       // Act
       restService.put('/toto', 'value').then(callbacks.onSuccess, callbacks.onError);
@@ -338,7 +338,7 @@ describe('restService', () => {
 
     it('should succeed', () => {
       // Arrange
-      $httpBackend.expectDELETE(baseUri + '/toto').respond(200, '');
+      $httpBackend.expectDELETE(baseUrl + '/toto').respond(200, '');
 
       // Act
       restService.delete('/toto').then(callbacks.onSuccess, callbacks.onError);
@@ -350,7 +350,7 @@ describe('restService', () => {
 
     it('should fail', () => {
       // Arrange
-      $httpBackend.expectDELETE(baseUri + '/toto').respond(400, '');
+      $httpBackend.expectDELETE(baseUrl + '/toto').respond(400, '');
 
       // Act
       restService.delete('/toto').then(callbacks.onSuccess, callbacks.onError);
@@ -369,8 +369,8 @@ describe('restService', () => {
       let server = {
         label: 'Europe',
         location: 'europe',
-        restServerUrl: 'https://toto.com:443',
-        restUri: '/api/smartphone',
+        url: 'https://toto.com:443',
+        route: '/api/smartphone',
         active: true
       };
 
@@ -378,7 +378,7 @@ describe('restService', () => {
       restService.setServer(server);
 
       // Assert
-      expect(restService.getBaseUri()).toBe('https://toto.com:443/api/smartphone');
+      expect(restService.getBaseUrl()).toBe('https://toto.com:443/api/smartphone');
     });
 
   });
@@ -390,8 +390,8 @@ describe('restService', () => {
       let server = {
         label: 'Europe',
         location: 'europe',
-        restServerUrl: 'https://toto.com:443',
-        restUri: '/api/smartphone',
+        url: 'https://toto.com:443',
+        route: '/api/smartphone',
         active: true
       };
       restService.setServer(server);
@@ -400,19 +400,19 @@ describe('restService', () => {
       let result = restService.getServer();
 
       // Assert
-      expect(result.restServerUrl).toBe('https://toto.com:443');
+      expect(result.url).toBe('https://toto.com:443');
     });
 
   });
 
-  describe('getBaseUri', () => {
+  describe('getBaseUrl', () => {
 
     it('should return the computed base uri', () => {
       // Act
-      let result = restService.getBaseUri();
+      let result = restService.getBaseUrl();
 
       // Assert
-      expect(result).toBe(baseUri);
+      expect(result).toBe(baseUrl);
     });
   });
 
@@ -437,19 +437,19 @@ describe('restService', () => {
       restService.setRequestHandler(myHandler);
 
       // Act
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
       restService.get('/toto', null);
       $httpBackend.flush();
 
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(200, '');
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(200, '');
       restService.post('/toto', 'value');
       $httpBackend.flush();
 
-      $httpBackend.expectPUT(baseUri + '/toto', 'value').respond(200, '');
+      $httpBackend.expectPUT(baseUrl + '/toto', 'value').respond(200, '');
       restService.put('/toto', 'value');
       $httpBackend.flush();
 
-      $httpBackend.expectDELETE(baseUri + '/toto').respond(200, '');
+      $httpBackend.expectDELETE(baseUrl + '/toto').respond(200, '');
       restService.delete('/toto');
       $httpBackend.flush();
 
@@ -485,19 +485,19 @@ describe('restService', () => {
       restService.setErrorHandler(myHandler);
 
       // Act
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
       restService.get('/toto', null);
       $httpBackend.flush();
 
-      $httpBackend.expectPOST(baseUri + '/toto', 'value').respond(400, '');
+      $httpBackend.expectPOST(baseUrl + '/toto', 'value').respond(400, '');
       restService.post('/toto', 'value');
       $httpBackend.flush();
 
-      $httpBackend.expectPUT(baseUri + '/toto', 'value').respond(200, '');
+      $httpBackend.expectPUT(baseUrl + '/toto', 'value').respond(200, '');
       restService.put('/toto', 'value');
       $httpBackend.flush();
 
-      $httpBackend.expectDELETE(baseUri + '/toto').respond(200, '');
+      $httpBackend.expectDELETE(baseUrl + '/toto').respond(200, '');
       restService.delete('/toto');
       $httpBackend.flush();
 
@@ -533,7 +533,7 @@ describe('restService', () => {
       restService.setCacheHandler(cacheHandler);
 
       // Act
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
       restService.get('/toto', null, true).then(() => {
         // This second call should be resolved from cache
         restService.get('/toto', null, true).then(callbacks.onSuccess, callbacks.onError);
@@ -551,7 +551,7 @@ describe('restService', () => {
       // Prepare
       let counterSpy = jasmine.createSpy('counterSpy');
 
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto'});
       restService.get('/toto', null, true);
       $httpBackend.flush();
 
@@ -562,7 +562,7 @@ describe('restService', () => {
       restService.setCacheHandler(cacheHandler);
 
       // Act
-      $httpBackend.expectGET(baseUri + '/toto').respond({value: 'toto2'});
+      $httpBackend.expectGET(baseUrl + '/toto').respond({value: 'toto2'});
       restService.get('/toto', null, true).then(callbacks.onSuccess, callbacks.onError);
       $httpBackend.flush();
 

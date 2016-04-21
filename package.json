@@ -2,12 +2,20 @@
   "name": "starter-kit",
   "version": "2.0.1",
   "description": "Web project starter kit including tooling, best practices and project seed",
-  "keywords": "angular, bootstrap, gulp, ui-router, ui-bootstrap, sass, typescript",
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "gulp",
+    "ui-router",
+    "ui-bootstrap",
+    "sass",
+    "typescript"
+  ],
   "license": "MIT",
   "author": "Yohan Lasorsa",
   "repository": {
     "type": "git",
-    "url": "git@github.com/thales-poles-ra/starter-kit.git"
+    "url": "git@github.com/sinedied/starter-kit.git"
   },
   "scripts": {
     "test": "gulp test"
@@ -31,6 +39,7 @@
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "~2.4.0",
     "gulp-inject": "^4.0.0",
+    "gulp-intercept": "^0.1.0",
     "gulp-load-plugins": "~1.2.0",
     "gulp-protractor": "^2.2.0",
     "gulp-rename": "~1.2.2",
@@ -43,10 +52,10 @@
     "gulp-sourcemaps": "~1.6.0",
     "gulp-tsd": "^0.1.1",
     "gulp-uglify": "^1.5.3",
-    "gulp-useref": "^2.1.0",
+    "gulp-useref": "^3.0.8",
     "gulp-util": "~3.0.7",
     "html-minify-loader": "^1.1.0",
-    "http-proxy-middleware": "^0.12.0",
+    "http-proxy-middleware": "^0.14.0",
     "https-proxy-agent": "^1.0.0",
     "jasmine-spec-reporter": "^2.4.0",
     "jshint": "^2.9.1",
@@ -61,9 +70,11 @@
     "lodash": "^4.6.1",
     "main-bower-files": "~2.11.1",
     "merge-stream": "~1.0.0",
+    "minimist": "^1.2.0",
     "ng-annotate-loader": "^0.1.0",
     "phantomjs-prebuilt": "^2.1.6",
     "protractor-html-screenshot-reporter": "0.0.21",
+    "recursive-readdir-sync": "^1.0.6",
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.0",
     "tsd": "~0.6.5",
@@ -72,8 +83,7 @@
     "typescript": "^1.8.9",
     "uglify-save-license": "~0.4.1",
     "webpack-stream": "^3.1.0",
-    "wiredep": "^4.0.0",
-    "wrench": "~1.5.8"
+    "wiredep": "^4.0.0"
   },
   "engines": {
     "node": ">=4.0.0"

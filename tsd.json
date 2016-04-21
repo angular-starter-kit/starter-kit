@@ -6,37 +6,37 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "angularjs/angular.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "angular-ui-router/angular-ui-router.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "angular-gettext/angular-gettext.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "jasmine-jquery/jasmine-jquery.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "jasmine/jasmine.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "angularjs/angular-mocks.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "angularjs/angular-animate.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "angularjs/angular-sanitize.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "jquery/jquery.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "lodash/lodash.d.ts": {
-      "commit": "41f8573534b0fff88707d0a4cb870456b50cd43b"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     },
     "webpack/webpack-env.d.ts": {
-      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
     }
   }
 }

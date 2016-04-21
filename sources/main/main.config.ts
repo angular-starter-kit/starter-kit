@@ -18,17 +18,17 @@ function mainConfig($provide: ng.auto.IProvideService,
     };
   });
 
-  // Disable debug logs in production version
-  $provide.decorator('$log', ($delegate: any) => {
-    if (!config.debug) {
-      $delegate.log = angular.noop;
-      $delegate.debug = angular.noop;
-    }
-    return $delegate;
-  });
+    // Disable debug logs in production version
+    $provide.decorator('$log', ($delegate: any) => {
+      if (!config.environment.debug) {
+        $delegate.log = angular.noop;
+        $delegate.debug = angular.noop;
+      }
+      return $delegate;
+    });
 
-  // Disable angular debug info in production version
-  $compileProvider.debugInfoEnabled(config.debug);
+    // Disable angular debug info in production version
+    $compileProvider.debugInfoEnabled(config.environment.debug);
 
 }
 

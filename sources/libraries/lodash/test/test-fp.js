@@ -67,6 +67,14 @@
     };
   }());
 
+  var allFalseOptions = {
+    'cap': false,
+    'curry': false,
+    'fixed': false,
+    'immutable': false,
+    'rearg': false
+  };
+
   var fp = root.fp
     ? (fp = _.noConflict(), _ = root._, fp)
     : convert(_.runInContext());
@@ -95,18 +103,39 @@
     console.log('Running lodash/fp tests.');
   }
 
-  QUnit.module('convert');
+  QUnit.module('convert module');
 
   (function() {
-    var allFalseOptions = {
-      'cap': false,
-      'curry': false,
-      'fixed': false,
-      'immutable': false,
-      'rearg': false
-    };
+    QUnit.test('should work with `name` and `func`', function(assert) {
+      assert.expect(2);
 
-    QUnit.test('should work when given an object', function(assert) {
+      var array = [1, 2, 3, 4],
+          remove = convert('remove', _.remove);
+
+      var actual = remove(function(n) {
+        return n % 2 == 0;
+      })(array);
+
+      assert.deepEqual(array, [1, 2, 3, 4]);
+      assert.deepEqual(actual, [1, 3]);
+    });
+
+    QUnit.test('should work with `name`, `func`, and `options`', function(assert) {
+      assert.expect(3);
+
+      var array = [1, 2, 3, 4],
+          remove = convert('remove', _.remove, allFalseOptions);
+
+      var actual = remove(array, function(n, index) {
+        return index % 2 == 0;
+      });
+
+      assert.deepEqual(array, [2, 4]);
+      assert.deepEqual(actual, [1, 3]);
+      assert.deepEqual(remove(), []);
+    });
+
+    QUnit.test('should work with an object', function(assert) {
       assert.expect(2);
 
       if (!document) {
@@ -125,44 +154,55 @@
       }
     });
 
-    QUnit.test('should only add a `placeholder` property if needed', function(assert) {
-      assert.expect(2);
+    QUnit.test('should work with an object and `options`', function(assert) {
+      assert.expect(3);
 
       if (!document) {
-        var methodNames = _.keys(mapping.placeholder),
-            expected = _.map(methodNames, _.constant(true));
+        var array = [1, 2, 3, 4],
+            lodash = convert({ 'remove': _.remove }, allFalseOptions);
 
-        var actual = _.map(methodNames, function(methodName) {
-          var object = {};
-          object[methodName] = _[methodName];
-
-          var lodash = convert(object);
-          return methodName in lodash;
+        var actual = lodash.remove(array, function(n, index) {
+          return index % 2 == 0;
         });
 
-        assert.deepEqual(actual, expected);
-
-        var lodash = convert({ 'add': _.add });
-        assert.notOk('placeholder' in lodash);
+        assert.deepEqual(array, [2, 4]);
+        assert.deepEqual(actual, [1, 3]);
+        assert.deepEqual(lodash.remove(), []);
       }
       else {
-        skipAssert(assert, 2);
+        skipAssert(assert, 3);
       }
     });
 
-    QUnit.test('should accept an `options` argument', function(assert) {
+    QUnit.test('should work with lodash and `options`', function(assert) {
       assert.expect(3);
 
       var array = [1, 2, 3, 4],
-          remove = convert('remove', _.remove, allFalseOptions);
+          lodash = convert(_.runInContext(), allFalseOptions);
 
-      var actual = remove(array, function(n, index) {
+      var actual = lodash.remove(array, function(n, index) {
         return index % 2 == 0;
       });
 
       assert.deepEqual(array, [2, 4]);
       assert.deepEqual(actual, [1, 3]);
-      assert.deepEqual(remove(), []);
+      assert.deepEqual(lodash.remove(), []);
+    });
+
+    QUnit.test('should work with `runInContext` and `options`', function(assert) {
+      assert.expect(3);
+
+      var array = [1, 2, 3, 4],
+          runInContext = convert('runInContext', _.runInContext, allFalseOptions),
+          lodash = runInContext();
+
+      var actual = lodash.remove(array, function(n, index) {
+        return index % 2 == 0;
+      });
+
+      assert.deepEqual(array, [2, 4]);
+      assert.deepEqual(actual, [1, 3]);
+      assert.deepEqual(lodash.remove(), []);
     });
 
     QUnit.test('should accept a variety of options', function(assert) {
@@ -220,57 +260,87 @@
       assert.strictEqual(add('2')('1'), '12');
     });
 
-    QUnit.test('should use `options` in `runInContext`', function(assert) {
-      assert.expect(3);
-
-      var array = [1, 2, 3, 4],
-          runInContext = convert('runInContext', _.runInContext, allFalseOptions),
-          lodash = runInContext();
-
-      var actual = lodash.remove(array, function(n, index) {
-        return index % 2 == 0;
-      });
-
-      assert.deepEqual(array, [2, 4]);
-      assert.deepEqual(actual, [1, 3]);
-      assert.deepEqual(lodash.remove(), []);
-    });
-
-    QUnit.test('should work when given lodash and `options`', function(assert) {
-      assert.expect(3);
-
-      var array = [1, 2, 3, 4],
-          lodash = convert(_.runInContext(), allFalseOptions);
-
-      var actual = lodash.remove(array, function(n, index) {
-        return index % 2 == 0;
-      });
-
-      assert.deepEqual(array, [2, 4]);
-      assert.deepEqual(actual, [1, 3]);
-      assert.deepEqual(lodash.remove(), []);
-    });
-
-    QUnit.test('should work when given an object and `options`', function(assert) {
-      assert.expect(3);
+    QUnit.test('should only add a `placeholder` property if needed', function(assert) {
+      assert.expect(2);
 
       if (!document) {
-        var array = [1, 2, 3, 4],
-            lodash = convert({ 'remove': _.remove }, allFalseOptions);
+        var methodNames = _.keys(mapping.placeholder),
+            expected = _.map(methodNames, _.constant(true));
 
-        var actual = lodash.remove(array, function(n, index) {
-          return index % 2 == 0;
+        var actual = _.map(methodNames, function(methodName) {
+          var object = {};
+          object[methodName] = _[methodName];
+
+          var lodash = convert(object);
+          return methodName in lodash;
         });
 
-        assert.deepEqual(array, [2, 4]);
-        assert.deepEqual(actual, [1, 3]);
-        assert.deepEqual(lodash.remove(), []);
+        assert.deepEqual(actual, expected);
+
+        var lodash = convert({ 'add': _.add });
+        assert.notOk('placeholder' in lodash);
       }
       else {
-        skipAssert(assert, 3);
+        skipAssert(assert, 2);
       }
     });
   }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('method.convert');
+
+  (function() {
+    QUnit.test('should exist on unconverted methods', function(assert) {
+      assert.expect(2);
+
+      var array = [],
+          isArray = fp.isArray.convert({ 'curry': true });
+
+      assert.strictEqual(fp.isArray(array), true);
+      assert.strictEqual(isArray()(array), true);
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('convert methods');
+
+  _.each(['fp.convert', 'method.convert'], function(methodName) {
+    var isFp = methodName == 'fp.convert',
+        func = isFp ? fp.convert : fp.remove.convert;
+
+    QUnit.test('`' + methodName + '` should work with an object', function(assert) {
+      assert.expect(3);
+
+      var array = [1, 2, 3, 4],
+          lodash = func(allFalseOptions),
+          remove = isFp ? lodash.remove : lodash;
+
+      var actual = remove(array, function(n, index) {
+        return index % 2 == 0;
+      });
+
+      assert.deepEqual(array, [2, 4]);
+      assert.deepEqual(actual, [1, 3]);
+      assert.deepEqual(remove(), []);
+    });
+
+    QUnit.test('`' + methodName + '` should extend existing configs', function(assert) {
+      assert.expect(2);
+
+      var array = [1, 2, 3, 4],
+          lodash = func({ 'cap': false }),
+          remove = (isFp ? lodash.remove : lodash).convert({ 'rearg': false });
+
+      var actual = remove(array)(function(n, index) {
+        return index % 2 == 0;
+      });
+
+      assert.deepEqual(array, [1, 2, 3, 4]);
+      assert.deepEqual(actual, [2, 4]);
+    });
+  });
 
   /*--------------------------------------------------------------------------*/
 
@@ -358,8 +428,9 @@
       assert.expect(1);
 
       var funcMethods = [
-        'after', 'ary', 'before', 'bind', 'bindKey', 'curryN', 'debounce', 'delay',
-        'overArgs', 'partial', 'partialRight', 'rearg', 'throttle', 'wrap'
+        'after', 'ary', 'before', 'bind', 'bindKey', 'curryN', 'debounce',
+        'delay', 'overArgs', 'partial', 'partialRight', 'rearg', 'throttle',
+        'wrap'
       ];
 
       var exceptions = _.difference(funcMethods.concat('matchesProperty'), ['cloneDeepWith', 'cloneWith', 'delay']),
@@ -416,7 +487,7 @@
       assert.expect(10);
 
       var array = ['a', 'b', 'c'],
-          other = ['b', 'b', 'd'],
+          other = ['b', 'd', 'b'],
           object = { 'a': 1, 'b': 2, 'c': 2 },
           actual = fp.difference(array)(other);
 
@@ -440,7 +511,7 @@
       actual = fp.uniqBy(_.identity, other);
       assert.deepEqual(actual, ['b', 'd'], 'fp.uniqBy');
 
-      actual = fp.without('b')(array);
+      actual = fp.without(array)(other);
       assert.deepEqual(actual, ['a', 'c'], 'fp.without');
 
       actual = fp.xor(other)(array);
@@ -813,7 +884,7 @@
         object = { 'a': 1 };
 
     QUnit.test('should provide the correct `customizer` arguments', function(assert) {
-      assert.expect(5);
+      assert.expect(7);
 
       var args,
           value = _.clone(object);
@@ -833,11 +904,36 @@
 
       assert.deepEqual(args, [undefined, 2, 'b', { 'a': 1 }, { 'b': 2 }], 'fp.extendWith');
 
-      var stack = { '__data__': { 'array': [], 'map': null } },
-          expected = [[1], [2, 3], 'a', { 'a': [1] }, { 'a': [2, 3] }, stack];
+      var iteration = 0,
+          objects = [{ 'a': 1 }, { 'a': 2 }],
+          stack = { '__data__': { 'array': [[objects[0], objects[1]]], 'map': null } },
+          expected = [1, 2, 'a', objects[0], objects[1], stack];
+
+      args = undefined;
+
+      fp.isEqualWith(function() {
+        if (++iteration == 2) {
+          args = _.map(arguments, _.cloneDeep);
+        }
+      })(objects[0])(objects[1]);
+
+      args[5] = _.omitBy(args[5], _.isFunction);
+      assert.deepEqual(args, expected, 'fp.isEqualWith');
+
+      args = undefined;
+      stack = { '__data__': { 'array': [], 'map': null } };
+      expected = [2, 1, 'a', objects[1], objects[0], stack];
+
+      fp.isMatchWith(function() {
+        args || (args = _.map(arguments, _.cloneDeep));
+      })(objects[0])(objects[1]);
+
+      args[5] = _.omitBy(args[5], _.isFunction);
+      assert.deepEqual(args, expected, 'fp.isMatchWith');
 
       args = undefined;
       value = { 'a': [1] };
+      expected = [[1], [2, 3], 'a', { 'a': [1] }, { 'a': [2, 3] }, stack];
 
       fp.mergeWith(function() {
         args || (args = _.map(arguments, _.cloneDeep));
@@ -874,7 +970,7 @@
     var func = fp[methodName],
         isAdd = methodName == 'add';
 
-    QUnit.test('`fp.' + methodName + '` should have `rearg` applied', function(assert) {
+    QUnit.test('`fp.' + methodName + '` should not have `rearg` applied', function(assert) {
       assert.expect(1);
 
       assert.strictEqual(func('1')('2'), isAdd ? '12' : -1);
@@ -966,6 +1062,21 @@
 
   /*--------------------------------------------------------------------------*/
 
+  QUnit.module('fp.divide and fp.multiply');
+
+  _.each(['divide', 'multiply'], function(methodName) {
+    var func = fp[methodName],
+        isDivide = methodName == 'divide';
+
+    QUnit.test('`fp.' + methodName + '` should not have `rearg` applied', function(assert) {
+      assert.expect(1);
+
+      assert.strictEqual(func('2')('4'), isDivide ? 0.5 : 8);
+    });
+  });
+
+  /*--------------------------------------------------------------------------*/
+
   QUnit.module('fp.extend');
 
   (function() {
@@ -995,6 +1106,27 @@
 
       var array = [1, 2, 3];
       assert.deepEqual(fp.fill(1)(2)('*')(array), [1, '*', 3]);
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('fp.flatMapDepth');
+
+  (function() {
+    QUnit.test('should have an argument order of `iteratee`, `depth`, then `collection`', function(assert) {
+      assert.expect(2);
+
+      function duplicate(n) {
+        return [[[n, n]]];
+      }
+
+      var array = [1, 2],
+          object = { 'a': 1, 'b': 2 },
+          expected = [[1, 1], [2, 2]];
+
+      assert.deepEqual(fp.flatMapDepth(duplicate)(2)(array), expected);
+      assert.deepEqual(fp.flatMapDepth(duplicate)(2)(object), expected);
     });
   }());
 
@@ -1049,12 +1181,14 @@
 
   QUnit.module('fp.getOr');
 
-  QUnit.test('should accept a `defaultValue` param', function(assert) {
-    assert.expect(1);
+  (function() {
+    QUnit.test('should accept a `defaultValue` param', function(assert) {
+      assert.expect(1);
 
-    var actual = fp.getOr('default')('path')({});
-    assert.strictEqual(actual, 'default');
-  });
+      var actual = fp.getOr('default')('path')({});
+      assert.strictEqual(actual, 'default');
+    });
+  }());
 
   /*--------------------------------------------------------------------------*/
 
@@ -1080,6 +1214,58 @@
 
       assert.strictEqual(fp.inRange(2)(4)(3), true);
       assert.strictEqual(fp.inRange(-2)(-6)(-3), true);
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('fp.invoke');
+
+  (function() {
+    QUnit.test('should not accept an `args` param', function(assert) {
+      assert.expect(1);
+
+      var actual = fp.invoke('toUpperCase')('a');
+      assert.strictEqual(actual, 'A');
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('fp.invokeMap');
+
+  (function() {
+    QUnit.test('should not accept an `args` param', function(assert) {
+      assert.expect(1);
+
+      var actual = fp.invokeMap('toUpperCase')(['a', 'b']);
+      assert.deepEqual(actual, ['A', 'B']);
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('fp.invokeArgs');
+
+  (function() {
+    QUnit.test('should accept an `args` param', function(assert) {
+      assert.expect(1);
+
+      var actual = fp.invokeArgs('concat')(['b', 'c'])('a');
+      assert.strictEqual(actual, 'abc');
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('fp.invokeArgsMap');
+
+  (function() {
+    QUnit.test('should accept an `args` param', function(assert) {
+      assert.expect(1);
+
+      var actual = fp.invokeArgsMap('concat')(['b', 'c'])(['a', 'A']);
+      assert.deepEqual(actual, ['abc', 'Abc']);
     });
   }());
 
@@ -1257,6 +1443,21 @@
 
   /*--------------------------------------------------------------------------*/
 
+  QUnit.module('fp.over');
+
+  (function() {
+    QUnit.test('should not cap iteratee args', function(assert) {
+      assert.expect(2);
+
+      _.each([fp.over, convert('over', _.over)], function(func) {
+        var over = func([Math.max, Math.min]);
+        assert.deepEqual(over(1, 2, 3, 4), [4, 1]);
+      });
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
   QUnit.module('fp.omitBy and fp.pickBy');
 
   _.each(['omitBy', 'pickBy'], function(methodName) {
@@ -1273,6 +1474,26 @@
       })(object);
 
       assert.deepEqual(args, [1, 'a']);
+    });
+  });
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('padChars methods');
+
+  _.each(['padChars', 'padCharsStart', 'padCharsEnd'], function(methodName) {
+    var func = fp[methodName],
+        isPad = methodName == 'padChars',
+        isStart = methodName == 'padCharsStart';
+
+    QUnit.test('`_.' + methodName + '` should truncate pad characters to fit the pad length', function(assert) {
+      assert.expect(1);
+
+      if (isPad) {
+        assert.strictEqual(func('_-')(8)('abc'), '_-abc_-_');
+      } else {
+        assert.strictEqual(func('_-')(6)('abc'), isStart ? '_-_abc' : 'abc_-_');
+      }
     });
   });
 
@@ -1391,6 +1612,22 @@
 
   /*--------------------------------------------------------------------------*/
 
+  QUnit.module('fp.restFrom');
+
+  (function() {
+    QUnit.test('should accept a `start` param', function(assert) {
+      assert.expect(1);
+
+      var actual = fp.restFrom(2)(function() {
+        return slice.call(arguments);
+      })('a', 'b', 'c', 'd');
+
+      assert.deepEqual(actual, ['a', 'b', ['c', 'd']]);
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
   QUnit.module('fp.runInContext');
 
   (function() {
@@ -1410,7 +1647,23 @@
 
   /*--------------------------------------------------------------------------*/
 
-  QUnit.module('fp.trimChars');
+  QUnit.module('fp.spreadFrom');
+
+  (function() {
+    QUnit.test('should accept a `start` param', function(assert) {
+      assert.expect(1);
+
+      var actual = fp.spreadFrom(2)(function() {
+        return slice.call(arguments);
+      })('a', 'b', ['c', 'd']);
+
+      assert.deepEqual(actual, ['a', 'b', 'c', 'd']);
+    });
+  }());
+
+  /*--------------------------------------------------------------------------*/
+
+  QUnit.module('trimChars methods');
 
   _.each(['trimChars', 'trimCharsStart', 'trimCharsEnd'], function(methodName, index) {
     var func = fp[methodName],

@@ -63,18 +63,18 @@ function main($window: ng.IWindowService,
    * Internal
    */
 
-  /**
-   * Initializes the root controller.
-   */
-  function init() {
-    // Enable debug mode for translations
-    gettextCatalog.debug = config.debug;
+    /**
+     * Initializes the root controller.
+     */
+    function init() {
+      // Enable debug mode for translations
+      gettextCatalog.debug = config.environment.debug;
 
     vm.setLanguage();
 
-    // Set REST server configuration
-    restService.setServer(config.server);
-  }
+      // Set REST server configuration
+      restService.setServer(config.environment.server);
+    }
 
   /**
    * Updates the page title.
