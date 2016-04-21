@@ -18,7 +18,7 @@ function listFiles() {
 }
 
 var preprocessors = {};
-preprocessors[path.join(conf.paths.tmp, '**/*.js')] = [/*'coverage',*/ 'sourcemap'];
+preprocessors[path.join(conf.paths.tmp, '**/*.js')] = ['coverage', 'sourcemap'];
 
 module.exports = function(config) {
 
@@ -65,9 +65,17 @@ module.exports = function(config) {
     preprocessors: preprocessors,
 
     // List of reporters
-    reporters: [/*'coverage', 'karma-remap-istanbul',*/ 'junit', 'progress'],
+    reporters: ['coverage', /*'karma-remap-istanbul',*/ 'junit', 'progress'],
+
 
     // Coverage configuration
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'reports/',
+      subdir: 'coverage'
+    },
+
+    /*// Coverage configuration
     coverageReporter: {
       type: 'json',
       dir: 'reports/',
@@ -82,7 +90,7 @@ module.exports = function(config) {
         lcovonly: 'reports/coverage/lcov.info',
         html: 'reports/coverage/html'
       }
-    },
+    },*/
 
     junitReporter: {
       outputDir: 'reports/junit/',
