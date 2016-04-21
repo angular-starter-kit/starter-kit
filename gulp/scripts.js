@@ -31,7 +31,7 @@ function buildScripts(watch, test, done) {
         {
           test: /\.ts$/,
           exclude: /node_modules/,
-          loaders: ['ng-annotate', 'awesome-typescript']
+          loaders: ['ng-annotate', 'ts']
         },
         {
           test: /\.html$/,
