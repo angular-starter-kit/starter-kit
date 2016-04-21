@@ -2,6 +2,17 @@ module app {
 
   'use strict';
 
+  export interface IApplicationConfig {
+    version: string;
+    environment: IApplicationEnvironment;
+    supportedLanguages: Array<string>;
+  }
+
+  export interface IApplicationEnvironment {
+    debug: boolean;
+    server: IServerConfig;
+  }
+
   // Do not remove the comments below, or change the values. It's the markers used by gulp build task to change the
   // value of the config constant when building the application, while removing the code below for all environments.
   // replace:environment
@@ -25,12 +36,7 @@ module app {
   };
   // endreplace
 
-  /**
-   * Defines app-level configuration.
-   */
-  angular
-    .module('app')
-    .constant('config', {
+  let config : IApplicationConfig = {
 
       // Do not remove the comments below, or change the values. It's the markers used by gulp build task to inject app
       // version from package.json and environment values.
@@ -45,6 +51,13 @@ module app {
         'fr-FR'
       ]
 
-    });
+    };
+
+  /**
+   * Defines app-level configuration.
+   */
+  angular
+    .module('app')
+    .constant('config', config);
 
 }
