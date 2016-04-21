@@ -21,6 +21,6 @@
     "commit": "fdd234f58d4997ec13400ba4f070e8a803f6ecbe"
   },
   "_source": "https://github.com/velesin/jasmine-jquery.git",
-  "_target": "~2.1.0",
+  "_target": "~2.1.1",
   "_originalSource": "jasmine-jquery"
 }

@@ -204,7 +204,7 @@ declare namespace angular {
          * @param name The name of the constant.
          * @param value The constant value.
          */
-        constant(name: string, value: any): IModule;
+        constant<T>(name: string, value: T): IModule;
         constant(object: Object): IModule;
         /**
          * The $controller service is used by Angular to create new controllers.
@@ -294,7 +294,7 @@ declare namespace angular {
          * @param name The name of the instance.
          * @param value The value.
          */
-        value(name: string, value: any): IModule;
+        value<T>(name: string, value: T): IModule;
         value(object: Object): IModule;
 
         /**
@@ -1707,8 +1707,9 @@ declare namespace angular {
         /**
          * Controller constructor function that should be associated with newly created scope or the name of a registered
          * controller if passed as a string. Empty function by default.
+         * Use the array form to define dependencies (necessary if strictDi is enabled and you require dependency injection)
          */
-        controller?: string | Function;
+        controller?: string | Function | (string | Function)[];
         /**
          * An identifier name for a reference to the controller. If present, the controller will be published to scope under
          * the controllerAs name. If not present, this will default to be the same as the component name.
@@ -1721,15 +1722,17 @@ declare namespace angular {
          * If template is a function, then it is injected with the following locals:
          * $element - Current element
          * $attrs - Current attributes object for the element
+         * Use the array form to define dependencies (necessary if strictDi is enabled and you require dependency injection)
          */
-        template?: string | Function;
+        template?: string | Function | (string | Function)[];
         /**
          * path or function that returns a path to an html template that should be used as the contents of this component.
          * If templateUrl is a function, then it is injected with the following locals:
          * $element - Current element
          * $attrs - Current attributes object for the element
+         * Use the array form to define dependencies (necessary if strictDi is enabled and you require dependency injection)
          */
-        templateUrl?: string | Function;
+        templateUrl?: string | Function | (string | Function)[];
         /**
          * Define DOM attribute binding to component properties. Component properties are always bound to the component
          * controller and not to the scope.
@@ -1842,6 +1845,11 @@ declare namespace angular {
         controller(name: string): any;
         injector(): any;
         scope(): IScope;
+        
+        /**
+        *   Overload for custom scope interfaces
+        */
+        scope<T extends IScope>(): T;
         isolateScope(): IScope;
 
         inheritedData(key: string, value: any): JQuery;
@@ -1912,5 +1920,13 @@ declare namespace angular {
             value(name: string, value: any): IServiceProvider;
         }
 
+    }
+
+    /**
+     * $http params serializer that converts objects to strings
+     * see https://docs.angularjs.org/api/ng/service/$httpParamSerializer
+     */
+    interface IHttpParamSerializer {
+        (obj: Object): string;
     }
 }
