@@ -12,7 +12,7 @@ module app {
                 $state: angular.ui.IStateService,
                 gettextCatalog: angular.gettext.gettextCatalog,
                 _: _.LoDashStatic,
-                config: any,
+                config: IApplicationConfig,
                 restService: RestService) {
 
     /*
