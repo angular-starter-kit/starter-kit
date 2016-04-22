@@ -15,7 +15,7 @@ module app {
                 $cordovaKeyboard: any,
                 gettextCatalog: angular.gettext.gettextCatalog,
                 _: _.LoDashStatic,
-                config: any,
+                config: IApplicationConfig,
                 logger: LoggerService,
                 restService: RestService) {
 
