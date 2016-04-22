@@ -15,7 +15,7 @@
  *
  * @usage
  * ```html
- * <ion-slides on-slide-changed="slideHasChanged($index)">
+ * <ion-slides  options="options" slider="data.slider">
  *   <ion-slide-page>
  *     <div class="box blue"><h1>BLUE</h1></div>
  *   </ion-slide-page>
@@ -28,9 +28,18 @@
  * </ion-slides>
  * ```
  *
- * @param {string=} delegate-handle The handle used to identify this slideBox
- * with {@link ionic.service:$ionicSlideBoxDelegate}.
- * @param {object=} options to pass to the widget. See the full ist here: [http://www.idangero.us/swiper/api/](http://www.idangero.us/swiper/api/)
+ * ```js
+ * $scope.options = {
+ *   loop: false,
+ *   effect: fade,
+ *   speed: 500,
+ * }
+ * $scope.data = {};
+ * $scope.$watch('data.slider', function(nv, ov) {
+ *   $scope.slider = $scope.data.slider;
+ * })
+ * ```
+ *
  */
 IonicModule
 .directive('ionSlides', [
@@ -52,6 +61,11 @@ function($animate, $timeout, $compile) {
       '</div>',
     controller: ['$scope', '$element', function($scope, $element) {
       var _this = this;
+      var _watchHandler = null;
+      var _enterHandler = null;
+      var _afterLeaveHandler = null;
+      var _modalRemovedHandler = null;
+      var _modalPresentedHandler = null;
 
       this.update = function() {
         $timeout(function() {
@@ -64,9 +78,16 @@ function($animate, $timeout, $compile) {
             _this.__slider.createLoop();
           }
 
+          var slidesLength = _this.__slider.slides.length;
+
           // Don't allow pager to show with > 10 slides
-          if (_this.__slider.slides.length > 10) {
+          if (slidesLength > 10) {
             $scope.showPager = false;
+          }
+
+          // When slide index is greater than total then slide to last index
+          if (_this.__slider.activeIndex > slidesLength - 1) {
+            _this.__slider.slideTo(slidesLength - 1);
           }
         });
       };
@@ -75,6 +96,52 @@ function($animate, $timeout, $compile) {
         _this.update();
       }, 50);
 
+      this.updateLoop = ionic.debounce(function() {
+        if ( _this._options.loop ) {
+          _this.__slider.updateLoop();
+        }
+      }, 50);
+
+      this.watchForChanges = function() {
+        if ( !_watchHandler ) {
+          // if we're not already watching, start watching
+          _watchHandler = $scope.$watch(function() {
+            console.log("Watch triggered");
+            _this.updateLoop();
+          });
+        }
+      };
+
+      this.stopWatching = function() {
+        if ( _watchHandler ) {
+          console.log("Stopping watching...");
+          _watchHandler();
+          _watchHandler = null;
+        }
+      };
+
+      this.cleanUpEventHandlers = function() {
+        if ( _enterHandler ) {
+          _enterHandler();
+          _enterHandler = null;
+        }
+
+        if ( _afterLeaveHandler ) {
+          _afterLeaveHandler();
+          _afterLeaveHandler = null;
+        }
+
+        if ( _modalRemovedHandler ) {
+          _modalRemovedHandler();
+          _modalRemovedHandler = null;
+        }
+
+        if ( _modalPresentedHandler ) {
+          _modalPresentedHandler();
+          _modalPresentedHandler = null;
+        }
+      };
+
       this.getSlider = function() {
         return _this.__slider;
       };
@@ -82,7 +149,7 @@ function($animate, $timeout, $compile) {
       var options = $scope.options || {};
 
       var newOptions = angular.extend({
-        pagination: '.swiper-pagination',
+        pagination: $element.children().children()[1],
         paginationClickable: true,
         lazyLoading: true,
         preloadImages: false
@@ -98,11 +165,33 @@ function($animate, $timeout, $compile) {
 
         $scope.$on('$destroy', function() {
           slider.destroy();
+          _this.__slider = null;
+          _this.stopWatching();
+          _this.cleanUpEventHandlers();
+
         });
+
+        _this.watchForChanges();
+
+        _enterHandler = $scope.$on("$ionicView.enter", function() {
+          _this.watchForChanges();
+        });
+
+        _afterLeaveHandler = $scope.$on("$ionicView.afterLeave", function() {
+          _this.stopWatching();
+        });
+
+        _modalRemovedHandler = $scope.$on("$ionic.modalRemoved", function() {
+          _this.stopWatching();
+        });
+
+        _modalPresentedHandler = $scope.$on("$ionic.modalPresented", function() {
+          _this.watchForChanges();
+        });
+
       });
 
     }],
-
 
     link: function($scope) {
       $scope.showPager = true;
@@ -120,6 +209,10 @@ function($animate, $timeout, $compile) {
     template: '<div class="swiper-slide" ng-transclude></div>',
     link: function($scope, $element, $attr, ionSlidesCtrl) {
       ionSlidesCtrl.rapidUpdate();
+
+      $scope.$on('$destroy', function() {
+        ionSlidesCtrl.rapidUpdate();
+      });
     }
   };
 }]);

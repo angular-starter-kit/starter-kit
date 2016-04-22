@@ -11,7 +11,8 @@ IonicModule
   '$ionicViewSwitcher',
   '$ionicConfig',
   '$ionicScrollDelegate',
-function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, $ionicNavViewDelegate, $ionicHistory, $ionicViewSwitcher, $ionicConfig, $ionicScrollDelegate) {
+  '$ionicSideMenuDelegate',
+function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, $ionicNavViewDelegate, $ionicHistory, $ionicViewSwitcher, $ionicConfig, $ionicScrollDelegate, $ionicSideMenuDelegate) {
 
   var DATA_ELE_IDENTIFIER = '$eleId';
   var DATA_DESTROY_ELE = '$destroyEle';
@@ -62,8 +63,8 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
     $scope.$on('$ionicTabs.leave', onTabsLeave);
 
     ionic.Platform.ready(function() {
-      if (ionic.Platform.isWebView() && $ionicConfig.views.swipeBackEnabled()) {
-        self.initSwipeBack();
+      if ( ionic.Platform.isWebView() && ionic.Platform.isIOS() ) {
+          self.initSwipeBack();
       }
     });
 
@@ -353,7 +354,8 @@ function($scope, $element, $attrs, $compile, $controller, $ionicNavBarDelegate, 
     var cancelData = {};
 
     function onDragStart(ev) {
-      if (!isPrimary) return;
+      if (!isPrimary || !$ionicConfig.views.swipeBackEnabled() || $ionicSideMenuDelegate.isOpenRight() ) return;
+
 
       startDragX = getDragX(ev);
       if (startDragX > swipeBackHitWidth) return;

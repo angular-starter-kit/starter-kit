@@ -325,6 +325,7 @@ function($rootScope, $state, $location, $window, $timeout, $ionicViewSwitcher, $
             direction = DIRECTION_FORWARD;
 
           } else if (currentView.historyId !== hist.historyId) {
+            // DB: this is a new view in a different tab
             direction = DIRECTION_ENTER;
 
             tmp = getHistoryById(currentView.historyId);
@@ -354,7 +355,7 @@ function($rootScope, $state, $location, $window, $timeout, $ionicViewSwitcher, $
           viewId: viewId,
           index: hist.stack.length,
           historyId: hist.historyId,
-          backViewId: (currentView && currentView.viewId ? currentView.viewId : null),
+          backViewId: (currentView && currentView.viewId && (currentView.historyId === hist.historyId || currentView.historyId === hist.parentHistoryId) ? currentView.viewId : null),
           forwardViewId: null,
           stateId: currentStateId,
           stateName: this.currentStateName(),
@@ -593,13 +594,44 @@ function($rootScope, $state, $location, $window, $timeout, $ionicViewSwitcher, $
         if (clearStateIds.length) {
           $timeout(function() {
             self.clearCache(clearStateIds);
-          }, 600);
+          }, 300);
         }
       }
 
       viewHistory.backView && viewHistory.backView.go();
     },
 
+    /**
+     * @ngdoc method
+     * @name $ionicHistory#removeBackView
+     * @description Remove the previous view from the history completely, including the
+     * cached element and scope (if they exist).
+     */
+    removeBackView: function() {
+      var self = this;
+      var currentHistory = viewHistory.histories[this.currentHistoryId()];
+      var currentCursor = currentHistory.cursor;
+
+      var currentView = currentHistory.stack[currentCursor];
+      var backView = currentHistory.stack[currentCursor - 1];
+      var replacementView = currentHistory.stack[currentCursor - 2];
+
+      // fail if we dont have enough views in the history
+      if (!backView || !replacementView) {
+        return;
+      }
+
+      // remove the old backView and the cached element/scope
+      currentHistory.stack.splice(currentCursor - 1, 1);
+      self.clearCache([backView.viewId]);
+      // make the replacementView and currentView point to each other (bypass the old backView)
+      currentView.backViewId = replacementView.viewId;
+      currentView.index = currentView.index - 1;
+      replacementView.forwardViewId = currentView.viewId;
+      // update the cursor and set new backView
+      viewHistory.backView = replacementView;
+      currentHistory.currentCursor += -1;
+    },
 
     enabledBack: function(view) {
       var backView = getBackView(view);
@@ -764,6 +796,10 @@ function($rootScope, $state, $location, $window, $timeout, $ionicViewSwitcher, $
       return false;
     }
     if (ele && ele.attr('can-swipe-back') === 'false') {
+      return false;
+    }
+    var eleChild = ele.find('ion-view');
+    if (eleChild && eleChild.attr('can-swipe-back') === 'false') {
       return false;
     }
     return true;

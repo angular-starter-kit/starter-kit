@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/ionic.png?stars&downloads)](https://nodei.co/npm/ionic/)
 
-Looking for our [documentation?](http://ionicframework.com/docs/).
+Looking for our [documentation](http://ionicframework.com/docs/)?
 
 # What is Ionic?
 
@@ -10,7 +10,7 @@ Looking for our [documentation?](http://ionicframework.com/docs/).
 
 We built Ionic because we wanted a framework that focused on building high quality hybrid native apps and mobile web apps using open web technologies we loved. The same technology the world has been using for decades to build websites, desktop applications, and now mobile and tablet apps. We wanted this framework to be obsessive about great design and performance, and work on multiple platforms without changing a thing.
 
-We rejected the idea that web mobile apps had to be clunky, slow, and non-native. We believed that we could bring the best of the web together with the best of the native platforms without sacricificing the power, accessibility, and portability of the open web.
+We rejected the idea that web mobile apps had to be clunky, slow, and non-native. We believed that we could bring the best of the web together with the best of the native platforms without sacrificing the power, accessibility, and portability of the open web.
 
 Above all, we built Ionic to be the easiest way for the next generation of developers to get into mobile and start building apps that compete with the best on the app store, and do it affordably. 
 
@@ -50,8 +50,11 @@ If you'd rather do everything by hand, you can grab all the files for Ionic belo
 
 Once you have a release, use `js/ionic.js`, `js/ionic-angular.js`, and `css/ionic.css`.
 
-For most cases, you'll need AngularJS as well.  This is bundled in `js/angular/` and `js/angular-ui-router/`.
+For most cases, you'll need AngularJS as well.  This is bundled in `js/angular/` and `js/angular-ui/`.
 
+## Platform Support
+
+Ionic currently supports Android 4.1 and above, iOS 8 and above, and Windows 10. We continue to monitor market share and adjust our support based on worldwide usage.
 
 ## Demos
 
