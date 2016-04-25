@@ -49,7 +49,7 @@ Add this line to the `.bowerrc` file:
 "strict-ssl": false
 ```
 
-## Npm
+### Npm
 
 Run this command in your project directory:
 ```sh

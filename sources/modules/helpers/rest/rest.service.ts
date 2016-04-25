@@ -288,4 +288,3 @@ module app {
     .service('restService', RestService);
 
 }
-

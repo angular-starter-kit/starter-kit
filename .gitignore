@@ -20,7 +20,7 @@ npm-debug.log
 ## Mac
 .DS_Store
 
-## IntelliJ / Webstorm
+## IntelliJ / WebStorm
 *.iml
 *.iws
 .idea/*

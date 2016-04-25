@@ -45,17 +45,17 @@ module app {
     };
 
     /**
-     * Updates page title on view change.
+     * Updates title on view change.
      */
     vm.$on('$stateChangeSuccess', (event: any, toState: angular.ui.IState) => {
-      updatePageTitle(toState.data ? toState.data.title : null);
+      updateTitle(toState.data ? toState.data.title : null);
     });
 
     /**
-     * Updates page title on language change.
+     * Updates title on language change.
      */
     vm.$on('gettextLanguageChanged', () => {
-      updatePageTitle($state.current.data ? $state.current.data.title : null);
+      updateTitle($state.current.data ? $state.current.data.title : null);
     });
 
     init();
@@ -78,10 +78,10 @@ module app {
     }
 
     /**
-     * Updates the page title.
+     * Updates the title.
      * @param {?string=} stateTitle Title of current state, to be translated.
      */
-    function updatePageTitle(stateTitle?: string) {
+    function updateTitle(stateTitle?: string) {
       vm.pageTitle = gettextCatalog.getString('APP_NAME');
 
       if (stateTitle) {

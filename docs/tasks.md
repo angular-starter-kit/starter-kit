@@ -6,8 +6,7 @@ The various tasks described here are defined in modules located in the `gulp/` f
 customize them and define your own tasks in the
 [Gulp documentation](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md).
 
-## Default command
-
+## Default task
 ```
 gulp
 ```
@@ -15,7 +14,7 @@ gulp
 Build and optimize the current project, ready for deployment.
 This includes linting as well as image, script, stylesheet and HTML optimization and minification.
 
-## Main commands
+## Main tasks
 
 Task       | Description
 -----------|----------------------------------------------------------------------------------------------------------

@@ -15,9 +15,10 @@ exports.config = {
     'browserName': 'chrome'
   },
 
-  directConnect: true,
-
   framework: 'jasmine2',
+
+  // Only works with Chrome and Firefox
+  directConnect: true,
 
   baseUrl: 'http://localhost:3000',
 
