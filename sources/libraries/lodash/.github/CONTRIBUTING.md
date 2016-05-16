@@ -1,8 +1,8 @@
 # Contributing to Lodash
 
 Contributions are always welcome. Before contributing please read the
-[code of conduct](https://github.com/lodash/lodash/blob/master/CODE_OF_CONDUCT.md)
-& [search the issue tracker](https://github.com/lodash/lodash/issues); your issue
+[code of conduct](https://jquery.org/conduct/) &
+[search the issue tracker](https://github.com/lodash/lodash/issues); your issue
 may have already been discussed or fixed in `master`. To contribute,
 [fork](https://help.github.com/articles/fork-a-repo/) Lodash, commit your changes,
 & [send a pull request](https://help.github.com/articles/using-pull-requests/).
@@ -36,7 +36,7 @@ As such, we request that all contributors sign the jQuery Foundation
 [contributor license agreement (CLA)](https://contribute.jquery.org/CLA/).
 
 For more information about CLAs, please check out Alex Russell’s excellent post,
-[“Why Do I Need to Sign This?”](http://infrequently.org/2008/06/why-do-i-need-to-sign-this/).
+[“Why Do I Need to Sign This?”](https://infrequently.org/2008/06/why-do-i-need-to-sign-this/).
 
 ## Coding Guidelines
 
@@ -48,7 +48,7 @@ established in the code.
 
 - **Naming**:<br>
   Keep variable & method names concise & descriptive.<br>
-  Variable names `index`, `collection`, & `callback` are preferable to
+  Variable names `index`, `array`, & `iteratee` are preferable to
   `i`, `arr`, & `fn`.
 
 - **Quotes**:<br>

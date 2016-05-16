@@ -8,8 +8,8 @@ module app {
    */
   export class ShellController {
 
-    languages: any;
     currentLocale: ng.ILocaleService;
+    languages: string[];
     menuHidden: boolean;
 
     private logger: ILogger;
@@ -17,8 +17,8 @@ module app {
     constructor(private $state: ng.ui.IStateService,
                 $locale: ng.ILocaleService,
                 private _: _.LoDashStatic,
-                logger: LoggerService,
-                config: IApplicationConfig) {
+                config: IApplicationConfig,
+                logger: LoggerService) {
 
       this.currentLocale = $locale;
       this.logger = logger.getLogger('shell');

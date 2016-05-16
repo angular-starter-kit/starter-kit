@@ -1,11 +1,12 @@
-# Starter kit
+# Starter Kit
 
-[![Join the chat at https://gitter.im/thales-poles-ra/starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/thales-poles-ra/starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Web project starter kit including modern (and stable) tools and workflow, best practices, base template and an
+exhaustive documentation.
 
-Web project starter kit including tooling, best practices and project seed.
+Built on experience with large web projects, with architecture choices aiming for a clean, no-brainer development
+experience.
 
-It is based on experience in large web projects, with architecture choices aiming for a clean, no-brainer development
-experience even for beginner teams.
+Generated using the [angular-pro](https://github.com/angular-starter-kit/generator-angular-pro) Yeoman generator.
 
 # Getting started
 
@@ -18,7 +19,7 @@ experience even for beginner teams.
  ```
  npm install
  ```
-  
+
 3. Launch development server:
  ```
  gulp serve
@@ -75,6 +76,9 @@ When building the application, you can specify the target environment using the 
 The default build environment is `production`. See [this documentation](docs/build-environments.md) for more details
 about multiple build environments management.
 
+You can disable opening automatically your default browser when using the `serve` commands by using the flag
+`--skip-open`.
+
 # Coding guides
 
 - [JavaScript](docs/coding-guides/javascript.md)
@@ -112,8 +116,9 @@ about multiple build environments management.
 
 #### Build
 - JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
-  [uglify](https://github.com/terinjokes/gulp-uglify), [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
-  [clean-css](https://www.npmjs.com/package/gulp-clean-css))
+  [uglify](https://github.com/terinjokes/gulp-uglify), 
+  [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
+  [clean-css](https://www.npmjs.com/package/gulp-clean-css) 
 - CSS browser support ([autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - Images optimization ([imagemin](https://github.com/sindresorhus/gulp-imagemin))
 - Automatic angular module annotation ([ngAnnotate](https://github.com/Kagami/gulp-ng-annotate))
@@ -127,10 +132,6 @@ about multiple build environments management.
 - [Bootstrap](http://getbootstrap.com)
 - [Font Awesome](http://fortawesome.github.io/Font-Awesome)
 - [Lodash](https://lodash.com)
-
-# Roadmap
-
-See the [wiki](https://github.com/thales-poles-ra/starter-kit/wiki).
 
 # License
 

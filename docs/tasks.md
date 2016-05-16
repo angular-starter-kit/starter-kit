@@ -28,6 +28,9 @@ When building the application, you can specify the target environment using the 
 The default build environment is `production`. See [this documentation](docs/build-environments.md) for more details
 about multiple build environments management.
 
+You can disable opening automatically your default browser when using the `serve` commands by using the flag
+`--skip-open`.
+
 ## Tests
 
 Task                 | Description
@@ -65,3 +68,4 @@ styles       | Generate main CSS file using project main style file.
 fonts        | Copy fonts from bower dependencies in dist folder.
 images       | Compress images (using imagemin) then copy them in dist folder.
 other        | Copy project fonts and other misc files in dist folder.
+
