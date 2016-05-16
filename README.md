@@ -1,11 +1,12 @@
 # Starter kit
 
-[![Join the chat at https://gitter.im/thales-poles-ra/starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/thales-poles-ra/starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Web project starter kit including modern (and stable) tools and workflow, best practices, base template and an
+exhaustive documentation.
 
-Hybrid mobile app starter kit including tooling, best practices and project seed.
+Built on experience with large web projects, with architecture choices aiming for a clean, no-brainer development
+experience.
 
-It is based on experience in large web projects, with architecture choices aiming for a clean, no-brainer development
-experience even for beginner teams.
+Generated using the [angular-pro](https://github.com/angular-starter-kit/generator-angular-pro) Yeoman generator.
 
 # Getting started
 
@@ -155,10 +156,6 @@ about multiple build environments management.
 - [cordova-plugin-whitelist](https://github.com/apache/cordova-plugin-whitelist)
 - [cordova-plugin-crosswalk-webview](https://github.com/crosswalk-project/cordova-plugin-crosswalk-webview)
 - [cordova-plugin-wkwebview-engine](https://github.com/apache/cordova-plugin-wkwebview-engine)
-
-# Roadmap
-
-See the [wiki](https://github.com/thales-poles-ra/starter-kit/wiki).
 
 # License
 
