@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: fr-FR\n"
@@ -28,3 +28,4 @@ msgstr "Accueil"
 #: modules/screens/about/about.html:10
 msgid "Version"
 msgstr "Version"
+

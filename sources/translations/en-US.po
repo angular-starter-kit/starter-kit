@@ -28,3 +28,4 @@ msgstr "Home"
 #: modules/screens/about/about.html:10
 msgid "Version"
 msgstr "Version"
+

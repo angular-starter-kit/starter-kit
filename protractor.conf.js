@@ -12,12 +12,13 @@ exports.config = {
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': process.env.PROTRACTOR_BROWSER || 'chrome'
   },
 
-  directConnect: true,
-
   framework: 'jasmine2',
+
+  // Only works with Chrome and Firefox
+  directConnect: true,
 
   baseUrl: 'http://localhost:3000',
 

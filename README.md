@@ -1,4 +1,4 @@
-# Starter kit
+# Starter Kit
 
 Web project starter kit including modern (and stable) tools and workflow, best practices, base template and an
 exhaustive documentation.
@@ -15,20 +15,20 @@ Generated using the [angular-pro](https://github.com/angular-starter-kit/generat
  npm install -g gulp bower
  ```
 
- - To build the iOS version, you need to install [XCode](https://itunes.apple.com/app/xcode/id497799835)
- - To build the Android version, you need to install the
-   [Android SDK](http://developer.android.com/sdk/installing/index.html)
-
 2. Install project tools, go to project folder:
  ```
  npm install
  ```
-  
+
+ - To build the iOS version, you need to install [XCode](https://itunes.apple.com/app/xcode/id497799835)
+ - To build the Android version, you need to install the
+   [Android SDK](http://developer.android.com/sdk/installing/index.html)
+
 3. Launch development server:
  ```
  gulp serve
  ```
- 
+
 4. Prepare Cordova platforms and plugins
  ```
  gulp cordova:prepare
@@ -94,6 +94,9 @@ When building the application, you can specify the target environment using the 
 The default build environment is `production`. See [this documentation](docs/build-environments.md) for more details
 about multiple build environments management.
 
+You can disable opening automatically your default browser when using the `serve` commands by using the flag
+`--skip-open`.
+
 # Coding guides
 
 - [JavaScript](docs/coding-guides/javascript.md)
@@ -132,20 +135,21 @@ about multiple build environments management.
 
 #### Build
 - JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
-  [uglify](https://github.com/terinjokes/gulp-uglify), [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
-  [clean-css](https://www.npmjs.com/package/gulp-clean-css))
+  [uglify](https://github.com/terinjokes/gulp-uglify), 
+  [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
+  [clean-css](https://www.npmjs.com/package/gulp-clean-css) 
 - CSS browser support ([autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - Images optimization ([imagemin](https://github.com/sindresorhus/gulp-imagemin))
 - Automatic angular module annotation ([ngAnnotate](https://github.com/Kagami/gulp-ng-annotate))
 - Asset revisionning ([rev](https://github.com/sindresorhus/gulp-rev))
 
 #### Libraries
-- [Ionic](http://ionicframework.com/)
 - [AngularJS](https://angularjs.org)
 - [Angular-gettext](https://angular-gettext.rocketeer.be)
 - [AngularUI Router](https://github.com/angular-ui/ui-router)
-- [ngCordova](http://ngcordova.com/)
+- [Ionic](http://ionicframework.com/)
 - [Lodash](https://lodash.com)
+- [ngCordova](http://ngcordova.com/)
 
 #### Cordova plugins
 - [ionic-plugin-keyboard](https://github.com/driftyco/ionic-plugin-keyboard)

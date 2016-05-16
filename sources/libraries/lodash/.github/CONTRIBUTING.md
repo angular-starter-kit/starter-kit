@@ -1,8 +1,8 @@
 # Contributing to Lodash
 
 Contributions are always welcome. Before contributing please read the
-[code of conduct](https://github.com/lodash/lodash/blob/master/CODE_OF_CONDUCT.md)
-& [search the issue tracker](https://github.com/lodash/lodash/issues); your issue
+[code of conduct](https://jquery.org/conduct/) &
+[search the issue tracker](https://github.com/lodash/lodash/issues); your issue
 may have already been discussed or fixed in `master`. To contribute,
 [fork](https://help.github.com/articles/fork-a-repo/) Lodash, commit your changes,
 & [send a pull request](https://help.github.com/articles/using-pull-requests/).
@@ -11,9 +11,10 @@ may have already been discussed or fixed in `master`. To contribute,
 
 Feature requests should be submitted in the
 [issue tracker](https://github.com/lodash/lodash/issues), with a description of
-the expected behavior & use case, where they’ll remain closed until sufficient
-interest, e.g. :+1:’s, has been shown by the community. Before submitting a request,
-please search for similar ones in the
+the expected behavior & use case, where they’ll remain closed until sufficient interest,
+[e.g. :+1: reactions](https://help.github.com/articles/about-discussions-in-issues-and-pull-requests/),
+has been shown by the community. Before submitting a request, please search for
+similar ones in the
 [closed issues](https://github.com/lodash/lodash/issues?q=is%3Aissue+is%3Aclosed+label%3Aenhancement).
 
 ## Pull Requests
@@ -30,12 +31,12 @@ Run unit tests from the command-line via `npm test`, or open `test/index.html` &
 
 ## Contributor License Agreement
 
-Lodash is a member of the [Dojo Foundation](http://dojofoundation.org/).
-As such, we request that all contributors sign the Dojo Foundation
-[contributor license agreement (CLA)](http://dojofoundation.org/about/claForm).
+Lodash is a member of the [jQuery Foundation](https://jquery.org/).
+As such, we request that all contributors sign the jQuery Foundation
+[contributor license agreement (CLA)](https://contribute.jquery.org/CLA/).
 
 For more information about CLAs, please check out Alex Russell’s excellent post,
-[“Why Do I Need to Sign This?”](http://infrequently.org/2008/06/why-do-i-need-to-sign-this/).
+[“Why Do I Need to Sign This?”](https://infrequently.org/2008/06/why-do-i-need-to-sign-this/).
 
 ## Coding Guidelines
 
@@ -47,7 +48,7 @@ established in the code.
 
 - **Naming**:<br>
   Keep variable & method names concise & descriptive.<br>
-  Variable names `index`, `collection`, & `callback` are preferable to
+  Variable names `index`, `array`, & `iteratee` are preferable to
   `i`, `arr`, & `fn`.
 
 - **Quotes**:<br>
@@ -61,7 +62,17 @@ established in the code.
   functions.
 
 Guidelines are enforced using [JSCS](https://www.npmjs.com/package/jscs):
-
 ```bash
 $ npm run style
 ```
+
+## Tips
+
+You can opt-in to a pre-push git hook by adding an `.opt-in` file to the root of
+the project containing:
+```txt
+pre-push
+```
+
+With that, when you `git push`, the pre-push git hook will trigger and execute
+`npm run validate`.

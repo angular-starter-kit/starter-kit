@@ -6,12 +6,12 @@ module app {
 
   angular.module('app', [
     'app.additions',
-    'ionic',
     'gettext',
-    'ngCordova',
     'ngAnimate',
     'ngSanitize',
-    'ui.router'
+    'ngCordova',
+    'ui.router',
+    'ionic'
   ]);
 
 }

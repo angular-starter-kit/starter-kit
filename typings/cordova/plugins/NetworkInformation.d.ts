@@ -45,7 +45,9 @@ interface Connection {
      *     Connection.CELL
      *     Connection.NONE
      */
-    type: string
+    type: string;
+    addEventListener(type: string, listener: EventListenerOrEventListenerObject, useCapture?: boolean): void;
+    removeEventListener(type: string, listener: EventListenerOrEventListenerObject, useCapture?: boolean): void;
 }
 
 declare var Connection: {

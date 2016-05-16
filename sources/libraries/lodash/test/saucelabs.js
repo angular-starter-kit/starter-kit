@@ -104,10 +104,10 @@ var browserNameMap = {
 /** List of platforms to load the runner on. */
 var platforms = [
   ['Linux', 'android', '5.1'],
+  ['Windows 10', 'chrome', '50'],
   ['Windows 10', 'chrome', '49'],
-  ['Windows 10', 'chrome', '48'],
+  ['Windows 10', 'firefox', '46'],
   ['Windows 10', 'firefox', '45'],
-  ['Windows 10', 'firefox', '44'],
   ['Windows 10', 'microsoftedge', '13'],
   ['Windows 10', 'internet explorer', '11'],
   ['Windows 8', 'internet explorer', '10'],
@@ -214,18 +214,7 @@ if (tunneled) {
  * @returns {string} Returns the formal browser name.
  */
 function browserName(identifier) {
-  return browserNameMap[identifier] || capitalizeWords(identifier);
-}
-
-/**
- * Capitalizes the first character of each word in `string`.
- *
- * @private
- * @param {string} string The string to augment.
- * @returns {string} Returns the augmented string.
- */
-function capitalizeWords(string) {
-  return _.map(string.split(' '), _.capitalize).join(' ');
+  return browserNameMap[identifier] || _.startCase(identifier);
 }
 
 /**
@@ -451,7 +440,7 @@ function onJobStatus(error, res, body) {
     this._pollerId = _.delay(_.bind(this.status, this), this.statusInterval * 1000);
     return;
   }
-  var description = browserName(platform[1]) + ' ' + platform[2] + ' on ' + capitalizeWords(platform[0]),
+  var description = browserName(platform[1]) + ' ' + platform[2] + ' on ' + _.startCase(platform[0]),
       errored = !jobResult || !jobResult.passed || reError.test(message) || reError.test(jobStatus),
       failures = _.result(jobResult, 'failed'),
       label = options.name + ':',
@@ -602,7 +591,7 @@ Job.prototype.restart = function(callback) {
 
   var options = this.options,
       platform = options.platforms[0],
-      description = browserName(platform[1]) + ' ' + platform[2] + ' on ' + capitalizeWords(platform[0]),
+      description = browserName(platform[1]) + ' ' + platform[2] + ' on ' + _.startCase(platform[0]),
       label = options.name + ':';
 
   logInline();
@@ -827,13 +816,16 @@ Tunnel.prototype.start = function(callback) {
  * @param {Object} Returns the tunnel instance.
  */
 Tunnel.prototype.dequeue = function() {
-  var jobs = this.jobs,
+  var count = 0,
+      jobs = this.jobs,
       active = jobs.active,
       queue = jobs.queue,
       throttled = this.throttled;
 
   while (queue.length && (active.length < throttled)) {
-    active.push(queue.shift().start());
+    var job = queue.shift();
+    active.push(job);
+    _.delay(_.bind(job.start, job), ++count * 1000);
   }
   return this;
 };

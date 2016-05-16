@@ -7,12 +7,12 @@ module app {
    * Initializes application and root controller.
    */
   function main($window: ng.IWindowService,
-                $timeout: ng.ITimeoutService,
                 $locale: ng.ILocaleService,
-                $state: angular.ui.IStateService,
                 $rootScope: any,
-                $ionicPlatform: ionic.platform.IonicPlatformService,
+                $state: angular.ui.IStateService,
+                $timeout: ng.ITimeoutService,
                 $cordovaKeyboard: any,
+                $ionicPlatform: ionic.platform.IonicPlatformService,
                 gettextCatalog: angular.gettext.gettextCatalog,
                 _: _.LoDashStatic,
                 config: IApplicationConfig,
@@ -82,7 +82,6 @@ module app {
      */
     function init() {
       let _logger: ILogger = logger.getLogger('main');
-
       // Enable debug mode for translations
       gettextCatalog.debug = config.environment.debug;
 
@@ -119,11 +118,10 @@ module app {
         }
 
       });
-
     }
 
     /**
-     * Updates the page and view title.
+     * Updates the title.
      * @param {?string=} stateTitle Title of current state, to be translated.
      */
     function updateTitle(stateTitle?: string) {

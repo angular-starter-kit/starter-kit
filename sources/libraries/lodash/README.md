@@ -1,4 +1,13 @@
-# lodash v4.11.1
+# lodash v4.12.0
+
+[Site](https://lodash.com/) |
+[Docs](https://lodash.com/docs) |
+[FP Guide](https://github.com/lodash/lodash/wiki/FP-Guide) |
+[Contributing](https://github.com/lodash/lodash/blob/4.12.0/.github/CONTRIBUTING.md) |
+[Wiki](https://github.com/lodash/lodash/wiki "Changelog, Roadmap, etc.") |
+[Code of Conduct](https://jquery.org/conduct/) |
+[Twitter](https://twitter.com/bestiejs) |
+[Chat](https://gitter.im/lodash/lodash)
 
 The [Lodash](https://lodash.com/) library exported as a [UMD](https://github.com/umdjs/umd) module.
 
@@ -9,22 +18,13 @@ $ lodash -o ./dist/lodash.js
 $ lodash core -o ./dist/lodash.core.js
 ```
 
-## Community
-
-[![Gitter](https://badges.gitter.im/lodash/lodash.svg)](https://gitter.im/lodash/lodash)
-
-## Documentation
-
-  * [API Documentation](https://lodash.com/docs)
-  * [FP Guide](https://github.com/lodash/lodash/wiki/FP-Guide)
-
 ## Download
 
-Lodash is released under the [MIT license](https://raw.githubusercontent.com/lodash/lodash/4.11.1/LICENSE) & supports [modern environments](#support).<br>
+Lodash is released under the [MIT license](https://raw.githubusercontent.com/lodash/lodash/4.12.0/LICENSE) & supports [modern environments](#support).<br>
 Review the [build differences](https://github.com/lodash/lodash/wiki/build-differences) & pick one that’s right for you.
 
- * [Core build](https://raw.githubusercontent.com/lodash/lodash/4.11.1/dist/lodash.core.js) ([~4 kB gzipped](https://raw.githubusercontent.com/lodash/lodash/4.11.1/dist/lodash.core.min.js))
- * [Full build](https://raw.githubusercontent.com/lodash/lodash/4.11.1/dist/lodash.js) ([~21 kB gzipped](https://raw.githubusercontent.com/lodash/lodash/4.11.1/dist/lodash.min.js))
+ * [Core build](https://raw.githubusercontent.com/lodash/lodash/4.12.0/dist/lodash.core.js) ([~4 kB gzipped](https://raw.githubusercontent.com/lodash/lodash/4.12.0/dist/lodash.core.min.js))
+ * [Full build](https://raw.githubusercontent.com/lodash/lodash/4.12.0/dist/lodash.js) ([~22 kB gzipped](https://raw.githubusercontent.com/lodash/lodash/4.12.0/dist/lodash.min.js))
  * [CDN copies](https://www.jsdelivr.com/projects/lodash)
 
 ## Why Lodash?
@@ -43,10 +43,4 @@ Lodash is available in a [variety of builds](https://lodash.com/custom-builds) &
  * [lodash](https://www.npmjs.com/package/lodash) & [per method packages](https://www.npmjs.com/browse/keyword/lodash-modularized)
  * [lodash-amd](https://www.npmjs.com/package/lodash-amd)
  * [lodash-es](https://www.npmjs.com/package/lodash-es) & [babel-plugin-lodash](https://www.npmjs.com/package/babel-plugin-lodash)
- * [lodash/fp](https://github.com/lodash/lodash/tree/4.11.1-npm/fp)
-
-## Further Reading
-
-  * [Contributing](https://github.com/lodash/lodash/blob/4.11.1/.github/CONTRIBUTING.md)
-  * [Release Notes](https://github.com/lodash/lodash/releases/tag/4.0.0)
-  * [Wiki (Changelog, Roadmap, etc.)](https://github.com/lodash/lodash/wiki)
+ * [lodash/fp](https://github.com/lodash/lodash/tree/4.12.0-npm/fp)

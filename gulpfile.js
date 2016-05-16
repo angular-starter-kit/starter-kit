@@ -1,27 +1,24 @@
 /**
- *  Welcome to your gulpfile!
- *  The gulp tasks are splitted in several files in the gulp directory
- *  because putting all here was really too long
+ * Welcome to your gulpfile!
+ * The gulp tasks are split in several files in the gulp directory for better modularity.
  */
 
 'use strict';
 
 var gulp = require('gulp');
-var recursiveReadDirSync = require('recursive-readdir-sync');
+var fs = require('fs');
 
 /**
- *  This will load all js files in the gulp directory
- *  in order to load all gulp tasks
+ * This will load all js files in the gulp directory in order to load all gulp tasks.
  */
-recursiveReadDirSync('./gulp').filter(function(file) {
+fs.readdirSync('./gulp').filter(function(file) {
   return (/\.(js)$/i).test(file);
 }).map(function(file) {
-  require('./' + file);
+  require('./gulp/' + file);
 });
 
 /**
- *  Default task clean temporaries directories and launch the
- *  main optimization build task
+ * Default task clean temporaries directories and launch the main optimization build task.
  */
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
