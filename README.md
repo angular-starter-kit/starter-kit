@@ -33,21 +33,20 @@ sources/                project source code
 |- fonts/               project fonts
 |- images/              project images
 |- libraries/           Bower dependencies
-|- main/                main module, for entry points and global style
+|- main/                app components
 |  |- main.config.ts    app configuration code
 |  |- main.constants.ts app configuration constants
 |  |- main.module.ts    app module definition
 |  |- main.routes.ts    app routes
 |  |- main.run.ts       app entry point
 |  |- main.wrappers.ts  AngularJS module wrappers for external libraries
-|  +- main.scss         style entry point
-|- modules/             project components and modules
+|  |- main.scss         style entry point
 |  |- helpers/          helper services
 |  |- screens/          application screens
 |  |- shell/            application shell
 |  |- ui-components/    shared UI components
 |  |- web-services/     web services
-|  +- ...               additional project modules
+|  +- ...               additional components
 |- translations/        translations files
 +- index.html           html entry point
 e2e/                    end-to-end tests
@@ -96,8 +95,6 @@ You can disable opening automatically your default browser when using the `serve
 - [All gulp tasks](docs/tasks.md)
 - [Updating dependencies](docs/updating.md)
 
-# Features
-
 #### Languages
 - [TypeScript](http://www.typescriptlang.org), JavaScript
 - [Sass](http://sass-lang.com/), CSS
@@ -105,23 +102,23 @@ You can disable opening automatically your default browser when using the `serve
 
 #### Quality
 - [TSLint](https://github.com/palantir/tslint)
-- [JSHint](http://jshint.com)
-- [JSCS](http://jscs.info)
+- [HTMLHint](http://htmlhint.com)
 - Unit tests ([Jasmine](http://jasmine.github.io))
 - End-to-end tests ([Protractor](https://github.com/angular/protractor))
 
 #### Development
 - Automation with [gulp](http://gulpjs.com)
+- [Webpack](https://webpack.github.io) build
 - Development server with API proxy and live reload ([BrowserSync](http://www.browsersync.io))
 
 #### Build
 - JS+CSS+HTML bundling and minification ([useref](https://github.com/jonkemp/gulp-useref), 
   [uglify](https://github.com/terinjokes/gulp-uglify), 
-  [htmlmin](https://github.com/jonschlinkert/gulp-htmlmin), 
+  [html-minify](https://github.com/bestander/html-minify-loader), 
   [clean-css](https://www.npmjs.com/package/gulp-clean-css) 
 - CSS browser support ([autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - Images optimization ([imagemin](https://github.com/sindresorhus/gulp-imagemin))
-- Automatic angular module annotation ([ngAnnotate](https://github.com/Kagami/gulp-ng-annotate))
+- Automatic angular module annotation ([ngAnnotate](https://www.npmjs.com/package/ng-annotate-loader))
 - Asset revisionning ([rev](https://github.com/sindresorhus/gulp-rev))
 
 #### Libraries
