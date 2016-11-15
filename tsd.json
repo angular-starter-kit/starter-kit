@@ -8,6 +8,9 @@
     "angularjs/angular.d.ts": {
       "commit": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
     },
+    "webpack/webpack-env.d.ts": {
+      "commit": "544a35a10866b32afda9c7f029c0764558563f4f"
+    },
     "angular-ui-router/angular-ui-router.d.ts": {
       "commit": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
     },

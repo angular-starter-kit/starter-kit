@@ -1,16 +1,15 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-module app {
+'use strict';
 
-  'use strict';
+// Translations are injected at build phase
+angular.module('translations', []);
 
-  angular.module('app', [
-    'app.additions',
-    'gettext',
-    'ngAnimate',
-    'ngSanitize',
-    'ui.router',
-    'ui.bootstrap'
-  ]);
-
-}
+export default angular.module('app', [
+  'translations',
+  'gettext',
+  'ngAnimate',
+  'ngSanitize',
+  'ui.router',
+  'ui.bootstrap'
+]);
