@@ -217,6 +217,7 @@ angular.module('gettext').factory('gettextCatalog', ["gettextPlurals", "gettextF
                 this.strings[language] = {};
             }
 
+            var defaultPlural = gettextPlurals(language, 1);
             for (var key in strings) {
                 var val = strings[key];
 
@@ -235,7 +236,10 @@ angular.module('gettext').factory('gettextCatalog', ["gettextPlurals", "gettextF
                 // Expand single strings for each context.
                 for (var context in val) {
                     var str = val[context];
-                    val[context] = angular.isArray(str) ? str : [str];
+                    if (!angular.isArray(str)) {
+                        val[context] = [];
+                        val[context][defaultPlural] = str;
+                    }
                 }
                 this.strings[language][key] = val;
             }
@@ -350,6 +354,7 @@ angular.module('gettext').factory('gettextCatalog', ["gettextPlurals", "gettextF
  * @module gettext
  * @name translate
  * @requires gettextCatalog
+ * @requires gettextUtil
  * @requires https://docs.angularjs.org/api/ng/service/$parse $parse
  * @requires https://docs.angularjs.org/api/ng/service/$animate $animate
  * @requires https://docs.angularjs.org/api/ng/service/$compile $compile
@@ -364,38 +369,85 @@ angular.module('gettext').factory('gettextCatalog', ["gettextPlurals", "gettextF
  * ```js
  * <div translate>Hello {{name}}!</div>
  * ```
+ *
+ * You can also use custom context parameters while interpolating. This approach allows usage
+ * of angular filters as well as custom logic inside your translated messages without unnecessary impact on translations.
+ *
+ * So for example when you have message like this:
+ * ```js
+ * <div translate>Last modified {{modificationDate | date:'yyyy-MM-dd HH:mm:ss Z'}} by {{author}}.</div>
+ * ```
+ * you will have it extracted in exact same version so it would look like this:
+ * `Last modified {{modificationDate | date:'yyyy-MM-dd HH:mm:ss Z'}} by {{author}}`.
+ * To start with it might be too complicated to read and handle by non technical translator. It's easy to make mistake
+ * when copying format for example. Secondly if you decide to change format by some point of the project translation will broke
+ * as it won't be the same string anymore.
+ *
+ * Instead your translator should only be concerned to place {{modificationDate}} correctly and you should have a free hand
+ * to modify implementation details on how to present the results. This is how you can achieve the goal:
+ * ```js
+ * <div translate translate-params-modification-date="modificationDate | date:'yyyy-MM-dd HH:mm:ss Z'">Last modified {{modificationDate}} by {{author}}.</div>
+ * ```
+ *
+ * There's a few more things worth to point out:
+ * 1. You can use as many parameters as you want. Each parameter begins with `translate-params-` followed by snake-case parameter name.
+ * Each parameter will be available for interpolation in camelCase manner (just like angular directive works by default).
+ * ```js
+ * <div translate translate-params-my-custom-param="param1" translate-params-name="name">Param {{myCustomParam}} has been changed by {{name}}.</div>
+ * ```
+ * 2. You can rename your variables from current scope to simple ones if you like.
+ * ```js
+ * <div translate translate-params-date="veryUnintuitiveNameForDate">Today's date is: {{date}}.</div>
+ * ```
+ * 3. You can use translate-params only for some interpolations. Rest would be treated as usual.
+ * ```js
+ * <div translate translate-params-cost="cost | currency">This product: {{product}} costs {{cost}}.</div>
+ * ```
  */
-angular.module('gettext').directive('translate', ["gettextCatalog", "$parse", "$animate", "$compile", "$window", function (gettextCatalog, $parse, $animate, $compile, $window) {
-    // Trim polyfill for old browsers (instead of jQuery)
-    // Based on AngularJS-v1.2.2 (angular.js#620)
-    var trim = (function () {
-        if (!String.prototype.trim) {
-            return function (value) {
-                return (typeof value === 'string') ? value.replace(/^\s*/, '').replace(/\s*$/, '') : value;
-            };
-        }
-        return function (value) {
-            return (typeof value === 'string') ? value.trim() : value;
-        };
-    })();
+angular.module('gettext').directive('translate', ["gettextCatalog", "$parse", "$animate", "$compile", "$window", "gettextUtil", function (gettextCatalog, $parse, $animate, $compile, $window, gettextUtil) {
+    var msie = parseInt((/msie (\d+)/.exec(angular.lowercase($window.navigator.userAgent)) || [])[1], 10);
+    var PARAMS_PREFIX = 'translateParams';
 
-    function assert(condition, missing, found) {
-        if (!condition) {
-            throw new Error('You should add a ' + missing + ' attribute whenever you add a ' + found + ' attribute.');
-        }
+    function getCtxAttr(key) {
+        return gettextUtil.lcFirst(key.replace(PARAMS_PREFIX, ''));
     }
 
-    var msie = parseInt((/msie (\d+)/.exec(angular.lowercase($window.navigator.userAgent)) || [])[1], 10);
+    function handleInterpolationContext(scope, attrs, update) {
+        var attributes = Object.keys(attrs).filter(function (key) {
+            return gettextUtil.startsWith(key, PARAMS_PREFIX) && key !== PARAMS_PREFIX;
+        });
+
+        if (!attributes.length) {
+            return null;
+        }
+
+        var interpolationContext = angular.extend({}, scope);
+        var unwatchers = [];
+        attributes.forEach(function (attribute) {
+            var unwatch = scope.$watch(attrs[attribute], function (newVal) {
+                var key = getCtxAttr(attribute);
+                interpolationContext[key] = newVal;
+                update(interpolationContext);
+            });
+            unwatchers.push(unwatch);
+        });
+        scope.$on('$destroy', function () {
+            unwatchers.forEach(function (unwatch) {
+                unwatch();
+            });
+        });
+        return interpolationContext;
+    }
 
     return {
         restrict: 'AE',
         terminal: true,
         compile: function compile(element, attrs) {
             // Validate attributes
-            assert(!attrs.translatePlural || attrs.translateN, 'translate-n', 'translate-plural');
-            assert(!attrs.translateN || attrs.translatePlural, 'translate-plural', 'translate-n');
+            gettextUtil.assert(!attrs.translatePlural || attrs.translateN, 'translate-n', 'translate-plural');
+            gettextUtil.assert(!attrs.translateN || attrs.translatePlural, 'translate-plural', 'translate-n');
 
-            var msgid = trim(element.html());
+            var msgid = gettextUtil.trim(element.html());
             var translatePlural = attrs.translatePlural;
             var translateContext = attrs.translateContext;
 
@@ -413,17 +465,18 @@ angular.module('gettext').directive('translate', ["gettextCatalog", "$parse", "$
                     var pluralScope = null;
                     var linking = true;
 
-                    function update() {
+                    function update(interpolationContext) {
+                        interpolationContext = interpolationContext || null;
+
                         // Fetch correct translated string.
                         var translated;
                         if (translatePlural) {
                             scope = pluralScope || (pluralScope = scope.$new());
                             scope.$count = countFn(scope);
-                            translated = gettextCatalog.getPlural(scope.$count, msgid, translatePlural, null, translateContext);
+                            translated = gettextCatalog.getPlural(scope.$count, msgid, translatePlural, interpolationContext, translateContext);
                         } else {
-                            translated = gettextCatalog.getString(msgid,  null, translateContext);
+                            translated = gettextCatalog.getString(msgid, interpolationContext, translateContext);
                         }
-
                         var oldContents = element.contents();
 
                         if (oldContents.length === 0){
@@ -431,7 +484,7 @@ angular.module('gettext').directive('translate', ["gettextCatalog", "$parse", "$
                         }
 
                         // Avoid redundant swaps
-                        if (translated === trim(oldContents.html())){
+                        if (translated === gettextUtil.trim(oldContents.html())){
                             // Take care of unlinked content
                             if (linking){
                                 $compile(oldContents)(scope);
@@ -448,8 +501,14 @@ angular.module('gettext').directive('translate', ["gettextCatalog", "$parse", "$
                         $animate.leave(oldContents);
                     }
 
+                    var interpolationContext = handleInterpolationContext(scope, attrs, update);
+                    update(interpolationContext);
+                    linking = false;
+
                     if (attrs.translateN) {
-                        scope.$watch(attrs.translateN, update);
+                        scope.$watch(attrs.translateN, function () {
+                            update(interpolationContext);
+                        });
                     }
 
                     /**
@@ -458,10 +517,10 @@ angular.module('gettext').directive('translate', ["gettextCatalog", "$parse", "$
                      * @eventType listen on scope
                      * @description Listens for language updates and changes translation accordingly
                      */
-                    scope.$on('gettextLanguageChanged', update);
+                    scope.$on('gettextLanguageChanged', function () {
+                        update(interpolationContext);
+                    });
 
-                    update();
-                    linking = false;
                 }
             };
         }
@@ -532,8 +591,12 @@ angular.module('gettext').filter('translate', ["gettextCatalog", function (gette
 
 // Do not edit this file, it is autogenerated using genplurals.py!
 angular.module("gettext").factory("gettextPlurals", function () {
+    var languageCodes = {
+        "pt_BR": "pt_BR",
+        "pt-BR": "pt_BR"
+    };
     return function (langCode, n) {
-        switch (langCode) {
+        switch (getLanguageCode(langCode)) {
             case "ay":  // Aymará
             case "bo":  // Tibetan
             case "cgg": // Chiga
@@ -642,5 +705,116 @@ angular.module("gettext").factory("gettextPlurals", function () {
             default: // Everything else
                 return n != 1 ? 1 : 0;
         }
+    };
+
+    /**
+     * Method extracts iso639-2 language code from code with locale e.g. pl_PL, en_US, etc.
+     * If it's provided with standalone iso639-2 language code it simply returns it.
+     * @param {String} langCode
+     * @returns {String} iso639-2 language Code
+     */
+    function getLanguageCode(langCode) {
+        if (!languageCodes[langCode]) {
+            languageCodes[langCode] = langCode.split(/\-|_/).shift();
+        }
+        return languageCodes[langCode];
     }
+});
+
+/**
+ * @ngdoc factory
+ * @module gettext
+ * @name gettextUtil
+ * @description Utility service for common operations and polyfills.
+ */
+angular.module('gettext').factory('gettextUtil', function gettextUtil() {
+    /**
+     * @ngdoc method
+     * @name gettextUtil#trim
+     * @public
+     * @param {string} value String to be trimmed.
+     * @description Trim polyfill for old browsers (instead of jQuery). Based on AngularJS-v1.2.2 (angular.js#620).
+     *
+     * Example
+     * ```js
+     * gettextUtil.assert('  no blanks  '); // "no blanks"
+     * ```
+     */
+    var trim = (function () {
+        if (!String.prototype.trim) {
+            return function (value) {
+                return (typeof value === 'string') ? value.replace(/^\s*/, '').replace(/\s*$/, '') : value;
+            };
+        }
+        return function (value) {
+            return (typeof value === 'string') ? value.trim() : value;
+        };
+    })();
+
+    /**
+     * @ngdoc method
+     * @name gettextUtil#assert
+     * @public
+     * @param {bool} condition condition to check
+     * @param {String} missing name of the directive missing attribute
+     * @param {String} found name of attribute that has been used with directive
+     * @description Throws error if condition is not met, which means that directive was used with certain parameter
+     * that requires another one (which is missing).
+     *
+     * Example
+     * ```js
+     * gettextUtil.assert(!attrs.translatePlural || attrs.translateN, 'translate-n', 'translate-plural');
+     * //You should add a translate-n attribute whenever you add a translate-plural attribute.
+     * ```
+     */
+    function assert(condition, missing, found) {
+        if (!condition) {
+            throw new Error('You should add a ' + missing + ' attribute whenever you add a ' + found + ' attribute.');
+        }
+    }
+
+    /**
+     * @ngdoc method
+     * @name gettextUtil#startsWith
+     * @public
+     * @param {string} target String on which checking will occur.
+     * @param {string} query String expected to be at the beginning of target.
+     * @returns {boolean} Returns true if object has no ownProperties. For arrays returns true if length == 0.
+     * @description Checks if string starts with another string.
+     *
+     * Example
+     * ```js
+     * gettextUtil.startsWith('Home sweet home.', 'Home'); //true
+     * gettextUtil.startsWith('Home sweet home.', 'sweet'); //false
+     * ```
+     */
+    function startsWith(target, query) {
+        return target.indexOf(query) === 0;
+    }
+
+    /**
+     * @ngdoc method
+     * @name gettextUtil#lcFirst
+     * @public
+     * @param {string} target String to transform.
+     * @returns {string} Strings beginning with lowercase letter.
+     * @description Makes first letter of the string lower case
+     *
+     * Example
+     * ```js
+     * gettextUtil.lcFirst('Home Sweet Home.'); //'home Sweet Home'
+     * gettextUtil.lcFirst('ShouldBeCamelCase.'); //'shouldBeCamelCase'
+     * ```
+     */
+    function lcFirst(target) {
+        var first = target.charAt(0).toLowerCase();
+        return first + target.substr(1);
+    }
+
+    return {
+        trim: trim,
+        assert: assert,
+        startsWith: startsWith,
+        lcFirst: lcFirst
+    };
 });
