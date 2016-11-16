@@ -1,6 +1,6 @@
 {
   "generator-angular-pro": {
-    "version": "2.1.0",
+    "version": "2.1.2",
     "props": {
       "target": "web",
       "ui": "bootstrap",
