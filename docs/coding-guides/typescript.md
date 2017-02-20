@@ -29,11 +29,9 @@ this is a great source for community-approved conventions.
 In order to infer types from JavaScript, the TypeScript language supports external type definitions. They are located
 in the `typings` folder.
 
-To automatically download or update typings for your bower dependencies, use the `gulp tsd` command. Note that removed
-dependencies will not be removed automatically, you need to removed them manually. This is by design, so you can add
-custom typings if needed in the `typings` folder.
+To automatically download or update typings, use the `gulp typings` command.
 
-If you want to further manage your types definitions, you can use the [TSD](https://github.com/Definitelytyped/tsd)
+If you want to further manage your types definitions, you can use the [typings](https://github.com/typings/typings)
 tool.
 
 ## Enforcement

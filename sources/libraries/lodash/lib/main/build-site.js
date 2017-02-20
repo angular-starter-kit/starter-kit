@@ -175,9 +175,17 @@ function build() {
     // Load markdown.
     .readFileSync(readmePath, 'utf8')
     // Uncomment docdown HTML hints.
-    .replace(/(<)!--\s*|\s*--(>)/g, '$1$2');
+    .replace(/(<)!--\s*|\s*--(>)/g, '$1$2')
+    // Convert source and npm package links to anchors.
+    .replace(/\[source\]\(([^)]+)\) \[npm package\]\(([^)]+)\)/g, (match, href1, href2) =>
+      `<p><a href="${ href1 }">source</a> <a href="${ href2 }">npm package</a></p>`
+    );
 
-  const $ = cheerio.load(marky(markdown, { 'sanitize': false }));
+  const $ = cheerio.load(marky(markdown, {
+    'enableHeadingLinkIcons': false,
+    'sanitize': false
+  }));
+
   const $header = $('h1').first().remove();
   const version = $header.find('span').first().text().trim().slice(1);
 
