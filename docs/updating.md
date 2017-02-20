@@ -39,7 +39,7 @@ npm-check-updates -u -m bower
 
 - Update local packages regarding `package.json`
 ```sh
-bower udpate
+bower update
 ```
 
 ## Locking package versions

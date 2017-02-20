@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/398bd742115e2b071ab3edf8b543b6df6fa62dc2/cordova/plugins/Camera.d.ts",
+    "raw": "github:DefinitelyTyped/DefinitelyTyped/cordova/plugins/Camera.d.ts#398bd742115e2b071ab3edf8b543b6df6fa62dc2",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/398bd742115e2b071ab3edf8b543b6df6fa62dc2/cordova/plugins/Camera.d.ts"
+  }
+}

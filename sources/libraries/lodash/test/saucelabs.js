@@ -101,14 +101,14 @@ var platforms = [
   ['Linux', 'android', '5.1'],
   ['Windows 10', 'chrome', '54'],
   ['Windows 10', 'chrome', '53'],
+  ['Windows 10', 'firefox', '50'],
   ['Windows 10', 'firefox', '49'],
-  ['Windows 10', 'firefox', '48'],
   ['Windows 10', 'microsoftedge', '14'],
   ['Windows 10', 'internet explorer', '11'],
   ['Windows 8', 'internet explorer', '10'],
   ['Windows 7', 'internet explorer', '9'],
-  ['OS X 10.11', 'safari', '9'],
-  ['OS X 10.10', 'safari', '8']
+  ['macOS 10.12', 'safari', '10'],
+  ['OS X 10.11', 'safari', '9']
 ];
 
 /** Used to tailor the `platforms` array. */
