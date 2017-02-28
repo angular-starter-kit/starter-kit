@@ -40,6 +40,7 @@
     "gulp-shell": "^0.5.2",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.4.1",
+    "gulp-tsd": "^0.1.1",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.0.8",
     "gulp-util": "~3.0.7",

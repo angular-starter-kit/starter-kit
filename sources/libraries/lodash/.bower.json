@@ -6,7 +6,7 @@
   "_resolution": {
     "type": "version",
     "tag": "4.17.4",
-    "commit": "e31a059367a827da961ac3324bbfd35b084efb62"
+    "commit": "cfc33bcaafde562eec74eae4ab9c45737edd4daa"
   },
   "_source": "https://github.com/lodash/lodash.git",
   "_target": "~4.17.0",
