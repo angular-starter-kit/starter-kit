@@ -854,6 +854,10 @@ getJasmineRequireObj().Env = function(j$) {
           reporter.suiteStarted(suite.result);
         },
         nodeComplete: function(suite, result) {
+          if (suite !== currentSuite()) {
+            throw new Error('Tried to complete the wrong suite');
+          }
+
           if (!suite.markedPending) {
             clearResourcesForRunnable(suite.id);
           }
@@ -1596,37 +1600,69 @@ getJasmineRequireObj().CallTracker = function(j$) {
 };
 
 getJasmineRequireObj().clearStack = function(j$) {
-  function messageChannelImpl(global) {
+  var maxInlineCallCount = 10;
+
+  function messageChannelImpl(global, setTimeout) {
     var channel = new global.MessageChannel(),
         head = {},
         tail = head;
 
+    var taskRunning = false;
     channel.port1.onmessage = function() {
       head = head.next;
       var task = head.task;
       delete head.task;
-      task();
+
+      if (taskRunning) {
+        global.setTimeout(task, 0);
+      } else {
+        try {
+          taskRunning = true;
+          task();
+        } finally {
+          taskRunning = false;
+        }
+      }
     };
 
+    var currentCallCount = 0;
     return function clearStack(fn) {
-      tail = tail.next = { task: fn };
-      channel.port2.postMessage(0);
+      currentCallCount++;
+
+      if (currentCallCount < maxInlineCallCount) {
+        tail = tail.next = { task: fn };
+        channel.port2.postMessage(0);
+      } else {
+        currentCallCount = 0;
+        setTimeout(fn);
+      }
     };
   }
 
   function getClearStack(global) {
+    var currentCallCount = 0;
+    var realSetTimeout = global.setTimeout;
+    var setTimeoutImpl = function clearStack(fn) {
+        Function.prototype.apply.apply(realSetTimeout, [global, [fn, 0]]);
+    };
+
     if (j$.isFunction_(global.setImmediate)) {
       var realSetImmediate = global.setImmediate;
       return function(fn) {
-        realSetImmediate(fn);
+        currentCallCount++;
+
+        if (currentCallCount < maxInlineCallCount) {
+          realSetImmediate(fn);
+        } else {
+          currentCallCount = 0;
+
+          setTimeoutImpl(fn);
+        }
       };
     } else if (!j$.util.isUndefined(global.MessageChannel)) {
-      return messageChannelImpl(global);
+      return messageChannelImpl(global, setTimeoutImpl);
     } else {
-      var realSetTimeout = global.setTimeout;
-      return function clearStack(fn) {
-        Function.prototype.apply.apply(realSetTimeout, [global, [fn, 0]]);
-      };
+      return setTimeoutImpl;
     }
   }
 
@@ -2168,7 +2204,12 @@ getJasmineRequireObj().GlobalErrors = function(j$) {
 
     var onerror = function onerror() {
       var handler = handlers[handlers.length - 1];
-      handler.apply(null, Array.prototype.slice.call(arguments, 0));
+
+      if (handler) {
+        handler.apply(null, Array.prototype.slice.call(arguments, 0));
+      } else {
+        throw arguments[0];
+      }
     };
 
     this.uninstall = function noop() {};
@@ -3823,6 +3864,11 @@ getJasmineRequireObj().QueueRunner = function(j$) {
   }
 
   QueueRunner.prototype.execute = function() {
+    var self = this;
+    this.handleFinalError = function(error) {
+      self.onException(error);
+    };
+    this.globalErrors.pushListener(this.handleFinalError);
     this.run(this.queueableFns, 0);
   };
 
@@ -3842,7 +3888,10 @@ getJasmineRequireObj().QueueRunner = function(j$) {
       }
     }
 
-    this.clearStack(this.onComplete);
+    this.clearStack(function() {
+      self.globalErrors.popListener(self.handleFinalError);
+      self.onComplete();
+    });
 
     function attemptSync(queueableFn) {
       try {
@@ -3856,6 +3905,10 @@ getJasmineRequireObj().QueueRunner = function(j$) {
       var clearTimeout = function () {
           Function.prototype.apply.apply(self.timeout.clearTimeout, [j$.getGlobal(), [timeoutId]]);
         },
+        completedSynchronously = true,
+        setTimeout = function(delayedFn, delay) {
+          return Function.prototype.apply.apply(self.timeout.setTimeout, [j$.getGlobal(), [delayedFn, delay]]);
+        },
         handleError = function(error) {
           onException(error);
           next();
@@ -3863,7 +3916,13 @@ getJasmineRequireObj().QueueRunner = function(j$) {
         next = once(function () {
           clearTimeout(timeoutId);
           self.globalErrors.popListener(handleError);
-          self.run(queueableFns, iterativeIndex + 1);
+          if (completedSynchronously) {
+            setTimeout(function() {
+              self.run(queueableFns, iterativeIndex + 1);
+            });
+          } else {
+            self.run(queueableFns, iterativeIndex + 1);
+          }
         }),
         timeoutId;
 
@@ -3875,15 +3934,16 @@ getJasmineRequireObj().QueueRunner = function(j$) {
       self.globalErrors.pushListener(handleError);
 
       if (queueableFn.timeout) {
-        timeoutId = Function.prototype.apply.apply(self.timeout.setTimeout, [j$.getGlobal(), [function() {
+        timeoutId = setTimeout(function() {
           var error = new Error('Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.');
           onException(error);
           next();
-        }, queueableFn.timeout()]]);
+        }, queueableFn.timeout());
       }
 
       try {
         queueableFn.fn.call(self.userContext, next);
+        completedSynchronously = false;
       } catch (e) {
         handleException(e, queueableFn);
         next();
@@ -4937,5 +4997,5 @@ getJasmineRequireObj().TreeProcessor = function() {
 };
 
 getJasmineRequireObj().version = function() {
-  return '2.6.1';
+  return '2.6.4';
 };
