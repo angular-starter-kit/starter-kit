@@ -8,7 +8,6 @@
 /// <reference path="globals/FileSystem/index.d.ts" />
 /// <reference path="globals/FileTransfer/index.d.ts" />
 /// <reference path="globals/Globalization/index.d.ts" />
-/// <reference path="globals/InAppBrowser/index.d.ts" />
 /// <reference path="globals/Keyboard/index.d.ts" />
 /// <reference path="globals/Media/index.d.ts" />
 /// <reference path="globals/MediaCapture/index.d.ts" />
